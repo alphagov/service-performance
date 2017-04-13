@@ -1,0 +1,22 @@
+# DML
+# CONTEXT-DATABASE: cgsd_development
+
+# influx -import -path=db/influxdb-seeds.txt -precision=s
+#
+# transactions_received data for January, February and March 2017
+#
+# Note: agency_natural_key value is not a real agency code
+
+transactions_received,channel=online,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=300000 1483228800
+transactions_received,channel=phone,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=10000 1483228800
+transactions_received,channel=online,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=200010 1485907200
+transactions_received,channel=phone,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=8070 1485907200
+transactions_received,channel=online,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=265000 1488326400
+transactions_received,channel=phone,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=7907 1488326400
+
+transactions_with_outcome,outcome=any,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=300000 1483228800
+transactions_with_outcome,outcome=user-intended,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=10000 1483228800
+transactions_with_outcome,outcome=any,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=200010 1485907200
+transactions_with_outcome,outcome=user-intended,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=8070 1485907200
+transactions_with_outcome,outcome=any,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=265000 1488326400
+transactions_with_outcome,outcome=user-intended,service_natural_key=1018,agency_natural_key=D11981,department_natural_key=D1198 quantity=7907 1488326400
