@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  natural_pk: 1
+  natural_name: MyString
+  hostname: MyString
+
+two:
+  natural_pk: 1
+  natural_name: MyString
+  hostname: MyString
