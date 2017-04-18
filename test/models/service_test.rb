@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GovernmentServiceTest < ActiveSupport::TestCase
+class ServiceTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
