@@ -13,7 +13,7 @@ class ServiceChannelSummary
     @service      = args[:service]
     @time_period  = args[:time_period]
     result_set    = sum_transactions_received
-    set_data(result_set)
+    set_attrs(result_set)
   end
 
   private
@@ -35,7 +35,7 @@ class ServiceChannelSummary
       InfluxDB::Rails.client.query(sql)
     end
 
-    def set_data(result_set)
+    def set_attrs(result_set)
       result_set.each do |member|
         tag_value = member['tags']['channel']
         tag_value.gsub!(/-/, '_')
