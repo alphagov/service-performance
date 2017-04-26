@@ -12,12 +12,23 @@ class DataController < ApplicationController
 
   # GET /data/departments
   def departments
-    render json: { route: '/data/departments', params: params}
+    data = []
+    Department.all.each do |department|
+      data << DepartmentDataPresenter.new(department, TimePeriod.new)
+    end
+    render json: data
   end
 
   #GET /data/departments/:department_natural_key
   def department
-    render json: { route: '/data/departments', params: params}
+    department = Department.find_by(
+      natural_key: params[:department_natural_key])
+    if department
+      render json: DepartmentDataPresenter.new(department, TimePeriod.new)
+    else
+      render json: {
+        route: '/data/departments/department_natural_key', params: params}
+    end
   end
 
   # GET /data/services
@@ -35,7 +46,8 @@ class DataController < ApplicationController
     if service
       render json: ServiceDataPresenter.new(service, TimePeriod.new)
     else
-      render json: { route: '/data/services', params: params}
+      render json: {
+        route: '/data/services/:service_natural_key', params: params}
     end
   end
 end

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get 'departments/:department_natural_key',
           to: 'data#department',
           as: 'department_data',
-          department_natural_key: /[A-Z]{2}[0-9]{1,4}/
+          department_natural_key: /[A-Z]{1,2}[0-9]{1,4}/
 
       get 'services', to: 'data#services', as: 'services_data'
 
