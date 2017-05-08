@@ -4,6 +4,11 @@ gem 'rails', '~> 5.1.0'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'jbuilder', '~> 2.5'
+
+gem 'govuk_elements_rails'
+gem 'govuk_frontend_toolkit'
+gem 'govuk_template'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'

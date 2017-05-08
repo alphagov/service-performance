@@ -52,6 +52,15 @@ GEM
     govuk-lint (2.1.0)
       rubocop (~> 0.43.0)
       scss_lint
+    govuk_elements_rails (3.0.2)
+      govuk_frontend_toolkit (>= 5.2.0)
+      rails (>= 4.1.0)
+      sass (>= 3.2.0)
+    govuk_frontend_toolkit (6.0.1)
+      rails (>= 3.1.0)
+      sass (>= 3.2.0)
+    govuk_template (0.20.0)
+      rails (>= 3.1)
     i18n (0.8.1)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
@@ -178,6 +187,9 @@ PLATFORMS
 DEPENDENCIES
   byebug
   govuk-lint
+  govuk_elements_rails
+  govuk_frontend_toolkit
+  govuk_template
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)

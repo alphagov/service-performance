@@ -1,13 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>CgsdViewData</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
-</html>
+<% content_for(:head) do %>
+  <%= stylesheet_link_tag 'application' %>
+<% end %>
+<% content_for(:inside_header, 'Cross-Government Service Data') %>
+<% content_for(:header_class, 'with-proposition') %>
+<% content_for(:proposition_header) do %>
+<div class="header-proposition">
+  <div class="content">
+    <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+    <nav id="proposition-menu">
+      <a href="/" id="proposition-name">Cross-Government Service Data</a>
+      <ul id="proposition-links">
+        <li><a href="url-to-page-1" class="active">Navigation item #1</a></li>
+        <li><a href="url-to-page-2">Navigation item #2</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<% end %>
+<% content_for(:content, yield) %>
+<%= render file: 'layouts/govuk_template' %>
