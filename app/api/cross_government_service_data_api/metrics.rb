@@ -20,4 +20,16 @@ class CrossGovernmentServiceDataAPI::Metrics
     @department = department
     @metrics = metrics
   end
+
+  attr_reader :department
+
+  def transactions_received
+    keys = @metrics.keys.grep(/^transactions_received/)
+    CrossGovernmentServiceDataAPI::TransactionsReceivedMetric.build(@metrics.slice(*keys))
+  end
+
+  def transactions_with_outcome
+    keys = @metrics.keys.grep(/^transactions_ending/)
+    CrossGovernmentServiceDataAPI::TransactionsWithOutcomeMetric.build(@metrics.slice(*keys))
+  end
 end
