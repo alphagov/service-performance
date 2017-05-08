@@ -1,43 +1,8 @@
-// From GDS's alphagov/govuk_frontend_toolkit
-@import 'colours';
-@import 'font_stack';
-@import 'measurements';
-@import 'conditionals';
-@import 'device-pixels';
-@import 'grid_layout';
-@import 'typography';
-@import 'shims';
+// Import GOV.UK elements from /govuk-modules/, this will import the frontend toolkit and some base styles.
+// Take a look in /govuk-modules/_govuk-elements.scss to see which files are imported.
+@import 'govuk-elements';
 
-@import 'design-patterns/alpha-beta';
-@import 'design-patterns/buttons';
-@import 'design-patterns/breadcrumbs';
-
-// From GDS's alphagov/govuk_elements;
-@import 'elements/helpers';
-@import 'elements/reset';
-;
-// Base (unclassed HTML elements);
-// These are predefined by govuk_template;
-// If you're not using govuk_template, uncomment the line below.;
-// HTML elements, set by the GOV.UK template;
-// @import 'elements/base';
-
-@import 'elements/layout';
-@import 'elements/elements-typography';
-@import 'elements/buttons';
-// @import 'elements/icons';
-@import 'elements/lists';
-// @import 'elements/tables';
-@import 'elements/details';
-@import 'elements/panels';
-@import 'elements/forms';
-//@import 'elements/forms/form-block-labels';
-@import 'elements/forms/form-date';
-@import 'elements/forms/form-validation';
-@import 'elements/breadcrumbs';
-@import 'elements/phase-banner';
-@import 'elements/components';
-
+// Take a look at in assets/sass/patterns/ to see which files are imported.
 @import 'patterns/accordion';
 @import 'patterns/bar-chart-table';
 @import 'patterns/filter';
@@ -48,3 +13,126 @@
 @import 'patterns/search';
 @import 'patterns/subnav';
 @import 'patterns/tabs';
+
+// GOV.UK front end toolkit dependencies
+@import "colours";
+@import "shims";
+@import "measurements";
+@import "typography";
+@import "css3";
+@import "url-helpers";
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+// Add 30px spacing at top of anchor links
+
+:target:before {
+  content:"";
+  display:block;
+  height:30px;
+  margin:-30px 0 0;
+}
+
+// fix from broken css
+
+.data-item {
+  display: block;
+}
+
+.data {
+
+  .bold-xxlarge {
+
+    @media (max-width: 920px) {
+      font-size: 56px;
+    }
+
+    @media (max-width: 640px) {
+      font-size: 48px;
+    }
+  }
+
+}
+
+// Changes to things in gov uk elements
+
+.heading-xlarge {
+  margin: 10px 0 25px;
+}
+
+.breadcrumbs {
+
+  li {
+    background-image: image-url('separator.png');
+  }
+
+}
+
+.icon-file-download {
+  width: 24px;
+  height: 32px;
+  background-image: image-url("icon-file-download.png");
+  background-size: 100%;
+}
+
+.notice {
+  margin-top: 18px;
+
+  strong {
+    padding-left: 50px;
+  }
+
+}
+
+// Stuff from product pages sass
+
+.section-header {
+  margin: $gutter 0 $gutter/2 0;
+  color: $grey-1;
+  font-size: em(19);
+  border-bottom: 1px solid $grey-2;
+  padding-bottom: 5px;
+}
+
+.page-header__context {
+    font-family: "nta", Arial, sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 24px;
+    line-height: 1.25;
+    color: #6f777b;
+    margin-bottom: em(10);
+    padding-bottom: .167em;
+
+    @media screen and (max-width: 640px) {
+      font-size: 18px;
+      line-height: 1.2;
+    }
+}
+
+// Drill down layout
+
+.data-block {
+  margin-top: 30px;
+  margin-bottom: 75px;
+
+  ul.list.bold-medium {
+
+    > li {
+      margin-bottom: 15px;
+    }
+
+  }
+
+}
+
+// Download CSV link
+
+.download-csv {
+  text-align: right;
+
+  @media screen and (max-width: 640px) {
+    text-align: left;
+  }
+
+}
