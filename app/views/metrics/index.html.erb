@@ -124,7 +124,7 @@
         </div>
         <div class="column-one-quarter">
           <h3 class="data">
-            <span class="data-item bold-large"><%= number_with_precision(metrics.transactions_received.total, precision: 2, significant: true) %></span>
+            <span class="data-item bold-large"><%= number_to_human(metrics.transactions_received.total, precision: 2, significant: true, units: {thousand: 'k', million: 'm', billion: 'b'}, format: '%n%u') %></span>
             <span class="data-item bold-xsmall">transactions received</span>
           </h3>
           <p class="font-xsmall metric-guidance">
@@ -175,7 +175,7 @@
         </div>
         <div class="column-one-quarter">
           <h3 class="data">
-            <span class="data-item bold-large"><%= number_with_precision(metrics.transactions_with_outcome.count, precision: 2, significant: true) %></span>
+            <span class="data-item bold-large"><%= number_to_human(metrics.transactions_with_outcome.count, precision: 2, significant: true, units: {thousand: 'k', million: 'm', billion: 'b'}, format: '%n%u') %></span>
             <span class="data-item bold-xsmall">transactions ending in an outcome</span>
           </h3>
           <p class="font-xsmall metric-guidance">
