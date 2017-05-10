@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510143614) do
+ActiveRecord::Schema.define(version: 20170510152427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,16 @@ ActiveRecord::Schema.define(version: 20170510143614) do
 
   create_table "services", force: :cascade do |t|
     t.integer  "natural_key"
-    t.string   "natural_name"
+    t.string   "name"
     t.string   "hostname"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "department_code", null: false
+    t.string   "agency_code"
+    t.index ["natural_key"], name: "index_services_on_natural_key", unique: true, using: :btree
   end
 
   add_foreign_key "agencies", "departments", column: "department_code", primary_key: "natural_key"
+  add_foreign_key "services", "agencies", column: "agency_code", primary_key: "natural_key"
+  add_foreign_key "services", "departments", column: "department_code", primary_key: "natural_key"
 end
