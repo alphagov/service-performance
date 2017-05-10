@@ -3,6 +3,15 @@ class ServiceDataPresenter < BasePresenter
     @model
   end
 
+  def metrics
+    [
+      FooTransactionsWithOutcomeMetric.new(
+        total: transactions_ending_any_outcome,
+        with_intended_outcome: transactions_ending_user_intended_outcome
+      )
+    ]
+  end
+
 	private
 	  def channel_summary
 	  	@channel_summary ||= ServiceChannelSummary.new(
