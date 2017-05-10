@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418084829) do
+ActiveRecord::Schema.define(version: 20170510132259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "departments", force: :cascade do |t|
+    t.string   "natural_key", null: false
+    t.string   "name",        null: false
+    t.string   "hostname",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["natural_key"], name: "index_departments_on_natural_key", unique: true, using: :btree
+  end
 
   create_table "services", force: :cascade do |t|
     t.integer  "natural_key"
