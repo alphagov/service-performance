@@ -5,13 +5,6 @@ class ServiceDataPresenter < BasePresenter
 
   def metrics
     [
-      TransactionsReceivedMetric.new(
-        online: transactions_received_online,
-        phone: transactions_received_phone,
-        paper: transactions_received_paper,
-        face_to_face: transactions_received_face_to_face,
-        other: transactions_received_other
-      ),
       FooTransactionsWithOutcomeMetric.new(
         total: transactions_ending_any_outcome,
         with_intended_outcome: transactions_ending_user_intended_outcome

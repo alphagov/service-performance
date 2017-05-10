@@ -8,7 +8,7 @@ class ServiceDataPresenterSerializer < ActiveModel::Serializer
 #              :transactions_ending_any_outcome,
 #              :transactions_ending_user_intended_outcome
 
-  has_many :metrics, serializer: MetricSerializer
+  has_many :metrics
 
   belongs_to :service
 
