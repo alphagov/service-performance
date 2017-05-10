@@ -12,7 +12,7 @@ class ServiceDataPresenter < BasePresenter
         face_to_face: transactions_received_face_to_face,
         other: transactions_received_other
       ),
-      TransactionsWithOutcomeMetric.new(
+      FooTransactionsWithOutcomeMetric.new(
         total: transactions_ending_any_outcome,
         with_intended_outcome: transactions_ending_user_intended_outcome
       )
