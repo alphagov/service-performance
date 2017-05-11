@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510161332) do
+ActiveRecord::Schema.define(version: 20170511093928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,10 +57,25 @@ ActiveRecord::Schema.define(version: 20170510161332) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "transactions_with_outcome_metrics", force: :cascade do |t|
+    t.string   "department_code",                null: false
+    t.string   "agency_code"
+    t.string   "service_code",                   null: false
+    t.date     "starts_on",                      null: false
+    t.date     "ends_on",                        null: false
+    t.bigint   "quantity_with_any_outcome",      null: false
+    t.bigint   "quantity_with_intended_outcome", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
   add_foreign_key "agencies", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "services", "agencies", column: "agency_code", primary_key: "natural_key"
   add_foreign_key "services", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "transactions_received_metrics", "agencies", column: "agency_code", primary_key: "natural_key"
   add_foreign_key "transactions_received_metrics", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "transactions_received_metrics", "services", column: "service_code", primary_key: "natural_key"
+  add_foreign_key "transactions_with_outcome_metrics", "agencies", column: "agency_code", primary_key: "natural_key"
+  add_foreign_key "transactions_with_outcome_metrics", "departments", column: "department_code", primary_key: "natural_key"
+  add_foreign_key "transactions_with_outcome_metrics", "services", column: "service_code", primary_key: "natural_key"
 end
