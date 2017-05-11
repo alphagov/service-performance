@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511093928) do
+ActiveRecord::Schema.define(version: 20170511105256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20170511093928) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["natural_key"], name: "index_agencies_on_natural_key", unique: true, using: :btree
+  end
+
+  create_table "calls_received_metrics", force: :cascade do |t|
+    t.string   "department_code", null: false
+    t.string   "agency_code"
+    t.string   "service_code",    null: false
+    t.date     "starts_on",       null: false
+    t.date     "ends_on",         null: false
+    t.bigint   "quantity",        null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "departments", force: :cascade do |t|
@@ -70,6 +81,9 @@ ActiveRecord::Schema.define(version: 20170511093928) do
   end
 
   add_foreign_key "agencies", "departments", column: "department_code", primary_key: "natural_key"
+  add_foreign_key "calls_received_metrics", "agencies", column: "agency_code", primary_key: "natural_key"
+  add_foreign_key "calls_received_metrics", "departments", column: "department_code", primary_key: "natural_key"
+  add_foreign_key "calls_received_metrics", "services", column: "service_code", primary_key: "natural_key"
   add_foreign_key "services", "agencies", column: "agency_code", primary_key: "natural_key"
   add_foreign_key "services", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "transactions_received_metrics", "agencies", column: "agency_code", primary_key: "natural_key"
