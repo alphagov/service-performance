@@ -45,7 +45,22 @@ ActiveRecord::Schema.define(version: 20170510161332) do
     t.index ["natural_key"], name: "index_services_on_natural_key", unique: true, using: :btree
   end
 
+  create_table "transactions_received_metrics", force: :cascade do |t|
+    t.string   "department_code", null: false
+    t.string   "agency_code"
+    t.string   "service_code",    null: false
+    t.date     "starts_on",       null: false
+    t.date     "ends_on",         null: false
+    t.string   "channel",         null: false
+    t.bigint   "quantity",        null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   add_foreign_key "agencies", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "services", "agencies", column: "agency_code", primary_key: "natural_key"
   add_foreign_key "services", "departments", column: "department_code", primary_key: "natural_key"
+  add_foreign_key "transactions_received_metrics", "agencies", column: "agency_code", primary_key: "natural_key"
+  add_foreign_key "transactions_received_metrics", "departments", column: "department_code", primary_key: "natural_key"
+  add_foreign_key "transactions_received_metrics", "services", column: "service_code", primary_key: "natural_key"
 end
