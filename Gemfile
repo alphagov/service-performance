@@ -26,6 +26,8 @@ gem 'puma', '~> 3.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+gem 'active_model_serializers'
+
 gem 'pg'
 
 group :development, :test do
@@ -41,6 +43,10 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'timecop'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

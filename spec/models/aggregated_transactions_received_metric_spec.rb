@@ -1,0 +1,30 @@
+require 'rails_helper'
+
+RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
+
+  it 'aggregates transactions received metric for a given service' do
+    service = FactoryGirl.create(:service)
+    FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'online', quantity: 100)
+    FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-02-28', channel: 'online', quantity: 200)
+    FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-03-01', ends_on: '2017-03-31', channel: 'online', quantity: 300)
+    FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-03-31', channel: 'phone', quantity: 500)
+
+    # ignores metrics with overlapping ranges
+    FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2016-12-01', ends_on: '2017-01-31', channel: 'online', quantity: 65)
+    FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-04-30', channel: 'online', quantity: 72)
+
+    # ignores metrics for other services
+    other_service = FactoryGirl.create(:service)
+    FactoryGirl.create(:transactions_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'online', quantity: 95)
+
+    time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+    metric = AggregatedTransactionsReceivedMetric.new(service, time_period)
+    expect(metric.total).to eq(1100)
+    expect(metric.online).to eq(600)
+    expect(metric.phone).to eq(500)
+    expect(metric.paper).to eq(0)
+    expect(metric.face_to_face).to eq(0)
+    expect(metric.other).to eq(0)
+  end
+
+end
