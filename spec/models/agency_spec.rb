@@ -26,4 +26,14 @@ RSpec.describe Agency, type: :model do
       expect(agency).to fail_strict_validations
     end
   end
+
+  describe '#services' do
+    it 'returns a scope of services, which belong to the agency' do
+      agency = FactoryGirl.create(:agency)
+      service1 = FactoryGirl.create(:service, agency_code: agency.natural_key)
+      service2 = FactoryGirl.create(:service, agency_code: agency.natural_key)
+
+      expect(agency.services.to_a).to match_array([service1, service2])
+    end
+  end
 end

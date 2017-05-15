@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :agency do
-    natural_key 'D41231'
+    sequence(:natural_key) {|n| 'D%05d' % n }
     name 'Government Agency'
     hostname 'government-agency'
 

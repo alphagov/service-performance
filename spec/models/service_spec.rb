@@ -26,4 +26,11 @@ RSpec.describe Service, type: :model do
       expect(service).to fail_strict_validations
     end
   end
+
+  describe '#services' do
+    it 'returns a scope, which returns itself' do
+      service = FactoryGirl.create(:service)
+      expect(service.services.to_a).to eq([service])
+    end
+  end
 end

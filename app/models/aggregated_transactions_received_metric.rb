@@ -1,9 +1,9 @@
 class AggregatedTransactionsReceivedMetric
   alias :read_attribute_for_serialization :send
 
-  def initialize(service, time_period)
+  def initialize(organisation, time_period)
     @totals = TransactionsReceivedMetric
-      .where(service_code: service.natural_key)
+      .where(service_code: organisation.services.pluck(:natural_key))
       .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
       .each.with_object({}) do |metric, memo|
         memo[metric.channel] ||= 0

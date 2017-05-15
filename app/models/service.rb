@@ -6,4 +6,8 @@ class Service < ApplicationRecord
   validates_presence_of :name, strict: true
   validates_presence_of :hostname, strict: true
   validates_presence_of :department, strict: true
+
+  def services
+    Service.where(id: self)
+  end
 end
