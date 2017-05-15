@@ -10,10 +10,14 @@ class CrossGovernmentServiceDataAPI::Client
 
   private
   def connection
-    @connection ||= Faraday.new 'http://localhost:3001' do |connection|
+    @connection ||= Faraday.new(ENV.fetch('API_URL')) do |connection|
       connection.use :instrumentation
 
+      connection.basic_auth ENV.fetch('API_USERNAME'), ENV.fetch('API_PASSWORD')
+
+      connection.response :logger, Rails.logger
       connection.response :json
+      connection.response :raise_error
       connection.adapter Faraday.default_adapter
     end
   end

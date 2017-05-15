@@ -1,15 +1,17 @@
 class CrossGovernmentServiceDataAPI::TransactionsReceivedMetric
   def self.build(data)
     new(
-      online: data['transactions_received_online'],
-      phone: data['transactions_received_phone'],
-      paper: data['transactions_received_paper'],
-      face_to_face: data['transactions_received_face_to_face'],
-      other: data['transactions_received_other'],
+      total: data['total'],
+      online: data['online'],
+      phone: data['phone'],
+      paper: data['paper'],
+      face_to_face: data['face_to_face'],
+      other: data['other'],
     )
   end
 
-  def initialize(online: nil, phone: nil, paper: nil, face_to_face: nil, other: nil)
+  def initialize(total: nil, online: nil, phone: nil, paper: nil, face_to_face: nil, other: nil)
+    @total = total || 0
     @online = online || 0
     @phone = phone || 0
     @paper = paper || 0
@@ -18,7 +20,7 @@ class CrossGovernmentServiceDataAPI::TransactionsReceivedMetric
   end
 
   def total
-    @total ||= [@online, @phone, @paper, @face_to_face, @other].sum
+    @total
   end
 
   def online_percentage
