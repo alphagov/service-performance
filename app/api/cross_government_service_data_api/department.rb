@@ -1,13 +1,11 @@
-CrossGovernmentServiceDataAPI::Department = Struct.new(:key, :name, :website) do
+CrossGovernmentServiceDataAPI::Department = Struct.new(:key, :name, :website, :agencies_count, :services_count) do
   def self.build(response)
-    new(response['natural_key'], response['name'], response['website'])
-  end
-
-  def agencies_count
-    5
-  end
-
-  def services_count
-    25
+    new(
+      response['natural_key'],
+      response['name'],
+      response['website'],
+      response['agengies_count'],
+      response['services_count']
+    )
   end
 end

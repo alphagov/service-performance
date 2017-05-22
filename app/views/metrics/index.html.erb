@@ -116,11 +116,11 @@
         <div class="column-one-quarter">
           <h2 class="bold-medium"><%= link_to group.name, group.url %></h2>
           <ul class="list font-xsmall">
-            <% if group.respond_to?(:agencies_count) %>
+            <% if group.respond_to?(:agencies_count) && group.agencies_count.present? %>
               <li><strong><%= group.agencies_count %></strong> <% if group.agencies_count == 1 %>agency<% else %>agencies<% end %></li>
             <% end %>
 
-            <% if group.respond_to?(:services_count) %>
+            <% if group.respond_to?(:services_count) && group.services_count.present? %>
               <li><strong><%= group.services_count %></strong> <% if group.services_count == 1 %>service<% else %>services<% end %></li>
             <% end %>
           </ul>

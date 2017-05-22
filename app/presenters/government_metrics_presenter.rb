@@ -26,8 +26,10 @@ class GovernmentMetricsPresenter
     @data.map do |data|
       name = data.department.name
       url = department_services_path(data.department.key)
+      agencies_count = data.department.agencies_count
+      services_count = data.department.services_count
 
-      MetricGroup.new(name, url, data.metrics)
+      MetricGroup.new(name, url, data.metrics, agencies_count: agencies_count, services_count: services_count)
     end
   end
 end
