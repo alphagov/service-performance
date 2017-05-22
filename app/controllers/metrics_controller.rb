@@ -2,7 +2,7 @@ class MetricsController < ApplicationController
 
   def index
     client = CrossGovernmentServiceDataAPI::Client.new
-    @metrics = MetricsPresenter.new(data: client.metrics_by_department)
+    @metrics = GovernmentMetricsPresenter.new(client: client)
   end
 
   protected

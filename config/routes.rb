@@ -3,5 +3,9 @@ Rails.application.routes.draw do
 
   scope 'performance-data' do
     get 'government', to: 'metrics#index'
+
+    resources :departments, only: [] do
+      resources :services, only: [:index, :show]
+    end
   end
 end

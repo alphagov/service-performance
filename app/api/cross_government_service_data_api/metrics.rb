@@ -1,27 +1,37 @@
 class CrossGovernmentServiceDataAPI::Metrics
 
   def self.build(response)
-    department = CrossGovernmentServiceDataAPI::Department.build(response['department'])
+    if response['department']
+      department = CrossGovernmentServiceDataAPI::Department.build(response['department'])
+    end
+
+    if response['service']
+      service = CrossGovernmentServiceDataAPI::Service.build(response['service'])
+    end
+
     metrics = response['metrics'].index_by {|metric| metric['type'] }
-    new(department, metrics)
+    new(metrics, department: department, service: service)
   end
 
-  def initialize(department, metrics)
+  def initialize(metrics, department: nil, service: nil)
     @department = department
+    @service = service
     @metrics = metrics
   end
 
-  attr_reader :department
+  attr_reader :department, :service
 
-  def transactions_received
-    CrossGovernmentServiceDataAPI::TransactionsReceivedMetric.build(metrics['transactions-received'])
-  end
-
-  def transactions_with_outcome
-    CrossGovernmentServiceDataAPI::TransactionsWithOutcomeMetric.build(metrics['transactions-with-outcome'])
+  def metrics
+    [transactions_received, transactions_with_outcome]
   end
 
   private
 
-  attr_reader :metrics
+  def transactions_received
+    CrossGovernmentServiceDataAPI::TransactionsReceivedMetric.build(@metrics['transactions-received'])
+  end
+
+  def transactions_with_outcome
+    CrossGovernmentServiceDataAPI::TransactionsWithOutcomeMetric.build(@metrics['transactions-with-outcome'])
+  end
 end

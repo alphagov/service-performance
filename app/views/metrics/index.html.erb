@@ -10,7 +10,7 @@
   <div class="grid-row">
     <div class="column-two-thirds">
       <h1 class="heading-xlarge">
-        <%= pluralize(@metrics.organisation_count, @metrics.organisation_singular_noun, @metrics_organisation_plural_noun) %> in <%= @metrics.parent_organisation %>
+        <%= pluralize(@metrics.organisation_count, @metrics.organisation_singular_noun, @metrics.organisation_plural_noun) %> in <%= @metrics.parent_organisation %>
       </h1>
     </div>
     <div class="column-third">
@@ -24,8 +24,6 @@
       </div>
     </div>
   </div>
-
-
 
   <div class="grid-row filter-panel-horizontal">
 
@@ -113,18 +111,23 @@
   <div class="grid-row">
     <ul class="filter-cards column-full">
 
-      <% @metrics.each do |organisation, metrics|  %>
+      <% @metrics.groups.each do |group|  %>
       <li class="column-full">
         <div class="column-one-quarter">
-          <h2 class="bold-medium"><a href="{{ url_builder(organisation_type, row.friendly_id, row.agencies_count) }}"><%= organisation.name %></a></h2>
+          <h2 class="bold-medium"><%= link_to group.name, group.url %></a></h2>
           <ul class="list font-xsmall">
-            <li><strong><%= organisation.agencies_count %></strong> <% if organisation.agencies_count == 1 %>agency<% else %>agencies<% end %></li>
-            <li><strong><%= organisation.services_count %></strong> <% if organisation.services_count == 1 %>service<% else %>services<% end %></li>
+            <% if group.respond_to?(:agencies_count) %>
+              <li><strong><%= organisation.agencies_count %></strong> <% if organisation.agencies_count == 1 %>agency<% else %>agencies<% end %></li>
+            <% end %>
+
+            <% if group.respond_to?(:services_count) %>
+              <li><strong><%= organisation.services_count %></strong> <% if organisation.services_count == 1 %>service<% else %>services<% end %></li>
+            <% end %>
           </ul>
         </div>
         <div class="column-one-quarter">
           <h3 class="data">
-            <span class="data-item bold-large"><%= number_to_human(metrics.transactions_received.total, precision: 2, significant: true, units: {thousand: 'k', million: 'm', billion: 'b'}, format: '%n%u') %></span>
+            <span class="data-item bold-large"><%= number_to_human(group.transactions_received.total, precision: 2, significant: true, units: {thousand: 'k', million: 'm', billion: 'b'}, format: '%n%u') %></span>
             <span class="data-item bold-xsmall">transactions received</span>
           </h3>
           <p class="font-xsmall metric-guidance">
@@ -133,7 +136,7 @@
           <ul class="list font-xsmall">
             <li>
               <span class="metric-name">
-                <strong><%= number_to_percentage(metrics.transactions_received.online_percentage, precision: 0) %></strong> online
+                <strong><%= number_to_percentage(group.transactions_received.online_percentage, precision: 0) %></strong> online
               </span>
               <p class="font-xsmall metric-guidance">
                 Transactions received online. Doesn’t include services where you use an online tool to fill out a paper form or transactions received via web chat.
@@ -141,7 +144,7 @@
             </li>
             <li>
               <span class="metric-name">
-                <strong><%= number_to_percentage(metrics.transactions_received.phone_percentage, precision: 0) %></strong> phone
+                <strong><%= number_to_percentage(group.transactions_received.phone_percentage, precision: 0) %></strong> phone
               </span>
               <p class="font-xsmall metric-guidance">
                 Transactions received via the phone. Doesn’t include IVR or purely informational calls that don’t affect the outcome of a transaction.
@@ -149,7 +152,7 @@
             </li>
             <li>
               <span class="metric-name">
-                <strong><%= number_to_percentage(metrics.transactions_received.paper_percentage, precision: 0) %></strong> paper
+                <strong><%= number_to_percentage(group.transactions_received.paper_percentage, precision: 0) %></strong> paper
               </span>
               <p class="font-xsmall metric-guidance">
                 Transactions received via a paper form. The form can be sent in any way including by post, email, fax or uploading.
@@ -157,7 +160,7 @@
             </li>
             <li>
               <span class="metric-name">
-                <strong><%= number_to_percentage(metrics.transactions_received.face_to_face_percentage, precision: 0) %></strong> face-to-face
+                <strong><%= number_to_percentage(group.transactions_received.face_to_face_percentage, precision: 0) %></strong> face-to-face
               </span>
               <p class="font-xsmall metric-guidance">
                 The transaction must be received through a face-to-face meeting with someone working for the service. Doesn’t include handing in a paper form in person.
@@ -165,7 +168,7 @@
             </li>
             <li>
               <span class="metric-name">
-                <strong><%= number_to_percentage(metrics.transactions_received.other_percentage, precision: 0) %></strong> other
+                <strong><%= number_to_percentage(group.transactions_received.other_percentage, precision: 0) %></strong> other
               </span>
               <p class="font-xsmall metric-guidance">
                 Any other way the user provides the information needed to complete a transaction that doesn’t fit into the Online, Phone, Paper and Face-to-face channels.
@@ -175,7 +178,7 @@
         </div>
         <div class="column-one-quarter">
           <h3 class="data">
-            <span class="data-item bold-large"><%= number_to_human(metrics.transactions_with_outcome.count, precision: 2, significant: true, units: {thousand: 'k', million: 'm', billion: 'b'}, format: '%n%u') %></span>
+            <span class="data-item bold-large"><%= number_to_human(group.transactions_with_outcome.count, precision: 2, significant: true, units: {thousand: 'k', million: 'm', billion: 'b'}, format: '%n%u') %></span>
             <span class="data-item bold-xsmall">transactions ending in an outcome</span>
           </h3>
           <p class="font-xsmall metric-guidance">
@@ -184,7 +187,7 @@
           <ul class="list font-xsmall">
             <li>
               <span class="metric-name">
-                <strong><%= number_to_percentage(metrics.transactions_with_outcome.with_intended_outcome_percentage, precision: 0) %></strong> end in user's intended outcome
+                <strong><%= number_to_percentage(group.transactions_with_outcome.with_intended_outcome_percentage, precision: 0) %></strong> end in user's intended outcome
               </span>
               <p class="font-xsmall metric-guidance">
                 A subset of the transactions ending in an outcome where the outcome is what the user set out to achieve.

@@ -8,6 +8,15 @@ class CrossGovernmentServiceDataAPI::Client
     end
   end
 
+  def services_metrics_by_department(department_id)
+    department_id = URI.escape(department_id)
+    response = connection.get "/v1/data/departments/#{department_id}/services"
+    data = response.body
+    data.map do |response|
+      CrossGovernmentServiceDataAPI::Metrics.build(response)
+    end
+  end
+
   private
   def connection
     @connection ||= Faraday.new(ENV.fetch('API_URL')) do |connection|
