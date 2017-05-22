@@ -8,12 +8,4 @@ class MetricGroup < Struct.new(:name, :url, :metrics)
   def metrics
     @metrics ||= super.each {|metric| metric.extend(ToPartialPath) }
   end
-
-  def transactions_received
-    metrics.detect {|metric| metric.is_a?(CrossGovernmentServiceDataAPI::TransactionsReceivedMetric) }
-  end
-
-  def transactions_with_outcome
-    metrics.detect {|metric| metric.is_a?(CrossGovernmentServiceDataAPI::TransactionsWithOutcomeMetric) }
-  end
 end

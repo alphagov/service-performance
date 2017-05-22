@@ -22,7 +22,7 @@ class CrossGovernmentServiceDataAPI::Metrics
   attr_reader :department, :service
 
   def metrics
-    [transactions_received, transactions_with_outcome]
+    [transactions_received, transactions_with_outcome, calls_received]
   end
 
   private
@@ -33,5 +33,9 @@ class CrossGovernmentServiceDataAPI::Metrics
 
   def transactions_with_outcome
     CrossGovernmentServiceDataAPI::TransactionsWithOutcomeMetric.build(@metrics['transactions-with-outcome'])
+  end
+
+  def calls_received
+    CrossGovernmentServiceDataAPI::CallsReceivedMetric.new
   end
 end

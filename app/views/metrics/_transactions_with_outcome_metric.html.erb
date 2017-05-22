@@ -1,0 +1,19 @@
+<div class="column-one-quarter">
+  <h3 class="data">
+    <span class="data-item bold-large"><%= number_to_human(transactions_with_outcome_metric.count, precision: 2, significant: true, units: {thousand: 'k', million: 'm', billion: 'b'}, format: '%n%u') %></span>
+    <span class="data-item bold-xsmall">transactions ending in an outcome</span>
+  </h3>
+  <p class="font-xsmall metric-guidance">
+    The number of transactions where no further changes to the user’s relationship with government will be made in response to their request.
+  </p>
+  <ul class="list font-xsmall">
+    <li>
+      <span class="metric-name">
+        <strong><%= number_to_percentage(transactions_with_outcome_metric.with_intended_outcome_percentage, precision: 0) %></strong> end in user's intended outcome
+      </span>
+      <p class="font-xsmall metric-guidance">
+        A subset of the transactions ending in an outcome where the outcome is what the user set out to achieve.
+      </p>
+    </li>
+  </ul>
+</div>
