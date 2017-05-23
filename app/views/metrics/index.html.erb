@@ -1,11 +1,5 @@
 <main id="content" role="main">
-  <div class="breadcrumbs">
-    <ol>
-      <% page.breadcrumbs.each do |crumb| %>
-        <li><%= link_to crumb.name, crumb.url %></li>
-      <% end %>
-    </ol>
-  </div>
+  <%= breadcrumbs %>
 
   <div class="grid-row">
     <div class="column-two-thirds">

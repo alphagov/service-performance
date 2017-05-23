@@ -2,6 +2,7 @@
   <%= stylesheet_link_tag 'application' %>
   <%= javascript_include_tag 'application' %>
 <% end %>
+<% content_for(:page_title, page.title) %>
 <% content_for(:inside_header, 'Cross-Government Service Data') %>
 <% content_for(:header_class, 'with-proposition') %>
 <% content_for(:proposition_header) do %>
