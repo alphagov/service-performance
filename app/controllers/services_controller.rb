@@ -6,11 +6,11 @@ class ServicesController < ApplicationController
     render 'metrics/index'
   end
 
-  private
+  def show
+    client = CrossGovernmentServiceDataAPI::Client.new
+    @service = client.service(params[:id])
 
-  helper_method :page
-  def page
-    OpenStruct.new(breadcrumbs: [])
+    page.title = @service.name
   end
 
 end

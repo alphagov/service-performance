@@ -1,0 +1,61 @@
+<main id="content" role="main">
+
+  <%= breadcrumbs %>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-xlarge">
+      	<span class="heading-secondary">Information about</span>
+        <%= @service.name %>
+      </h1>
+      <dl class="metadata">
+        <dt>Data provider:</dt>
+        <dd><%= @service.department.name %></dd>
+        <dt>Collection method:</dt>
+        <dd>Manual upload via spreadsheet</dd>
+        <dt>Last updated:</dt>
+        <dd>31 December 2016</dd>
+      </dl>
+    </div>
+  </div>
+
+  <br><br><br>
+
+  <div class="grid-row">
+
+    <div class="column-two-thirds">
+
+      <h2 class="bold-medium">What is the purpose of the service?</h2>
+      <%= simple_format(@service.purpose) %>
+
+      <h2 class="bold-medium">How does the service work?</h2>
+      <%= simple_format(@service.how_it_works) %>
+
+      <h2 class="bold-medium">Who are the typical users of the service?</h2>
+      <%= simple_format(@service.typical_users) %>
+
+      <h2 class="bold-medium">How frequently is the service used?</h2>
+      <%= simple_format(@service.frequency_used) %>
+
+      <h2 class="bold-medium">How long does it take a transaction to end in outcome?</h2>
+      <%= simple_format(@service.duration_until_outcome) %>
+
+    </div>
+
+    <div class="column-one-third">
+      <h2 class="bold-medium">Visit the service</h2>
+      <p>See how it appears to users:
+        <ul class="list">
+          <% if @service.start_page_url.present? %>
+            <li><%= link_to 'Start page', @service.start_page_url %></li>
+          <% end %>
+
+          <% if @service.paper_form_url.present? %>
+            <li><%= link_to 'Paper form', @service.paper_form_url %></li>
+          <% end %>
+        </ul>
+      </p>
+    </div>
+
+  </div>
+</main>
