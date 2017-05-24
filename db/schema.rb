@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511105751) do
+ActiveRecord::Schema.define(version: 20170524092128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,13 +60,20 @@ ActiveRecord::Schema.define(version: 20170511105751) do
   end
 
   create_table "services", force: :cascade do |t|
-    t.string   "natural_key",     null: false
-    t.string   "name",            null: false
-    t.string   "hostname",        null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "department_code", null: false
+    t.string   "natural_key",            null: false
+    t.string   "name",                   null: false
+    t.string   "hostname",               null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "department_code",        null: false
     t.string   "agency_code"
+    t.text     "purpose"
+    t.text     "how_it_works"
+    t.text     "typical_users"
+    t.text     "frequency_used"
+    t.text     "duration_until_outcome"
+    t.string   "start_page_url"
+    t.string   "paper_form_url"
     t.index ["natural_key"], name: "index_services_on_natural_key", unique: true, using: :btree
   end
 
