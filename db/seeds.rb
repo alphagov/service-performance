@@ -226,4 +226,14 @@ ActiveRecord::Base.transaction do
       quantity_with_intended_outcome: transaction_with_outcome_metric[:quantity_with_intended_outcome]
     )
   end
+
+  Service.update_all(
+    start_page_url: 'https://example.com',
+    paper_form_url: 'https://example.com',
+    purpose: 'Why the service was built, its policy objectives and the user need it meets.',
+    how_it_works: 'The processes and back-office operations that allow the service to operate.',
+    typical_users: 'Each of the service’s key user groups with their respective demographic, geographic distribution and other relevant details.',
+    frequency_used: 'On average, how often each of the key user groups uses the service.',
+    duration_until_outcome: 'The average amount of time for each of the key user groups that it takes for a received transaction to end in an outcome.'
+  )
 end

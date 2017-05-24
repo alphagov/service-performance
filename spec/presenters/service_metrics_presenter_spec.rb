@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ServiceMetricsPresenter, type: :presenter do
+  let(:department) { instance_double(Department) }
   let(:service) { instance_double(Service) }
   let(:time_period) { instance_double(TimePeriod) }
-  subject(:service_metrics) { ServiceMetricsPresenter.new(service, time_period) }
+  subject(:service_metrics) { ServiceMetricsPresenter.new(department, service, time_period) }
 
   describe '#metrics' do
     before do
