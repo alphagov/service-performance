@@ -6,7 +6,7 @@ class CrossGovernmentServiceDataAPI::Metrics
     end
 
     if response['service']
-      service = CrossGovernmentServiceDataAPI::Service.build(response['service'])
+      service = CrossGovernmentServiceDataAPI::Service.build(response['service'], department: department)
     end
 
     metrics = response['metrics'].index_by {|metric| metric['type'] }

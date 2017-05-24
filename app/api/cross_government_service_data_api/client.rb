@@ -17,6 +17,15 @@ class CrossGovernmentServiceDataAPI::Client
     end
   end
 
+  def service(id)
+    id = URI.escape(id)
+    response = connection.get "/v1/data/services/#{id}"
+
+    department = CrossGovernmentServiceDataAPI::Department.build(response.body['department'])
+
+    CrossGovernmentServiceDataAPI::Service.build(response.body['service'], department: department)
+  end
+
   private
   def connection
     @connection ||= Faraday.new(ENV.fetch('API_URL')) do |connection|
