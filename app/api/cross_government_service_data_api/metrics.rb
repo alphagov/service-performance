@@ -25,8 +25,6 @@ class CrossGovernmentServiceDataAPI::Metrics
     [transactions_received, transactions_with_outcome, calls_received]
   end
 
-  private
-
   def transactions_received
     CrossGovernmentServiceDataAPI::TransactionsReceivedMetric.build(@metrics['transactions-received'])
   end

@@ -4,7 +4,7 @@ CrossGovernmentServiceDataAPI::Department = Struct.new(:key, :name, :website, :a
       response['natural_key'],
       response['name'],
       response['website'],
-      response['agengies_count'],
+      response['agencies_count'],
       response['services_count']
     )
   end

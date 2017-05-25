@@ -11,7 +11,7 @@ class CrossGovernmentServiceDataAPI::TransactionsWithOutcomeMetric
     @count_with_intended_outcome = count_with_intended_outcome || 0
   end
 
-  attr_reader :count
+  attr_reader :count, :count_with_intended_outcome
 
   def with_intended_outcome_percentage
     (@count_with_intended_outcome.to_f / @count) * 100

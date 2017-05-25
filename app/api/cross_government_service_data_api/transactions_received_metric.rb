@@ -19,9 +19,7 @@ class CrossGovernmentServiceDataAPI::TransactionsReceivedMetric
     @other = other || 0
   end
 
-  def total
-    @total
-  end
+  attr_reader :total, :online, :phone, :paper, :face_to_face, :other
 
   def online_percentage
     (@online.to_f / total) * 100
