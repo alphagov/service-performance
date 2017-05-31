@@ -14,4 +14,8 @@ class Page
     end
   end
 
+  def url
+    nil
+  end
+
 end
