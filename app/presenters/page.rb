@@ -1,8 +1,10 @@
 class Page
   def initialize
     @breadcrumbs = []
+    @display_header_border = true
   end
 
+  attr_accessor :display_header_border
   attr_reader :breadcrumbs
   attr_writer :title
 

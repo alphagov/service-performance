@@ -20,7 +20,7 @@
   <body>
     <a href="#main" class="skip-link">Skip to main content</a>
 
-    <header class="header<% if true || page.url == '/' %> header--without-border<% end %>">
+    <header class="header<% unless page.display_header_border %> header--without-border<% end %>">
       <div class="header__container">
         <div class="header__brand">
           <a href="/">

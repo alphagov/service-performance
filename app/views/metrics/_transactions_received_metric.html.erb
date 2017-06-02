@@ -1,51 +1,48 @@
-<div class="column-one-quarter">
-  <h3 class="data">
-    <span class="data-item bold-large"><%= number_to_human(transactions_received_metric.total, precision: 2, significant: true, units: {thousand: 'k', million: 'm', billion: 'b'}, format: '%n%u') %></span>
-    <span class="data-item bold-xsmall">transactions received</span>
-  </h3>
-  <p class="font-xsmall metric-guidance">
-    Transactions are split by the channel through which they’re received. The channel is the initial method of contact even if additional information is collected in other ways afterwards.
-  </p>
-  <ul class="list font-xsmall">
-    <li>
-      <span class="metric-name">
-        <strong><%= number_to_percentage(transactions_received_metric.online_percentage, precision: 0) %></strong> online
-      </span>
-      <p class="font-xsmall metric-guidance">
-        Transactions received online. Doesn’t include services where you use an online tool to fill out a paper form or transactions received via web chat.
-      </p>
+<div class="metric metric-transactions-received">
+  <ul class="list">
+    <li class="headline">
+      <span class="data-item bold-large"><%= number_to_human(transactions_received_metric.total, precision: 2, significant: true, units: {thousand: 'k', million: 'm', billion: 'b'}, format: '%n%u') %></span>
+      <span class="data-item bold">transactions received</span>
     </li>
+
     <li>
-      <span class="metric-name">
-        <strong><%= number_to_percentage(transactions_received_metric.phone_percentage, precision: 0) %></strong> phone
+      <span class="metric-name">Online</span>
+      <span class="metric-value">
+        <span class="metric-value-count"><%= metric_to_human(transactions_received_metric.online) %></span>
+        <span class="metric-value-percentage">(<%= metric_to_percentage(transactions_received_metric.online_percentage) %>)</span>
       </span>
-      <p class="font-xsmall metric-guidance">
-        Transactions received via the phone. Doesn’t include IVR or purely informational calls that don’t affect the outcome of a transaction.
-      </p>
     </li>
+
     <li>
-      <span class="metric-name">
-        <strong><%= number_to_percentage(transactions_received_metric.paper_percentage, precision: 0) %></strong> paper
+      <span class="metric-name">Phone</span>
+      <span class="metric-value">
+        <span class="metric-value-count"><%= metric_to_human(transactions_received_metric.phone) %></span>
+        <span class="metric-value-percentage">(<%= metric_to_percentage(transactions_received_metric.phone_percentage) %>)</span>
       </span>
-      <p class="font-xsmall metric-guidance">
-        Transactions received via a paper form. The form can be sent in any way including by post, email, fax or uploading.
-      </p>
     </li>
+
     <li>
-      <span class="metric-name">
-        <strong><%= number_to_percentage(transactions_received_metric.face_to_face_percentage, precision: 0) %></strong> face-to-face
+      <span class="metric-name">Paper</span>
+      <span class="metric-value">
+        <span class="metric-value-count"><%= metric_to_human(transactions_received_metric.paper) %></span>
+        <span class="metric-value-percentage">(<%= metric_to_percentage(transactions_received_metric.paper_percentage) %>)</span>
       </span>
-      <p class="font-xsmall metric-guidance">
-        The transaction must be received through a face-to-face meeting with someone working for the service. Doesn’t include handing in a paper form in person.
-      </p>
     </li>
+
     <li>
-      <span class="metric-name">
-        <strong><%= number_to_percentage(transactions_received_metric.other_percentage, precision: 0) %></strong> other
+      <span class="metric-name">Face to Face</span>
+      <span class="metric-value">
+        <span class="metric-value-count"><%= metric_to_human(transactions_received_metric.face_to_face) %></span>
+        <span class="metric-value-percentage">(<%= metric_to_percentage(transactions_received_metric.face_to_face_percentage) %>)</span>
       </span>
-      <p class="font-xsmall metric-guidance">
-        Any other way the user provides the information needed to complete a transaction that doesn’t fit into the Online, Phone, Paper and Face-to-face channels.
-      </p>
+    </li>
+
+    <li>
+      <span class="metric-name">Other</span>
+      <span class="metric-value">
+        <span class="metric-value-count"><%= metric_to_human(transactions_received_metric.other) %></span>
+        <span class="metric-value-percentage">(<%= metric_to_percentage(transactions_received_metric.other_percentage) %>)</span>
+      </span>
     </li>
   </ul>
 </div>
