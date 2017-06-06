@@ -68,7 +68,9 @@
           <h2 class="bold-medium"><%= link_to group.name, group.url %></h2>
           oversees <a href="#">2 delivery organisations</a> and <a href="#"><%= group.services_count %> <% if group.services_count == 1 %>service<% else %>services<% end %></a>
 
-          <%= render group.metrics %>
+          <div class="m-metrics">
+            <%= render group.metrics %>
+          </div>
         </li>
       <% end %>
 

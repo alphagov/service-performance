@@ -1,8 +1,10 @@
-<div class="metric metric-transactions-received">
+<div class="m-metric m-metric__transactions-received">
   <ul class="list">
-    <li class="headline">
-      <span class="data-item bold-large"><%= number_to_human(transactions_received_metric.total, precision: 2, significant: true, units: {thousand: 'k', million: 'm', billion: 'b'}, format: '%n%u') %></span>
-      <span class="data-item bold">transactions received</span>
+    <li class="m-metric-headline">
+      <span class="total">
+        <span class="data-item bold-large"><%= metric_to_human(transactions_received_metric.total) %></span>
+        <span class="data-item bold">transactions received</span>
+      </span>
     </li>
 
     <li>

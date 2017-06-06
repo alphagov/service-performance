@@ -1,8 +1,10 @@
-<div class="metric metric-transactions-with-outcome">
+<div class="m-metric m-metric__transactions-with-outcome">
   <ul class="list">
-    <li class="headline">
-      <span class="data-item bold-large"><%= metric_to_human(transactions_with_outcome_metric.count) %></span>
-      <span class="data-item bold">transactions ending in an outcome</span>
+    <li class="m-metric-headline">
+      <span class="total">
+        <span class="data-item bold-large"><%= metric_to_human(transactions_with_outcome_metric.count) %></span>
+        <span class="data-item bold">transactions ending in an outcome</span>
+      </span>
     </li>
     <li>
       <span class="metric-name">Ending in the user&apos;s intended outcome</span>
