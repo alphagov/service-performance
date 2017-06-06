@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :page
   def page
-    @page ||= Page.new
+    @page ||= Page.new(self)
   end
 end

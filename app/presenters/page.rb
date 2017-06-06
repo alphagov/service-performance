@@ -1,5 +1,6 @@
 class Page
-  def initialize
+  def initialize(controller)
+    @controller = controller
     @breadcrumbs = []
     @display_header_border = true
   end
@@ -16,8 +17,8 @@ class Page
     end
   end
 
-  def url
-    nil
+  def path
+    @controller.request.path
   end
 
 end

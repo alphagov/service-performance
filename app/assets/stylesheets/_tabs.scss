@@ -1,0 +1,48 @@
+.o-tabs {
+  ol {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.m-tab-item {
+  border-top: 1px solid #BFC1C3;
+}
+
+.m-tab-link {
+  display: block;
+  padding: 10px 10px;
+}
+
+.m-tab-item__selected {
+  .m-tab-link {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
+
+@media (min-width: 600px) {
+  .m-tab-item {
+    border: 0;
+    display: inline-block;
+    border-bottom: 1px solid #BFC1C3;
+    margin-bottom: -1px;
+  }
+
+  .m-tab-item__selected {
+    border: 1px solid #BFC1C3;
+    border-bottom: 1px solid #FFFFFF;
+
+    .m-tab-link {
+      background-color: #FFFFFF;
+    }
+  }
+
+  .m-tab-link {
+    background-color: #DFE0E2;
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+  }
+}

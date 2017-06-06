@@ -42,12 +42,12 @@
             <ul>
               <%
                 {
-                  'View data' => government_path,
+                  'View data' => departments_path,
                   'Search' => '/',
-                }.each do |title, url|
+                }.each do |title, path|
               %>
-                <li<% if url == page.url %> class="active"<% end %>>
-                  <a href="<%= url == page.url ? "#main" : url %>">
+                <li<% if path == page.path %> class="active"<% end %>>
+                  <a href="<%= path == page.path ? "#main" : path %>">
                     <%= title %>
                   </a>
                 </li>
