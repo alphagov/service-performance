@@ -6,19 +6,7 @@ class GovernmentMetricsPresenter
     @data = client.metrics_by_department
   end
 
-  def organisation_count
-    @data.count
-  end
-
-  def organisation_singular_noun
-    'department'
-  end
-
-  def organisation_plural_noun
-    'departments'
-  end
-
-  def parent_organisation
+  def organisation_name
     'UK government'
   end
 

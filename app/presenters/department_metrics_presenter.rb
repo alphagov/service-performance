@@ -4,21 +4,10 @@ class DepartmentMetricsPresenter
   def initialize(client:, department:)
     @client = client
     @data = client.services_metrics_by_department(department)
+    @department = department
   end
 
-  def organisation_count
-    @data.count
-  end
-
-  def organisation_singular_noun
-    'service'
-  end
-
-  def organisation_plural_noun
-    'services'
-  end
-
-  def parent_organisation
+  def organisation_name
     @data.first.department.name
   end
 
