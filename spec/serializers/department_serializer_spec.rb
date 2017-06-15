@@ -4,12 +4,12 @@ RSpec.describe DepartmentSerializer, type: :serializer do
   let(:department) { FactoryGirl.create(:department) }
   subject(:serializer) { DepartmentSerializer.new(department) }
 
-  describe '#agencies_count' do
-    it 'includes the number of agencies that belong to it' do
-      FactoryGirl.create(:agency, department: department)
+  describe '#delivery_organisations_count' do
+    it 'includes the number of delivery organisations that belong to it' do
+      FactoryGirl.create(:delivery_organisation, department: department)
 
       attributes = serializer.attributes
-      expect(attributes[:agencies_count]).to eq(1)
+      expect(attributes[:delivery_organisations_count]).to eq(1)
     end
   end
 

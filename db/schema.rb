@@ -10,44 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524092128) do
+ActiveRecord::Schema.define(version: 20170615094718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "agencies", force: :cascade do |t|
+  create_table "calls_breakdown_metrics", force: :cascade do |t|
+    t.string   "department_code",            null: false
+    t.string   "delivery_organisation_code"
+    t.string   "service_code",               null: false
+    t.date     "starts_on",                  null: false
+    t.date     "ends_on",                    null: false
+    t.bigint   "quantity",                   null: false
+    t.boolean  "sampled",                    null: false
+    t.integer  "sample_size"
+    t.string   "reason",                     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "calls_received_metrics", force: :cascade do |t|
+    t.string   "department_code",            null: false
+    t.string   "delivery_organisation_code"
+    t.string   "service_code",               null: false
+    t.date     "starts_on",                  null: false
+    t.date     "ends_on",                    null: false
+    t.bigint   "quantity",                   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "delivery_organisations", force: :cascade do |t|
     t.string   "natural_key",     null: false
     t.string   "name",            null: false
     t.string   "hostname",        null: false
     t.string   "department_code", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["natural_key"], name: "index_agencies_on_natural_key", unique: true, using: :btree
-  end
-
-  create_table "calls_breakdown_metrics", force: :cascade do |t|
-    t.string   "department_code", null: false
-    t.string   "agency_code"
-    t.string   "service_code",    null: false
-    t.date     "starts_on",       null: false
-    t.date     "ends_on",         null: false
-    t.bigint   "quantity",        null: false
-    t.boolean  "sampled",         null: false
-    t.integer  "sample_size"
-    t.string   "reason",          null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "calls_received_metrics", force: :cascade do |t|
-    t.string   "department_code", null: false
-    t.string   "agency_code"
-    t.string   "service_code",    null: false
-    t.date     "starts_on",       null: false
-    t.date     "ends_on",         null: false
-    t.bigint   "quantity",        null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.index ["natural_key"], name: "index_delivery_organisations_on_natural_key", unique: true, using: :btree
   end
 
   create_table "departments", force: :cascade do |t|
@@ -60,13 +60,13 @@ ActiveRecord::Schema.define(version: 20170524092128) do
   end
 
   create_table "services", force: :cascade do |t|
-    t.string   "natural_key",            null: false
-    t.string   "name",                   null: false
-    t.string   "hostname",               null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "department_code",        null: false
-    t.string   "agency_code"
+    t.string   "natural_key",                null: false
+    t.string   "name",                       null: false
+    t.string   "hostname",                   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "department_code",            null: false
+    t.string   "delivery_organisation_code"
     t.text     "purpose"
     t.text     "how_it_works"
     t.text     "typical_users"
@@ -78,20 +78,20 @@ ActiveRecord::Schema.define(version: 20170524092128) do
   end
 
   create_table "transactions_received_metrics", force: :cascade do |t|
-    t.string   "department_code", null: false
-    t.string   "agency_code"
-    t.string   "service_code",    null: false
-    t.date     "starts_on",       null: false
-    t.date     "ends_on",         null: false
-    t.string   "channel",         null: false
-    t.bigint   "quantity",        null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "department_code",            null: false
+    t.string   "delivery_organisation_code"
+    t.string   "service_code",               null: false
+    t.date     "starts_on",                  null: false
+    t.date     "ends_on",                    null: false
+    t.string   "channel",                    null: false
+    t.bigint   "quantity",                   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "transactions_with_outcome_metrics", force: :cascade do |t|
     t.string   "department_code",                null: false
-    t.string   "agency_code"
+    t.string   "delivery_organisation_code"
     t.string   "service_code",                   null: false
     t.date     "starts_on",                      null: false
     t.date     "ends_on",                        null: false
@@ -101,19 +101,19 @@ ActiveRecord::Schema.define(version: 20170524092128) do
     t.datetime "updated_at",                     null: false
   end
 
-  add_foreign_key "agencies", "departments", column: "department_code", primary_key: "natural_key"
-  add_foreign_key "calls_breakdown_metrics", "agencies", column: "agency_code", primary_key: "natural_key"
+  add_foreign_key "calls_breakdown_metrics", "delivery_organisations", column: "delivery_organisation_code", primary_key: "natural_key"
   add_foreign_key "calls_breakdown_metrics", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "calls_breakdown_metrics", "services", column: "service_code", primary_key: "natural_key"
-  add_foreign_key "calls_received_metrics", "agencies", column: "agency_code", primary_key: "natural_key"
+  add_foreign_key "calls_received_metrics", "delivery_organisations", column: "delivery_organisation_code", primary_key: "natural_key"
   add_foreign_key "calls_received_metrics", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "calls_received_metrics", "services", column: "service_code", primary_key: "natural_key"
-  add_foreign_key "services", "agencies", column: "agency_code", primary_key: "natural_key"
+  add_foreign_key "delivery_organisations", "departments", column: "department_code", primary_key: "natural_key"
+  add_foreign_key "services", "delivery_organisations", column: "delivery_organisation_code", primary_key: "natural_key"
   add_foreign_key "services", "departments", column: "department_code", primary_key: "natural_key"
-  add_foreign_key "transactions_received_metrics", "agencies", column: "agency_code", primary_key: "natural_key"
+  add_foreign_key "transactions_received_metrics", "delivery_organisations", column: "delivery_organisation_code", primary_key: "natural_key"
   add_foreign_key "transactions_received_metrics", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "transactions_received_metrics", "services", column: "service_code", primary_key: "natural_key"
-  add_foreign_key "transactions_with_outcome_metrics", "agencies", column: "agency_code", primary_key: "natural_key"
+  add_foreign_key "transactions_with_outcome_metrics", "delivery_organisations", column: "delivery_organisation_code", primary_key: "natural_key"
   add_foreign_key "transactions_with_outcome_metrics", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "transactions_with_outcome_metrics", "services", column: "service_code", primary_key: "natural_key"
 end
