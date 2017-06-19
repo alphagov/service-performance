@@ -12,12 +12,17 @@ class GovernmentMetricsPresenter
 
   def groups
     @data.map do |data|
-      name = data.department.name
-      url = department_services_path(data.department.key)
-      agencies_count = data.department.agencies_count
-      services_count = data.department.services_count
+      case scope
+      when DEPARTMENTS
+        name = data.department.name
+        url = department_services_path(data.department.key)
+        delivery_organisations_count = data.department.delivery_organisations_count
+        services_count = data.department.services_count
 
-      MetricGroup.new(name, url, data.metrics, agencies_count: agencies_count, services_count: services_count)
+        MetricGroup.new(name, url, data.metrics, delivery_organisations_count: delivery_organisations_count, services_count: services_count)
+      when SERVICES
+        ServiceMetricGroup.new(data)
+      end
     end
   end
 end

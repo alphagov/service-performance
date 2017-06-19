@@ -13,7 +13,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       department = metric_group.department
       expect(department.key).to eq('D0002')
       expect(department.name).to eq('Department for Transport')
-      expect(department.agencies_count).to eq(2)
+      expect(department.delivery_organisations_count).to eq(2)
       expect(department.services_count).to eq(9)
 
       transactions_received = metric_group.transactions_received
@@ -49,7 +49,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       department = metric_group.department
       expect(department.key).to eq('D0002')
       expect(department.name).to eq('Department for Transport')
-      expect(department.agencies_count).to eq(2)
+      expect(department.delivery_organisations_count).to eq(2)
       expect(department.services_count).to eq(9)
 
       transactions_received = metric_group.transactions_received
@@ -83,7 +83,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       department = service.department
       expect(department.key).to eq('D0002')
       expect(department.name).to eq('Department for Transport')
-      expect(department.agencies_count).to eq(2)
+      expect(department.delivery_organisations_count).to eq(2)
       expect(department.services_count).to eq(9)
     end
   end

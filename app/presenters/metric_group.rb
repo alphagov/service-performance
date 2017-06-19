@@ -5,13 +5,13 @@ class MetricGroup < Struct.new(:name, :url, :metrics)
     end
   end
 
-  def initialize(*args, agencies_count: nil, services_count: nil)
+  def initialize(*args, delivery_organisations_count: nil, services_count: nil)
     super(*args)
-    @agencies_count = agencies_count
+    @delivery_organisations_count = delivery_organisations_count
     @services_count = services_count
   end
 
-  attr_reader :agencies_count, :services_count
+  attr_reader :delivery_organisations_count, :services_count
 
   def metrics
     @metrics ||= super.each {|metric| metric.extend(ToPartialPath) }
