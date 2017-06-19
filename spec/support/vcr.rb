@@ -3,12 +3,14 @@ VCR.configure do |config|
   config.hook_into :faraday
 end
 
-around(:each, type: :api) do |example|
-  cassette = example.metadata[:cassette]
+RSpec.configure do |config|
+  config.around(:each, type: :api) do |example|
+    cassette = example.metadata[:cassette]
 
-  if cassette
-    VCR.use_cassette(cassette) { example.run }
-  else
-    example.run
+    if cassette
+      VCR.use_cassette(cassette) { example.run }
+    else
+      example.run
+    end
   end
 end
