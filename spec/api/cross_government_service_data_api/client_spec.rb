@@ -5,7 +5,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
   subject(:client) { CrossGovernmentServiceDataAPI::Client.new }
 
   describe '#metrics_by_department' do
-    it 'parses the metrics', cassette: 'department-ok' do
+    it 'parses the metrics', cassette: 'metrics-by-department-ok' do
       metric_groups = client.metrics_by_department
 
       metric_group = metric_groups.detect {|metric_group| metric_group.department.name == 'Department for Transport' }
@@ -73,6 +73,17 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       expect(government.departments_count).to eq(7)
       expect(government.delivery_organisations_count).to eq(8)
       expect(government.services_count).to eq(31)
+    end
+  end
+
+  describe '#department' do
+    it 'parses the department', cassette: 'department-ok' do
+      department = client.department('D0002')
+
+      expect(department.key).to eq('D0002')
+      expect(department.name).to eq('Department for Transport')
+      expect(department.delivery_organisations_count).to eq(2)
+      expect(department.services_count).to eq(9)
     end
   end
 

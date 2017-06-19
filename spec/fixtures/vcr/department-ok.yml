@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/departments
+    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002
     body:
       encoding: US-ASCII
       string: ''
@@ -25,27 +25,20 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"3b150ccb898e995122aaed97ef0ff91b"
+      - W/"8aae45b8f4d1c4331d5957888dec8a82"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - f7e82d3f-b796-4a14-890b-a5e3228372f7
+      - ea353b25-fcfa-4616-a355-c8b935e530cd
       x-runtime:
-      - '0.124625'
+      - '0.025669'
       date:
-      - Mon, 19 Jun 2017 14:34:08 GMT
+      - Mon, 19 Jun 2017 15:07:51 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '[{"department":{"natural_key":"D0001","name":"Department for Environment
-        Food \u0026 Rural Affairs","hostname":"department-for-environment-food-and-rural-affairs","delivery_organisations_count":1,"services_count":1},"metrics":[{"type":"transactions-received","total":3000039,"online":1000032,"phone":1000003,"paper":1000004,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":2435098,"with_intended_outcome":2400000}]},{"department":{"natural_key":"D0002","name":"Department
-        for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9},"metrics":[{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}]},{"department":{"natural_key":"D0003","name":"Department
-        of Health","hostname":"department-of-health","delivery_organisations_count":2,"services_count":4},"metrics":[{"type":"transactions-received","total":18132669,"online":4000048,"phone":14132621,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":19281820,"with_intended_outcome":15424926}]},{"department":{"natural_key":"D0004","name":"HM
-        Revenue \u0026 Customs","hostname":"hm-revenue-and-customs","delivery_organisations_count":0,"services_count":5},"metrics":[{"type":"transactions-received","total":0,"online":0,"phone":0,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":0,"with_intended_outcome":0}]},{"department":{"natural_key":"D0005","name":"Ministry
-        of Justice","hostname":"ministry-of-justice","delivery_organisations_count":1,"services_count":5},"metrics":[{"type":"transactions-received","total":593254687,"online":566114271,"phone":9098765,"paper":14918195,"face_to_face":0,"other":3123456},{"type":"transactions-with-outcome","total":562002435,"with_intended_outcome":485131983}]},{"department":{"natural_key":"D0006","name":"Department
-        for Education","hostname":"department-for-education","delivery_organisations_count":2,"services_count":7},"metrics":[{"type":"transactions-received","total":13000475,"online":7000282,"phone":4000106,"paper":2000087,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":12120242,"with_intended_outcome":9536719}]},{"department":{"natural_key":"D0007","name":"Department
-        for Business, Energy \u0026 Industrial Strategy","hostname":"department-for-business-energy-and-industrial-strategy","delivery_organisations_count":0,"services_count":0},"metrics":[{"type":"transactions-received","total":0,"online":0,"phone":0,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":0,"with_intended_outcome":0}]}]'
+      string: '{"department":{"natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9},"metrics":[{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}]}'
     http_version: 
-  recorded_at: Mon, 19 Jun 2017 14:34:08 GMT
+  recorded_at: Mon, 19 Jun 2017 15:07:51 GMT
 recorded_with: VCR 3.0.3
