@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/delivery_organisations/02
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"7a9c14a63c350417ef2b61f6eef1e93b"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - c5205a1b-b05d-4a35-a572-640436e06c7b
+      x-runtime:
+      - '0.005251'
+      date:
+      - Mon, 19 Jun 2017 15:20:30 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"natural_key":"02","name":"NHS Blood and Transplant","hostname":"nhs-blood-and-transplant","services_count":3}'
+    http_version: 
+  recorded_at: Mon, 19 Jun 2017 15:20:30 GMT
+recorded_with: VCR 3.0.3

@@ -29,6 +29,13 @@ class CrossGovernmentServiceDataAPI::Client
     CrossGovernmentServiceDataAPI::Department.build(response.body['department'])
   end
 
+  def delivery_organisation(id)
+    id = URI.escape(id)
+    response = connection.get "/v1/data/delivery_organisations/#{id}"
+
+    CrossGovernmentServiceDataAPI::DeliveryOrganisation.build(response.body)
+  end
+
   def service(id)
     id = URI.escape(id)
     response = connection.get "/v1/data/services/#{id}"

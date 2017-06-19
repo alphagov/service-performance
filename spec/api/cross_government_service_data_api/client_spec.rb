@@ -87,6 +87,16 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
     end
   end
 
+  describe '#delivery_organisation' do
+    it 'parses the delivery organisation', cassette: 'delivery-organisation-ok' do
+      delivery_organisation = client.delivery_organisation('02')
+
+      expect(delivery_organisation.key).to eq('02')
+      expect(delivery_organisation.name).to eq('NHS Blood and Transplant')
+      expect(delivery_organisation.services_count).to eq(3)
+    end
+  end
+
   describe '#service' do
     it 'parses the service', cassette: 'service-ok' do
       service = client.service('02')
