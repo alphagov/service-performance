@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/government
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"6fd5624c64d6fdbeecae752c2f43e1c6"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - e8d27c0b-e8a5-46a4-955e-f390e3caa816
+      x-runtime:
+      - '0.016158'
+      date:
+      - Mon, 19 Jun 2017 14:41:27 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"departments_count":7,"delivery_organisations_count":8,"services_count":31}'
+    http_version: 
+  recorded_at: Mon, 19 Jun 2017 14:41:27 GMT
+recorded_with: VCR 3.0.3

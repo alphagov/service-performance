@@ -66,6 +66,15 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
     end
   end
 
+  describe '#government' do
+    it 'parses the government', cassette: 'government-ok' do
+      government = client.government
+
+      expect(government.departments_count).to eq(7)
+      expect(government.delivery_organisations_count).to eq(8)
+      expect(government.services_count).to eq(31)
+    end
+  end
 
   describe '#service' do
     it 'parses the service', cassette: 'service-ok' do

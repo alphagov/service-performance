@@ -17,6 +17,11 @@ class CrossGovernmentServiceDataAPI::Client
     end
   end
 
+  def government
+    response = connection.get "/v1/data/government"
+    CrossGovernmentServiceDataAPI::Government.build(response.body)
+  end
+
   def service(id)
     id = URI.escape(id)
     response = connection.get "/v1/data/services/#{id}"
