@@ -4,10 +4,9 @@ class ServicesController < ApplicationController
       department = Department.where(natural_key: params[:department_id]).first!
       services = department.services
     else
-      department = nil
       services = Service.all
     end
-    services_metrics = services.map {|service| ServiceMetricsPresenter.new(department, service, TimePeriod.default) }
+    services_metrics = services.map {|service| ServiceMetricsPresenter.new(service.department, service, TimePeriod.default) }
     render json: services_metrics
   end
 
