@@ -1,11 +1,28 @@
+dist: trusty
+sudo: true
 language: generic
-sudo: false
-services:
-  - docker
-before_script:
-  - cp config/database.yml.travis config/database.yml
-install:
-  - docker run -d --name=postgres postgres:9.6
-script:
-  - docker run --link postgres:postgres --volume=$TRAVIS_BUILD_DIR:/app -it leelongmore/cgsd-api-rails-ci /bin/sh -c "bundle --without development production && bundle exec rake db:test:prepare && bundle exec rspec spec"
 
+env:
+  global:
+    - PAAS_USER=gsd-deploy@digital.cabinet-office.gov.uk
+    - PAAS_SERVICE=gsd-api
+    - DOCKER_USER=gsddeploy
+    - DOCKER_REPOSITORY=gsddeploy
+    - DOCKER_IMAGE=gsd-api
+    - DOCKER_FILE=etc/gsd-api.df
+    # PAAS_PASSWORD
+    - secure: KOgddT+pu8ItC9IWMnxcB1b2tJRmIJ2/MOygQcYwXJiXjCPsUrZ6g6HdtXjqzrRoqtyIDkY41L6iZvHQ8p2epm+FRm1YAoZS265ZW0Cw1W2Dd5Jfy0nghebaZ6AODl35zBnViYt+1MJrHhfRBwW0iIQgMk3nuz8rRNZaUKkyM4lm54wsZs+8f/A1MQpCsKC/0Qt1TfTmpJVe3MIPRRWy+DRHDmItNEIFBSSeNOhcg2rioO8g9H7n/Rx193JvHlOODEViO1yOumXYkvfWHh77ycD7APNrDovdzqxL9HoP6XzyWxLLIY7K9rifPGNZXfN0xgX0wpWSecCshM+eelfvGNiHD8/S//HT23alYk437hyNa0VJHmfLvGD27P1IIR8/ASKx9x6lX7SOKIzMQUWAh7VGlEYIGNLy1T+MzoS4OPUl54PgUNpGuklVbWf9YrOW7SL/HAZRqMMFAsR13xsWkVfZgyPJaPIxeuW8E4lLJszjposWMoMdiGK/Yw516gkE2B3SBmHPGhp9abf1QcND6/nzRESplooN+dDpqbiZ3+JBiyes80uI+J7PdQyAQoYrvaDvEdt77binwggTNjxL7s2RUSM63IwtorARsLupbHs7ui9Jn4NjT3U+CQAXIv+xOK6EoiO5aHmBLEzz44Tf3Fo54bmfJCSrlFwfsMSsIQw=
+    # DOCKER_PASSWORD for user gsddeploy
+    - secure: K1T7/qXo+uOegI0aDIl+P0LCYmIjofjOTSprE3TvDGtRqVtuwAlSGlctJBIlK91demtvoU+eJNG1bNUHFevHwFsBkiJhTttpSwEi+D8pAGTdyrTd08ryak0wsAX9eOZhAsMNvnBsRuG9tjFf0TECheKlXrfvoAp2Ryh02e8X4m5QZi+mI6zjXlAkYy32WlaFZ+ezK+Y2GIYYCDXlDskOWTXvywdB9fXVsQVN5ondk+HcAov9dpXlN6I1+gmW4tlfZzSc0vrtFg7peykjcNdc+yzlCGc8Lz80DbftcIK2QcNvX6TuAHWOpNjBb21JNJAfFbF9XebhaNPWIefVQo6dggyeU8xsQAd7P+DlOQbqzJaHxpPGYWRSXNzYV8CHVd4hEdw+NY7duqAlLAxYiqH2WoKies2TIxBJHHc5k5nKvZ/O1laq0SYbMcl2gRcDfclpewOx+GITjzy9H7WYm59WJXs5DPmOjfaDYWRhUPUtRkvOkMrU/PTKB2RmsSprJl7S/z7hrPK6hEWRIDvo9B146wfa/TKw8taPAED+rIWew++bGk/LbqI086zj/7nXmEGOFvE7zooSRVy5puv/pv17i/st2KoAwD0TlmrXe91J6DBdi7asR2FSXA+583Ne/hC+/xLW1vYz2+fTlCr+LpNK491B36GvNTKIZaZFW6nzr4A=
+
+script:
+  - cp config/database.yml.travis config/database.yml
+  - docker run -d --name=postgres postgres:9.6.3-alpine
+  - docker run --link postgres:postgres --volume=$TRAVIS_BUILD_DIR:/app -it $DOCKER_REPOSITORY/gsd-api-ci:latest /bin/sh -c "bundle --without development production && bundle exec rake db:test:prepare && bundle exec rspec spec"
+
+deploy:
+  provider: script
+  script: "etc/deploy.sh"
+  skip_cleanup: true
+  on:
+    branch: master
