@@ -1,0 +1,85 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/government
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"8707143287988501f058572a4a858fbd"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - b5d3dc03-981f-422e-ae7e-61e3d65e3878
+      x-runtime:
+      - '0.006831'
+      date:
+      - Thu, 22 Jun 2017 10:20:19 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31}'
+    http_version: 
+  recorded_at: Thu, 22 Jun 2017 10:20:19 GMT
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/government/metrics?group=government
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"c7b5f6b800c08f2a4b0300cc16c007b6"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 97f030a9-3695-4d50-8d9c-91873c49a3e1
+      x-runtime:
+      - '0.020184'
+      date:
+      - Thu, 22 Jun 2017 10:20:19 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"group":"government","metric_groups":[{"entity":{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31},"metrics":[{"type":"transactions-received","total":746067381,"online":648825681,"phone":38355269,"paper":35775321,"face_to_face":0,"other":23111110},{"type":"transactions-with-outcome","total":710427383,"with_intended_outcome":604814744}]}]}'
+    http_version: 
+  recorded_at: Thu, 22 Jun 2017 10:20:19 GMT
+recorded_with: VCR 3.0.3

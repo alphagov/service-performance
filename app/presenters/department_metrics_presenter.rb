@@ -1,21 +1,10 @@
-class DepartmentMetricsPresenter
-  include Rails.application.routes.url_helpers
-
-  def initialize(client:, department:)
-    @client = client
-    @data = client.services_metrics_by_department(department)
-    @department = department
+class DepartmentMetricsPresenter < MetricsPresenter
+  def initialize(client:, department_id:, group:)
+    department = client.department(department_id)
+    super(department, client: client, group: group)
   end
 
-  def organisation_name
-    @data.first.department.name
-  end
-
-  def groups
-    @data.map do |data|
-      name = data.service.name
-      url = department_service_path(data.department.key, data.service.key)
-      MetricGroup.new(name, url, data.metrics)
-    end
+  def has_departments?
+    false
   end
 end

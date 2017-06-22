@@ -1,0 +1,87 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/delivery_organisations/03
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"ee9be5d3705a2738e84a226cf07ce71e"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 531006ca-ade9-4c68-88ad-721f123df235
+      x-runtime:
+      - '0.016260'
+      date:
+      - Thu, 22 Jun 2017 10:16:17 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"type":"delivery-organisation","natural_key":"03","name":"Driver and
+        Vehicle Licensing Agency","hostname":"driver-and-vehicle-licensing-agency","services_count":5}'
+    http_version: 
+  recorded_at: Thu, 22 Jun 2017 10:16:17 GMT
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/delivery_organisations/03/metrics?group=delivery_organisation
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"0cef67a7c3479319a5d8e2218b240432"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 010b1e3b-bdf4-410f-a65f-90db0aa727b7
+      x-runtime:
+      - '0.019838'
+      date:
+      - Thu, 22 Jun 2017 10:16:17 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"group":"delivery_organisation","metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
+        and Vehicle Licensing Agency","hostname":"driver-and-vehicle-licensing-agency","services_count":5},"metrics":[{"type":"transactions-received","total":70123862,"online":45143108,"phone":7123719,"paper":17857035,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":70842643,"with_intended_outcome":58650122}]}]}'
+    http_version: 
+  recorded_at: Thu, 22 Jun 2017 10:16:17 GMT
+recorded_with: VCR 3.0.3

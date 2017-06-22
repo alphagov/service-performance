@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/government
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"8707143287988501f058572a4a858fbd"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - bd0b1cf2-cfba-420c-8696-61c6e74d80b3
+      x-runtime:
+      - '0.010388'
+      date:
+      - Thu, 22 Jun 2017 10:17:50 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31}'
+    http_version: 
+  recorded_at: Thu, 22 Jun 2017 10:17:50 GMT
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/government/metrics?group=delivery_organisation
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"f9817e9e84d5fd811765956c95429b63"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - ff5455c5-14bb-4971-8a19-881d2cfd1cbe
+      x-runtime:
+      - '0.057350'
+      date:
+      - Thu, 22 Jun 2017 10:17:50 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"group":"delivery_organisation","metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"01","name":"Environment
+        Agency","hostname":"environment-agency","services_count":1},"metrics":[{"type":"transactions-received","total":3000039,"online":1000032,"phone":1000003,"paper":1000004,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":2435098,"with_intended_outcome":2400000}]},{"entity":{"type":"delivery-organisation","natural_key":"02","name":"NHS
+        Blood and Transplant","hostname":"nhs-blood-and-transplant","services_count":3},"metrics":[{"type":"transactions-received","total":7123688,"online":3000047,"phone":4123641,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":7269475,"with_intended_outcome":5815050}]},{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
+        and Vehicle Licensing Agency","hostname":"driver-and-vehicle-licensing-agency","services_count":5},"metrics":[{"type":"transactions-received","total":70123862,"online":45143108,"phone":7123719,"paper":17857035,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":70842643,"with_intended_outcome":58650122}]},{"entity":{"type":"delivery-organisation","natural_key":"04","name":"Driver
+        and Vehicle Standards Agency","hostname":"driver-and-vehicle-standards-agency","services_count":4},"metrics":[{"type":"transactions-received","total":48555649,"online":25567940,"phone":3000055,"paper":0,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":43745145,"with_intended_outcome":33670994}]},{"entity":{"type":"delivery-organisation","natural_key":"06","name":"HM
+        Courts \u0026 Tribunals Service","hostname":"hm-courts-and-tribunals-service","services_count":0},"metrics":[{"type":"transactions-received","total":0,"online":0,"phone":0,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":0,"with_intended_outcome":0}]},{"entity":{"type":"delivery-organisation","natural_key":"09","name":"NHS
+        England","hostname":"nhs-england","services_count":1},"metrics":[{"type":"transactions-received","total":11008981,"online":1000001,"phone":10008980,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":12012345,"with_intended_outcome":9609876}]},{"entity":{"type":"delivery-organisation","natural_key":"12","name":"Skills
+        Funding Agency","hostname":"skills-funding-agency","services_count":3},"metrics":[{"type":"transactions-received","total":3000062,"online":3000062,"phone":0,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":3684748,"with_intended_outcome":2578900}]},{"entity":{"type":"delivery-organisation","natural_key":"13","name":"Student
+        Loans Company","hostname":"student-loans-company","services_count":4},"metrics":[{"type":"transactions-received","total":10000413,"online":4000220,"phone":4000106,"paper":2000087,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":8435494,"with_intended_outcome":6957819}]}]}'
+    http_version: 
+  recorded_at: Thu, 22 Jun 2017 10:17:50 GMT
+recorded_with: VCR 3.0.3

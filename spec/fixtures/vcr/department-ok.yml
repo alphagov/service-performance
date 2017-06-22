@@ -25,20 +25,20 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"8aae45b8f4d1c4331d5957888dec8a82"
+      - W/"9416cb3e34dd7abcadd9b8fe0e96fba4"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - ea353b25-fcfa-4616-a355-c8b935e530cd
+      - 6cb810bd-0d62-48c3-8a01-bdc9c7d73862
       x-runtime:
-      - '0.025669'
+      - '0.076465'
       date:
-      - Mon, 19 Jun 2017 15:07:51 GMT
+      - Thu, 22 Jun 2017 10:35:49 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"department":{"natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9},"metrics":[{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}]}'
+      string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9}'
     http_version: 
-  recorded_at: Mon, 19 Jun 2017 15:07:51 GMT
+  recorded_at: Thu, 22 Jun 2017 10:35:49 GMT
 recorded_with: VCR 3.0.3
