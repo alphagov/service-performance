@@ -1,12 +1,12 @@
 class Government
   alias :read_attribute_for_serialization :send
 
-  def id
-    nil
-  end
-
   def departments
     Department.all
+  end
+
+  def delivery_organisations
+    DeliveryOrganisation.all
   end
 
   def services
