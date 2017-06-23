@@ -9,21 +9,21 @@ ActiveRecord::Base.transaction do
   Department.create!(natural_key: 'D0007', name: 'Department for Business, Energy & Industrial Strategy', hostname: 'department-for-business-energy-and-industrial-strategy')
 
   # delivery organisations
-  DeliveryOrganisation.create!(department_code: 'D0001', natural_key: '01', name: 'Environment DeliveryOrganisation', hostname: 'environment-agency')
+  DeliveryOrganisation.create!(department_code: 'D0001', natural_key: '01', name: 'Environment Agency', hostname: 'environment-agency')
   DeliveryOrganisation.create!(department_code: 'D0003', natural_key: '02', name: 'NHS Blood and Transplant', hostname: 'nhs-blood-and-transplant')
-  DeliveryOrganisation.create!(department_code: 'D0002', natural_key: '03', name: 'Driver and Vehicle Licensing DeliveryOrganisation', hostname: 'driver-and-vehicle-licensing-agency')
-  DeliveryOrganisation.create!(department_code: 'D0002', natural_key: '04', name: 'Driver and Vehicle Standards DeliveryOrganisation', hostname: 'driver-and-vehicle-standards-agency')
+  DeliveryOrganisation.create!(department_code: 'D0002', natural_key: '03', name: 'Driver and Vehicle Licensing Agency', hostname: 'driver-and-vehicle-licensing-agency')
+  DeliveryOrganisation.create!(department_code: 'D0002', natural_key: '04', name: 'Driver and Vehicle Standards Agency', hostname: 'driver-and-vehicle-standards-agency')
   DeliveryOrganisation.create!(department_code: 'D0005', natural_key: '06', name: 'HM Courts & Tribunals Service', hostname: 'hm-courts-and-tribunals-service')
   # DeliveryOrganisation.create!(department_code: '', natural_key: '07', name: 'Her Majesty’s Prison & Probation Service', hostname: 'her-majestys-prison-and-probation-service')
   # DeliveryOrganisation.create!(department_code: '', natural_key: '08', name: 'Independent Police Complaints Commission', hostname: 'independent-police-complaints-comission')
   DeliveryOrganisation.create!(department_code: 'D0003', natural_key: '09', name: 'NHS England', hostname: 'nhs-england')
   # DeliveryOrganisation.create!(department_code: '', natural_key: '11', name: 'Ordnance Survey', hostname: 'ordnance-survey')
-  DeliveryOrganisation.create!(department_code: 'D0006', natural_key: '12', name: 'Skills Funding DeliveryOrganisation', hostname: 'skills-funding-agency')
+  DeliveryOrganisation.create!(department_code: 'D0006', natural_key: '12', name: 'Skills Funding Agency', hostname: 'skills-funding-agency')
   DeliveryOrganisation.create!(department_code: 'D0006', natural_key: '13', name: 'Student Loans Company', hostname: 'student-loans-company')
   # DeliveryOrganisation.create!(department_code: '', natural_key: '14', name: 'Land Registry', hostname: 'land-registry')
   # DeliveryOrganisation.create!(department_code: '', natural_key: '15', name: 'Companies House', hostname: 'companies-house')
   # DeliveryOrganisation.create!(department_code: '', natural_key: '16', name: 'Intellectual Property Office', hostname: 'intellectual-property-office')
-  # DeliveryOrganisation.create!(department_code: '', natural_key: '17', name: 'Rural Payments DeliveryOrganisation', hostname: 'rural-payments-agency')
+  # DeliveryOrganisation.create!(department_code: '', natural_key: '17', name: 'Rural Payments Agency', hostname: 'rural-payments-agency')
 
   # services
   Service.create!(department_code: 'D0001', delivery_organisation_code: '01', natural_key: '01', name: 'Buy a fishing rod licence', hostname: 'buy-a-fishing-licence')
