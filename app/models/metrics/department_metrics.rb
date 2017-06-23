@@ -1,15 +1,15 @@
 class DepartmentMetrics < Metrics
-  def self.supported_groups
-    [Group::Department, Group::DeliveryOrganisation, Group::Service]
+  def self.valid_group_bys
+    [GroupBy::Department, GroupBy::DeliveryOrganisation, GroupBy::Service]
   end
 
   def entities
-    case group
-    when Group::Department
+    case group_by
+    when GroupBy::Department
       [root]
-    when Group::DeliveryOrganisation
+    when GroupBy::DeliveryOrganisation
       root.delivery_organisations
-    when Group::Service
+    when GroupBy::Service
       root.services
     end
   end

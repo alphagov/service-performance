@@ -1,5 +1,5 @@
-RSpec.shared_examples_for 'uses the correct child entites, depending on the group' do
-  subject(:government_metrics) { described_class.new(root, group: group, time_period: time_period) }
+RSpec.shared_examples_for 'uses the correct child entites, depending on the group by setting' do
+  subject(:government_metrics) { described_class.new(root, group_by: group_by, time_period: time_period) }
 
   before do
     allow(AggregatedTransactionsReceivedMetric).to receive(:new)

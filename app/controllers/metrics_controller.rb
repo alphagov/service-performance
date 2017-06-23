@@ -1,7 +1,7 @@
 class MetricsController < ApplicationController
   private
-  def group
-    @group ||= params[:group] && params[:group].to_sym
+  def group_by
+    @group_by ||= params[:group_by] && params[:group_by].to_sym
   end
 
   def time_period

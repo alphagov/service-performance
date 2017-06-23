@@ -1,6 +1,6 @@
 class ServiceMetrics < Metrics
-  def self.supported_groups
-    [Group::Service]
+  def self.valid_group_bys
+    [GroupBy::Service]
   end
 
   def entities

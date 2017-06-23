@@ -1,9 +1,9 @@
 class MetricsSerializer < ActiveModel::Serializer
-  attribute :group
+  attribute :group_by
 
   has_many :metric_groups
 
-  def group
-    object.group.to_s
+  def group_by
+    object.group_by.to_s
   end
 end

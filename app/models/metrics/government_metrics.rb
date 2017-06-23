@@ -1,17 +1,17 @@
 class GovernmentMetrics < Metrics
-  def self.supported_groups
-    [Group::Government, Group::Department, Group::DeliveryOrganisation, Group::Service]
+  def self.valid_group_bys
+    [GroupBy::Government, GroupBy::Department, GroupBy::DeliveryOrganisation, GroupBy::Service]
   end
 
   def entities
-    case group
-    when Group::Government
+    case group_by
+    when GroupBy::Government
       [root]
-    when Group::Department
+    when GroupBy::Department
       root.departments
-    when Group::DeliveryOrganisation
+    when GroupBy::DeliveryOrganisation
       root.delivery_organisations
-    when Group::Service
+    when GroupBy::Service
       root.services
     end
   end

@@ -8,16 +8,16 @@ RSpec.describe DeliveryOrganisationMetrics, type: :model do
     let(:root) { delivery_organisation }
 
     context "grouped by delivery organistaion" do
-      it_behaves_like 'uses the correct child entites, depending on the group' do
+      it_behaves_like 'uses the correct child entites, depending on the group by setting' do
         let(:children) { [delivery_organisation] }
-        let(:group) { Metrics::Group::DeliveryOrganisation }
+        let(:group_by) { Metrics::GroupBy::DeliveryOrganisation }
       end
     end
 
     context "grouped by service" do
-      it_behaves_like 'uses the correct child entites, depending on the group' do
+      it_behaves_like 'uses the correct child entites, depending on the group by setting' do
         let(:children) { [double(:service_1), double(:service_2)] }
-        let(:group) { Metrics::Group::Service }
+        let(:group_by) { Metrics::GroupBy::Service }
 
         before do
           allow(root).to receive(:services) { children }

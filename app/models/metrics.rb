@@ -1,5 +1,5 @@
 class Metrics
-  module Group
+  module GroupBy
     Government = :government
     Department = :department
     DeliveryOrganisation = :delivery_organisation
@@ -16,21 +16,21 @@ class Metrics
     attr_reader :entity, :metrics
   end
 
-  def self.default_group
-    self.supported_groups.first
+  def self.default_group_by
+    self.valid_group_bys.first
   end
 
-  def initialize(root, group: nil, time_period:)
-    group ||= self.class.default_group
-    raise ArgumentError, "unknown group: #{group}" unless self.class.supported_groups.include?(group)
+  def initialize(root, group_by: nil, time_period:)
+    group_by ||= self.class.default_group_by
+    raise ArgumentError, "unknown group_by: #{group_by}" unless self.class.valid_group_bys.include?(group_by)
 
     @root = root
-    @group = group
+    @group_by = group_by
     @time_period = time_period
   end
 
   alias :read_attribute_for_serialization :send
-  attr_reader :group, :root, :time_period
+  attr_reader :group_by, :root, :time_period
 
   def metric_groups
     entities.map do |entity|

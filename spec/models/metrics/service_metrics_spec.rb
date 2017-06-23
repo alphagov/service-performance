@@ -8,9 +8,9 @@ RSpec.describe ServiceMetrics, type: :model do
     let(:root) { service }
 
     context "grouped by service" do
-      it_behaves_like 'uses the correct child entites, depending on the group' do
+      it_behaves_like 'uses the correct child entites, depending on the group by setting' do
         let(:children) { [service] }
-        let(:group) { Metrics::Group::Service }
+        let(:group_by) { Metrics::GroupBy::Service }
       end
     end
   end
