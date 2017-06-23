@@ -1,0 +1,2 @@
+<h2 class="bold-medium"><%= link_to group.name, delivery_organisation_metrics_path(group.entity.key, group: Metrics::Group::Service) %></h2>
+oversees <%= pluralize_link(group.services_count, 'service', 'services', delivery_organisation_metrics_path(group.entity.key, group: Metrics::Group::Service)) %>

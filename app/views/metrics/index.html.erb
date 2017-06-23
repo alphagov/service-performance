@@ -7,7 +7,7 @@
     <div class="column-two-thirds">
       <h1 class="heading-xlarge">
         <span class="prefix">Service data for</span>
-        <%= @metrics.parent_organisation %>
+        <%= @metrics.organisation_name %>
       </h1>
 
       <div class="time-period-selector">
@@ -29,9 +29,9 @@
   </header>
 
   <%= tabs(current_page: page) do |tabs| %>
-    <% tabs.link_to tab_name('Departments', count: 12), departments_path %>
-    <% tabs.link_to tab_name('Delivery organisations', count: 112), delivery_organisations_path %>
-    <% tabs.link_to tab_name('Services', count: 802), services_path %>
+    <% tabs.link_to tab_name('Departments', count: @metrics.departments_count), url_for(request.params.merge(group: Metrics::Group::Department)) if @metrics.has_departments? %>
+    <% tabs.link_to tab_name('Delivery organisations', count: @metrics.delivery_organisations_count), url_for(request.params.merge(group: Metrics::Group::DeliveryOrganisation)) if @metrics.has_delivery_organisations? %>
+    <% tabs.link_to tab_name('Services', count: @metrics.services_count), url_for(request.params.merge(group: Metrics::Group::Service)) if @metrics.has_services? %>
   <% end %>
 
   <div class="grid-row o-filter-panel">
@@ -63,8 +63,7 @@
 
       <% @metrics.groups.each do |group|  %>
         <li class="metric-group">
-          <h2 class="bold-medium"><%= link_to group.name, group.url %></h2>
-          oversees <a href="#">2 delivery organisations</a> and <a href="#"><%= group.services_count %> <% if group.services_count == 1 %>service<% else %>services<% end %></a>
+		  <%= render group.entity, group: group  %>
 
           <div class="m-metrics">
             <%= render group.metrics %>

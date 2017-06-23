@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002
+    uri: http://cgsd-api-rails.dev/v1/data/government
     body:
       encoding: US-ASCII
       string: ''
@@ -25,20 +25,20 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"9416cb3e34dd7abcadd9b8fe0e96fba4"
+      - W/"6fd5624c64d6fdbeecae752c2f43e1c6"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 6cb810bd-0d62-48c3-8a01-bdc9c7d73862
+      - e8d27c0b-e8a5-46a4-955e-f390e3caa816
       x-runtime:
-      - '0.076465'
+      - '0.016158'
       date:
-      - Thu, 22 Jun 2017 10:35:49 GMT
+      - Mon, 19 Jun 2017 14:41:27 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9}'
+      string: '{"departments_count":7,"delivery_organisations_count":8,"services_count":31}'
     http_version: 
-  recorded_at: Thu, 22 Jun 2017 10:35:49 GMT
+  recorded_at: Mon, 19 Jun 2017 14:41:27 GMT
 recorded_with: VCR 3.0.3

@@ -1,20 +1,21 @@
 class CrossGovernmentServiceDataAPI::Client
-
-  def metrics_by_department
-    response = connection.get '/v1/data/departments'
-    data = response.body
-    data.map do |response|
-      CrossGovernmentServiceDataAPI::Metrics.build(response)
-    end
+  def government
+    response = connection.get "/v1/data/government"
+    CrossGovernmentServiceDataAPI::Government.build(response.body)
   end
 
-  def services_metrics_by_department(department_id)
-    department_id = URI.escape(department_id)
-    response = connection.get "/v1/data/departments/#{department_id}/services"
-    data = response.body
-    data.map do |response|
-      CrossGovernmentServiceDataAPI::Metrics.build(response)
-    end
+  def department(id)
+    id = URI.escape(id)
+    response = connection.get "/v1/data/departments/#{id}"
+
+    CrossGovernmentServiceDataAPI::Department.build(response.body)
+  end
+
+  def delivery_organisation(id)
+    id = URI.escape(id)
+    response = connection.get "/v1/data/delivery_organisations/#{id}"
+
+    CrossGovernmentServiceDataAPI::DeliveryOrganisation.build(response.body)
   end
 
   def service(id)
@@ -23,7 +24,25 @@ class CrossGovernmentServiceDataAPI::Client
 
     department = CrossGovernmentServiceDataAPI::Department.build(response.body['department'])
 
-    CrossGovernmentServiceDataAPI::Service.build(response.body['service'], department: department)
+    service = CrossGovernmentServiceDataAPI::Service.build(response.body, department: department)
+  end
+
+  def metric_groups(entity, group:)
+    case entity
+    when CrossGovernmentServiceDataAPI::Government
+      path = "/v1/data/government/metrics"
+    when CrossGovernmentServiceDataAPI::Department
+      path = "/v1/data/departments/#{entity.key}/metrics"
+    when CrossGovernmentServiceDataAPI::DeliveryOrganisation
+      path = "/v1/data/delivery_organisations/#{entity.key}/metrics"
+    when CrossGovernmentServiceDataAPI::Service
+      path = "/v1/data/services/#{entity.key}/metrics"
+    end
+
+    response = connection.get(path, group: group)
+    response.body['metric_groups'].map do |metric_group|
+      CrossGovernmentServiceDataAPI::MetricGroup.build(metric_group)
+    end
   end
 
   private

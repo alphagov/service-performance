@@ -1,0 +1,86 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"9416cb3e34dd7abcadd9b8fe0e96fba4"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - c1bc766c-89d4-4667-a64d-3478e44259c3
+      x-runtime:
+      - '0.017836'
+      date:
+      - Thu, 22 Jun 2017 10:11:24 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9}'
+    http_version: 
+  recorded_at: Thu, 22 Jun 2017 10:11:24 GMT
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002/metrics?group=department
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"b6dafa462ee6ba20de618db60d175984"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 3550e5a1-f98e-40c7-8538-abad9133ff19
+      x-runtime:
+      - '0.017771'
+      date:
+      - Thu, 22 Jun 2017 10:11:24 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"group":"department","metric_groups":[{"entity":{"type":"department","natural_key":"D0002","name":"Department
+        for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9},"metrics":[{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}]}]}'
+    http_version: 
+  recorded_at: Thu, 22 Jun 2017 10:11:24 GMT
+recorded_with: VCR 3.0.3
