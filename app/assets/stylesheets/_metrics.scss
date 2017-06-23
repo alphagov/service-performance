@@ -1,0 +1,81 @@
+main.metrics {
+  h1 {
+    margin-bottom: 16px;
+  }
+
+  h1 .prefix {
+    display: block;
+    color: #7A7A7A;
+    font-size: 24px;
+    font-weight: normal;
+  }
+
+  .time-period-selector {
+    color: #676767;
+    margin: 16px 0;
+  }
+
+  aside.download {
+    display: none;
+  }
+
+  .metrics-groups {
+    border-top: 1px solid #BFC1C3;
+
+    ul {
+      padding: 0;
+    }
+  }
+
+  .metric-group {
+    border-bottom: 1px solid #BFC1C3;
+    padding: 0 15px;
+
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.m-metric ul li {
+  border-bottom: 1px solid #BFC1C3;
+  padding: 5px 0;
+}
+
+.m-metric .sampled .metric-value, .m-metric .m-metric-headline .sampled {
+  color: #7A7A7A;
+}
+
+.m-metric {
+  .metric-name {
+    display: inline-block;
+  }
+
+  .total {
+    display: inline-block;
+  }
+
+  .m-metric-headline .sampled {
+    display: inline-block;
+  }
+
+  .metric-value-count {
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 600px) {
+  .m-metrics {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .m-metric {
+    flex: 1 1;
+    margin-right: 30px;
+
+    &:last-child {
+      margin-right: 0;
+    };
+  }
+}

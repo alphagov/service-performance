@@ -1,8 +1,11 @@
 class Page
-  def initialize
+  def initialize(controller)
+    @controller = controller
     @breadcrumbs = []
+    @display_header_border = true
   end
 
+  attr_accessor :display_header_border
   attr_reader :breadcrumbs
   attr_writer :title
 
@@ -12,6 +15,10 @@ class Page
     else
       'Cross-Government Service Data'
     end
+  end
+
+  def path
+    @controller.request.path
   end
 
 end

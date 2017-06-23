@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Page, type: :presenter do
-  subject(:page) { Page.new }
+  let(:controller) { instance_double(ActionController::Base) }
+  subject(:page) { Page.new(controller) }
 
   describe '#title' do
     it 'prepends title, if set' do
@@ -12,6 +13,15 @@ RSpec.describe Page, type: :presenter do
     it 'returns the default, if not set' do
       page.title = nil
       expect(page.title).to eq('Cross-Government Service Data')
+    end
+  end
+
+  describe '#path' do
+    it 'returns the request path from the controller' do
+      request = double(:request, path: '/example')
+      allow(controller).to receive(:request) { request }
+
+      expect(page.path).to eq('/example')
     end
   end
 

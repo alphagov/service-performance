@@ -1,13 +1,17 @@
 module BreadcrumbsHelper
-  def breadcrumbs
+  def breadcrumbs(inverse: false)
     return '' if page.breadcrumbs.empty?
 
     items = page.breadcrumbs.map do |crumb|
-      content_tag(:li, link_to(crumb.name, crumb.url))
+      name = content_tag(:span, crumb.name, itemprop: 'name')
+      link = link_to(name, crumb.url, itemprop: 'item')
+      content_tag(:li, link, class: 'breadcrumbs__item', itemscope: 'itemscope', itemtype: 'http://schema.org/ListItem', itemprop: 'itemListElement')
     end
 
-    list = content_tag(:ol, safe_join(items))
+    list = content_tag(:ol, safe_join(items), itemscope: 'itemscope', itemtype: 'http://schema.org/BreadcrumbList')
 
-    content_tag(:div, list, class: 'breadcrumbs')
+    nav_classes = ['breadcrumbs']
+    nav_classes << 'breadcrumbs--inverse' if inverse
+    content_tag(:nav, list, class: nav_classes, 'aria-label': 'Breadcrumbs')
   end
 end

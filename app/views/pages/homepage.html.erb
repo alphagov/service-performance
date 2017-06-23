@@ -1,47 +1,31 @@
-<div class="product-overview-intro">
-  <div class="wrapper">
+<div class="masthead">
+  <%= breadcrumbs(inverse: true) %>
 
-    <div class="grid-row">
-      <div class="column-full">
-        <div class="breadcrumbs">
-          <ol>
-            <li>
-                <a href="https://www.gov.uk/service-toolkit#monitoring">Data</a>
-            </li>
-            <li class="active">
-                Cross-Government Service Data
-            </li>
-          </ol>
-        </div>
+  <div class="hero hero--breaded">
+    <div class="hero__content">
+      <div class="hero__body">
+        <h1 class="hero__title">Get data about government services</h1>
+        <p class="hero__description">
+          Quickly access standardised high-level data so you can:
+          <ul class="list list-bullet">
+            <li>get an overview of all the services delivered by government</li>
+            <li>see how departments, agencies and services are related</li>
+            <li>track changes in service usage and delivery</li>
+          </ul>
+        </p>
+        <%= link_to 'View data', departments_path, class: 'hero-button', role: 'button' %>
+        <span class="hero-alternative-action">
+          or <a href="#">search for something specific</a>
+        </span>
       </div>
-
-      <div class="column-two-thirds">
-
-        <h1 class="heading-xlarge">Get data about government services</h1>
-
-        <p class="lede">Quickly access standardised high-level data so you can:</p>
-
-        <ul class="list list-bullet">
-          <li>get an overview of all the services delivered by government</li>
-          <li>see how departments, agencies and services are related</li>
-          <li>track changes in service usage and delivery</li>
-        </ul>
-
-        <a class="button button-start" href="/performance-data/government" role="button">View data</a>
-        <span class="font-small">&nbsp;or <a href="/performance-data/searchpage">search for something specific</a></span>
-
+      <div class="hero__aside-image">
+        <%= image_tag 'product-image.png', alt: 'Cross-Government Service Data', role: 'presentation' %>
       </div>
-
-      <div class="column-one-third product-overview-intro-image">
-        <%= image_tag 'product-image.png', alt: 'Cross-Government Service Data', class: 'top-image' %>
-      </div>
-
     </div>
   </div>
 </div>
 
-<main id="content" role="main">
-
+<main id="content" role="main" class="container">
   <div class="grid-row">
     <div class="column-two-thirds">
 

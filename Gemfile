@@ -7,10 +7,6 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'jquery-rails'
 
-gem 'govuk_elements_rails'
-gem 'govuk_frontend_toolkit'
-gem 'govuk_template'
-
 gem 'faraday'
 gem 'faraday_middleware'
 
