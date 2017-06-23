@@ -29,21 +29,21 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - b5d3dc03-981f-422e-ae7e-61e3d65e3878
+      - dcf0fe95-84eb-472b-8ceb-79f1ae6f78c0
       x-runtime:
-      - '0.006831'
+      - '0.005083'
       date:
-      - Thu, 22 Jun 2017 10:20:19 GMT
+      - Fri, 23 Jun 2017 14:59:30 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31}'
     http_version: 
-  recorded_at: Thu, 22 Jun 2017 10:20:19 GMT
+  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/government/metrics?group=government
+    uri: http://cgsd-api-rails.dev/v1/data/government/metrics?group_by=government
     body:
       encoding: US-ASCII
       string: ''
@@ -66,20 +66,20 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"c7b5f6b800c08f2a4b0300cc16c007b6"
+      - W/"d078a164eabc6e0fb31aa759111dce72"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 97f030a9-3695-4d50-8d9c-91873c49a3e1
+      - 250fc141-d217-4e14-867f-dbbdec113a88
       x-runtime:
-      - '0.020184'
+      - '0.010106'
       date:
-      - Thu, 22 Jun 2017 10:20:19 GMT
+      - Fri, 23 Jun 2017 14:59:30 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"group":"government","metric_groups":[{"entity":{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31},"metrics":[{"type":"transactions-received","total":746067381,"online":648825681,"phone":38355269,"paper":35775321,"face_to_face":0,"other":23111110},{"type":"transactions-with-outcome","total":710427383,"with_intended_outcome":604814744}]}]}'
+      string: '{"group_by":"government","metric_groups":[{"entity":{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31},"metrics":[{"type":"transactions-received","total":746067381,"online":648825681,"phone":38355269,"paper":35775321,"face_to_face":0,"other":23111110},{"type":"transactions-with-outcome","total":710427383,"with_intended_outcome":604814744}]}]}'
     http_version: 
-  recorded_at: Thu, 22 Jun 2017 10:20:19 GMT
+  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
 recorded_with: VCR 3.0.3

@@ -1,7 +1,7 @@
 class MetricsPresenter
-  def initialize(entity, client:, group:)
+  def initialize(entity, client:, group_by:)
     @entity = entity
-    @metric_groups = client.metric_groups(@entity, group: group)
+    @metric_groups = client.metric_groups(@entity, group_by: group_by)
   end
 
   def organisation_name

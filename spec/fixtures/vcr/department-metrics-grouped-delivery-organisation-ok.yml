@@ -29,21 +29,21 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - e0caded5-d392-4c70-b8df-27757ce9ce2c
+      - 81e02368-2af9-4f5c-9186-6fc0f2084aae
       x-runtime:
-      - '0.013837'
+      - '0.007177'
       date:
-      - Thu, 22 Jun 2017 10:11:24 GMT
+      - Fri, 23 Jun 2017 14:59:30 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9}'
     http_version: 
-  recorded_at: Thu, 22 Jun 2017 10:11:24 GMT
+  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002/metrics?group=delivery_organisation
+    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002/metrics?group_by=delivery_organisation
     body:
       encoding: US-ASCII
       string: ''
@@ -66,22 +66,22 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"5e372db34b8a62ea11778705e75d1edf"
+      - W/"569c968213a8be573076cdf440695b97"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - bdb76830-0f45-4c59-ad0d-123b4f7df0ba
+      - 46f70e06-5efc-43d8-8867-55aaa6f29022
       x-runtime:
-      - '0.023133'
+      - '0.013249'
       date:
-      - Thu, 22 Jun 2017 10:11:24 GMT
+      - Fri, 23 Jun 2017 14:59:30 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"group":"delivery_organisation","metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
+      string: '{"group_by":"delivery_organisation","metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
         and Vehicle Licensing Agency","hostname":"driver-and-vehicle-licensing-agency","services_count":5},"metrics":[{"type":"transactions-received","total":70123862,"online":45143108,"phone":7123719,"paper":17857035,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":70842643,"with_intended_outcome":58650122}]},{"entity":{"type":"delivery-organisation","natural_key":"04","name":"Driver
         and Vehicle Standards Agency","hostname":"driver-and-vehicle-standards-agency","services_count":4},"metrics":[{"type":"transactions-received","total":48555649,"online":25567940,"phone":3000055,"paper":0,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":43745145,"with_intended_outcome":33670994}]}]}'
     http_version: 
-  recorded_at: Thu, 22 Jun 2017 10:11:24 GMT
+  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
 recorded_with: VCR 3.0.3

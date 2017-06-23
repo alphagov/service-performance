@@ -29,21 +29,21 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - c1bc766c-89d4-4667-a64d-3478e44259c3
+      - ac5b0d7d-d84e-4436-ae22-53d86842d149
       x-runtime:
-      - '0.017836'
+      - '0.005681'
       date:
-      - Thu, 22 Jun 2017 10:11:24 GMT
+      - Fri, 23 Jun 2017 14:59:30 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9}'
     http_version: 
-  recorded_at: Thu, 22 Jun 2017 10:11:24 GMT
+  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002/metrics?group=department
+    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002/metrics?group_by=department
     body:
       encoding: US-ASCII
       string: ''
@@ -66,21 +66,21 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"b6dafa462ee6ba20de618db60d175984"
+      - W/"f3a2a739765d38cd31925c3fde138be1"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 3550e5a1-f98e-40c7-8538-abad9133ff19
+      - dcdd95c3-a36b-421f-9a83-b7de9f715bac
       x-runtime:
-      - '0.017771'
+      - '0.008961'
       date:
-      - Thu, 22 Jun 2017 10:11:24 GMT
+      - Fri, 23 Jun 2017 14:59:30 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"group":"department","metric_groups":[{"entity":{"type":"department","natural_key":"D0002","name":"Department
+      string: '{"group_by":"department","metric_groups":[{"entity":{"type":"department","natural_key":"D0002","name":"Department
         for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9},"metrics":[{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}]}]}'
     http_version: 
-  recorded_at: Thu, 22 Jun 2017 10:11:24 GMT
+  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
 recorded_with: VCR 3.0.3

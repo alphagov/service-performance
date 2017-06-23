@@ -27,7 +27,7 @@ class CrossGovernmentServiceDataAPI::Client
     service = CrossGovernmentServiceDataAPI::Service.build(response.body, department: department)
   end
 
-  def metric_groups(entity, group:)
+  def metric_groups(entity, group_by:)
     case entity
     when CrossGovernmentServiceDataAPI::Government
       path = "/v1/data/government/metrics"
@@ -39,7 +39,7 @@ class CrossGovernmentServiceDataAPI::Client
       path = "/v1/data/services/#{entity.key}/metrics"
     end
 
-    response = connection.get(path, group: group)
+    response = connection.get(path, group_by: group_by)
     response.body['metric_groups'].map do |metric_group|
       CrossGovernmentServiceDataAPI::MetricGroup.build(metric_group)
     end

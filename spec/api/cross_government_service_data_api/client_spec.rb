@@ -62,7 +62,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       let(:entity) { client.government }
 
       it 'parses the metrics, grouped by government', cassette: 'government-metrics-grouped-government-ok' do
-        metric_groups = client.metric_groups(entity, group: Metrics::Group::Government)
+        metric_groups = client.metric_groups(entity, group_by: Metrics::Group::Government)
         expect(metric_groups.size).to eq(1)
 
         metric_group = metric_groups.first
@@ -87,7 +87,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       end
 
       it 'parses the metrics, grouped by department', cassette: 'government-metrics-grouped-department-ok' do
-        metric_groups = client.metric_groups(entity, group: Metrics::Group::Department)
+        metric_groups = client.metric_groups(entity, group_by: Metrics::Group::Department)
         expect(metric_groups.size).to eq(7)
 
         metric_group = metric_groups.first
@@ -113,7 +113,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       end
 
       it 'parses the metrics, grouped by delivery organisation', cassette: 'government-metrics-grouped-delivery-organisation-ok' do
-        metric_groups = client.metric_groups(entity, group: Metrics::Group::DeliveryOrganisation)
+        metric_groups = client.metric_groups(entity, group_by: Metrics::Group::DeliveryOrganisation)
         expect(metric_groups.size).to eq(8)
 
         metric_group = metric_groups.first
@@ -138,7 +138,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       end
 
       it 'parses the metrics, grouped by service', cassette: 'government-metrics-grouped-service-ok' do
-        metric_groups = client.metric_groups(entity, group: Metrics::Group::Service)
+        metric_groups = client.metric_groups(entity, group_by: Metrics::Group::Service)
         expect(metric_groups.size).to eq(31)
 
         metric_group = metric_groups.first
@@ -166,7 +166,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       let(:entity) { client.department('D0002') }
 
       it 'parses the metrics, grouped by department', cassette: 'department-metrics-grouped-department-ok' do
-        metric_groups = client.metric_groups(entity, group: Metrics::Group::Department)
+        metric_groups = client.metric_groups(entity, group_by: Metrics::Group::Department)
         expect(metric_groups.size).to eq(1)
 
         metric_group = metric_groups.first
@@ -192,7 +192,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       end
 
       it 'parses the metrics, grouped by delivery organisation', cassette: 'department-metrics-grouped-delivery-organisation-ok' do
-        metric_groups = client.metric_groups(entity, group: Metrics::Group::DeliveryOrganisation)
+        metric_groups = client.metric_groups(entity, group_by: Metrics::Group::DeliveryOrganisation)
         expect(metric_groups.size).to eq(2)
 
         metric_group = metric_groups.first
@@ -217,7 +217,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       end
 
       it 'parses the metrics, grouped by service', cassette: 'department-metrics-grouped-service-ok' do
-        metric_groups = client.metric_groups(entity, group: Metrics::Group::Service)
+        metric_groups = client.metric_groups(entity, group_by: Metrics::Group::Service)
         expect(metric_groups.size).to eq(9)
 
         metric_group = metric_groups.first
@@ -245,7 +245,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       let(:entity) { client.delivery_organisation('03') }
 
       it 'parses the metrics, grouped by delivery organisation', cassette: 'delivery-organisation-metrics-grouped-delivery-organisation-ok' do
-        metric_groups = client.metric_groups(entity, group: Metrics::Group::DeliveryOrganisation)
+        metric_groups = client.metric_groups(entity, group_by: Metrics::Group::DeliveryOrganisation)
         expect(metric_groups.size).to eq(1)
 
         metric_group = metric_groups.first
@@ -270,7 +270,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       end
 
       it 'parses the metrics, grouped by service', cassette: 'delivery-organisation-metrics-grouped-service-ok' do
-        metric_groups = client.metric_groups(entity, group: Metrics::Group::Service)
+        metric_groups = client.metric_groups(entity, group_by: Metrics::Group::Service)
         expect(metric_groups.size).to eq(5)
 
         metric_group = metric_groups.first
@@ -298,7 +298,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
       let(:entity) { client.service('02') }
 
       it 'parses the metrics, grouped by service', cassette: 'service-metrics-grouped-service-ok' do
-        metric_groups = client.metric_groups(entity, group: Metrics::Group::Service)
+        metric_groups = client.metric_groups(entity, group_by: Metrics::Group::Service)
         expect(metric_groups.size).to eq(1)
 
         metric_group = metric_groups.first
