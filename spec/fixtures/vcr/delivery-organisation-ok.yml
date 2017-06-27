@@ -25,20 +25,21 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"7a9c14a63c350417ef2b61f6eef1e93b"
+      - W/"25fc838730876023778aeff430787c49"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - c5205a1b-b05d-4a35-a572-640436e06c7b
+      - baf8580d-e756-4c93-ab26-ed909a55d5c6
       x-runtime:
-      - '0.005251'
+      - '0.011914'
       date:
-      - Mon, 19 Jun 2017 15:20:30 GMT
+      - Fri, 23 Jun 2017 15:16:22 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"natural_key":"02","name":"NHS Blood and Transplant","hostname":"nhs-blood-and-transplant","services_count":3}'
+      string: '{"type":"delivery-organisation","natural_key":"02","name":"NHS Blood
+        and Transplant","hostname":"nhs-blood-and-transplant","services_count":3}'
     http_version: 
-  recorded_at: Mon, 19 Jun 2017 15:20:30 GMT
+  recorded_at: Fri, 23 Jun 2017 15:16:22 GMT
 recorded_with: VCR 3.0.3
