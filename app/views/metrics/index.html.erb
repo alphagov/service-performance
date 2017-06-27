@@ -35,12 +35,13 @@
   <% end %>
 
   <div class="grid-row o-filter-panel">
-    <form action="/" method="get" class="column-full filter-row">
+    <form method="get" class="column-full filter-row">
         <div class="m-sort-filter">
           <label for="filter-sort-by">Sort by</label>
 
           <select class="form-control" id="filter-sort-by">
             <option>Default</option>
+            <option>transactions received</option>
           </select>
 
           <div class="m-sort-order">
@@ -53,6 +54,8 @@
           <input type="text" id="search-departments" class="a-search-input" placeholder="Find department">
           <button class="a-search-button">Search</button>
         </div>
+
+        <button type="submit">Apply</button>
       </form>
   </div>
 
