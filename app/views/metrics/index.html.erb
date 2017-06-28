@@ -35,28 +35,26 @@
   <% end %>
 
   <div class="grid-row o-filter-panel">
-    <form method="get" class="column-full filter-row">
-        <div class="m-sort-filter">
-          <label for="filter-sort-by">Sort by</label>
+    <%= form_for @metrics, as: :filter, url: '', method: 'get', class: 'column-full filter-row' do |f| %>
+      <div class="m-sort-filter">
+        <%= f.label :order_by, 'Sort by' %>
+        <%= f.select :order_by, Metrics::OrderBy::ALL.map {|order| [order.name, order.identifier]}, {}, class: 'form-control' %>
 
-          <select class="form-control" id="filter-sort-by">
-            <option>Default</option>
-            <option>transactions received</option>
-          </select>
-
-          <div class="m-sort-order">
-            <a href="#">High to Low</a> | <a href="#">Low to High</a>
-          </div>
+        <div class="m-sort-order">
+          <label><%= f.radio_button :order, Metrics::Order::Descending %> High to Low</label>
+          <label><%= f.radio_button :order, Metrics::Order::Ascending %> Low to High</label>
+          <!-- <a href="#">High to Low</a> | <a href="#">Low to High</a> -->
         </div>
+      </div>
 
-        <div class="m-search-filter">
-          <label for="search-departments">Find department</label>
-          <input type="text" id="search-departments" class="a-search-input" placeholder="Find department">
-          <button class="a-search-button">Search</button>
-        </div>
+      <div class="m-search-filter">
+        <label for="search-departments">Find department</label>
+        <input type="text" id="search-departments" class="a-search-input" placeholder="Find department">
+        <button class="a-search-button">Search</button>
+      </div>
 
-        <button type="submit">Apply</button>
-      </form>
+      <button type="submit">Apply</button>
+    <% end %>
   </div>
 
   <!--end of filter-->
@@ -64,12 +62,12 @@
   <div class="metrics-groups grid-row">
     <ul>
 
-      <% @metrics.groups.each do |group|  %>
+      <% @metrics.metric_groups.each do |metric_group|  %>
         <li class="metric-group">
-		  <%= render group.entity, group: group  %>
+          <%= render metric_group.entity, metric_group: metric_group  %>
 
           <div class="m-metrics">
-            <%= render group.metrics %>
+            <%= render metric_group.metrics %>
           </div>
         </li>
       <% end %>

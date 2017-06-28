@@ -1,16 +1,28 @@
 class MetricsPresenter
-  def initialize(entity, client:, group_by:)
+  def initialize(entity, client:, group_by:, order: nil, order_by: nil)
     @entity = entity
-    @metric_groups = client.metric_groups(@entity, group_by: group_by)
+    @client = client
+
+    @group_by = group_by
+    @order_by = order_by || Metrics::OrderBy::Name.identifier
+    @order = order || Metrics::Order::Ascending
+    @sorter = Metrics::OrderBy.fetch(@order_by)
   end
+
+  attr_reader :group_by, :order_by, :order
 
   def organisation_name
     entity.name
   end
 
-  def groups
-    @metric_groups.map do |metric_group|
-      MetricGroupPresenter.new(metric_group)
+  def metric_groups
+    @metric_groups ||= begin
+      metric_groups = client
+                        .metric_groups(entity, group_by: group_by)
+                        .map { |metric_group| MetricGroupPresenter.new(metric_group) }
+                        .sort_by(&sorter)
+      metric_groups.reverse! if order == Metrics::Order::Descending
+      metric_groups
     end
   end
 
@@ -52,5 +64,5 @@ class MetricsPresenter
 
   private
 
-  attr_reader :entity
+  attr_reader :client, :entity, :sorter
 end
