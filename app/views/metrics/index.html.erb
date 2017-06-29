@@ -34,15 +34,15 @@
     <% tabs.link_to tab_name('Services', count: @metrics.services_count), url_for(request.params.merge(group_by: Metrics::Group::Service)) if @metrics.has_services? %>
   <% end %>
 
-  <div class="grid-row o-filter-panel">
+  <div class="grid-row o-filter-panel" data-behaviour="o-filter-panel">
     <%= form_for @metrics, as: :filter, url: '', method: 'get', class: 'column-full filter-row' do |f| %>
       <div class="m-sort-filter">
         <%= f.label :order_by, 'Sort by' %>
         <%= f.select :order_by, Metrics::OrderBy::ALL.map {|order| [order.name, order.identifier]}, {}, class: 'form-control' %>
 
         <div class="m-sort-order">
-          <label><%= f.radio_button :order, Metrics::Order::Descending %> High to Low</label>
-          <label><%= f.radio_button :order, Metrics::Order::Ascending %> Low to High</label>
+          <label><%= f.radio_button :order, Metrics::Order::Descending %> <span>High to Low</span></label>
+          <label><%= f.radio_button :order, Metrics::Order::Ascending %> <span>Low to High</span></label>
           <!-- <a href="#">High to Low</a> | <a href="#">Low to High</a> -->
         </div>
 

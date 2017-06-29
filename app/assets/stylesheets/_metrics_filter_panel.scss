@@ -36,6 +36,27 @@
     order: 2;
     flex-grow: 1;
     text-align: right;
+
+    label {
+      &::after {
+        content: ' | ';
+      }
+
+      &:last-child::after {
+        content: none;
+      }
+
+      span {
+        color: #005ea5;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      &.checked span {
+        color: #000000;
+        text-decoration: none;
+      }
+    }
   }
 
   select {
