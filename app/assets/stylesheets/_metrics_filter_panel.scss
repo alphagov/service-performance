@@ -17,6 +17,12 @@
   text-indent: -5000px;
 }
 
+.a-apply-button {
+  background-color: black;
+  border: 0;
+  color: white;
+}
+
 .m-sort-filter {
   display: flex;
   flex-wrap: wrap;
@@ -35,6 +41,10 @@
   select {
     order: 3;
     width: 100%;
+  }
+
+  .a-apply-button {
+    order: 4;
   }
 }
 
@@ -68,6 +78,10 @@
 
   .m-sort-filter, .m-search-filter {
     margin: 10px 0;
+  }
+
+  .a-apply-button {
+    display: block;
   }
 }
 

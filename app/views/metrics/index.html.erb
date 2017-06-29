@@ -45,6 +45,8 @@
           <label><%= f.radio_button :order, Metrics::Order::Ascending %> Low to High</label>
           <!-- <a href="#">High to Low</a> | <a href="#">Low to High</a> -->
         </div>
+
+        <button type="submit" class="a-apply-button">Apply</button>
       </div>
 
       <div class="m-search-filter">
@@ -52,8 +54,6 @@
         <input type="text" id="search-departments" class="a-search-input" placeholder="Find department">
         <button class="a-search-button">Search</button>
       </div>
-
-      <button type="submit">Apply</button>
     <% end %>
   </div>
 
