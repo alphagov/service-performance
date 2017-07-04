@@ -19,7 +19,7 @@ class MetricsPresenter
     @metric_groups ||= begin
       metric_groups = client
                         .metric_groups(entity, group_by: group_by)
-                        .map { |metric_group| MetricGroupPresenter.new(metric_group) }
+                        .map { |metric_group| MetricGroupPresenter.new(metric_group, collapsed: collapsed?) }
                         .sort_by(&sorter)
       metric_groups.reverse! if order == Metrics::Order::Descending
       metric_groups
@@ -65,4 +65,8 @@ class MetricsPresenter
   private
 
   attr_reader :client, :entity, :sorter
+
+  def collapsed?
+    order_by != Metrics::OrderBy::Name.identifier
+  end
 end

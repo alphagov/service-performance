@@ -49,4 +49,15 @@ RSpec.describe MetricGroupPresenter, type: :presenter do
       expect(presenter.services_count).to be_nil
     end
   end
+
+  describe '#collapsed?' do
+    it "isn't collapsed by default" do
+      expect(presenter).to_not be_collapsed
+    end
+
+    it "can be set to collapsed" do
+      presenter = MetricGroupPresenter.new(metric_group, collapsed: true)
+      expect(presenter).to be_collapsed
+    end
+  end
 end

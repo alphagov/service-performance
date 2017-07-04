@@ -56,13 +56,24 @@ RSpec.describe MetricsPresenter do
 
       metric_group_presenter_1 = instance_double(MetricGroupPresenter)
       metric_group_presenter_2 = instance_double(MetricGroupPresenter)
-      expect(MetricGroupPresenter).to receive(:new).with(metric_group_1) { metric_group_presenter_1 }
-      expect(MetricGroupPresenter).to receive(:new).with(metric_group_2) { metric_group_presenter_2 }
+      expect(MetricGroupPresenter).to receive(:new).with(metric_group_1, collapsed: false) { metric_group_presenter_1 }
+      expect(MetricGroupPresenter).to receive(:new).with(metric_group_2, collapsed: false) { metric_group_presenter_2 }
 
       sorter = ->(_) {}
       allow(Metrics::OrderBy).to receive(:fetch) { sorter }
 
       expect(presenter.metric_groups).to match_array([metric_group_presenter_1, metric_group_presenter_2])
+    end
+
+    it "sets the metric group to be collapsed if it isn't ordered by name" do
+      metric_group = instance_double(CrossGovernmentServiceDataAPI::MetricGroup)
+      allow(client).to receive(:metric_groups) { [metric_group] }
+
+      expect(MetricGroupPresenter).to receive(:new).with(metric_group, collapsed: true) { instance_double(MetricGroupPresenter) }
+
+      allow(Metrics::OrderBy).to receive(:fetch) { ->(_) {} }
+      presenter = described_class.new(entity, client: client, group_by: group_by, order_by: 'alternative metric')
+      presenter.metric_groups
     end
 
     describe 'sorting' do

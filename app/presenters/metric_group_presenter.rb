@@ -11,8 +11,9 @@ class MetricGroupPresenter
     end
   end
 
-  def initialize(metric_group)
+  def initialize(metric_group, collapsed: false)
     @metric_group = metric_group
+    @collapsed = collapsed
   end
 
   def entity
@@ -40,5 +41,9 @@ class MetricGroupPresenter
     else
       nil
     end
+  end
+
+  def collapsed?
+    @collapsed ? true : false
   end
 end
