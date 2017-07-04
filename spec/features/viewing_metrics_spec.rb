@@ -56,7 +56,7 @@ RSpec.feature 'viewing metrics', type: :feature do
   def metric_groups(*attrs)
     attributes = ->(metric_group) { attrs.map {|attribute| metric_group.send(attribute) } }
 
-    all('.metric-group', count: 7)
+    all('.m-metric-group', count: 7)
       .map { |element| MetricGroup.new(element) }
       .collect(&attributes)
   end
