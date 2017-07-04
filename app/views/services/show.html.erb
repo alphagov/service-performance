@@ -5,9 +5,12 @@
   <div class="grid-row">
     <div class="column-two-thirds">
       <h1 class="heading-xlarge">
-      	<span class="heading-secondary">Information about</span>
+        <span class="prefix">Information about</span>
         <%= @service.name %>
       </h1>
+
+      <%= render 'metrics/time_period_selector' %>
+
       <dl class="metadata">
         <dt>Data provider:</dt>
         <dd><%= @service.department.name %></dd>
@@ -18,8 +21,6 @@
       </dl>
     </div>
   </div>
-
-  <br><br><br>
 
   <div class="grid-row">
 
@@ -56,6 +57,15 @@
         </ul>
       </p>
     </div>
+  </div>
 
+  <div class="grid-row">
+    <div class="column-full">
+      <h2>Service data</h2>
+
+      <div class="m-metrics">
+        <%= render @metrics.metric_groups.first.metrics %>
+      </div>
+    </div>
   </div>
 </main>
