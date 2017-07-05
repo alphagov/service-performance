@@ -1,0 +1,30 @@
+dist: trusty
+sudo: true
+language: generic
+
+env:
+  global:
+    - PAAS_USER=gsd-deploy@digital.cabinet-office.gov.uk
+    - PAAS_SERVICE=gsd-view-data
+    - DOCKER_USER=gsddeploy
+    - DOCKER_REPOSITORY=gsddeploy
+    - DOCKER_IMAGE=gsd-view-data
+    - DOCKER_FILE=etc/gsd-view-data.df
+    # PAAS_PASSWORD
+    - secure: Sjp1ZN2UkBD/RYi8srcCSjP7Sl1OhpQW9QgP33Vomnsa8TkRh8kCeqJnIsqHbC7Iq3nudmNBl0MXRPOWl4wcutVtf1Oc2qprfHylnE3D3t1cMyhCAbCXqVW3uv939fOGJmKq03JQlLy/Tl4G4aU3iEIoYseePyvjGpx+j7N/HWgDL/27ClbatTHH/sae8f0oRGq4OAsUIoUAdahzBvz5WUXiMc7pFaScfGpt/mNe23DZ0eZZuUINc9B2VN9xWvr/VR0oxmk8aqUNxleEVSVY82+MxJS3GVwgEZezQlUpBwD7xeMQwxxZw/mfIDhP99HSTEIpiPXW8Es5Tc+0SRcWVwWR8oKgbcgjtrPhHu7Qz4ZPSzunwp8MXuEAy113aWm5dcTQVuWQ94nliGsaSaakv0+F+WQy5R/TLKsAl4la37dDACdjdAZf/YAa7QWZyuM9RE4g/F182tfq+xOAgisdnep9Fl6IKL9mRJoAnjHyxWSb/+uo0u/yczvPvYC77/9J34osQAqFdAuunX7uZQFN6KJoupwXSFvgNu91sAnklUAOEFWNAJbXECJjqHjOIS6lqF14IIQIcZ8KB02ArfywA0WBjgGIkvUprWei5uW3INXaTBG9BTrTTNKHyzzFdVxvBIVB68YV9jtK8C9Befs5Pdsb9SmKnVIHvLmqdidqnag=
+    # DOCKER_PASSWORD for user gsddeploy
+    - secure: meWWu8Pj8OaBM9hgUXrG1BVVmRBwGMBeSZiF126TlOy+FDe6nloxUSYDSFBlyS/frrqIaZSeaE9ev2WkXyRgtyz36we9c0B4IANGTY93zLbi0uQF+X+nEDCbNS9FbT99u6GLbKyTIcdprd28Yqq96exLamcLzHE1EnBqnbe/baMpZ3vo8wC2sGzW9bThb8v3lLiJ7hdmHFhMlv2H5WFt+uMqxFbrWXMf93sZT1CBkJO3XP3RASh81DO8JCJzO4EJ/hLKhGjj5n8gliJLVM00foitm4rNcrVXJI0nFcCZuDp36Tcbnie1f2PCDzadyRAKT43im2fD1MzLWK7b3ll3DF7Z9nF+v9OFXTaIMfkocmLtOsty5BNXVNW5JaMRWCWbtGn7tNJEjJ5BBrnb+wjYAn2q9WdV6nvme28lbBye0A1zH54m89B+UDg4lGCJPOP3T1lHYZKlwuGgd3Tlo1fX5psGb3XSSQr7RmsQvsk1mhH7mudijgQpYuDNqdy8Q3kWZ+tI7s/4cdLQ2nuOtRqMagrmEhoxMu197GZ8e5tkS0bDQC00uA0ap/E5ePZ2jDFdS+wq72sDmTfREnlNpcA0QFQBxDzRLB9z7jgLOIb1V8esBD6jhdHCFSPJM2ZfDVsjP5ZdCNreiELlPhY/tS73uMifZeiYfWn9DQUnXcP+1/A=
+
+script:
+  - cp .env.example .env
+  - docker run --volume=$TRAVIS_BUILD_DIR:/app -it $DOCKER_REPOSITORY/gsd-view-data-ci /bin/sh -c "bundle --without development production && bundle exec rspec spec"
+
+after_success:
+  - chmod +x etc/deploy.sh
+
+deploy:
+  provider: script
+  script: "etc/deploy.sh"
+  skip_cleanup: true
+  on:
+    branch: master

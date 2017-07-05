@@ -1,5 +1,0 @@
----
-applications:
-- name: cgsd-view-data-staging
-  memory: 256M
-  buildpack: ruby_buildpack
