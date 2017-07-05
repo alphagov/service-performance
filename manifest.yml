@@ -1,5 +1,0 @@
----
-applications:
-- name: cgsd-api-staging
-  memory: 256M
-  buildpack: ruby_buildpack
