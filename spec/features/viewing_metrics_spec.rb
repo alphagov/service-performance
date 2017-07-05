@@ -49,6 +49,17 @@ RSpec.feature 'viewing metrics', type: :feature do
         ])
       end
     end
+
+    it 'collapses metric groups, when sorting by attributes (other than name)', cassette: 'viewing-metrics-collapsing-metric-groups', js: true do
+      visit government_metrics_path(group_by: Metrics::Group::Department)
+
+      expect(page).to have_selector('.m-metric-group', count: 7)
+      expect(page).to have_selector('.m-metric-group[data-behaviour="m-metric-group__collapsed"]', count: 0)
+
+      select 'transactions received', from: 'Sort by'
+      expect(page).to have_selector('.m-metric-group[data-behaviour="m-metric-group__collapsed"]', count: 7)
+      expect(page).to have_selector('.m-metric-group.m-metric-group__collapsed', count: 7)
+    end
   end
 
   private
