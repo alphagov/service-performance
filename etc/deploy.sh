@@ -9,4 +9,7 @@ wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key |
 echo "deb http://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
 sudo apt-get update && sudo apt-get install cf-cli
 cf login -u $PAAS_USER -p $PAAS_PASSWORD -a https://api.cloud.service.gov.uk -o cross-government-service-data -s staging
+cf set-env $PAAS_SERVICE API_URL $APP_API_URL
+cf set-env $PAAS_SERVICE API_USERNAME $APP_API_USERNAME
+cf set-env $PAAS_SERVICE API_PASSWORD $APP_API_PASSWORD
 cf push $PAAS_SERVICE --docker-image $DOCKER_REPOSITORY/$DOCKER_IMAGE:$TRAVIS_BUILD_NUMBER
