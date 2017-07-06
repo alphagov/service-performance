@@ -23,12 +23,17 @@ script:
   - cp .env.example .env
   - docker run --volume=$TRAVIS_BUILD_DIR:/app -it $DOCKER_REPOSITORY/gsd-view-data-ci /bin/sh -c "bundle --without development production && bundle exec rspec spec"
 
-after_success:
+before_deploy:
   - chmod +x etc/deploy.sh
 
 deploy:
-  provider: script
-  script: "etc/deploy.sh"
-  skip_cleanup: true
-  on:
-    branch: master
+  - provider: script
+    script: etc/deploy.sh staging
+    skip_cleanup: true
+    on:
+      branch: staging
+  - provider: script
+    script: etc/deploy.sh production
+    skip_cleanup: true
+    on:
+      branch: production
