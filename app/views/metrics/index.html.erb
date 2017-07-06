@@ -61,10 +61,12 @@
 
       <% @metrics.metric_groups.each do |metric_group|  %>
         <li class="m-metric-group" <% if metric_group.collapsed? %>data-behaviour="m-metric-group__collapsed"<% end %>>
-          <%= render metric_group.entity, metric_group: metric_group  %>
+          <div data-metric-group-expanded>
+            <%= render metric_group.entity, metric_group: metric_group  %>
 
-          <div class="m-metrics">
-            <%= render metric_group.metrics %>
+            <div class="m-metrics">
+              <%= render metric_group.metrics %>
+            </div>
           </div>
         </li>
       <% end %>

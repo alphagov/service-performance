@@ -21,6 +21,8 @@ RSpec.feature 'viewing metrics', type: :feature do
         select 'transactions received', from: 'Sort by'
         click_on 'Apply' unless javascript_enabled
 
+        all('a', text: /\AOpen\z/).each(&:click) if javascript_enabled
+
         expect(metric_groups(:name, :transactions_received_total)).to eq([
           ['HM Revenue & Customs',                                          '0'],
           ['Department for Business, Energy & Industrial Strategy',         '0'],
@@ -37,6 +39,8 @@ RSpec.feature 'viewing metrics', type: :feature do
           choose 'High to Low'
         end
         click_on 'Apply' unless javascript_enabled
+
+        all('a', text: /\AOpen\z/).each(&:click) if javascript_enabled
 
         expect(metric_groups(:name, :transactions_received_total)).to eq([
           ['Ministry of Justice',                                   '593254687'],
