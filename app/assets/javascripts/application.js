@@ -1,3 +1,4 @@
-//= require jquery
-//= require collapsed_metric_group
-//= require metrics_filter_panel
+// = require jquery
+// = require collapsed_metric_group
+// = require metrics_filter_panel
+// = require search
