@@ -12,6 +12,10 @@ env:
     - DOCKER_REPOSITORY=gsddeploy
     - DOCKER_IMAGE=gsd-view-data
     - DOCKER_FILE=etc/gsd-view-data.df
+    # APP_SECRET_KEY_BASE_STAGING
+    - secure: qG9P2vpmT/wV/kboQrgEP1ijNqpHOjSIR0kblNbJOR8EQkrLribXqS1H+uthz2B5vFSw7JxfcF/xeOGzwA5t6S654dV1T9ucLKOPX+sOG7Sx4Q6YJWaCR2KxlBnO84MUHGu3HJUjK1UkFK9RxZB/GNXqlBL5Owv87CcrOAug4J6xGompP2Crumv8mQCbV1nO9tOb53wbe05+sCUP13NZVm3fG5Nw0m6uz3YWwk7is/Jjer7fBQ1TKpWbq0fqcCVH0rFf5WNKbbnK7hesd1/dQTl9Yzu2zOm+aYIRZZQ4cc/QwMVV1khGrMLmh2kdXL+8I+zWjCVp1QbU1o98iCBGNNxsX3DWleCC481w3wBVHhbNiH2csgRwLUrR5epdzTmAgwmvU9eG5YCp4dZA22/vrv8XU5T5aPx98ylcjc8TQDBeuxIakYA6H9XASkjJbwjNnWf9pgBELJq41EY+JUp8+Z/VLTCk6vfJj1nxwt7m5A5eGnIBe3ay87/w3X12xO2ghv4voJP3ZXci1w5roujE8h6qvB0l1OE7YxMj/zrSPuKkc+tbJwIAeXqszgQ3T5p0NPBAcgzW5nYct+Wx+XxKZ/f86wcarKtjuz0a6OosZqMEZzDLEgKpx2d+XpDyzi7yS7FFSHGEwxouJa/0JqR4WaE1ZyT6oTTTo8aS25flTM4=
+    # APP_SECRET_KEY_BASE_PRODUCTION
+    - secure: OTWtLK3ReCdbNy/gBY6AbMfT0AaYrh4Ijpa7Mliw33zVJ0wihat1vFacZfVIP6e2ThSq1oc2lxAfQsoJ5KA3JL9KqB8FXZcmeuXj/ws3hCFd7qBCNHnIkmkPEr9HWxWCVLjBw0AxJtKibrA74EjVEc6nZrXBGoDBOPAOH+BI3VgSqqO00B9lQ35s42JCrV8A58xdoGPuXF56ni/tW3CJ0wULhIe5JdMA9KXo5veUyqyp6/a1/2ECxT4+eNfn3GzqqfdSEcEEk80+RoW/nm1UYqdkLIytWrRScy0JdQi2RA+8c5o58XwGaEc0B97g75HaxlMT2JtWNVtjOYNJKpjVSv2cyy12UA3a3AeKxo0pakU0KXjv/GMlt0ss6C6ODaJkOjHzWJxcYo5/6L1IMiZAlEMO87+aCbVTwDQw5RYFNiTBuCwbjNbqFvEBav5rpLTi20VmrHX15vdA1Lrrvgow/926tgUT4GmnDdyYI8h5IReif4vzIFjUAHTdAPtGoTYkcAoJrBTUugssD7aOvjfGws4ux8rtRfL6C2dCWxvCPyxLnyy5BHwc/mdLqWRWgFTLFu3KFMWX/46cCjt5uooxro167+fbMGWFEfNzTPtIXN0fTwBU4yhd/ILFdZUZCM5bk+eGuPX7UyIQRryN+WU/Rl1hE4tADJS2lbBSxoD7l7g=
     # APP_API_PASSWORD
     - secure: vrHJsBsL8ihVEfZSupROfBMdcCB5iPAm9tGS6XxNqWnmxJzG50mMzEo7pJgbbMgM5ZAATxllvVhEkWHrqvEL+N46ARxdrnD+7yymBbOn0i+fdSJULMwLtMtPRQ5IpKff8XZmh7lF/lHWCxNoOIYA8vpMLkDd0a7+8+9cKpu/lNhChsQha/lM2Cd7WT5uy4GvRwpdnd8SOlV3kD3WzxI9gQzOTHusM5KBUgj3W8KCInLQaqNr1vSPeno0ZKtXtAEcm6W/W67KorRgZg+bzBz+klAdmdFsPV5H2f3AlgoIg6Aw3oKmXAuQcwSUSgiIJSed4JdI5pKGwQ+r7UdCTKmaukMGsXrJL6wUBR6jEaOvXImYDr5b0OosjMsbIVvbuEMTRJXMtze7Py5Lh/aqYY/GGa8Bx3A0Bgngwt+TUBpZA78MnyMwoGnXi2BlGYr1OieH6EGV9YLQr5uO9eLHx/j1lotGJl1QpO0io1QBz30q6M5ZiJo4UibiQlKbGDIuH4Ht6xrWNb1IL6jNEQXjSEcBnsyzpsvdLCO5Tmdio9DNUNqhrURyGxhlwvdP0Pgnw/8WD2sZzAJSjZ7VdGmrlFeAc3jBTIXYbPRr3q0euTB9O7lPG9OPN7CDHegVRCHI5yyECg7cPN2pip3fcrF4F0bQGmrAsY7wuftX7kAFl8ridj8=
     # PAAS_PASSWORD
@@ -28,12 +32,12 @@ before_deploy:
 
 deploy:
   - provider: script
-    script: etc/deploy.sh staging
+    script: APP_SECRET_KEY_BASE=APP_SECRET_KEY_BASE_STAGING etc/deploy.sh staging
     skip_cleanup: true
     on:
       branch: staging
   - provider: script
-    script: etc/deploy.sh production
+    script: APP_SECRET_KEY_BASE=APP_SECRET_KEY_BASE_PRODUCTION etc/deploy.sh production
     skip_cleanup: true
     on:
       branch: production
