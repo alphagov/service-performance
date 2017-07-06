@@ -46,10 +46,10 @@
         <button type="submit" class="a-apply-button">Apply</button>
       </div>
 
-      <div class="m-search-filter">
-        <label for="search-departments">Find department</label>
-        <input type="text" id="search-departments" class="a-search-input" placeholder="Find department">
-        <button class="a-search-button">Search</button>
+      <div class="m-search-filter hidden" id="search-filter">
+        <label for="search-departments" class="visuallyhidden">Find department</label>
+        <input type="search" id="search-departments" class="a-search-input" placeholder="Find department">
+        <input class="a-search-button" type="button" value="Search">
       </div>
     <% end %>
   </div>
