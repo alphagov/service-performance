@@ -10,6 +10,10 @@ env:
     - DOCKER_REPOSITORY=gsddeploy
     - DOCKER_IMAGE=gsd-api
     - DOCKER_FILE=etc/gsd-api.df
+    # APP_SECRET_KEY_BASE_STAGING
+    - secure: ZXwFWDrfCjIIiUR2CbPlDsPiRSnUgmXtXpTV/Cjn/aTuLxHI0iKQf6MWx52ihEDPlQ9vKSpz/hVhcpuxfS1TkgiuhGnZ2zfXdn6NAdZ4at6PvbdbXLHBDV1HKAc8biMJOkbiloijjcnlL/FehWmlgHK4UO+yXiTK9xhukeMfNAH4VPj85XECpvYfkudkWfp71gFdOa3DOEYw/tQO1zwJHwSZl/KofuIbZ79EacCAYkwvJLn9DTzlESVmxjeZeL9m6cXsP3bFjzJa87pn8Sy4UD+kRo6TOnXJQ3m0L2dqb1YMzTtYBp9xhwz8yIgE4AfBPIV7lI9RnT2I7oCmQmtexXdZEds0RIpW1TaqEEZ2OTKdQPpZIxdpX54F+rq8P/sq/pF8h3VDao8A9r6bGxZhetP/wkQA7ohU0lQPgyU9IOnOM54nJ21DJvxs3deipl9ntbk836UdaAN+76S+UZULa3XeyaA8krHsjr2q4osME7wcu0b/0J7so239prKltoNcNu1zP3XIXs11KRR44JyKnT3LHpD42wegu7YaCADh4zX54P9en3o9nXLdC0u7mQ/ajZBuujqPapAWfXJGeBnOEgNq0g5XsXjbzwLr2HKkeMv2ptPZe62oLyH4bOXlTdFXnNHid7Abkjqay6+lx5OFFdOAOqdG/Qwjgk5WE88fl1Q=
+    # APP_SECRET_KEY_BASE_PRODUCTION
+    - secure: NszykA9pTf7EyPMDx7j79CZg3AfL84nVfp8D6/nr8G8i2fNP2qIwSXj6raWlf19nbgyrf/wTbc2w81uZRlqbZOhCPa+YpZcgkn79tKd1u4knV+c/dltyPpt/GUApbn0gEW++DHW/zu5jFs/zOSQC4UEvw7Rlu4pdpsJXPVRMtbWGbupWDAkJaqMD7+ehZrJDOsV1msg698pQ6x+zkyXspV6yo4K/lc7AQpAqqwFS21q4UtjUYLoDg/9QbcVAcnv6GQYRj1UsXRF9fd+esC5IFj34W425ujwpNYf/0Zv6sUEy9DWpGpDjuazFX0pjcP3bN3dcqPLi7JAIe/H0Tkh2+E3MIpv0tmkrbFfqxAEmMGxRVrrag2pApYxvuWwU5/OW0iQssVNv7kFHFnLG1qvQiL+MzAOuLp/PT7TRoF+8jReKp1y3RNUtFE5ebKxvbXjYDmUN2sOgaS/ZQg3od3O8zBrgLNkSrX7uJ0C3sf7ynCP5oVx7yWcJG+zVTV2YgY9zOQEt1/upByTqM5XRjVYVZvLEwQvaseKjgYTNjLl2L/DqnFoSbxuCzju8Nv8GC67rB2cqX3UOrC7ThR2YI5Pk3Gzy2h2v/rqJoeafBpFiCPk6N7oFyySK6xNd8jmUtxVjru05Vp6QlW6zZc4OdxUoz7rNfCKqDZOS5/LJRSVVq5c=
     # PAAS_PASSWORD
     - secure: KOgddT+pu8ItC9IWMnxcB1b2tJRmIJ2/MOygQcYwXJiXjCPsUrZ6g6HdtXjqzrRoqtyIDkY41L6iZvHQ8p2epm+FRm1YAoZS265ZW0Cw1W2Dd5Jfy0nghebaZ6AODl35zBnViYt+1MJrHhfRBwW0iIQgMk3nuz8rRNZaUKkyM4lm54wsZs+8f/A1MQpCsKC/0Qt1TfTmpJVe3MIPRRWy+DRHDmItNEIFBSSeNOhcg2rioO8g9H7n/Rx193JvHlOODEViO1yOumXYkvfWHh77ycD7APNrDovdzqxL9HoP6XzyWxLLIY7K9rifPGNZXfN0xgX0wpWSecCshM+eelfvGNiHD8/S//HT23alYk437hyNa0VJHmfLvGD27P1IIR8/ASKx9x6lX7SOKIzMQUWAh7VGlEYIGNLy1T+MzoS4OPUl54PgUNpGuklVbWf9YrOW7SL/HAZRqMMFAsR13xsWkVfZgyPJaPIxeuW8E4lLJszjposWMoMdiGK/Yw516gkE2B3SBmHPGhp9abf1QcND6/nzRESplooN+dDpqbiZ3+JBiyes80uI+J7PdQyAQoYrvaDvEdt77binwggTNjxL7s2RUSM63IwtorARsLupbHs7ui9Jn4NjT3U+CQAXIv+xOK6EoiO5aHmBLEzz44Tf3Fo54bmfJCSrlFwfsMSsIQw=
     # DOCKER_PASSWORD for user gsddeploy
@@ -25,12 +29,12 @@ before_deploy:
 
 deploy:
   - provider: script
-    script: etc/deploy.sh staging
+    script: APP_SECRET_KEY_BASE=$APP_SECRET_KEY_BASE_STAGING etc/deploy.sh staging
     skip_cleanup: true
     on:
       branch: staging
   - provider: script
-    script: etc/deploy.sh production
+    script: APP_SECRET_KEY_BASE=$APP_SECRET_KEY_BASE_PRODUCTION etc/deploy.sh production
     skip_cleanup: true
     on:
       branch: production
