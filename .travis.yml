@@ -4,7 +4,7 @@ language: generic
 
 env:
   global:
-    - APP_API_URL=https://gds-api.cloudapps.digital
+    - APP_API_URL=https://gsd-api.cloudapps.digital
     - APP_API_USERNAME=performance123
     - PAAS_USER=gsd-deploy@digital.cabinet-office.gov.uk
     - PAAS_SERVICE=gsd-view-data
