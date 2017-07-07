@@ -1,0 +1,32 @@
+{
+  "name": "cgsd-view-data",
+  "version": "0.0.1",
+  "description": "Frontend application for Cross-Government Service Data",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alphagov/cgsd-view-data.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ./app/assets/javascripts"
+  },
+  "devDependencies": {
+    "eslint": "^4.1.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^20.0.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "standard"
+    ],
+    "rules": {
+      "spaced-comment": 0
+    }
+  }
+}
