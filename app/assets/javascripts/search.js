@@ -1,12 +1,11 @@
-;(function(global) {
-  'use strict';
+;(function (global) {
+  'use strict'
 
-  var $ = global.jQuery;
+  var $ = global.jQuery
 
   var SearchResultsContainer = (function () {
-
-    var $searchResultContainer = $('#search-results');
-    var $results = $searchResultContainer.find('.metric-group');
+    var $searchResultContainer = $('#search-results')
+    var $results = $searchResultContainer.find('.metric-group')
 
     var _setSearchDataAttributesOnResults = function () {
       /*
@@ -17,13 +16,13 @@
         var searchTerms = $(this).find('h2').text()
         $(this).attr('data-search', searchTerms.toLowerCase())
       })
-    };
+    }
 
     var init = function () {
       _setSearchDataAttributesOnResults()
     }
 
-    var filter = function(query) {
+    var filter = function (query) {
       /*
         Hide search results unless the query substring matches the title
        */
@@ -41,7 +40,7 @@
 
         if (isMatch) {
           $(this).removeClass('hidden')
-          matches++;
+          matches++
         } else {
           $(this).addClass('hidden')
         }
@@ -54,17 +53,15 @@
       init: init,
       filter: filter
     }
-
   })()
 
   var SearchFilter = (function () {
+    var $searchFilter = $('#search-filter')
+    var $searchInput = $searchFilter.find('input[type="search"]')
+    var $searchButton = $searchFilter.find('input[type="button"]')
 
-    var $searchFilter = $('#search-filter');
-    var $searchInput = $searchFilter.find('input[type="search"]');
-    var $searchButton = $searchFilter.find('input[type="button"]');
-
-    var _search = function(fn) {
-      var query = $searchInput.val().toLowerCase().trim();
+    var _search = function (fn) {
+      var query = $searchInput.val().toLowerCase().trim()
       fn(query)
     }
 
@@ -74,9 +71,8 @@
       })
     }
 
-    var _setClickListenerOnButton = function(fn) {
-
-      $searchButton.on('click', function() {
+    var _setClickListenerOnButton = function (fn) {
+      $searchButton.on('click', function (e) {
         _search(fn)
         e.preventDefault()
       })
@@ -95,9 +91,8 @@
     return {
       init: init
     }
-
   })()
 
   SearchResultsContainer.init()
   SearchFilter.init(SearchResultsContainer.filter)
-})(window);
+})(window)
