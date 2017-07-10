@@ -25,7 +25,7 @@ env:
 
 script:
   - cp .env.example .env
-  - docker run --volume=$TRAVIS_BUILD_DIR:/app -it $DOCKER_REPOSITORY/gsd-view-data-ci /bin/sh -c "bundle --without development production && bundle exec rspec spec"
+  - docker run --volume=$TRAVIS_BUILD_DIR:/app -it $DOCKER_REPOSITORY/gsd-view-data-ci /bin/sh -c "bundle --without development production && bundle exec rspec --tag '~type:feature'"
 
 before_deploy:
   - chmod +x etc/deploy.sh

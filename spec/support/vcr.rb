@@ -4,7 +4,7 @@ VCR.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.around(:each, type: :api) do |example|
+  load_cassette = ->(example) do
     cassette = example.metadata[:cassette]
 
     if cassette
@@ -13,4 +13,7 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.around(:each, type: :api, &load_cassette)
+  config.around(:each, type: :feature, &load_cassette)
 end

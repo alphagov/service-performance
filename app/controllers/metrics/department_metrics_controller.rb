@@ -1,7 +1,7 @@
-class DepartmentMetricsController < ApplicationController
+class DepartmentMetricsController < MetricsController
   def index
-    client = CrossGovernmentServiceDataAPI::Client.new
-    @metrics = DepartmentMetricsPresenter.new(client: client, department_id: params[:department_id], group_by: params[:group_by])
+    department = client.department(params[:department_id])
+    @metrics = DepartmentMetricsPresenter.new(department, client: client, group_by: group_by, order: order, order_by: order_by)
     render 'metrics/index'
   end
 end
