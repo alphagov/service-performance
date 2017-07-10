@@ -1,0 +1,344 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/government
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"8707143287988501f058572a4a858fbd"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 89a6b3cf-a527-4fae-97eb-119024c7db23
+      x-runtime:
+      - '0.003241'
+      date:
+      - Mon, 03 Jul 2017 16:42:28 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31}'
+    http_version: 
+  recorded_at: Mon, 03 Jul 2017 16:42:28 GMT
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/government/metrics?group_by=department
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"a7ef738adddffceed6651e49a5654be6"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 98a204a0-d333-4a75-89dd-2bae62006dbf
+      x-runtime:
+      - '0.042305'
+      date:
+      - Mon, 03 Jul 2017 16:42:28 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"group_by":"department","metric_groups":[{"entity":{"type":"department","natural_key":"D0001","name":"Department
+        for Environment Food \u0026 Rural Affairs","hostname":"department-for-environment-food-and-rural-affairs","delivery_organisations_count":1,"services_count":1},"metrics":[{"type":"transactions-received","total":3000039,"online":1000032,"phone":1000003,"paper":1000004,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":2435098,"with_intended_outcome":2400000}]},{"entity":{"type":"department","natural_key":"D0002","name":"Department
+        for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9},"metrics":[{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}]},{"entity":{"type":"department","natural_key":"D0003","name":"Department
+        of Health","hostname":"department-of-health","delivery_organisations_count":2,"services_count":4},"metrics":[{"type":"transactions-received","total":18132669,"online":4000048,"phone":14132621,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":19281820,"with_intended_outcome":15424926}]},{"entity":{"type":"department","natural_key":"D0004","name":"HM
+        Revenue \u0026 Customs","hostname":"hm-revenue-and-customs","delivery_organisations_count":0,"services_count":5},"metrics":[{"type":"transactions-received","total":0,"online":0,"phone":0,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":0,"with_intended_outcome":0}]},{"entity":{"type":"department","natural_key":"D0005","name":"Ministry
+        of Justice","hostname":"ministry-of-justice","delivery_organisations_count":1,"services_count":5},"metrics":[{"type":"transactions-received","total":593254687,"online":566114271,"phone":9098765,"paper":14918195,"face_to_face":0,"other":3123456},{"type":"transactions-with-outcome","total":562002435,"with_intended_outcome":485131983}]},{"entity":{"type":"department","natural_key":"D0006","name":"Department
+        for Education","hostname":"department-for-education","delivery_organisations_count":2,"services_count":7},"metrics":[{"type":"transactions-received","total":13000475,"online":7000282,"phone":4000106,"paper":2000087,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":12120242,"with_intended_outcome":9536719}]},{"entity":{"type":"department","natural_key":"D0007","name":"Department
+        for Business, Energy \u0026 Industrial Strategy","hostname":"department-for-business-energy-and-industrial-strategy","delivery_organisations_count":0,"services_count":0},"metrics":[{"type":"transactions-received","total":0,"online":0,"phone":0,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":0,"with_intended_outcome":0}]}]}'
+    http_version: 
+  recorded_at: Mon, 03 Jul 2017 16:42:28 GMT
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"9416cb3e34dd7abcadd9b8fe0e96fba4"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 5c5071da-7727-45b2-a4fd-c1d8a52ec341
+      x-runtime:
+      - '0.005827'
+      date:
+      - Mon, 03 Jul 2017 16:42:29 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9}'
+    http_version: 
+  recorded_at: Mon, 03 Jul 2017 16:42:29 GMT
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002/metrics?group_by=delivery_organisation
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"569c968213a8be573076cdf440695b97"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 1eea6fd8-fd97-43f8-871c-6f95a98e0c25
+      x-runtime:
+      - '0.014567'
+      date:
+      - Mon, 03 Jul 2017 16:42:29 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"group_by":"delivery_organisation","metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
+        and Vehicle Licensing Agency","hostname":"driver-and-vehicle-licensing-agency","services_count":5},"metrics":[{"type":"transactions-received","total":70123862,"online":45143108,"phone":7123719,"paper":17857035,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":70842643,"with_intended_outcome":58650122}]},{"entity":{"type":"delivery-organisation","natural_key":"04","name":"Driver
+        and Vehicle Standards Agency","hostname":"driver-and-vehicle-standards-agency","services_count":4},"metrics":[{"type":"transactions-received","total":48555649,"online":25567940,"phone":3000055,"paper":0,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":43745145,"with_intended_outcome":33670994}]}]}'
+    http_version: 
+  recorded_at: Mon, 03 Jul 2017 16:42:29 GMT
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/delivery_organisations/03
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"ee9be5d3705a2738e84a226cf07ce71e"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - cb0a6ffa-0662-4031-a4df-61d4ce2c5007
+      x-runtime:
+      - '0.003805'
+      date:
+      - Mon, 03 Jul 2017 16:42:29 GMT
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"type":"delivery-organisation","natural_key":"03","name":"Driver and
+        Vehicle Licensing Agency","hostname":"driver-and-vehicle-licensing-agency","services_count":5}'
+    http_version: 
+  recorded_at: Mon, 03 Jul 2017 16:42:29 GMT
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/delivery_organisations/03/metrics?group_by=service
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"542f26b508a996bdfbbd7fc3f48383ec"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - af7132b4-630a-47b0-bf7c-2e68854bce3c
+      x-runtime:
+      - '0.034165'
+      date:
+      - Mon, 03 Jul 2017 16:42:29 GMT
+      connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJncm91cF9ieSI6InNlcnZpY2UiLCJtZXRyaWNfZ3JvdXBzIjpbeyJlbnRpdHkiOnsidHlwZSI6InNlcnZpY2UiLCJuYXR1cmFsX2tleSI6IjAyIiwibmFtZSI6IkFwcGx5IGZvciBhIHByb3Zpc2lvbmFsIGRyaXZpbmcgbGljZW5zZSIsImhvc3RuYW1lIjoiYXBwbHktZm9yLWEtcHJvdmlzaW9uYWwtZHJpdmluZy1saWNlbnNlIiwicHVycG9zZSI6IldoeSB0aGUgc2VydmljZSB3YXMgYnVpbHQsIGl0cyBwb2xpY3kgb2JqZWN0aXZlcyBhbmQgdGhlIHVzZXIgbmVlZCBpdCBtZWV0cy4iLCJob3dfaXRfd29ya3MiOiJUaGUgcHJvY2Vzc2VzIGFuZCBiYWNrLW9mZmljZSBvcGVyYXRpb25zIHRoYXQgYWxsb3cgdGhlIHNlcnZpY2UgdG8gb3BlcmF0ZS4iLCJ0eXBpY2FsX3VzZXJzIjoiRWFjaCBvZiB0aGUgc2VydmljZeKAmXMga2V5IHVzZXIgZ3JvdXBzIHdpdGggdGhlaXIgcmVzcGVjdGl2ZSBkZW1vZ3JhcGhpYywgZ2VvZ3JhcGhpYyBkaXN0cmlidXRpb24gYW5kIG90aGVyIHJlbGV2YW50IGRldGFpbHMuIiwiZnJlcXVlbmN5X3VzZWQiOiJPbiBhdmVyYWdlLCBob3cgb2Z0ZW4gZWFjaCBvZiB0aGUga2V5IHVzZXIgZ3JvdXBzIHVzZXMgdGhlIHNlcnZpY2UuIiwiZHVyYXRpb25fdW50aWxfb3V0Y29tZSI6IlRoZSBhdmVyYWdlIGFtb3VudCBvZiB0aW1lIGZvciBlYWNoIG9mIHRoZSBrZXkgdXNlciBncm91cHMgdGhhdCBpdCB0YWtlcyBmb3IgYSByZWNlaXZlZCB0cmFuc2FjdGlvbiB0byBlbmQgaW4gYW4gb3V0Y29tZS4iLCJzdGFydF9wYWdlX3VybCI6Imh0dHBzOi8vZXhhbXBsZS5jb20iLCJwYXBlcl9mb3JtX3VybCI6Imh0dHBzOi8vZXhhbXBsZS5jb20iLCJkZXBhcnRtZW50Ijp7InR5cGUiOiJkZXBhcnRtZW50IiwibmF0dXJhbF9rZXkiOiJEMDAwMiIsIm5hbWUiOiJEZXBhcnRtZW50IGZvciBUcmFuc3BvcnQiLCJob3N0bmFtZSI6ImRlcGFydG1lbnQtZm9yLXRyYW5zcG9ydCIsImRlbGl2ZXJ5X29yZ2FuaXNhdGlvbnNfY291bnQiOjIsInNlcnZpY2VzX2NvdW50Ijo5fX0sIm1ldHJpY3MiOlt7InR5cGUiOiJ0cmFuc2FjdGlvbnMtcmVjZWl2ZWQiLCJ0b3RhbCI6MjAwMDA5Mywib25saW5lIjoxMDAwMDUwLCJwaG9uZSI6MTAwMDA0MywicGFwZXIiOjAsImZhY2VfdG9fZmFjZSI6MCwib3RoZXIiOjB9LHsidHlwZSI6InRyYW5zYWN0aW9ucy13aXRoLW91dGNvbWUiLCJ0b3RhbCI6MTczNTA5OCwid2l0aF9pbnRlbmRlZF9vdXRjb21lIjoxNTAwMDAwfV19LHsiZW50aXR5Ijp7InR5cGUiOiJzZXJ2aWNlIiwibmF0dXJhbF9rZXkiOiIxMiIsIm5hbWUiOiJUYXggeW91ciB2ZWhpY2xlIiwiaG9zdG5hbWUiOiJ0YXgteW91ci12ZWhpY2xlIiwicHVycG9zZSI6IldoeSB0aGUgc2VydmljZSB3YXMgYnVpbHQsIGl0cyBwb2xpY3kgb2JqZWN0aXZlcyBhbmQgdGhlIHVzZXIgbmVlZCBpdCBtZWV0cy4iLCJob3dfaXRfd29ya3MiOiJUaGUgcHJvY2Vzc2VzIGFuZCBiYWNrLW9mZmljZSBvcGVyYXRpb25zIHRoYXQgYWxsb3cgdGhlIHNlcnZpY2UgdG8gb3BlcmF0ZS4iLCJ0eXBpY2FsX3VzZXJzIjoiRWFjaCBvZiB0aGUgc2VydmljZeKAmXMga2V5IHVzZXIgZ3JvdXBzIHdpdGggdGhlaXIgcmVzcGVjdGl2ZSBkZW1vZ3JhcGhpYywgZ2VvZ3JhcGhpYyBkaXN0cmlidXRpb24gYW5kIG90aGVyIHJlbGV2YW50IGRldGFpbHMuIiwiZnJlcXVlbmN5X3VzZWQiOiJPbiBhdmVyYWdlLCBob3cgb2Z0ZW4gZWFjaCBvZiB0aGUga2V5IHVzZXIgZ3JvdXBzIHVzZXMgdGhlIHNlcnZpY2UuIiwiZHVyYXRpb25fdW50aWxfb3V0Y29tZSI6IlRoZSBhdmVyYWdlIGFtb3VudCBvZiB0aW1lIGZvciBlYWNoIG9mIHRoZSBrZXkgdXNlciBncm91cHMgdGhhdCBpdCB0YWtlcyBmb3IgYSByZWNlaXZlZCB0cmFuc2FjdGlvbiB0byBlbmQgaW4gYW4gb3V0Y29tZS4iLCJzdGFydF9wYWdlX3VybCI6Imh0dHBzOi8vZXhhbXBsZS5jb20iLCJwYXBlcl9mb3JtX3VybCI6Imh0dHBzOi8vZXhhbXBsZS5jb20iLCJkZXBhcnRtZW50Ijp7InR5cGUiOiJkZXBhcnRtZW50IiwibmF0dXJhbF9rZXkiOiJEMDAwMiIsIm5hbWUiOiJEZXBhcnRtZW50IGZvciBUcmFuc3BvcnQiLCJob3N0bmFtZSI6ImRlcGFydG1lbnQtZm9yLXRyYW5zcG9ydCIsImRlbGl2ZXJ5X29yZ2FuaXNhdGlvbnNfY291bnQiOjIsInNlcnZpY2VzX2NvdW50Ijo5fX0sIm1ldHJpY3MiOlt7InR5cGUiOiJ0cmFuc2FjdGlvbnMtcmVjZWl2ZWQiLCJ0b3RhbCI6NDEyNDc0MTMsIm9ubGluZSI6MzcxMjM3NjgsInBob25lIjo0MTIzNjQ1LCJwYXBlciI6MCwiZmFjZV90b19mYWNlIjowLCJvdGhlciI6MH0seyJ0eXBlIjoidHJhbnNhY3Rpb25zLXdpdGgtb3V0Y29tZSIsInRvdGFsIjo0NjA5ODg3Niwid2l0aF9pbnRlbmRlZF9vdXRjb21lIjozNzgwMTA3OH1dfSx7ImVudGl0eSI6eyJ0eXBlIjoic2VydmljZSIsIm5hdHVyYWxfa2V5IjoiMTMiLCJuYW1lIjoiTWFrZSBhIGNoYW5nZSB0byBhIHZlaGljbGUgcmVnaXN0cmF0aW9uIGNlcnRpZmljYXRlIiwiaG9zdG5hbWUiOiJtYWtlLWEtY2hhbmdlLXRvLWEtdmVoaWNsZS1yZWdpc3RyYXRpb24tY2VydGlmaWNhdGUiLCJwdXJwb3NlIjoiV2h5IHRoZSBzZXJ2aWNlIHdhcyBidWlsdCwgaXRzIHBvbGljeSBvYmplY3RpdmVzIGFuZCB0aGUgdXNlciBuZWVkIGl0IG1lZXRzLiIsImhvd19pdF93b3JrcyI6IlRoZSBwcm9jZXNzZXMgYW5kIGJhY2stb2ZmaWNlIG9wZXJhdGlvbnMgdGhhdCBhbGxvdyB0aGUgc2VydmljZSB0byBvcGVyYXRlLiIsInR5cGljYWxfdXNlcnMiOiJFYWNoIG9mIHRoZSBzZXJ2aWNl4oCZcyBrZXkgdXNlciBncm91cHMgd2l0aCB0aGVpciByZXNwZWN0aXZlIGRlbW9ncmFwaGljLCBnZW9ncmFwaGljIGRpc3RyaWJ1dGlvbiBhbmQgb3RoZXIgcmVsZXZhbnQgZGV0YWlscy4iLCJmcmVxdWVuY3lfdXNlZCI6Ik9uIGF2ZXJhZ2UsIGhvdyBvZnRlbiBlYWNoIG9mIHRoZSBrZXkgdXNlciBncm91cHMgdXNlcyB0aGUgc2VydmljZS4iLCJkdXJhdGlvbl91bnRpbF9vdXRjb21lIjoiVGhlIGF2ZXJhZ2UgYW1vdW50IG9mIHRpbWUgZm9yIGVhY2ggb2YgdGhlIGtleSB1c2VyIGdyb3VwcyB0aGF0IGl0IHRha2VzIGZvciBhIHJlY2VpdmVkIHRyYW5zYWN0aW9uIHRvIGVuZCBpbiBhbiBvdXRjb21lLiIsInN0YXJ0X3BhZ2VfdXJsIjoiaHR0cHM6Ly9leGFtcGxlLmNvbSIsInBhcGVyX2Zvcm1fdXJsIjoiaHR0cHM6Ly9leGFtcGxlLmNvbSIsImRlcGFydG1lbnQiOnsidHlwZSI6ImRlcGFydG1lbnQiLCJuYXR1cmFsX2tleSI6IkQwMDAyIiwibmFtZSI6IkRlcGFydG1lbnQgZm9yIFRyYW5zcG9ydCIsImhvc3RuYW1lIjoiZGVwYXJ0bWVudC1mb3ItdHJhbnNwb3J0IiwiZGVsaXZlcnlfb3JnYW5pc2F0aW9uc19jb3VudCI6Miwic2VydmljZXNfY291bnQiOjl9fSwibWV0cmljcyI6W3sidHlwZSI6InRyYW5zYWN0aW9ucy1yZWNlaXZlZCIsInRvdGFsIjoxMzY1ODQwMCwib25saW5lIjoxMDAwMDA4LCJwaG9uZSI6MCwicGFwZXIiOjEyNjU4MzkyLCJmYWNlX3RvX2ZhY2UiOjAsIm90aGVyIjowfSx7InR5cGUiOiJ0cmFuc2FjdGlvbnMtd2l0aC1vdXRjb21lIiwidG90YWwiOjEyMTI5OTIxLCJ3aXRoX2ludGVuZGVkX291dGNvbWUiOjk4MjUyMzZ9XX0seyJlbnRpdHkiOnsidHlwZSI6InNlcnZpY2UiLCJuYXR1cmFsX2tleSI6IjE0IiwibmFtZSI6IkNoZWNrIHNvbWVvbmUncyBkcml2aW5nIGluZm9ybWF0aW9uIiwiaG9zdG5hbWUiOiJjaGVjay1zb21lb25lcy1kcml2aW5nLWluZm9ybWF0aW9uIiwicHVycG9zZSI6IldoeSB0aGUgc2VydmljZSB3YXMgYnVpbHQsIGl0cyBwb2xpY3kgb2JqZWN0aXZlcyBhbmQgdGhlIHVzZXIgbmVlZCBpdCBtZWV0cy4iLCJob3dfaXRfd29ya3MiOiJUaGUgcHJvY2Vzc2VzIGFuZCBiYWNrLW9mZmljZSBvcGVyYXRpb25zIHRoYXQgYWxsb3cgdGhlIHNlcnZpY2UgdG8gb3BlcmF0ZS4iLCJ0eXBpY2FsX3VzZXJzIjoiRWFjaCBvZiB0aGUgc2VydmljZeKAmXMga2V5IHVzZXIgZ3JvdXBzIHdpdGggdGhlaXIgcmVzcGVjdGl2ZSBkZW1vZ3JhcGhpYywgZ2VvZ3JhcGhpYyBkaXN0cmlidXRpb24gYW5kIG90aGVyIHJlbGV2YW50IGRldGFpbHMuIiwiZnJlcXVlbmN5X3VzZWQiOiJPbiBhdmVyYWdlLCBob3cgb2Z0ZW4gZWFjaCBvZiB0aGUga2V5IHVzZXIgZ3JvdXBzIHVzZXMgdGhlIHNlcnZpY2UuIiwiZHVyYXRpb25fdW50aWxfb3V0Y29tZSI6IlRoZSBhdmVyYWdlIGFtb3VudCBvZiB0aW1lIGZvciBlYWNoIG9mIHRoZSBrZXkgdXNlciBncm91cHMgdGhhdCBpdCB0YWtlcyBmb3IgYSByZWNlaXZlZCB0cmFuc2FjdGlvbiB0byBlbmQgaW4gYW4gb3V0Y29tZS4iLCJzdGFydF9wYWdlX3VybCI6Imh0dHBzOi8vZXhhbXBsZS5jb20iLCJwYXBlcl9mb3JtX3VybCI6Imh0dHBzOi8vZXhhbXBsZS5jb20iLCJkZXBhcnRtZW50Ijp7InR5cGUiOiJkZXBhcnRtZW50IiwibmF0dXJhbF9rZXkiOiJEMDAwMiIsIm5hbWUiOiJEZXBhcnRtZW50IGZvciBUcmFuc3BvcnQiLCJob3N0bmFtZSI6ImRlcGFydG1lbnQtZm9yLXRyYW5zcG9ydCIsImRlbGl2ZXJ5X29yZ2FuaXNhdGlvbnNfY291bnQiOjIsInNlcnZpY2VzX2NvdW50Ijo5fX0sIm1ldHJpY3MiOlt7InR5cGUiOiJ0cmFuc2FjdGlvbnMtcmVjZWl2ZWQiLCJ0b3RhbCI6NzAxOTI5Miwib25saW5lIjo1MDE5Mjc0LCJwaG9uZSI6MTAwMDAyMCwicGFwZXIiOjk5OTk5OCwiZmFjZV90b19mYWNlIjowLCJvdGhlciI6MH0seyJ0eXBlIjoidHJhbnNhY3Rpb25zLXdpdGgtb3V0Y29tZSIsInRvdGFsIjo1OTgwNzYxLCJ3aXRoX2ludGVuZGVkX291dGNvbWUiOjU4MDEzMzh9XX0seyJlbnRpdHkiOnsidHlwZSI6InNlcnZpY2UiLCJuYXR1cmFsX2tleSI6IjE1IiwibmFtZSI6IlRlbGwgRFZMQSB5b3UndmUgc29sZCwgdHJhbnNmZXJyZWQgb3IgYm91Z2h0IGEgdmVoaWNsZSIsImhvc3RuYW1lIjoidGVsbC1kdmxhLXlvdXZlLXNvbGQtdHJhbnNmZXJyZWQtb3ItYm91Z2h0LWEtdmVoaWNsZSIsInB1cnBvc2UiOiJXaHkgdGhlIHNlcnZpY2Ugd2FzIGJ1aWx0LCBpdHMgcG9saWN5IG9iamVjdGl2ZXMgYW5kIHRoZSB1c2VyIG5lZWQgaXQgbWVldHMuIiwiaG93X2l0X3dvcmtzIjoiVGhlIHByb2Nlc3NlcyBhbmQgYmFjay1vZmZpY2Ugb3BlcmF0aW9ucyB0aGF0IGFsbG93IHRoZSBzZXJ2aWNlIHRvIG9wZXJhdGUuIiwidHlwaWNhbF91c2VycyI6IkVhY2ggb2YgdGhlIHNlcnZpY2XigJlzIGtleSB1c2VyIGdyb3VwcyB3aXRoIHRoZWlyIHJlc3BlY3RpdmUgZGVtb2dyYXBoaWMsIGdlb2dyYXBoaWMgZGlzdHJpYnV0aW9uIGFuZCBvdGhlciByZWxldmFudCBkZXRhaWxzLiIsImZyZXF1ZW5jeV91c2VkIjoiT24gYXZlcmFnZSwgaG93IG9mdGVuIGVhY2ggb2YgdGhlIGtleSB1c2VyIGdyb3VwcyB1c2VzIHRoZSBzZXJ2aWNlLiIsImR1cmF0aW9uX3VudGlsX291dGNvbWUiOiJUaGUgYXZlcmFnZSBhbW91bnQgb2YgdGltZSBmb3IgZWFjaCBvZiB0aGUga2V5IHVzZXIgZ3JvdXBzIHRoYXQgaXQgdGFrZXMgZm9yIGEgcmVjZWl2ZWQgdHJhbnNhY3Rpb24gdG8gZW5kIGluIGFuIG91dGNvbWUuIiwic3RhcnRfcGFnZV91cmwiOiJodHRwczovL2V4YW1wbGUuY29tIiwicGFwZXJfZm9ybV91cmwiOiJodHRwczovL2V4YW1wbGUuY29tIiwiZGVwYXJ0bWVudCI6eyJ0eXBlIjoiZGVwYXJ0bWVudCIsIm5hdHVyYWxfa2V5IjoiRDAwMDIiLCJuYW1lIjoiRGVwYXJ0bWVudCBmb3IgVHJhbnNwb3J0IiwiaG9zdG5hbWUiOiJkZXBhcnRtZW50LWZvci10cmFuc3BvcnQiLCJkZWxpdmVyeV9vcmdhbmlzYXRpb25zX2NvdW50IjoyLCJzZXJ2aWNlc19jb3VudCI6OX19LCJtZXRyaWNzIjpbeyJ0eXBlIjoidHJhbnNhY3Rpb25zLXJlY2VpdmVkIiwidG90YWwiOjYxOTg2NjQsIm9ubGluZSI6MTAwMDAwOCwicGhvbmUiOjEwMDAwMTEsInBhcGVyIjo0MTk4NjQ1LCJmYWNlX3RvX2ZhY2UiOjAsIm90aGVyIjowfSx7InR5cGUiOiJ0cmFuc2FjdGlvbnMtd2l0aC1vdXRjb21lIiwidG90YWwiOjQ4OTc5ODcsIndpdGhfaW50ZW5kZWRfb3V0Y29tZSI6MzcyMjQ3MH1dfV19
+    http_version: 
+  recorded_at: Mon, 03 Jul 2017 16:42:29 GMT
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/services/02
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"afb9dcbf81ae9eefdf21e6661ffbd107"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 25426c42-f05e-4c60-b927-2aae903e1117
+      x-runtime:
+      - '0.009941'
+      date:
+      - Mon, 03 Jul 2017 16:42:29 GMT
+      connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ0eXBlIjoic2VydmljZSIsIm5hdHVyYWxfa2V5IjoiMDIiLCJuYW1lIjoiQXBwbHkgZm9yIGEgcHJvdmlzaW9uYWwgZHJpdmluZyBsaWNlbnNlIiwiaG9zdG5hbWUiOiJhcHBseS1mb3ItYS1wcm92aXNpb25hbC1kcml2aW5nLWxpY2Vuc2UiLCJwdXJwb3NlIjoiV2h5IHRoZSBzZXJ2aWNlIHdhcyBidWlsdCwgaXRzIHBvbGljeSBvYmplY3RpdmVzIGFuZCB0aGUgdXNlciBuZWVkIGl0IG1lZXRzLiIsImhvd19pdF93b3JrcyI6IlRoZSBwcm9jZXNzZXMgYW5kIGJhY2stb2ZmaWNlIG9wZXJhdGlvbnMgdGhhdCBhbGxvdyB0aGUgc2VydmljZSB0byBvcGVyYXRlLiIsInR5cGljYWxfdXNlcnMiOiJFYWNoIG9mIHRoZSBzZXJ2aWNl4oCZcyBrZXkgdXNlciBncm91cHMgd2l0aCB0aGVpciByZXNwZWN0aXZlIGRlbW9ncmFwaGljLCBnZW9ncmFwaGljIGRpc3RyaWJ1dGlvbiBhbmQgb3RoZXIgcmVsZXZhbnQgZGV0YWlscy4iLCJmcmVxdWVuY3lfdXNlZCI6Ik9uIGF2ZXJhZ2UsIGhvdyBvZnRlbiBlYWNoIG9mIHRoZSBrZXkgdXNlciBncm91cHMgdXNlcyB0aGUgc2VydmljZS4iLCJkdXJhdGlvbl91bnRpbF9vdXRjb21lIjoiVGhlIGF2ZXJhZ2UgYW1vdW50IG9mIHRpbWUgZm9yIGVhY2ggb2YgdGhlIGtleSB1c2VyIGdyb3VwcyB0aGF0IGl0IHRha2VzIGZvciBhIHJlY2VpdmVkIHRyYW5zYWN0aW9uIHRvIGVuZCBpbiBhbiBvdXRjb21lLiIsInN0YXJ0X3BhZ2VfdXJsIjoiaHR0cHM6Ly9leGFtcGxlLmNvbSIsInBhcGVyX2Zvcm1fdXJsIjoiaHR0cHM6Ly9leGFtcGxlLmNvbSIsImRlcGFydG1lbnQiOnsidHlwZSI6ImRlcGFydG1lbnQiLCJuYXR1cmFsX2tleSI6IkQwMDAyIiwibmFtZSI6IkRlcGFydG1lbnQgZm9yIFRyYW5zcG9ydCIsImhvc3RuYW1lIjoiZGVwYXJ0bWVudC1mb3ItdHJhbnNwb3J0IiwiZGVsaXZlcnlfb3JnYW5pc2F0aW9uc19jb3VudCI6Miwic2VydmljZXNfY291bnQiOjl9fQ==
+    http_version: 
+  recorded_at: Mon, 03 Jul 2017 16:42:29 GMT
+- request:
+    method: get
+    uri: http://cgsd-api-rails.dev/v1/data/services/02/metrics?group_by=service
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"885c2447dc74f8f3d9fa765a6e3db84a"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 1b6b64db-ab5e-447a-9722-986c93a0a8ca
+      x-runtime:
+      - '0.018854'
+      date:
+      - Mon, 03 Jul 2017 16:42:30 GMT
+      connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJncm91cF9ieSI6InNlcnZpY2UiLCJtZXRyaWNfZ3JvdXBzIjpbeyJlbnRpdHkiOnsidHlwZSI6InNlcnZpY2UiLCJuYXR1cmFsX2tleSI6IjAyIiwibmFtZSI6IkFwcGx5IGZvciBhIHByb3Zpc2lvbmFsIGRyaXZpbmcgbGljZW5zZSIsImhvc3RuYW1lIjoiYXBwbHktZm9yLWEtcHJvdmlzaW9uYWwtZHJpdmluZy1saWNlbnNlIiwicHVycG9zZSI6IldoeSB0aGUgc2VydmljZSB3YXMgYnVpbHQsIGl0cyBwb2xpY3kgb2JqZWN0aXZlcyBhbmQgdGhlIHVzZXIgbmVlZCBpdCBtZWV0cy4iLCJob3dfaXRfd29ya3MiOiJUaGUgcHJvY2Vzc2VzIGFuZCBiYWNrLW9mZmljZSBvcGVyYXRpb25zIHRoYXQgYWxsb3cgdGhlIHNlcnZpY2UgdG8gb3BlcmF0ZS4iLCJ0eXBpY2FsX3VzZXJzIjoiRWFjaCBvZiB0aGUgc2VydmljZeKAmXMga2V5IHVzZXIgZ3JvdXBzIHdpdGggdGhlaXIgcmVzcGVjdGl2ZSBkZW1vZ3JhcGhpYywgZ2VvZ3JhcGhpYyBkaXN0cmlidXRpb24gYW5kIG90aGVyIHJlbGV2YW50IGRldGFpbHMuIiwiZnJlcXVlbmN5X3VzZWQiOiJPbiBhdmVyYWdlLCBob3cgb2Z0ZW4gZWFjaCBvZiB0aGUga2V5IHVzZXIgZ3JvdXBzIHVzZXMgdGhlIHNlcnZpY2UuIiwiZHVyYXRpb25fdW50aWxfb3V0Y29tZSI6IlRoZSBhdmVyYWdlIGFtb3VudCBvZiB0aW1lIGZvciBlYWNoIG9mIHRoZSBrZXkgdXNlciBncm91cHMgdGhhdCBpdCB0YWtlcyBmb3IgYSByZWNlaXZlZCB0cmFuc2FjdGlvbiB0byBlbmQgaW4gYW4gb3V0Y29tZS4iLCJzdGFydF9wYWdlX3VybCI6Imh0dHBzOi8vZXhhbXBsZS5jb20iLCJwYXBlcl9mb3JtX3VybCI6Imh0dHBzOi8vZXhhbXBsZS5jb20iLCJkZXBhcnRtZW50Ijp7InR5cGUiOiJkZXBhcnRtZW50IiwibmF0dXJhbF9rZXkiOiJEMDAwMiIsIm5hbWUiOiJEZXBhcnRtZW50IGZvciBUcmFuc3BvcnQiLCJob3N0bmFtZSI6ImRlcGFydG1lbnQtZm9yLXRyYW5zcG9ydCIsImRlbGl2ZXJ5X29yZ2FuaXNhdGlvbnNfY291bnQiOjIsInNlcnZpY2VzX2NvdW50Ijo5fX0sIm1ldHJpY3MiOlt7InR5cGUiOiJ0cmFuc2FjdGlvbnMtcmVjZWl2ZWQiLCJ0b3RhbCI6MjAwMDA5Mywib25saW5lIjoxMDAwMDUwLCJwaG9uZSI6MTAwMDA0MywicGFwZXIiOjAsImZhY2VfdG9fZmFjZSI6MCwib3RoZXIiOjB9LHsidHlwZSI6InRyYW5zYWN0aW9ucy13aXRoLW91dGNvbWUiLCJ0b3RhbCI6MTczNTA5OCwid2l0aF9pbnRlbmRlZF9vdXRjb21lIjoxNTAwMDAwfV19XX0=
+    http_version: 
+  recorded_at: Mon, 03 Jul 2017 16:42:30 GMT
+recorded_with: VCR 3.0.3

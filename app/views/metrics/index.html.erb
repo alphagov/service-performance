@@ -10,10 +10,7 @@
         <%= @metrics.organisation_name %>
       </h1>
 
-      <div class="time-period-selector">
-        Data for time period from <time>1 Jan 2016</time> to <time>31 Dec 2016</time>
-        <span><a href="#">Change dates</a></span>
-      </div>
+      <%= render 'time_period_selector' %>
     </div>
 
     <aside class="column-third download">
