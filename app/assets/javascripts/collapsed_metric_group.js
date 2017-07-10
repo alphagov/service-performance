@@ -1,18 +1,5 @@
 (function() {
 
-  // Unescapes HTML entities.
-  //
-  // It's important that this function uses a `textarea` element to avoid
-  // introducing XSS vulnerabilities if this function is ever used with
-  // untrusted user input.
-  //
-  // See: https://stackoverflow.com/a/1395954
-  var decodeEntities = function(encodedString) {
-      var textArea = document.createElement('textarea');
-      textArea.innerHTML = encodedString;
-      return textArea.value;
-  }
-
   $.fn.collapsedMetricGroup = function() {
     // Determine which metric item has been sorted on. If we can't determine
     // it, then abort.
@@ -48,7 +35,7 @@
 
       // Populate the metric item description container, using HTML unescaped
       // content from the data attribute.
-      metricItemDescriptionContainer.html(decodeEntities(metricItemDescription));
+      metricItemDescriptionContainer.html(metricItemDescription);
       collapsedContainer.append(metricItemDescriptionContainer);
 
       // Create an open link, and give it a click behaviour to show the

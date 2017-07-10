@@ -1,17 +1,26 @@
 <div class="m-metric m-metric__transactions-with-outcome">
   <ul class="list">
-    <li class="m-metric-headline" data-metric-item-identifier="transactions-ending-in-outcome" data-metric-item-description="<strong><%= Rack::Utils.escape_html(metric_to_human(transactions_with_outcome_metric.count)) %></strong> transactions ending in an outcome">
+    <%= metric_item('transactions-ending-in-outcome', html: { class: 'm-metric-headline' }) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(transactions_with_outcome_metric.count) %></strong> transactions ending in an outcome
+      <% end %>
+
       <span class="total">
         <span class="data-item bold-large"><%= metric_to_human(transactions_with_outcome_metric.count) %></span>
         <span class="data-item bold">transactions ending in an outcome</span>
       </span>
-    </li>
-    <li data-metric-item-identifier="transactions-ending-in-outcome-with-intended-outcome" data-metric-item-description="<strong><%= Rack::Utils.escape_html(metric_to_human(transactions_with_outcome_metric.count_with_intended_outcome)) %></strong> transactions with intended outcome (<%= Rack::Utils.escape_html(metric_to_percentage(transactions_with_outcome_metric.with_intended_outcome_percentage)) %>)">
+    <% end %>
+
+    <%= metric_item('transactions-ending-in-outcome-with-intended-outcome') do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(transactions_with_outcome_metric.count_with_intended_outcome) %></strong> transactions with intended outcome (<%= metric_to_percentage(transactions_with_outcome_metric.with_intended_outcome_percentage) %>)
+      <% end %>
+
       <span class="metric-name">Ending in the user&apos;s intended outcome</span>
       <span class="metric-value">
         <span class="metric-value-count"><%= metric_to_human(transactions_with_outcome_metric.count_with_intended_outcome) %></span>
         <span class="metric-value-percentage">(<%= metric_to_percentage(transactions_with_outcome_metric.with_intended_outcome_percentage) %>)</span>
       </span>
-    </li>
+    <% end %>
   </ul>
 </div>
