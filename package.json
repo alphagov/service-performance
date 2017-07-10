@@ -9,8 +9,8 @@
     "url": "git+https://github.com/alphagov/cgsd-view-data.git"
   },
   "scripts": {
-    "test": "jest",
-    "lint": "eslint ./app/assets/javascripts"
+    "test": "./node_modules/jest/bin/jest.js",
+    "lint": "./node_modules/eslint/bin/eslint.js ./app/assets/javascripts"
   },
   "devDependencies": {
     "eslint": "^4.1.1",
