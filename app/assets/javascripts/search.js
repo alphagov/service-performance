@@ -4,8 +4,8 @@
   var $ = global.jQuery
 
   var SearchResultsContainer = (function () {
-    var $searchResultContainer = $('#search-results')
-    var $results = $searchResultContainer.find('.metric-group')
+    var $searchResultContainer
+    var $results
 
     var _setSearchDataAttributesOnResults = function () {
       /*
@@ -19,6 +19,9 @@
     }
 
     var init = function () {
+      $searchResultContainer = $('#search-results')
+      $results = $searchResultContainer.find('.metric-group')
+
       _setSearchDataAttributesOnResults()
     }
 
@@ -56,9 +59,9 @@
   })()
 
   var SearchFilter = (function () {
-    var $searchFilter = $('#search-filter')
-    var $searchInput = $searchFilter.find('input[type="search"]')
-    var $searchButton = $searchFilter.find('input[type="button"]')
+    var $searchFilter
+    var $searchInput
+    var $searchButton
 
     var _search = function (fn) {
       var query = $searchInput.val().toLowerCase().trim()
@@ -93,6 +96,6 @@
     }
   })()
 
-  SearchResultsContainer.init()
-  SearchFilter.init(SearchResultsContainer.filter)
+  global.SearchResultsContainer = SearchResultsContainer
+  global.SearchFilter = SearchFilter
 })(window)

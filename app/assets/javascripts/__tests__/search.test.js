@@ -25,6 +25,7 @@ describe('The search filter', function () {
 
   it('should lose the hidden class when the page loads', function () {
     require('../search')
+    window.SearchFilter.init()
 
     // Use jquery to emulate a click on our button
     var $searchFilter = $('#search-filter')
