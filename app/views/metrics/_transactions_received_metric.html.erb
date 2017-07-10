@@ -1,13 +1,13 @@
 <div class="m-metric m-metric__transactions-received">
   <ul class="list">
-    <li class="m-metric-headline">
+    <li class="m-metric-headline" data-metric-item-identifier="transactions-received" data-metric-item-description="<strong><%= Rack::Utils.escape_html(metric_to_human(transactions_received_metric.total)) %></strong> transactions received">
       <span class="total">
         <span class="data-item bold-large"><%= metric_to_human(transactions_received_metric.total) %></span>
         <span class="data-item bold">transactions received</span>
       </span>
     </li>
 
-    <li>
+    <li data-metric-item-identifier="transactions-received-online" data-metric-item-description="<strong><%= Rack::Utils.escape_html(metric_to_human(transactions_received_metric.online)) %></strong> online transactions (<%= Rack::Utils.escape_html(metric_to_percentage(transactions_received_metric.online_percentage)) %>)">
       <span class="metric-name">Online</span>
       <span class="metric-value">
         <span class="metric-value-count"><%= metric_to_human(transactions_received_metric.online) %></span>
@@ -15,7 +15,7 @@
       </span>
     </li>
 
-    <li>
+    <li data-metric-item-identifier="transactions-received-phone" data-metric-item-description="<strong><%= Rack::Utils.escape_html(metric_to_human(transactions_received_metric.phone)) %></strong> phone transactions (<%= Rack::Utils.escape_html(metric_to_percentage(transactions_received_metric.phone_percentage)) %>)">
       <span class="metric-name">Phone</span>
       <span class="metric-value">
         <span class="metric-value-count"><%= metric_to_human(transactions_received_metric.phone) %></span>
@@ -23,7 +23,7 @@
       </span>
     </li>
 
-    <li>
+    <li data-metric-item-identifier="transactions-received-paper" data-metric-item-description="<strong><%= Rack::Utils.escape_html(metric_to_human(transactions_received_metric.paper)) %></strong> paper transactions (<%= Rack::Utils.escape_html(metric_to_percentage(transactions_received_metric.paper_percentage)) %>)">
       <span class="metric-name">Paper</span>
       <span class="metric-value">
         <span class="metric-value-count"><%= metric_to_human(transactions_received_metric.paper) %></span>
@@ -31,7 +31,7 @@
       </span>
     </li>
 
-    <li>
+    <li data-metric-item-identifier="transactions-received-face-to-face" data-metric-item-description="<strong><%= Rack::Utils.escape_html(metric_to_human(transactions_received_metric.face_to_face)) %></strong> face to face transactions (<%= Rack::Utils.escape_html(metric_to_percentage(transactions_received_metric.face_to_face_percentage)) %>)">
       <span class="metric-name">Face to Face</span>
       <span class="metric-value">
         <span class="metric-value-count"><%= metric_to_human(transactions_received_metric.face_to_face) %></span>
@@ -39,7 +39,7 @@
       </span>
     </li>
 
-    <li>
+    <li data-metric-item-identifier="transactions-received-other" data-metric-item-description="<strong><%= Rack::Utils.escape_html(metric_to_human(transactions_received_metric.other)) %></strong> other transactions (<%= Rack::Utils.escape_html(metric_to_percentage(transactions_received_metric.other_percentage)) %>)">
       <span class="metric-name">Other</span>
       <span class="metric-value">
         <span class="metric-value-count"><%= metric_to_human(transactions_received_metric.other) %></span>

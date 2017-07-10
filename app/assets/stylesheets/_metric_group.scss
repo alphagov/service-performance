@@ -6,3 +6,28 @@
     margin-bottom: 0;
   }
 }
+
+.m-metric-group__collapsed {
+  &> div { margin: 16px 0; }
+
+  .m-metric-group-header {
+    display: inline-block;
+    width: 50%;
+
+    h2 {
+      font-size: 19px;
+      margin: 0;
+    }
+  }
+
+  .m-metric-item-description {
+    display: inline-block;
+    width: 40%;
+  }
+
+  .m-metric-group-open-toggle {
+    display: inline-block;
+    width: 10%;
+    text-align: right;
+  }
+}

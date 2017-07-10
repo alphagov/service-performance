@@ -62,7 +62,6 @@ RSpec.feature 'viewing metrics', type: :feature do
 
       select 'transactions received', from: 'Sort by'
       expect(page).to have_selector('.m-metric-group[data-behaviour="m-metric-group__collapsed"]', count: 7)
-      expect(page).to have_selector('.m-metric-group.m-metric-group__collapsed', count: 7)
     end
   end
 
