@@ -1,6 +1,6 @@
 class CallsReceivedMetric < ApplicationRecord
   belongs_to :department, primary_key: :natural_key, foreign_key: :department_code, optional: true
-  belongs_to :agency, primary_key: :natural_key, foreign_key: :agency_code, optional: true
+  belongs_to :delivery_organisation, primary_key: :natural_key, foreign_key: :delivery_organisation_code, optional: true
   belongs_to :service, primary_key: :natural_key, foreign_key: :service_code, optional: true
 
   validates_presence_of :department, strict: true
