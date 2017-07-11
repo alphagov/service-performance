@@ -29,7 +29,6 @@
       /*
         Hide search results unless the query substring matches the title
        */
-      var matches = 0
 
       // if query is empty, remove all hidden classes and return length of results
       if (!query) {
@@ -43,13 +42,10 @@
 
         if (isMatch) {
           $(this).removeClass('hidden')
-          matches++
         } else {
           $(this).addClass('hidden')
         }
       })
-
-      return matches
     }
 
     return {
