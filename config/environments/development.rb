@@ -21,7 +21,7 @@ Rails.application.configure do
 
   config.active_support.deprecation = :log
 
-  config.assets.debug = true
+  config.assets.debug = false
 
   config.assets.quiet = true
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
