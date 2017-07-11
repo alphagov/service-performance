@@ -21,6 +21,8 @@ RSpec.feature 'viewing metrics', type: :feature do
         select 'transactions received', from: 'Sort by'
         click_on 'Apply' unless javascript_enabled
 
+        all('a', text: /\AOpen\z/).each(&:click) if javascript_enabled
+
         expect(metric_groups(:name, :transactions_received_total)).to eq([
           ['HM Revenue & Customs',                                          '0'],
           ['Department for Business, Energy & Industrial Strategy',         '0'],
@@ -38,6 +40,8 @@ RSpec.feature 'viewing metrics', type: :feature do
         end
         click_on 'Apply' unless javascript_enabled
 
+        all('a', text: /\AOpen\z/).each(&:click) if javascript_enabled
+
         expect(metric_groups(:name, :transactions_received_total)).to eq([
           ['Ministry of Justice',                                   '593254687'],
           ['Department for Transport',                              '118679511'],
@@ -49,6 +53,16 @@ RSpec.feature 'viewing metrics', type: :feature do
         ])
       end
     end
+
+    it 'collapses metric groups, when sorting by attributes (other than name)', cassette: 'viewing-metrics-collapsing-metric-groups', js: true do
+      visit government_metrics_path(group_by: Metrics::Group::Department)
+
+      expect(page).to have_selector('.m-metric-group', count: 7)
+      expect(page).to have_selector('.m-metric-group[data-behaviour="m-metric-group__collapsed"]', count: 0)
+
+      select 'transactions received', from: 'Sort by'
+      expect(page).to have_selector('.m-metric-group[data-behaviour="m-metric-group__collapsed"]', count: 7)
+    end
   end
 
   private
@@ -56,7 +70,7 @@ RSpec.feature 'viewing metrics', type: :feature do
   def metric_groups(*attrs)
     attributes = ->(metric_group) { attrs.map {|attribute| metric_group.send(attribute) } }
 
-    all('.metric-group', count: 7)
+    all('.m-metric-group', count: 7)
       .map { |element| MetricGroup.new(element) }
       .collect(&attributes)
   end
