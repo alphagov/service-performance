@@ -28,7 +28,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'capybara-selenium'
+  gem 'capybara-webkit'
   gem 'rails-controller-testing'
   gem 'vcr'
   gem 'webmock'

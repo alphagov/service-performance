@@ -23,8 +23,8 @@ COPY . .
 
 RUN apk --update upgrade && \
     apk add --no-cache ca-certificates && \
-    apk add --virtual build-packages $BUILD_PACKAGES && \
-    apk add --virtual runtime-packages $RUNTIME_PACKAGES && \
+    apk add --no-cache --virtual build-packages $BUILD_PACKAGES && \
+    apk add --no-cache $RUNTIME_PACKAGES && \
     gem install bundler && \
     bundle config build.nokogiri --use-system-libraries && \
     bundle install --without development test && \
