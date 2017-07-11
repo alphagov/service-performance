@@ -24,14 +24,14 @@ COPY . .
 
 RUN apk --update upgrade && \
     apk add --no-cache ca-certificates && \
-    apk add --virtual build-packages $BUILD_PACKAGES && \
-    apk add --virtual runtime-packages $RUNTIME_PACKAGES && \
+    apk add --no-cache --virtual build-packages $BUILD_PACKAGES && \
+    apk add --no-cache $RUNTIME_PACKAGES && \
     gem install bundler && \
     bundle config build.nokogiri --use-system-libraries && \
     bundle install --without development test && \
 
     # cleanup
-    apk del --purge build-packages $BUILD_PACKAGES && \
+    apk del --purge build-packages && \
     find / -type f -iname \*.apk-new -delete && \
     rm -rf /var/cache/apk/* && \
     rm -rf /usr/local/lib/ruby/gems/*/cache/* && \
