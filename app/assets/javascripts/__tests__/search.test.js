@@ -15,7 +15,7 @@ describe('On the search page', function () {
     '</div>'
 
   var SearchResultsHTML =
-    '<div class="metrics-groups grid-row" id="search-results">' +
+    '<div class="o-metric-groups grid-row" id="search-results">' +
       '<ul>' +
         '<li class="metric-group">' +
           '<h2 class="bold-medium"><a>HM Revenue &amp; Customs</a></h2>' +
