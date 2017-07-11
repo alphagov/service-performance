@@ -6,6 +6,18 @@ module Metrics
     Service = 'service'
   end
 
+  module Items
+    TransactionsReceived = 'transactions-received'
+    TransactionsReceivedOnline = 'transactions-received-online'
+    TransactionsReceivedPhone = 'transactions-received-phone'
+    TransactionsReceivedPaper = 'transactions-received-paper'
+    TransactionsReceivedFaceToFace = 'transactions-received-face-to-face'
+    TransactionsReceivedOther = 'transactions-received-other'
+
+    TransactionsEndingInOutcome = 'transactions-ending-in-outcome'
+    TransactionsEndingInOutcomeWithIntendedOutcome = 'transactions-ending-in-outcome-with-intended-outcome'
+  end
+
   module OrderBy
     private
     class Sorter
@@ -23,15 +35,15 @@ module Metrics
     end
 
     Name = Sorter.new('name', name: 'name', keypath: [:name])
-    TransactionsReceived = Sorter.new('transactions-received', name: 'transactions received', keypath: [:transactions_received, :total])
-    TransactionsReceivedOnline = Sorter.new('transactions-received-online', name: 'transactions received (online)', keypath: [:transactions_received, :online])
-    TransactionsReceivedPhone = Sorter.new('transactions-received-phone', name: 'transactions received (phone)', keypath: [:transactions_received, :phone])
-    TransactionsReceivedPaper = Sorter.new('transactions-received-paper', name: 'transactions received (paper)', keypath: [:transactions_received, :paper])
-    TransactionsReceivedFaceToFace = Sorter.new('transactions-received-face-to-face', name: 'transactions received (face to face)', keypath: [:transactions_received, :face_to_face])
-    TransactionsReceivedOther = Sorter.new('transactions-received-other', name: 'transactions received (other)', keypath: [:transactions_received, :other])
+    TransactionsReceived = Sorter.new(Items::TransactionsReceived, name: 'transactions received', keypath: [:transactions_received, :total])
+    TransactionsReceivedOnline = Sorter.new(Items::TransactionsReceivedOnline, name: 'transactions received (online)', keypath: [:transactions_received, :online])
+    TransactionsReceivedPhone = Sorter.new(Items::TransactionsReceivedPhone, name: 'transactions received (phone)', keypath: [:transactions_received, :phone])
+    TransactionsReceivedPaper = Sorter.new(Items::TransactionsReceivedPaper, name: 'transactions received (paper)', keypath: [:transactions_received, :paper])
+    TransactionsReceivedFaceToFace = Sorter.new(Items::TransactionsReceivedFaceToFace, name: 'transactions received (face to face)', keypath: [:transactions_received, :face_to_face])
+    TransactionsReceivedOther = Sorter.new(Items::TransactionsReceivedOther, name: 'transactions received (other)', keypath: [:transactions_received, :other])
 
-    TransactionsEndingInOutcome = Sorter.new('transactions-ending-in-outcome', name: 'transactions ending in an outcome', keypath: [:transactions_with_outcome, :count])
-    TransactionsEndingInOutcomeWithIntendedOutcome = Sorter.new('transactions-ending-in-outcome-with-intended-outcome',
+    TransactionsEndingInOutcome = Sorter.new(Items::TransactionsEndingInOutcome, name: 'transactions ending in an outcome', keypath: [:transactions_with_outcome, :count])
+    TransactionsEndingInOutcomeWithIntendedOutcome = Sorter.new(Items::TransactionsEndingInOutcomeWithIntendedOutcome,
       name: "transactions ending in the user's intended outcome",
       keypath: [:transactions_with_outcome, :count_with_intended_outcome]
     )
