@@ -5,6 +5,11 @@
 
 ;(function (global) {
   /* Both of these are in the `search.js` file */
-  global.SearchResultsContainer.init()
-  global.SearchFilter.init(global.SearchResultsContainer.filter)
+
+  var $ = global.jQuery
+
+  $(document).ready(function () {
+    global.SearchResultsContainer.init()
+    global.SearchFilter.init(global.SearchResultsContainer.filter)
+  })
 })(window)
