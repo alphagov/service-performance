@@ -19,8 +19,8 @@
     }
 
     var init = function () {
-      $searchResultContainer = $('#search-results')
-      $results = $searchResultContainer.find('.metric-group')
+      $searchResultContainer = $('[data-behaviour="o-metric-groups"]').first()
+      $results = $searchResultContainer.find('[data-behaviour^="m-metric-group"]')
 
       _setSearchDataAttributesOnResults()
     }
@@ -82,7 +82,7 @@
     }
 
     var init = function (fn) {
-      $searchFilter = $('#search-filter')
+      $searchFilter = $('[data-behaviour="m-search-filter"]').first()
       $searchInput = $searchFilter.find('input[type="search"]')
       $searchButton = $searchFilter.find('input[type="button"]')
 

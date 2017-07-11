@@ -8,19 +8,19 @@ require('../search')
 describe('On the search page', function () {
   var $ = window.jQuery
   var searchFilterHTML =
-    '<div class="m-search-filter hidden" id="search-filter">' +
+    '<div class="m-search-filter hidden" data-behaviour="m-search-filter">' +
       '<label for="search-departments" class="visuallyhidden">Find department</label>' +
       '<input type="search" id="search-departments" class="a-search-input" placeholder="Find department">' +
       '<input class="a-search-button" type="button" value="Search">' +
     '</div>'
 
   var SearchResultsHTML =
-    '<div class="o-metric-groups grid-row" id="search-results">' +
+    '<div class="o-metric-groups grid-row" data-behaviour="o-metric-groups">' +
       '<ul>' +
-        '<li class="metric-group">' +
+        '<li class="m-metric-group" data-behaviour="m-metric-group">' +
           '<h2 class="bold-medium"><a>HM Revenue &amp; Customs</a></h2>' +
         '</li>' +
-        '<li class="metric-group">' +
+        '<li class="m-metric-group" data-behaviour="m-metric-group">' +
           '<h2 class="bold-medium"><a>Department For Transport</a></h2>' +
         '</li>' +
       '</ul>' +
@@ -34,7 +34,7 @@ describe('On the search page', function () {
     beforeEach(function () {
       // Add HTML to page
       $(document.body).append($(searchFilterHTML))
-      $searchFilter = $('#search-filter')
+      $searchFilter = $('[data-behaviour="m-search-filter"]')
     })
 
     afterEach(function () {
@@ -53,7 +53,7 @@ describe('On the search page', function () {
         // Add search results HTML to page (it already has the search filter)
         $(document.body).append($(SearchResultsHTML))
         $searchInput = $searchFilter.find('input[type="search"]')
-        $results = $('.metric-group')
+        $results = $('[data-behaviour^="m-metric-group"]')
 
         window.SearchResultsContainer.init()
         window.SearchFilter.init(window.SearchResultsContainer.filter)
@@ -101,7 +101,7 @@ describe('On the search page', function () {
       $(document.body).append($(SearchResultsHTML))
 
       window.SearchResultsContainer.init()
-      $results = $('.metric-group')
+      $results = $('[data-behaviour^="m-metric-group"]')
     })
 
     afterEach(function () {
