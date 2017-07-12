@@ -1,6 +1,6 @@
 dist: trusty
+language: ruby
 sudo: true
-language: generic
 
 env:
   global:
@@ -23,21 +23,10 @@ env:
     # DOCKER_PASSWORD for user gsddeploy
     - secure: meWWu8Pj8OaBM9hgUXrG1BVVmRBwGMBeSZiF126TlOy+FDe6nloxUSYDSFBlyS/frrqIaZSeaE9ev2WkXyRgtyz36we9c0B4IANGTY93zLbi0uQF+X+nEDCbNS9FbT99u6GLbKyTIcdprd28Yqq96exLamcLzHE1EnBqnbe/baMpZ3vo8wC2sGzW9bThb8v3lLiJ7hdmHFhMlv2H5WFt+uMqxFbrWXMf93sZT1CBkJO3XP3RASh81DO8JCJzO4EJ/hLKhGjj5n8gliJLVM00foitm4rNcrVXJI0nFcCZuDp36Tcbnie1f2PCDzadyRAKT43im2fD1MzLWK7b3ll3DF7Z9nF+v9OFXTaIMfkocmLtOsty5BNXVNW5JaMRWCWbtGn7tNJEjJ5BBrnb+wjYAn2q9WdV6nvme28lbBye0A1zH54m89B+UDg4lGCJPOP3T1lHYZKlwuGgd3Tlo1fX5psGb3XSSQr7RmsQvsk1mhH7mudijgQpYuDNqdy8Q3kWZ+tI7s/4cdLQ2nuOtRqMagrmEhoxMu197GZ8e5tkS0bDQC00uA0ap/E5ePZ2jDFdS+wq72sDmTfREnlNpcA0QFQBxDzRLB9z7jgLOIb1V8esBD6jhdHCFSPJM2ZfDVsjP5ZdCNreiELlPhY/tS73uMifZeiYfWn9DQUnXcP+1/A=
 
-script:
+before_script:
   - cp .env.example .env
-  - docker run --volume=$TRAVIS_BUILD_DIR:/app -it $DOCKER_REPOSITORY/gsd-view-data-ci /bin/sh -c "bundle --without development production && bundle exec rspec --tag '~type:feature'"
+  - bundle --without development production
 
-before_deploy:
-  - chmod +x etc/deploy.sh
+script:
+  - xvfb-run -a bundle exec rspec
 
-deploy:
-  - provider: script
-    script: APP_SECRET_KEY_BASE=$APP_SECRET_KEY_BASE_STAGING etc/deploy.sh staging
-    skip_cleanup: true
-    on:
-      branch: staging
-  - provider: script
-    script: APP_SECRET_KEY_BASE=$APP_SECRET_KEY_BASE_PRODUCTION etc/deploy.sh production
-    skip_cleanup: true
-    on:
-      branch: production
