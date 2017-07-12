@@ -15,7 +15,7 @@ docker push $DOCKER_REPOSITORY/$DOCKER_IMAGE:$TRAVIS_BUILD_NUMBER
 wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
 echo "deb http://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
 sudo apt-get update && sudo apt-get install cf-cli
-cf login -u $PAAS_USER -p $PAAS_PASSWORD -a https://api.cloud.service.gov.uk -o cross-government-service-data -s $PAAS_SPACE
+cf login -u $PAAS_USER -p $PAAS_PASSWORD -a https://api.cloud.service.gov.uk -o government-service-data -s $PAAS_SPACE
 cf set-env $PAAS_SERVICE API_URL $APP_API_URL
 cf set-env $PAAS_SERVICE API_USERNAME $APP_API_USERNAME
 cf set-env $PAAS_SERVICE API_PASSWORD $APP_API_PASSWORD
