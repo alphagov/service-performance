@@ -30,3 +30,14 @@ before_script:
 script:
   - xvfb-run -a bundle exec rspec
 
+deploy:
+ - provider: script
+   script: APP_SECRET_KEY_BASE=$APP_SECRET_KEY_BASE_STAGING etc/deploy.sh staging
+   skip_cleanup: true
+   on:
+     branch: staging
+ - provider: script
+   script: APP_SECRET_KEY_BASE=$APP_SECRET_KEY_BASE_PRODUCTION etc/deploy.sh production
+   skip_cleanup: true
+   on:
+     branch: production
