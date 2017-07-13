@@ -26,15 +26,21 @@
       "standard"
     ],
     "globals": {
-        "afterEach": false,
-        "beforeEach": false,
-        "describe": false,
-        "expect": false,
-        "jQuery": false,
-        "it": false
+      "afterEach": false,
+      "beforeEach": false,
+      "describe": false,
+      "expect": false,
+      "jQuery": false,
+      "it": false
     },
     "rules": {
       "spaced-comment": 0
     }
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/vendor/"
+    ]
   }
 }
