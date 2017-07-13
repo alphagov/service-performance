@@ -1,4 +1,4 @@
-CrossGovernmentServiceDataAPI::DeliveryOrganisation = Struct.new(:key, :name, :services_count) do
+GovernmentServiceDataAPI::DeliveryOrganisation = Struct.new(:key, :name, :services_count) do
   def self.build(response)
     new(
       response['natural_key'],

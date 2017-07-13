@@ -1,4 +1,4 @@
-class CrossGovernmentServiceDataAPI::Logger < Faraday::Response::Middleware
+class GovernmentServiceDataAPI::Logger < Faraday::Response::Middleware
 
   extend Forwardable
 
@@ -42,7 +42,7 @@ class CrossGovernmentServiceDataAPI::Logger < Faraday::Response::Middleware
                   "<==="
                 end
 
-    @logger.tagged('CrossGovernmentServiceDataAPI') do
+    @logger.tagged('GovernmentServiceDataAPI') do
       @logger.send(@level, "#{direction} #{message}")
     end
   end

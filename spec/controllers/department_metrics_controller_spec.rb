@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe DepartmentMetricsController, type: :controller do
-  let(:client) { instance_double(CrossGovernmentServiceDataAPI::Client) }
+  let(:client) { instance_double(GovernmentServiceDataAPI::Client) }
 
   before do
     allow(controller).to receive(:client) { client }
   end
 
   describe "GET index" do
-    let(:department) { instance_double(CrossGovernmentServiceDataAPI::Department) }
+    let(:department) { instance_double(GovernmentServiceDataAPI::Department) }
 
     before do
       allow(client).to receive(:department) { department }

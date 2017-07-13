@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MetricsPresenter do
   let(:entity) { double(:entity) }
-  let(:client) { instance_double(CrossGovernmentServiceDataAPI::Client) }
+  let(:client) { instance_double(GovernmentServiceDataAPI::Client) }
   let(:group_by) { Metrics::Group::Department }
   let(:order) { nil }
   let(:order_by) { nil }
@@ -50,8 +50,8 @@ RSpec.describe MetricsPresenter do
     end
 
     it 'wraps each metric group in a MetricGroupPresenter' do
-      metric_group_1 = instance_double(CrossGovernmentServiceDataAPI::MetricGroup)
-      metric_group_2 = instance_double(CrossGovernmentServiceDataAPI::MetricGroup)
+      metric_group_1 = instance_double(GovernmentServiceDataAPI::MetricGroup)
+      metric_group_2 = instance_double(GovernmentServiceDataAPI::MetricGroup)
       allow(client).to receive(:metric_groups) { [metric_group_1, metric_group_2] }
 
       metric_group_presenter_1 = instance_double(MetricGroupPresenter)
@@ -66,7 +66,7 @@ RSpec.describe MetricsPresenter do
     end
 
     it "sets the metric group to be collapsed if it isn't ordered by name" do
-      metric_group = instance_double(CrossGovernmentServiceDataAPI::MetricGroup)
+      metric_group = instance_double(GovernmentServiceDataAPI::MetricGroup)
       allow(client).to receive(:metric_groups) { [metric_group] }
 
       expect(MetricGroupPresenter).to receive(:new).with(metric_group, collapsed: true) { instance_double(MetricGroupPresenter) }
@@ -77,7 +77,7 @@ RSpec.describe MetricsPresenter do
     end
 
     describe 'sorting' do
-      let(:metric_groups) { 4.times.map { instance_double(CrossGovernmentServiceDataAPI::MetricGroup) } }
+      let(:metric_groups) { 4.times.map { instance_double(GovernmentServiceDataAPI::MetricGroup) } }
       let(:metric_group_presenters) { 4.times.map { instance_double(MetricGroupPresenter) } }
 
       before do

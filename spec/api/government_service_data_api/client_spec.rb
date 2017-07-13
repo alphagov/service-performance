@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
+RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
 
-  subject(:client) { CrossGovernmentServiceDataAPI::Client.new }
+  subject(:client) { GovernmentServiceDataAPI::Client.new }
 
   describe '#government' do
     it 'parses the government', cassette: 'government-ok' do
@@ -68,7 +68,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
         metric_group = metric_groups.first
 
         government = metric_group.entity
-        expect(government).to be_instance_of(CrossGovernmentServiceDataAPI::Government)
+        expect(government).to be_instance_of(GovernmentServiceDataAPI::Government)
         expect(government.departments_count).to eq(7)
         expect(government.delivery_organisations_count).to eq(8)
         expect(government.services_count).to eq(31)
@@ -93,7 +93,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
         metric_group = metric_groups.first
 
         department = metric_group.entity
-        expect(department).to be_instance_of(CrossGovernmentServiceDataAPI::Department)
+        expect(department).to be_instance_of(GovernmentServiceDataAPI::Department)
         expect(department.key).to eq('D0001')
         expect(department.name).to eq('Department for Environment Food & Rural Affairs')
         expect(department.delivery_organisations_count).to eq(1)
@@ -119,7 +119,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
         metric_group = metric_groups.first
 
         delivery_organisation = metric_group.entity
-        expect(delivery_organisation).to be_instance_of(CrossGovernmentServiceDataAPI::DeliveryOrganisation)
+        expect(delivery_organisation).to be_instance_of(GovernmentServiceDataAPI::DeliveryOrganisation)
         expect(delivery_organisation.key).to eq('01')
         expect(delivery_organisation.name).to eq('Environment Agency')
         expect(delivery_organisation.services_count).to eq(1)
@@ -144,7 +144,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
         metric_group = metric_groups.first
 
         service = metric_group.entity
-        expect(service).to be_instance_of(CrossGovernmentServiceDataAPI::Service)
+        expect(service).to be_instance_of(GovernmentServiceDataAPI::Service)
         expect(service.key).to eq('01')
         expect(service.name).to eq('Buy a fishing rod licence')
 
@@ -172,7 +172,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
         metric_group = metric_groups.first
 
         department = metric_group.entity
-        expect(department).to be_instance_of(CrossGovernmentServiceDataAPI::Department)
+        expect(department).to be_instance_of(GovernmentServiceDataAPI::Department)
         expect(department.key).to eq('D0002')
         expect(department.name).to eq('Department for Transport')
         expect(department.delivery_organisations_count).to eq(2)
@@ -198,7 +198,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
         metric_group = metric_groups.first
 
         delivery_organisation = metric_group.entity
-        expect(delivery_organisation).to be_instance_of(CrossGovernmentServiceDataAPI::DeliveryOrganisation)
+        expect(delivery_organisation).to be_instance_of(GovernmentServiceDataAPI::DeliveryOrganisation)
         expect(delivery_organisation.key).to eq('03')
         expect(delivery_organisation.name).to eq('Driver and Vehicle Licensing Agency')
         expect(delivery_organisation.services_count).to eq(5)
@@ -223,7 +223,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
         metric_group = metric_groups.first
 
         service = metric_group.entity
-        expect(service).to be_instance_of(CrossGovernmentServiceDataAPI::Service)
+        expect(service).to be_instance_of(GovernmentServiceDataAPI::Service)
         expect(service.key).to eq('02')
         expect(service.name).to eq('Apply for a provisional driving license')
 
@@ -251,7 +251,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
         metric_group = metric_groups.first
 
         delivery_organisation = metric_group.entity
-        expect(delivery_organisation).to be_instance_of(CrossGovernmentServiceDataAPI::DeliveryOrganisation)
+        expect(delivery_organisation).to be_instance_of(GovernmentServiceDataAPI::DeliveryOrganisation)
         expect(delivery_organisation.key).to eq('03')
         expect(delivery_organisation.name).to eq('Driver and Vehicle Licensing Agency')
         expect(delivery_organisation.services_count).to eq(5)
@@ -276,7 +276,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
         metric_group = metric_groups.first
 
         service = metric_group.entity
-        expect(service).to be_instance_of(CrossGovernmentServiceDataAPI::Service)
+        expect(service).to be_instance_of(GovernmentServiceDataAPI::Service)
         expect(service.key).to eq('02')
         expect(service.name).to eq('Apply for a provisional driving license')
 
@@ -304,7 +304,7 @@ RSpec.describe CrossGovernmentServiceDataAPI::Client, type: :api do
         metric_group = metric_groups.first
 
         service = metric_group.entity
-        expect(service).to be_instance_of(CrossGovernmentServiceDataAPI::Service)
+        expect(service).to be_instance_of(GovernmentServiceDataAPI::Service)
         expect(service.key).to eq('02')
         expect(service.name).to eq('Apply for a provisional driving license')
 

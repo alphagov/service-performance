@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
 
   def show
-    client = CrossGovernmentServiceDataAPI::Client.new
+    client = GovernmentServiceDataAPI::Client.new
     @service = client.service(params[:id])
 
     @metrics = ServiceMetricsPresenter.new(@service, client: client, group_by: Metrics::Group::Service)

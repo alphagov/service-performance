@@ -1,4 +1,4 @@
-CrossGovernmentServiceDataAPI::Department = Struct.new(:key, :name, :website, :delivery_organisations_count, :services_count) do
+GovernmentServiceDataAPI::Department = Struct.new(:key, :name, :website, :delivery_organisations_count, :services_count) do
   def self.build(response)
     new(
       response['natural_key'],

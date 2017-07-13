@@ -1,4 +1,4 @@
-CrossGovernmentServiceDataAPI::Service = Struct.new(
+GovernmentServiceDataAPI::Service = Struct.new(
   :key, :name, :purpose, :how_it_works, :typical_users,
   :frequency_used, :duration_until_outcome, :start_page_url,
   :paper_form_url, :department

@@ -2,7 +2,7 @@ class MetricsController < ApplicationController
   private
 
   def client
-    @client ||= CrossGovernmentServiceDataAPI::Client.new
+    @client ||= GovernmentServiceDataAPI::Client.new
   end
 
   def group_by

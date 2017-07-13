@@ -1,2 +1,0 @@
-class CrossGovernmentServiceDataAPI::CallsReceivedMetric
-end

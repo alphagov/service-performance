@@ -4,7 +4,7 @@ RSpec.describe MetricGroupPresenter, type: :presenter do
   let(:entity) { double('entity') }
   let(:metric) { double('metric') }
   let(:metrics) { [metric] }
-  let(:metric_group) { instance_double(CrossGovernmentServiceDataAPI::MetricGroup, entity: entity, metrics: metrics) }
+  let(:metric_group) { instance_double(GovernmentServiceDataAPI::MetricGroup, entity: entity, metrics: metrics) }
   subject(:presenter) { MetricGroupPresenter.new(metric_group) }
 
   describe '#entity' do

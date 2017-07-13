@@ -1,4 +1,4 @@
-class CrossGovernmentServiceDataAPI::TransactionsReceivedMetric
+class GovernmentServiceDataAPI::TransactionsReceivedMetric
   def self.build(data)
     new(
       total: data['total'],

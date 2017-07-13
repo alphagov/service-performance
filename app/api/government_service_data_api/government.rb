@@ -1,4 +1,4 @@
-CrossGovernmentServiceDataAPI::Government = Struct.new(:departments_count, :delivery_organisations_count, :services_count) do
+GovernmentServiceDataAPI::Government = Struct.new(:departments_count, :delivery_organisations_count, :services_count) do
   def self.build(response)
     new(
       response['departments_count'],

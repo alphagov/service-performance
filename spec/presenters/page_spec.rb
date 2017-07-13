@@ -7,12 +7,12 @@ RSpec.describe Page, type: :presenter do
   describe '#title' do
     it 'prepends title, if set' do
       page.title = 'My Fancy Title'
-      expect(page.title).to eq('My Fancy Title - Cross-Government Service Data')
+      expect(page.title).to eq('My Fancy Title - Government Service Data')
     end
 
     it 'returns the default, if not set' do
       page.title = nil
-      expect(page.title).to eq('Cross-Government Service Data')
+      expect(page.title).to eq('Government Service Data')
     end
   end
 
