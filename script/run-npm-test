@@ -1,0 +1,4 @@
+#!/bin/sh
+
+JQUERY_PATH="$(bundle show jquery-rails)/vendor/assets/javascripts/jquery.js"
+exec npm test -- --globals '{"JQUERY_PATH": "'"${JQUERY_PATH}"'"}'

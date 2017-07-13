@@ -1,7 +1,9 @@
 'use strict'
 
+/* global JQUERY_PATH */
+
 // set the window.jQuery variable that the file expects
-window.jQuery = require('../../../../vendor/assets/javascripts/product-page-template/vendor/jquery.js')
+window.jQuery = require(JQUERY_PATH)
 // will set SearchResultsContainer and SearchFilter on the window object
 require('../search')
 

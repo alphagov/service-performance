@@ -31,7 +31,7 @@ before_script:
 script:
   - xvfb-run -a bundle exec rspec
   - npm run lint
-  - npm test
+  - ./script/run-npm-test
 
 deploy:
  - provider: script
