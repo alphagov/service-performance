@@ -46,21 +46,21 @@
         <button type="submit" class="a-apply-button">Apply</button>
       </div>
 
-      <div class="m-search-filter">
-        <label for="search-departments">Find department</label>
-        <input type="text" id="search-departments" class="a-search-input" placeholder="Find department">
-        <button class="a-search-button">Search</button>
+      <div class="m-search-filter hidden" data-behaviour="m-search-filter">
+        <label for="search-departments" class="visuallyhidden">Find department</label>
+        <input type="search" id="search-departments" class="a-search-input" placeholder="Find department">
+        <input class="a-search-button" type="button" value="Search">
       </div>
     <% end %>
   </div>
 
   <!--end of filter-->
 
-  <div class="metrics-groups grid-row">
+  <div class="o-metric-groups grid-row" data-behaviour="o-metric-groups">
     <ul>
 
       <% @metrics.metric_groups.each do |metric_group|  %>
-        <li class="m-metric-group" <% if metric_group.collapsed? %>data-behaviour="m-metric-group__collapsed"<% end %>>
+        <li class="m-metric-group" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsed<% end %>">
           <div data-metric-group-expanded>
             <%= render metric_group.entity, metric_group: metric_group  %>
 
