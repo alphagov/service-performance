@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/government
+    uri: http://gsd-api.dev/v1/data/government
     body:
       encoding: US-ASCII
       string: ''
@@ -29,21 +29,21 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 3065f5fc-e3fd-4a08-bbfb-dce5da5f60f4
+      - ae8cacbb-4849-4e93-921d-cbeb3608404b
       x-runtime:
-      - '0.003235'
+      - '0.005053'
       date:
-      - Tue, 27 Jun 2017 15:23:14 GMT
+      - Mon, 17 Jul 2017 10:01:09 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31}'
     http_version: 
-  recorded_at: Tue, 27 Jun 2017 15:23:14 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:09 GMT
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/government/metrics?group_by=department
+    uri: http://gsd-api.dev/v1/data/government/metrics?group_by=department
     body:
       encoding: US-ASCII
       string: ''
@@ -70,11 +70,11 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 9261533e-d78e-4e50-b680-287a077da929
+      - fdc6b307-4104-4e67-ba4e-811dddc6daab
       x-runtime:
-      - '0.039950'
+      - '0.058065'
       date:
-      - Tue, 27 Jun 2017 15:23:14 GMT
+      - Mon, 17 Jul 2017 10:01:09 GMT
       connection:
       - close
     body:
@@ -88,10 +88,10 @@ http_interactions:
         for Education","hostname":"department-for-education","delivery_organisations_count":2,"services_count":7},"metrics":[{"type":"transactions-received","total":13000475,"online":7000282,"phone":4000106,"paper":2000087,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":12120242,"with_intended_outcome":9536719}]},{"entity":{"type":"department","natural_key":"D0007","name":"Department
         for Business, Energy \u0026 Industrial Strategy","hostname":"department-for-business-energy-and-industrial-strategy","delivery_organisations_count":0,"services_count":0},"metrics":[{"type":"transactions-received","total":0,"online":0,"phone":0,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":0,"with_intended_outcome":0}]}]}'
     http_version: 
-  recorded_at: Tue, 27 Jun 2017 15:23:14 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:09 GMT
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/government
+    uri: http://gsd-api.dev/v1/data/government
     body:
       encoding: US-ASCII
       string: ''
@@ -118,21 +118,21 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 452ee080-8b71-4602-9b2a-47dc9090b84c
+      - fcf30a89-daeb-4dc2-ab92-518bc0600f09
       x-runtime:
-      - '0.003092'
+      - '0.005715'
       date:
-      - Tue, 27 Jun 2017 15:23:14 GMT
+      - Mon, 17 Jul 2017 10:01:09 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31}'
     http_version: 
-  recorded_at: Tue, 27 Jun 2017 15:23:14 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:09 GMT
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/government/metrics?group_by=department
+    uri: http://gsd-api.dev/v1/data/government/metrics?group_by=department
     body:
       encoding: US-ASCII
       string: ''
@@ -159,11 +159,11 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 39e9aa82-e198-4ba4-b965-2e4e2cfae1ca
+      - d540b309-f8ae-43cb-9ad7-958e58b474c5
       x-runtime:
-      - '0.051112'
+      - '0.065806'
       date:
-      - Tue, 27 Jun 2017 15:23:14 GMT
+      - Mon, 17 Jul 2017 10:01:10 GMT
       connection:
       - close
     body:
@@ -177,10 +177,10 @@ http_interactions:
         for Education","hostname":"department-for-education","delivery_organisations_count":2,"services_count":7},"metrics":[{"type":"transactions-received","total":13000475,"online":7000282,"phone":4000106,"paper":2000087,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":12120242,"with_intended_outcome":9536719}]},{"entity":{"type":"department","natural_key":"D0007","name":"Department
         for Business, Energy \u0026 Industrial Strategy","hostname":"department-for-business-energy-and-industrial-strategy","delivery_organisations_count":0,"services_count":0},"metrics":[{"type":"transactions-received","total":0,"online":0,"phone":0,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":0,"with_intended_outcome":0}]}]}'
     http_version: 
-  recorded_at: Tue, 27 Jun 2017 15:23:14 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:10 GMT
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/government
+    uri: http://gsd-api.dev/v1/data/government
     body:
       encoding: US-ASCII
       string: ''
@@ -207,21 +207,21 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 274db08e-5550-489d-a29f-4a14e8abab46
+      - 4a677fd6-6b91-4c6e-bb43-ea0a1115adf4
       x-runtime:
-      - '0.003061'
+      - '0.003557'
       date:
-      - Tue, 27 Jun 2017 15:23:14 GMT
+      - Mon, 17 Jul 2017 10:01:10 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31}'
     http_version: 
-  recorded_at: Tue, 27 Jun 2017 15:23:14 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:10 GMT
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/government/metrics?group_by=department
+    uri: http://gsd-api.dev/v1/data/government/metrics?group_by=department
     body:
       encoding: US-ASCII
       string: ''
@@ -248,11 +248,11 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 71577f8a-b029-4127-8973-a19f62e10b99
+      - 84ed5190-070c-4e85-9c61-8c3f3d0f2ff0
       x-runtime:
-      - '0.043940'
+      - '0.070583'
       date:
-      - Tue, 27 Jun 2017 15:23:14 GMT
+      - Mon, 17 Jul 2017 10:01:10 GMT
       connection:
       - close
     body:
@@ -266,5 +266,5 @@ http_interactions:
         for Education","hostname":"department-for-education","delivery_organisations_count":2,"services_count":7},"metrics":[{"type":"transactions-received","total":13000475,"online":7000282,"phone":4000106,"paper":2000087,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":12120242,"with_intended_outcome":9536719}]},{"entity":{"type":"department","natural_key":"D0007","name":"Department
         for Business, Energy \u0026 Industrial Strategy","hostname":"department-for-business-energy-and-industrial-strategy","delivery_organisations_count":0,"services_count":0},"metrics":[{"type":"transactions-received","total":0,"online":0,"phone":0,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":0,"with_intended_outcome":0}]}]}'
     http_version: 
-  recorded_at: Tue, 27 Jun 2017 15:23:14 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:10 GMT
 recorded_with: VCR 3.0.3

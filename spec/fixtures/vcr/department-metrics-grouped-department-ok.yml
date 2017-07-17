@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002
+    uri: http://gsd-api.dev/v1/data/departments/D0002
     body:
       encoding: US-ASCII
       string: ''
@@ -29,21 +29,21 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - ac5b0d7d-d84e-4436-ae22-53d86842d149
+      - dbfbe22a-074f-4684-a019-6e78f96e1d4f
       x-runtime:
-      - '0.005681'
+      - '0.013604'
       date:
-      - Fri, 23 Jun 2017 14:59:30 GMT
+      - Mon, 17 Jul 2017 10:01:02 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9}'
     http_version: 
-  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:02 GMT
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002/metrics?group_by=department
+    uri: http://gsd-api.dev/v1/data/departments/D0002/metrics?group_by=department
     body:
       encoding: US-ASCII
       string: ''
@@ -70,11 +70,11 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - dcdd95c3-a36b-421f-9a83-b7de9f715bac
+      - fed16239-5309-48c2-ad45-3bcde95cede5
       x-runtime:
-      - '0.008961'
+      - '0.019390'
       date:
-      - Fri, 23 Jun 2017 14:59:30 GMT
+      - Mon, 17 Jul 2017 10:01:02 GMT
       connection:
       - close
     body:
@@ -82,5 +82,5 @@ http_interactions:
       string: '{"group_by":"department","metric_groups":[{"entity":{"type":"department","natural_key":"D0002","name":"Department
         for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9},"metrics":[{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}]}]}'
     http_version: 
-  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:02 GMT
 recorded_with: VCR 3.0.3

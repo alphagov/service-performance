@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/government
+    uri: http://gsd-api.dev/v1/data/government
     body:
       encoding: US-ASCII
       string: ''
@@ -29,21 +29,21 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 569c8a7d-092d-4c59-926f-f50e2b05b102
+      - 4d895795-1d22-4047-a931-cc9abb98d97e
       x-runtime:
-      - '0.003908'
+      - '0.004649'
       date:
-      - Fri, 23 Jun 2017 14:59:30 GMT
+      - Mon, 17 Jul 2017 10:01:02 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31}'
     http_version: 
-  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:02 GMT
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/government/metrics?group_by=delivery_organisation
+    uri: http://gsd-api.dev/v1/data/government/metrics?group_by=delivery_organisation
     body:
       encoding: US-ASCII
       string: ''
@@ -70,11 +70,11 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - d9b45bac-aedc-427d-ba8c-07fd86550587
+      - 220e01df-d933-4448-9b32-523eaefaa9a4
       x-runtime:
-      - '0.043789'
+      - '0.057360'
       date:
-      - Fri, 23 Jun 2017 14:59:30 GMT
+      - Mon, 17 Jul 2017 10:01:02 GMT
       connection:
       - close
     body:
@@ -89,5 +89,5 @@ http_interactions:
         Funding Agency","hostname":"skills-funding-agency","services_count":3},"metrics":[{"type":"transactions-received","total":3000062,"online":3000062,"phone":0,"paper":0,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":3684748,"with_intended_outcome":2578900}]},{"entity":{"type":"delivery-organisation","natural_key":"13","name":"Student
         Loans Company","hostname":"student-loans-company","services_count":4},"metrics":[{"type":"transactions-received","total":10000413,"online":4000220,"phone":4000106,"paper":2000087,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":8435494,"with_intended_outcome":6957819}]}]}'
     http_version: 
-  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:02 GMT
 recorded_with: VCR 3.0.3

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/delivery_organisations/03
+    uri: http://gsd-api.dev/v1/data/delivery_organisations/03
     body:
       encoding: US-ASCII
       string: ''
@@ -29,11 +29,11 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 76b06a10-c4a3-4ef4-a75d-b5f9a4cb8652
+      - 2ed12524-be29-4b00-bb04-c4c22de4dab4
       x-runtime:
-      - '0.006373'
+      - '0.006518'
       date:
-      - Fri, 23 Jun 2017 14:59:30 GMT
+      - Mon, 17 Jul 2017 10:01:02 GMT
       connection:
       - close
     body:
@@ -41,10 +41,10 @@ http_interactions:
       string: '{"type":"delivery-organisation","natural_key":"03","name":"Driver and
         Vehicle Licensing Agency","hostname":"driver-and-vehicle-licensing-agency","services_count":5}'
     http_version: 
-  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:02 GMT
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/delivery_organisations/03/metrics?group_by=delivery_organisation
+    uri: http://gsd-api.dev/v1/data/delivery_organisations/03/metrics?group_by=delivery_organisation
     body:
       encoding: US-ASCII
       string: ''
@@ -71,11 +71,11 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 4e0c333b-4ec8-434b-8a26-013b5a2767da
+      - 8aa9fe4d-b377-4491-beb7-49f2349a4406
       x-runtime:
-      - '0.007744'
+      - '0.015844'
       date:
-      - Fri, 23 Jun 2017 14:59:30 GMT
+      - Mon, 17 Jul 2017 10:01:02 GMT
       connection:
       - close
     body:
@@ -83,5 +83,5 @@ http_interactions:
       string: '{"group_by":"delivery_organisation","metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
         and Vehicle Licensing Agency","hostname":"driver-and-vehicle-licensing-agency","services_count":5},"metrics":[{"type":"transactions-received","total":70123862,"online":45143108,"phone":7123719,"paper":17857035,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":70842643,"with_intended_outcome":58650122}]}]}'
     http_version: 
-  recorded_at: Fri, 23 Jun 2017 14:59:30 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:02 GMT
 recorded_with: VCR 3.0.3

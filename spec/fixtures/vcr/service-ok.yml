@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/services/02
+    uri: http://gsd-api.dev/v1/data/services/02
     body:
       encoding: US-ASCII
       string: ''
@@ -29,11 +29,11 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - f524acba-3e9c-4d9c-99a9-1048a476aaf3
+      - 5128dbf9-8607-47d4-9110-a8025f6eb995
       x-runtime:
-      - '0.033473'
+      - '0.031403'
       date:
-      - Thu, 22 Jun 2017 10:36:32 GMT
+      - Mon, 17 Jul 2017 10:01:01 GMT
       connection:
       - close
     body:
@@ -41,5 +41,5 @@ http_interactions:
       string: !binary |-
         eyJ0eXBlIjoic2VydmljZSIsIm5hdHVyYWxfa2V5IjoiMDIiLCJuYW1lIjoiQXBwbHkgZm9yIGEgcHJvdmlzaW9uYWwgZHJpdmluZyBsaWNlbnNlIiwiaG9zdG5hbWUiOiJhcHBseS1mb3ItYS1wcm92aXNpb25hbC1kcml2aW5nLWxpY2Vuc2UiLCJwdXJwb3NlIjoiV2h5IHRoZSBzZXJ2aWNlIHdhcyBidWlsdCwgaXRzIHBvbGljeSBvYmplY3RpdmVzIGFuZCB0aGUgdXNlciBuZWVkIGl0IG1lZXRzLiIsImhvd19pdF93b3JrcyI6IlRoZSBwcm9jZXNzZXMgYW5kIGJhY2stb2ZmaWNlIG9wZXJhdGlvbnMgdGhhdCBhbGxvdyB0aGUgc2VydmljZSB0byBvcGVyYXRlLiIsInR5cGljYWxfdXNlcnMiOiJFYWNoIG9mIHRoZSBzZXJ2aWNl4oCZcyBrZXkgdXNlciBncm91cHMgd2l0aCB0aGVpciByZXNwZWN0aXZlIGRlbW9ncmFwaGljLCBnZW9ncmFwaGljIGRpc3RyaWJ1dGlvbiBhbmQgb3RoZXIgcmVsZXZhbnQgZGV0YWlscy4iLCJmcmVxdWVuY3lfdXNlZCI6Ik9uIGF2ZXJhZ2UsIGhvdyBvZnRlbiBlYWNoIG9mIHRoZSBrZXkgdXNlciBncm91cHMgdXNlcyB0aGUgc2VydmljZS4iLCJkdXJhdGlvbl91bnRpbF9vdXRjb21lIjoiVGhlIGF2ZXJhZ2UgYW1vdW50IG9mIHRpbWUgZm9yIGVhY2ggb2YgdGhlIGtleSB1c2VyIGdyb3VwcyB0aGF0IGl0IHRha2VzIGZvciBhIHJlY2VpdmVkIHRyYW5zYWN0aW9uIHRvIGVuZCBpbiBhbiBvdXRjb21lLiIsInN0YXJ0X3BhZ2VfdXJsIjoiaHR0cHM6Ly9leGFtcGxlLmNvbSIsInBhcGVyX2Zvcm1fdXJsIjoiaHR0cHM6Ly9leGFtcGxlLmNvbSIsImRlcGFydG1lbnQiOnsidHlwZSI6ImRlcGFydG1lbnQiLCJuYXR1cmFsX2tleSI6IkQwMDAyIiwibmFtZSI6IkRlcGFydG1lbnQgZm9yIFRyYW5zcG9ydCIsImhvc3RuYW1lIjoiZGVwYXJ0bWVudC1mb3ItdHJhbnNwb3J0IiwiZGVsaXZlcnlfb3JnYW5pc2F0aW9uc19jb3VudCI6Miwic2VydmljZXNfY291bnQiOjl9fQ==
     http_version: 
-  recorded_at: Thu, 22 Jun 2017 10:36:32 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:01 GMT
 recorded_with: VCR 3.0.3

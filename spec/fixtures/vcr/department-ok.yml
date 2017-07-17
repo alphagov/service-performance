@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://cgsd-api-rails.dev/v1/data/departments/D0002
+    uri: http://gsd-api.dev/v1/data/departments/D0002
     body:
       encoding: US-ASCII
       string: ''
@@ -29,16 +29,16 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 6cb810bd-0d62-48c3-8a01-bdc9c7d73862
+      - af93f74a-7791-442b-a857-8948eb381931
       x-runtime:
-      - '0.076465'
+      - '0.016298'
       date:
-      - Thu, 22 Jun 2017 10:35:49 GMT
+      - Mon, 17 Jul 2017 10:01:01 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9}'
     http_version: 
-  recorded_at: Thu, 22 Jun 2017 10:35:49 GMT
+  recorded_at: Mon, 17 Jul 2017 10:01:01 GMT
 recorded_with: VCR 3.0.3
