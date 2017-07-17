@@ -37,6 +37,6 @@ class GovernmentServiceDataAPI::MetricGroup
   end
 
   def calls_received
-    GovernmentServiceDataAPI::CallsReceivedMetric.new
+    GovernmentServiceDataAPI::CallsReceivedMetric.build(@metrics['calls-received'])
   end
 end

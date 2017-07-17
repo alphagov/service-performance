@@ -1,43 +1,71 @@
-<div class="m-metric metric__transactions-with-outcome">
+<% Rails.logger.debug "DEBUG: #{calls_received_metric.inspect}" %>
+
+<div class="m-metric metric__calls-received">
   <ul class="list">
-    <li class="m-metric-headline">
+    <%= metric_item(Metrics::Items::CallsReceived, html: { class: 'm-metric-headline' }) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.total) %></strong> calls received
+      <% end %>
+
       <span class="total">
-        <span class="bold-large">665m</span>
+        <span class="bold-large"><%= metric_to_human(calls_received_metric.total) %></span>
         <span class="data-item bold">calls received</span>
       </span>
+      
+      <% if calls_received_metric.sampled %>
+        <span class="sampled">
+          <span class="bold-large"><%= metric_to_human(calls_received_metric.sampled_total) %></span>
+          <span class="data-item bold">calls sample size</span>
+        </span>
+      <% end %>
+    <% end %>
 
-      <span class="sampled">
-        <span class="data-item bold-large">5k</span>
-        <span class="data-item bold">calls sample size</span>
-      </span>
-    </li>
-    <li class="sampled">
+    <%= metric_item(Metrics::Items::CallsReceivedGetInformation, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.get_information) %></strong> calls received to get information (<%= metric_to_percentage(calls_received_metric.get_information_percentage) %>)
+      <% end %>
+
       <span class="metric-name">To get information</span>
       <span class="metric-value">
-        <span class="metric-value-count">339m</span>
-        <span class="metric-value-percentage">(60%)</span>
+        <span class="metric-value-count"><%= metric_to_human(calls_received_metric.get_information) %></span>
+        <span class="metric-value-percentage">(<%= metric_to_percentage(calls_received_metric.get_information_percentage) %>)</span>
       </span>
-    </li>
-    <li class="sampled">
+    <% end %>
+
+    <%= metric_item(Metrics::Items::CallsReceivedChaseProgress, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.chase_progress) %></strong> calls received to chase progress (<%= metric_to_percentage(calls_received_metric.chase_progress_percentage) %>)
+      <% end %>
+
       <span class="metric-name">To chase progress</span>
       <span class="metric-value">
-        <span class="metric-value-count">133m</span>
-        <span class="metric-value-percentage">(20%)</span>
+        <span class="metric-value-count"><%= metric_to_human(calls_received_metric.chase_progress) %></span>
+        <span class="metric-value-percentage">(<%= metric_to_percentage(calls_received_metric.chase_progress_percentage) %>)</span>
       </span>
-    </li>
-    <li class="sampled">
+    <% end %>
+
+    <%= metric_item(Metrics::Items::CallsReceivedChallengeADecision, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.challenge_a_decision) %></strong> calls received to challenge a decision (<%= metric_to_percentage(calls_received_metric.challenge_a_decision_percentage) %>)
+      <% end %>
+
       <span class="metric-name">To challenge a decision</span>
       <span class="metric-value">
-        <span class="metric-value-count">39.9m</span>
-        <span class="metric-value-percentage">(10%)</span>
+        <span class="metric-value-count"><%= metric_to_human(calls_received_metric.challenge_a_decision) %></span>
+        <span class="metric-value-percentage">(<%= metric_to_percentage(calls_received_metric.challenge_a_decision_percentage) %>)</span>
       </span>
-    </li>
-    <li class="sampled">
+    <% end %>
+
+    <%= metric_item(Metrics::Items::CallsReceivedOther, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.get_information) %></strong> other calls received (<%= metric_to_percentage(calls_received_metric.other_percentage) %>)
+      <% end %>
+
       <span class="metric-name">Other</span>
       <span class="metric-value">
-        <span class="metric-value-count">39.9m</span>
-        <span class="metric-value-percentage">(10%)</span>
+        <span class="metric-value-count"><%= metric_to_human(calls_received_metric.other) %></span>
+        <span class="metric-value-percentage">(<%= metric_to_percentage(calls_received_metric.other_percentage) %>)</span>
       </span>
-    </li>
+    <% end %>
   </ul>
 </div>
