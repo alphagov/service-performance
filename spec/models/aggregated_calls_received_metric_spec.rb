@@ -85,6 +85,34 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       expect(metric.challenge_a_decision).to eq(0)
       expect(metric.other).to eq(0)
     end
+
+    context 'aggregating sampled & non-sampled data' do
+      it 'is sampled if any of the metrics are sampled' do
+        service = FactoryGirl.create(:service)
+        FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', quantity: 50, sampled: false)
+        FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-02-28', quantity: 60, sampled: true, sample_size: 15)
+        FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-03-01', ends_on: '2017-03-31', quantity: 70, sampled: false)
+
+        time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+        metric = AggregatedCallsReceivedMetric.new(service, time_period)
+        expect(metric.total).to eq(180)
+        expect(metric.sampled).to be_truthy
+        expect(metric.sampled_total).to eq(135)
+      end
+      
+      it "isn't sampled if none of the metrics are sampled" do
+        service = FactoryGirl.create(:service)
+        FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', quantity: 50, sampled: false)
+        FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-02-28', quantity: 60, sampled: false)
+        FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-03-01', ends_on: '2017-03-31', quantity: 70, sampled: false)
+
+        time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+        metric = AggregatedCallsReceivedMetric.new(service, time_period)
+        expect(metric.total).to eq(180)
+        expect(metric.sampled).to be_falsey
+        expect(metric.sampled_total).to eq(180)
+      end
+    end
   end
 
 end
