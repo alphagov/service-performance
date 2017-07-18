@@ -21,11 +21,6 @@ RSpec.describe TransactionsWithOutcomeMetric, type: :model do
       expect(transactions_with_outcome_metric).to fail_strict_validations
     end
 
-    it 'requires quantity_with_intended_outcome' do
-      transactions_with_outcome_metric.quantity_with_intended_outcome = nil
-      expect(transactions_with_outcome_metric).to fail_strict_validations
-    end
-
     it "references a valid department" do
       transactions_with_outcome_metric.department = nil
       expect(transactions_with_outcome_metric).to fail_strict_validations
