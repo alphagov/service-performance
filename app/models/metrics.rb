@@ -16,6 +16,12 @@ module Metrics
 
     TransactionsEndingInOutcome = 'transactions-ending-in-outcome'
     TransactionsEndingInOutcomeWithIntendedOutcome = 'transactions-ending-in-outcome-with-intended-outcome'
+
+    CallsReceived = 'calls-received'
+    CallsReceivedGetInformation = 'calls-received-get-information'
+    CallsReceivedChaseProgress = 'calls-received-chase-progress'
+    CallsReceivedChallengeADecision = 'calls-received-challenge-a-decision'
+    CallsReceivedOther = 'calls-received-other'
   end
 
   module OrderBy
