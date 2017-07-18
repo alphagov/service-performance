@@ -7,5 +7,6 @@ FactoryGirl.define do
     ends_on { Date.today.end_of_month + 1.day }
 
     quantity 948
+    sampled false
   end
 end

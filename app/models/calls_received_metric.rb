@@ -9,4 +9,5 @@ class CallsReceivedMetric < ApplicationRecord
   validates_presence_of :ends_on, strict: true
 
   validates_presence_of :quantity, strict: true
+  validates_inclusion_of :sampled, in: [true, false], strict: true
 end

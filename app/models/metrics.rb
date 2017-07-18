@@ -35,6 +35,7 @@ class Metrics
   def metric_groups
     entities.map do |entity|
       MetricGroup.new(entity, [
+        AggregatedCallsReceivedMetric.new(entity, time_period),
         AggregatedTransactionsReceivedMetric.new(entity, time_period),
         AggregatedTransactionsWithOutcomeMetric.new(entity, time_period)
       ])

@@ -21,6 +21,11 @@ RSpec.describe CallsReceivedMetric, type: :model do
       expect(calls_received_metric).to fail_strict_validations
     end
 
+    it 'indicates whether it was sampled' do
+      calls_received_metric.sampled = nil
+      expect(calls_received_metric).to fail_strict_validations
+    end
+
     it "references a valid department" do
       calls_received_metric.department = nil
       expect(calls_received_metric).to fail_strict_validations
