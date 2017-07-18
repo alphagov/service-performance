@@ -7,7 +7,7 @@ class AggregatedTransactionsWithOutcomeMetric
       .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
       .each.with_object({total: 0, with_intended_outcome: 0}) do |metric, memo|
         memo[:total] += metric.quantity_with_any_outcome
-        memo[:with_intended_outcome] += metric.quantity_with_intended_outcome
+        memo[:with_intended_outcome] += metric.quantity_with_intended_outcome || 0
       end
   end
 

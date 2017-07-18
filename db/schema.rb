@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717103009) do
+ActiveRecord::Schema.define(version: 20170718132413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20170717103009) do
     t.date     "starts_on",                      null: false
     t.date     "ends_on",                        null: false
     t.bigint   "quantity_with_any_outcome",      null: false
-    t.bigint   "quantity_with_intended_outcome", null: false
+    t.bigint   "quantity_with_intended_outcome"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
