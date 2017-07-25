@@ -16,8 +16,8 @@ RSpec.describe Department, type: :model do
       expect(department).to fail_strict_validations
     end
 
-    it 'requires a hostname' do
-      department.hostname = ''
+    it 'requires a website' do
+      department.website = ''
       expect(department).to fail_strict_validations
     end
   end

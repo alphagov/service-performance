@@ -16,8 +16,8 @@ RSpec.describe DeliveryOrganisation, type: :model do
       expect(delivery_organisation).to fail_strict_validations
     end
 
-    it 'requires a hostname' do
-      delivery_organisation.hostname = ''
+    it 'requires a website' do
+      delivery_organisation.website = ''
       expect(delivery_organisation).to fail_strict_validations
     end
 
