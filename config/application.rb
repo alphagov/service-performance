@@ -29,6 +29,7 @@ module CgsdApiRails
 
     config.autoload_paths += [
       config.root.join('app', 'controllers', 'metrics'),
+      config.root.join('app', 'importers'),
       config.root.join('app', 'models', 'metrics'),
     ]
   end

@@ -56,11 +56,16 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
+    faraday (0.12.1)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.11.0.1)
+      faraday (>= 0.7.4, < 1.0)
     ffi (1.9.18)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.8.1)
     jsonapi-renderer (0.1.2)
+    link_header (0.0.8)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -74,6 +79,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    multipart-post (2.0.0)
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
@@ -145,6 +151,7 @@ GEM
     timecop (0.8.1)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
+    vcr (3.0.3)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -156,6 +163,8 @@ DEPENDENCIES
   active_model_serializers
   byebug
   factory_girl_rails
+  faraday_middleware
+  link_header
   listen (~> 3.0.5)
   pg
   puma (~> 3.0)
@@ -166,9 +175,10 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   timecop
   tzinfo-data
+  vcr
 
 RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.14.6
+   1.15.1
