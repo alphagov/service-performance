@@ -5,5 +5,4 @@ class DeliveryOrganisation < ApplicationRecord
   validates_presence_of :natural_key, strict: true
   validates_presence_of :name, strict: true
   validates_presence_of :website, strict: true
-  validates_presence_of :department, strict: true
 end

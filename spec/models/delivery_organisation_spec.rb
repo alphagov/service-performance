@@ -20,11 +20,6 @@ RSpec.describe DeliveryOrganisation, type: :model do
       delivery_organisation.website = ''
       expect(delivery_organisation).to fail_strict_validations
     end
-
-    it "references a valid department" do
-      delivery_organisation.department = nil
-      expect(delivery_organisation).to fail_strict_validations
-    end
   end
 
   describe '#services' do
