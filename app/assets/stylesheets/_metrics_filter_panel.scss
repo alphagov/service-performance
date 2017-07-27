@@ -1,11 +1,11 @@
 .a-search-input {
-  font-size: 16px;
-  line-height: 1.47368;
+  @include core-16;
+  @include box-sizing(border-box);
 
   height: 36px;
   padding: 6px;
 
-  border: 2px solid black;
+  border: 2px solid $black;
   border-right: none;
   border-radius: 0;
   -webkit-appearance: none;
@@ -17,7 +17,7 @@
 }
 
 .a-search-button {
-  background-color: black;
+  background-color: $black;
   background-image: image-url('icon-search-2.png');
   background-position: 50% 50%;
   background-size: 20px 20px;
@@ -28,20 +28,18 @@
   overflow: hidden;
   text-indent: -5000px;
 
-  /* border: 1px solid $border-colour; */
-  /* @include border-radius(0); */
+  @include border-radius(0);
 
   &:hover {
     cursor: pointer;
-    /* background-color: darken($mainstream-brand, 5%); */
-    background-color: lighten(black, 10%);
+    background-color: lighten($black, 30%);
   }
 }
 
 .a-apply-button {
-  background-color: black;
+  background-color: $black;
   border: 0;
-  color: white;
+  color: $white;
 }
 
 .m-sort-filter {
@@ -72,13 +70,13 @@
       }
 
       span {
-        color: #005ea5;
+        color: $govuk-blue;
         text-decoration: underline;
         cursor: pointer;
       }
 
       &.checked span {
-        color: #000000;
+        color: $black;
         text-decoration: none;
       }
     }
@@ -103,13 +101,9 @@
     margin-right: 0;
     z-index: 0;
 
-    /* @include core-16; */
-    /* @include box-sizing(border-box); */
     position: relative;
     width: 86%;
     width: calc(100% - 36px);
-    /* @includecalc(width, "100% - 36px"); */
-    /* border: 1px solid $border-colour; */
   }
 
   .a-search-button {
@@ -123,7 +117,7 @@
 }
 
 .o-filter-panel {
-  border-top: 1px solid #BFC1C3;
+  border-top: 1px solid $grey-2;
   padding: 10px 15px;
 
 
