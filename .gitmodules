@@ -1,3 +1,6 @@
 [submodule "vendor/submodules/govuk_template"]
 	path = vendor/submodules/govuk_template
 	url = https://github.com/alphagov/govuk_template.git
+[submodule "vendor/submodules/govuk_elements"]
+	path = vendor/submodules/govuk_elements
+	url = https://github.com/alphagov/govuk_elements.git
