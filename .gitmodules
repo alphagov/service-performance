@@ -7,3 +7,6 @@
 [submodule "vendor/submodules/govuk_frontend_toolkit"]
 	path = vendor/submodules/govuk_frontend_toolkit
 	url = https://github.com/alphagov/govuk_frontend_toolkit.git
+[submodule "vendor/submodules/product-page-example"]
+	path = vendor/submodules/product-page-example
+	url = https://github.com/alphagov/product-page-example.git
