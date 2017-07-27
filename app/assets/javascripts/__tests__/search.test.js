@@ -17,7 +17,7 @@ describe('On the search page', function () {
     '</div>'
 
   var SearchResultsHTML =
-    '<div class="o-metric-groups grid-row" data-behaviour="o-metric-groups">' +
+    '<div class="o-metric-groups" data-behaviour="o-metric-groups">' +
       '<ul>' +
         '<li class="m-metric-group" data-behaviour="m-metric-group">' +
           '<h2 class="bold-medium"><a>HM Revenue &amp; Customs</a></h2>' +
