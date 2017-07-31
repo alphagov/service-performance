@@ -1,6 +1,5 @@
 .a-search-input {
-  @include core-16;
-  @include box-sizing(border-box);
+  @include core-19;
 
   height: 36px;
   padding: 6px;
@@ -21,22 +20,25 @@
   color: $white;
 }
 
-.m-sort-filter {
-  display: flex;
-  flex-wrap: wrap;
-  flex: 2 0 0;
+.m-sort-filter,
+.m-search-filter {
   width: 100%;
+  float: left;
 
-  /* this isn't super awesome */
-  margin-right: 60px;
-
-  label {
-    order: 1;
+  > * {
+    display: block;
   }
 
+  > label {
+    @include bold-19;
+  }
+}
+
+.m-sort-filter {
+  position: relative;
+  padding-bottom: $gutter-half;
+
   .m-sort-order {
-    order: 2;
-    flex-grow: 1;
     text-align: right;
 
     label {
@@ -62,90 +64,55 @@
   }
 
   select {
-    order: 3;
+    height: 36px;
     width: 100%;
-    display: block;
   }
 
-  .a-apply-button {
-    order: 4;
-  }
-}
-
-.m-search-filter {
-  display: block;
-  position: relative;
-  flex: 1 0 0;
-
-  .a-search-input {
-    margin-right: 0;
-    z-index: 0;
-
-    position: relative;
-<<<<<<< HEAD
-    width: 86%;
-    width: calc(100% - 36px);
-  }
-
-  .a-search-button {
-    margin-left: 0;
-    z-index: 1;
-
-    position: absolute;
-    right: 0;
-    bottom: 0;
-
-    @include media(tablet) {
-      bottom: 0;
+  @include media(mobile) {
+    .m-sort-order {
+      position: absolute;
+      top: 0;
+      right: 0;
     }
-=======
-    width: 100%;
->>>>>>> Remove search button
   }
 
-
-}
-
-.o-filter-panel {
-  border-top: 1px solid $grey-2;
-  padding-top: 20px;
-  padding-bottom: 20px;
-
-  form {
-    padding: 0;
-  }
-
-  .a-apply-button {
-    display: block;
-  }
-}
-
-@media (min-width: 600px) {
-  .o-filter-panel {
-
-    form, .m-search-filter {
+  @include media(tablet) {
+    .m-sort-order {
+      position: relative;
       display: inline-block;
-      vertical-align: top;
-    }
-
-    form {
-      width: 66%;
-    }
-
-    .m-search-filter {
-      width: 33%;
     }
   }
 
-  .m-sort-filter {
-    display: inline;
+  @include media(desktop) {
+    width: percentage(2/3);
+    padding-bottom: 0;
 
     select {
       width: auto;
     }
   }
+}
 
-  .m-sort-order {
-    display: inline-block;
+.m-search-filter {
+
+  .a-search-input {
+    margin-right: 0;
+    width: 100%;
+  }
+
+  @include media(desktop) {
+    width: percentage(1/3);
+    padding-left: $gutter-half;
+  }
+}
+
+.o-filter-panel {
+  @extend %contain-floats;
+  border-top: 1px solid $grey-2;
+  padding-top: $gutter-two-thirds;
+  padding-bottom: $gutter-two-thirds;
+
+  .a-apply-button {
+    display: block;
   }
 }
