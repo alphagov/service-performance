@@ -6,33 +6,12 @@
   padding: 6px;
 
   border: 2px solid $black;
-  border-right: none;
   border-radius: 0;
   -webkit-appearance: none;
 
   &.focus,
   &:focus {
     outline-offset: -3px;
-  }
-}
-
-.a-search-button {
-  background-color: $black;
-  background-image: image-url('icon-search-2.png');
-  background-position: 50% 50%;
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-  border: 0;
-  width: 36px;
-  height: 36px;
-  overflow: hidden;
-  text-indent: -5000px;
-
-  @include border-radius(0);
-
-  &:hover {
-    cursor: pointer;
-    background-color: lighten($black, 30%);
   }
 }
 
@@ -103,6 +82,7 @@
     z-index: 0;
 
     position: relative;
+<<<<<<< HEAD
     width: 86%;
     width: calc(100% - 36px);
   }
@@ -118,6 +98,9 @@
     @include media(tablet) {
       bottom: 0;
     }
+=======
+    width: 100%;
+>>>>>>> Remove search button
   }
 
 

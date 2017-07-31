@@ -13,7 +13,6 @@ describe('On the search page', function () {
     '<div class="m-search-filter hidden" data-behaviour="m-search-filter">' +
       '<label for="search-metrics">Find department</label>' +
       '<input type="search" id="search-metrics" class="a-search-input" placeholder="Example: environment">' +
-      '<input class="a-search-button" type="button" value="Search">' +
     '</div>'
 
   var SearchResultsHTML =
@@ -64,14 +63,6 @@ describe('On the search page', function () {
       afterEach(function () {
         // Drop everything from the page
         $(document.body).empty()
-      })
-
-      it('should filter the search results when clicked', function () {
-        $searchInput.val('revenue')
-        $searchFilter.find('input[type="button"]').trigger('click')
-
-        expect($results.eq(0).hasClass('hidden')).toEqual(false)
-        expect($results.eq(1).hasClass('hidden')).toEqual(true)
       })
 
       it('should filter the search results on keyup', function () {
