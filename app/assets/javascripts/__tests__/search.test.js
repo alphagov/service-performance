@@ -81,6 +81,13 @@ describe('On the search page', function () {
         expect($results.eq(1).hasClass('hidden')).toEqual(true)
       })
 
+      it('should filter the search results on search', function () {
+        $searchInput.val('revenue').trigger('search')
+
+        expect($results.eq(0).hasClass('hidden')).toEqual(false)
+        expect($results.eq(1).hasClass('hidden')).toEqual(true)
+      })
+
       it('should filter the search results ignoring spaces', function () {
         $searchInput.val('     revenue    ').trigger('keyup')
 

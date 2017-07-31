@@ -64,8 +64,8 @@
       fn(query)
     }
 
-    var _setKeyListenerOnInput = function (fn) {
-      $searchInput.on('keyup', function () {
+    var _setListenersOnInput = function (fn) {
+      $searchInput.on('keyup search', function () {
         _search(fn)
       })
     }
@@ -83,7 +83,7 @@
       $searchButton = $searchFilter.find('input[type="button"]')
 
       $searchFilter.removeClass('hidden')
-      _setKeyListenerOnInput(fn)
+      _setListenersOnInput(fn)
       _setClickListenerOnButton(fn)
     }
 
