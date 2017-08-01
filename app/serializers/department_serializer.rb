@@ -1,5 +1,5 @@
 class DepartmentSerializer < ActiveModel::Serializer
-  attributes :type, :natural_key, :name, :hostname
+  attributes :type, :natural_key, :name, :website
   attributes :delivery_organisations_count, :services_count
 
   def type

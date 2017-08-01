@@ -1,5 +1,5 @@
 class DeliveryOrganisationSerializer < ActiveModel::Serializer
-  attributes :type, :natural_key, :name, :hostname
+  attributes :type, :natural_key, :name, :website
   attributes :services_count
 
   def type

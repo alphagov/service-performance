@@ -1,0 +1,253 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://government-organisation.register.gov.uk/records.json?page-size=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      cache-control:
+      - no-transform
+      content-disposition:
+      - inline; filename="government-organisation-records.json"
+      content-security-policy:
+      - default-src 'self' www.google-analytics.com; font-src data:;
+      date:
+      - Wed, 26 Jul 2017 13:01:52 GMT
+      link:
+      - <?page-index=2&page-size=1>; rel="next"
+      strict-transport-security:
+      - max-age=10886400; includeSubDomains
+      x-content-type-options:
+      - nosniff
+      x-xss-protection:
+      - 1; mode=block
+      vary:
+      - Accept-Encoding
+      x-cache:
+      - Miss from cloudfront
+      via:
+      - 1.1 bec1424c85a1269d5579c9004411d0f1.cloudfront.net (CloudFront)
+      x-amz-cf-id:
+      - b9zLS26cWqdCG-6zs5UMqGzk6jP90OmN4zpm168m4ox6ivE6E9lPiQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"D5":{"index-entry-number":"983","entry-number":"983","entry-timestamp":"2017-07-13T13:57:39Z","key":"D5","item":[{"website":"https://www.gov.uk/government/organisations/department-for-culture-media-sport","name":"Department
+        for Digital, Culture, Media and Sport","government-organisation":"D5"}]}}'
+    http_version: 
+  recorded_at: Wed, 26 Jul 2017 13:02:06 GMT
+- request:
+    method: get
+    uri: https://government-organisation.register.gov.uk/records.json?page-index=2&page-size=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      cache-control:
+      - no-transform
+      content-disposition:
+      - inline; filename="government-organisation-records.json"
+      content-security-policy:
+      - default-src 'self' www.google-analytics.com; font-src data:;
+      date:
+      - Wed, 26 Jul 2017 13:02:13 GMT
+      link:
+      - <?page-index=3&page-size=1>; rel="next",<?page-index=1&page-size=1>; rel="previous"
+      strict-transport-security:
+      - max-age=10886400; includeSubDomains
+      x-content-type-options:
+      - nosniff
+      x-xss-protection:
+      - 1; mode=block
+      vary:
+      - Accept-Encoding
+      x-cache:
+      - Miss from cloudfront
+      via:
+      - 1.1 4222b2a73c8078ae05f5cfa25b5cd0ab.cloudfront.net (CloudFront)
+      x-amz-cf-id:
+      - AXrxqhlVGikxoGJjelq2uPl1bz_RgAboJaeO58J8t43dXNoI6zSffg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"DA1020":{"index-entry-number":"981","entry-number":"981","entry-timestamp":"2017-06-06T08:40:56Z","key":"DA1020","item":[{"website":"https://www.gov.uk/government/organisations/the-scottish-government","name":"Scottish
+        Government","government-organisation":"DA1020"}]}}'
+    http_version: 
+  recorded_at: Wed, 26 Jul 2017 13:02:07 GMT
+- request:
+    method: get
+    uri: https://government-organisation.register.gov.uk/records.json?page-index=3&page-size=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      cache-control:
+      - no-transform
+      content-disposition:
+      - inline; filename="government-organisation-records.json"
+      content-security-policy:
+      - default-src 'self' www.google-analytics.com; font-src data:;
+      date:
+      - Wed, 26 Jul 2017 13:01:52 GMT
+      link:
+      - <?page-index=4&page-size=1>; rel="next",<?page-index=2&page-size=1>; rel="previous"
+      strict-transport-security:
+      - max-age=10886400; includeSubDomains
+      x-content-type-options:
+      - nosniff
+      x-xss-protection:
+      - 1; mode=block
+      vary:
+      - Accept-Encoding
+      x-cache:
+      - Miss from cloudfront
+      via:
+      - 1.1 16291083b92e5aa4f2f272f1da69c5e4.cloudfront.net (CloudFront)
+      x-amz-cf-id:
+      - CtKjbIEet8WqdEepwvM4qdyuM1vCopUHwxl6r1E1ML4-RFvYzUjdZw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"PB1218":{"index-entry-number":"980","entry-number":"980","entry-timestamp":"2017-04-25T12:59:14Z","key":"PB1218","item":[{"website":"https://www.gov.uk/government/organisations/regulator-of-social-housing","name":"Regulator
+        of Social Housing","government-organisation":"PB1218"}]}}'
+    http_version: 
+  recorded_at: Wed, 26 Jul 2017 13:02:07 GMT
+- request:
+    method: get
+    uri: https://government-organisation.register.gov.uk/records.json?page-index=4&page-size=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - application/json
+      content-length:
+      - '213'
+      connection:
+      - close
+      cache-control:
+      - no-transform
+      content-disposition:
+      - inline; filename="government-organisation-records.json"
+      content-security-policy:
+      - default-src 'self' www.google-analytics.com; font-src data:;
+      date:
+      - Wed, 26 Jul 2017 13:01:52 GMT
+      link:
+      - <?page-index=5&page-size=1>; rel="next",<?page-index=3&page-size=1>; rel="previous"
+      strict-transport-security:
+      - max-age=10886400; includeSubDomains
+      x-content-type-options:
+      - nosniff
+      x-xss-protection:
+      - 1; mode=block
+      vary:
+      - Accept-Encoding
+      x-cache:
+      - Miss from cloudfront
+      via:
+      - 1.1 5708bb5bf7c6584fb61b0ea84d7bead3.cloudfront.net (CloudFront)
+      x-amz-cf-id:
+      - WdKIHqJXvLFwksBw7JwcJslfyLfphOed74GoChUUU3_mv0JNh-IUkg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"EO1216":{"index-entry-number":"979","entry-number":"979","entry-timestamp":"2017-04-25T12:59:14Z","key":"EO1216","item":[{"website":"https://www.gov.uk/government/organisations/education-and-skills-funding-agency","name":"Education
+        and Skills Funding Agency","government-organisation":"EO1216"}]}}'
+    http_version: 
+  recorded_at: Wed, 26 Jul 2017 13:02:07 GMT
+- request:
+    method: get
+    uri: https://government-organisation.register.gov.uk/records.json?page-index=5&page-size=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      cache-control:
+      - no-transform
+      content-disposition:
+      - inline; filename="government-organisation-records.json"
+      content-security-policy:
+      - default-src 'self' www.google-analytics.com; font-src data:;
+      date:
+      - Wed, 26 Jul 2017 13:02:10 GMT
+      link:
+      - <?page-index=6&page-size=1>; rel="next",<?page-index=4&page-size=1>; rel="previous"
+      strict-transport-security:
+      - max-age=10886400; includeSubDomains
+      x-content-type-options:
+      - nosniff
+      x-xss-protection:
+      - 1; mode=block
+      vary:
+      - Accept-Encoding
+      x-cache:
+      - Miss from cloudfront
+      via:
+      - 1.1 fb592d1377921b63fca3b504191c34b1.cloudfront.net (CloudFront)
+      x-amz-cf-id:
+      - Emdq4Ns4f6Ow8a3fumEE6t0P9Gql1O4zU_DDsnoSNLk1piwSumYa9w==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"OT1215":{"index-entry-number":"978","entry-number":"978","entry-timestamp":"2017-04-25T12:59:14Z","key":"OT1215","item":[{"website":"https://www.gov.uk/government/organisations/judicial-office","name":"Judicial
+        Office","government-organisation":"OT1215"}]}}'
+    http_version: 
+  recorded_at: Wed, 26 Jul 2017 13:02:07 GMT
+recorded_with: VCR 3.0.3
