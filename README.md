@@ -74,10 +74,10 @@ Running `npm run lint` will lint the javascript files it finds in the `app/asset
 We're using [Jest](https://facebook.github.io/jest/) for JavaScript unit tests.
 
 ```
-npm test
+./script/run-npm-test
 ```
 
-Running `npm test` will run any javascript test files it finds across the whole codebase.
+Running `./script/run-npm-test` will run any javascript test files it finds across the whole codebase.
 
 ### Installing capybara-webkit
 
