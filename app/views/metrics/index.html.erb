@@ -1,5 +1,3 @@
-<div class="seperator"></div>
-
 <main id="content" role="main" class="metrics">
   <%= breadcrumbs %>
 
@@ -25,52 +23,58 @@
     </div>
   </header>
 
-  <%= tabs(current_page: page) do |tabs| %>
-    <% tabs.link_to tab_name('Departments', count: @metrics.departments_count), url_for(request.params.merge(group_by: Metrics::Group::Department)) if @metrics.has_departments? %>
-    <% tabs.link_to tab_name('Delivery organisations', count: @metrics.delivery_organisations_count), url_for(request.params.merge(group_by: Metrics::Group::DeliveryOrganisation)) if @metrics.has_delivery_organisations? %>
-    <% tabs.link_to tab_name('Services', count: @metrics.services_count), url_for(request.params.merge(group_by: Metrics::Group::Service)) if @metrics.has_services? %>
-  <% end %>
+  <div class="grid-row">
+    <div class="column-full">
 
-  <div class="grid-row o-filter-panel" data-behaviour="o-filter-panel">
-    <%= form_for @metrics, as: :filter, url: '', method: 'get', class: 'column-full filter-row' do |f| %>
-      <div class="m-sort-filter">
-        <%= f.label :order_by, 'Sort by' %>
-        <%= f.select :order_by, Metrics::OrderBy::ALL.map {|order| [order.name, order.identifier]}, {}, class: 'form-control' %>
-
-        <div class="m-sort-order">
-          <label><%= f.radio_button :order, Metrics::Order::Descending %> <span>High to Low</span></label>
-          <label><%= f.radio_button :order, Metrics::Order::Ascending %> <span>Low to High</span></label>
-          <!-- <a href="#">High to Low</a> | <a href="#">Low to High</a> -->
-        </div>
-
-        <button type="submit" class="a-apply-button">Apply</button>
-      </div>
-
-      <div class="m-search-filter hidden" data-behaviour="m-search-filter">
-        <label for="search-departments" class="visuallyhidden">Find department</label>
-        <input type="search" id="search-departments" class="a-search-input" placeholder="Find department">
-        <input class="a-search-button" type="button" value="Search">
-      </div>
-    <% end %>
-  </div>
-
-  <!--end of filter-->
-
-  <div class="o-metric-groups grid-row" data-behaviour="o-metric-groups">
-    <ul>
-
-      <% @metrics.metric_groups.each do |metric_group|  %>
-        <li class="m-metric-group" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsed<% end %>">
-          <div data-metric-group-expanded>
-            <%= render metric_group.entity, metric_group: metric_group  %>
-
-            <div class="m-metrics">
-              <%= render metric_group.metrics %>
-            </div>
-          </div>
-        </li>
+      <%= tabs(current_page: page) do |tabs| %>
+        <% tabs.link_to tab_name('Departments', count: @metrics.departments_count), url_for(request.params.merge(group_by: Metrics::Group::Department)) if @metrics.has_departments? %>
+        <% tabs.link_to tab_name('Delivery organisations', count: @metrics.delivery_organisations_count), url_for(request.params.merge(group_by: Metrics::Group::DeliveryOrganisation)) if @metrics.has_delivery_organisations? %>
+        <% tabs.link_to tab_name('Services', count: @metrics.services_count), url_for(request.params.merge(group_by: Metrics::Group::Service)) if @metrics.has_services? %>
       <% end %>
 
-    </ul>
-  </div>
+      <div class="o-filter-panel" data-behaviour="o-filter-panel">
+        <%= form_for @metrics, as: :filter, url: '', method: 'get', class: 'filter-row' do |f| %>
+          <div class="m-sort-filter">
+            <%= f.label :order_by, 'Sort by' %>
+            <%= f.select :order_by, Metrics::OrderBy::ALL.map {|order| [order.name, order.identifier]}, {}, class: 'form-control' %>
+
+            <div class="m-sort-order">
+              <label><%= f.radio_button :order, Metrics::Order::Descending %> <span>High to Low</span></label>
+              <label><%= f.radio_button :order, Metrics::Order::Ascending %> <span>Low to High</span></label>
+              <!-- <a href="#">High to Low</a> | <a href="#">Low to High</a> -->
+            </div>
+
+            <button type="submit" class="a-apply-button">Apply</button>
+          </div>
+
+          <div class="m-search-filter hidden" data-behaviour="m-search-filter">
+            <label for="search-departments" class="visuallyhidden">Find department</label>
+            <input type="search" id="search-departments" class="a-search-input" placeholder="Find department">
+            <input class="a-search-button" type="button" value="Search">
+          </div>
+        <% end %>
+      </div>
+
+      <!--end of filter-->
+
+      <div class="o-metric-groups" data-behaviour="o-metric-groups">
+        <ul>
+
+          <% @metrics.metric_groups.each do |metric_group|  %>
+            <li class="m-metric-group" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsed<% end %>">
+              <div data-metric-group-expanded>
+                <%= render metric_group.entity, metric_group: metric_group  %>
+
+                <div class="m-metrics">
+                  <%= render metric_group.metrics %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+
+        </ul>
+      </div>
+
+    </div><!-- end of .column-full -->
+  </div><!-- end of .grid-row -->
 </main>

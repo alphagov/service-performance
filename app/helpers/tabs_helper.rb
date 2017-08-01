@@ -16,7 +16,7 @@ module TabsHelper
       end
     end
 
-    content_tag(:nav, class: 'o-tabs grid-row') do
+    content_tag(:nav, class: 'o-tabs') do
       content_tag(:ol, safe_join(tab_links))
     end
   end
