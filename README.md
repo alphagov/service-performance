@@ -1,10 +1,10 @@
 # Government Service Data – View Data
 
-This is the frontend application for viewing Government Service Data. It communicates with the [`gsd-api`](https://github.com/alphagov/cgsd-api-rails) application to retrive the data.
+This is the frontend application for viewing Government Service Data. It communicates with the [`gsd-api`](https://github.com/alphagov/gsd-api-rails) application to retrive the data.
 
 ## Setup
 
-First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/cgsd-view-data/blob/master/.ruby-version) installed, which is currently `2.4.1`. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
+First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/gsd-view-data/blob/master/.ruby-version) installed, which is currently `2.4.1`. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
 
 ```
 brew install rbenv
@@ -34,7 +34,7 @@ Once you have all the dependencies, you need to start the server.
 1. You can check out [`Pow`](http://pow.cx/) for a really easy no-config server solution.
 2. You can do the more conventional `rails -s` command. If you're already running another app on port 3000 (the API, for example), then pass in a new port number with `rails -s --port 3000`
 
-Create a `.env` file by copying [`.env.example`](https://github.com/alphagov/cgsd-view-data/blob/master/.env.example) and then make sure `API_URL` is pointing at the same place where the API is running and you should be good to go. 😎👍
+Create a `.env` file by copying [`.env.example`](https://github.com/alphagov/gsd-view-data/blob/master/.env.example) and then make sure `API_URL` is pointing at the same place where the API is running and you should be good to go. 😎👍
 
 ## Tests
 
