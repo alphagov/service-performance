@@ -16,9 +16,9 @@ RSpec.describe TabsHelper, type: :helper do
         tabs.link_to 'Example 2', '/example2'
       end
 
-      expect(output).to have_selector('nav.o-tabs.grid-row ol')
-      expect(output).to have_selector('nav.o-tabs.grid-row ol li.m-tab-item a.m-tab-link[href="/example1"]', text: 'Example 1')
-      expect(output).to have_selector('nav.o-tabs.grid-row ol li.m-tab-item a.m-tab-link[href="/example2"]', text: 'Example 2')
+      expect(output).to have_selector('nav.o-tabs ol')
+      expect(output).to have_selector('nav.o-tabs ol li.m-tab-item a.m-tab-link[href="/example1"]', text: 'Example 1')
+      expect(output).to have_selector('nav.o-tabs ol li.m-tab-item a.m-tab-link[href="/example2"]', text: 'Example 2')
     end
 
     it 'marks the tab as selected if the path matches' do
