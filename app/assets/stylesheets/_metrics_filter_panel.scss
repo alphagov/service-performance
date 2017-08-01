@@ -85,6 +85,7 @@
   select {
     order: 3;
     width: 100%;
+    display: block;
   }
 
   .a-apply-button {
@@ -112,8 +113,14 @@
 
     position: absolute;
     right: 0;
-    top: 0;
+    bottom: 0;
+
+    @include media(tablet) {
+      bottom: 22px;
+    }
   }
+
+
 }
 
 .o-filter-panel {

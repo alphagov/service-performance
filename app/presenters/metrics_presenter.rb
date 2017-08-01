@@ -11,6 +11,19 @@ class MetricsPresenter
 
   attr_reader :group_by, :order_by, :order
 
+  def group_by_screen_name
+    case group_by
+    when Metrics::Group::Department
+      'department'
+    when Metrics::Group::DeliveryOrganisation
+      'delivery organisation'
+    when Metrics::Group::Service
+      'service'
+    else
+      'by name'
+    end
+  end
+
   def organisation_name
     entity.name
   end
@@ -33,7 +46,7 @@ class MetricsPresenter
   def has_delivery_organisations?
     true
   end
-  
+
   def has_services?
     true
   end
@@ -45,7 +58,7 @@ class MetricsPresenter
       nil
     end
   end
-  
+
   def delivery_organisations_count
     if has_delivery_organisations?
       entity.delivery_organisations_count
@@ -53,7 +66,7 @@ class MetricsPresenter
       nil
     end
   end
-  
+
   def services_count
     if has_services?
       entity.services_count
