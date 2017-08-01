@@ -80,6 +80,7 @@
     .m-sort-order {
       position: relative;
       display: inline-block;
+      margin-top: 3px;
     }
   }
 
@@ -98,6 +99,11 @@
   .a-search-input {
     margin-right: 0;
     width: 100%;
+  }
+
+  .a-search-counter {
+    margin-top: 3px;
+    margin-bottom: 0;
   }
 
   @include media(desktop) {
