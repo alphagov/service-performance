@@ -1,1 +1,4 @@
-//= require product-page-template/screen-old-ie
+$is-ie: true;
+$ie-version: 8;
+
+@import "__base";
