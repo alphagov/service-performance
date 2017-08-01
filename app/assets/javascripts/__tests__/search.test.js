@@ -11,8 +11,8 @@ describe('On the search page', function () {
   var $ = window.jQuery
   var searchFilterHTML =
     '<div class="m-search-filter hidden" data-behaviour="m-search-filter">' +
-      '<label for="search-departments" class="visuallyhidden">Find department</label>' +
-      '<input type="search" id="search-departments" class="a-search-input" placeholder="Find department">' +
+      '<label for="search-metrics">Find department</label>' +
+      '<input type="search" id="search-metrics" class="a-search-input" placeholder="Example: environment">' +
       '<input class="a-search-button" type="button" value="Search">' +
     '</div>'
 
