@@ -78,3 +78,11 @@ npm test
 ```
 
 Running `npm test` will run any javascript test files it finds across the whole codebase.
+
+### Installing capybara-webkit
+
+The `capybara-webkit` gem relies on `qt v5.5`. To install the gem:
+
+    brew install qt@5.5
+    export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
+    bundle install
