@@ -1,7 +1,6 @@
-# Transactional Data Team (TDT) Cross-Government Service Data View Data app
+# Government Service Data – View Data
 
-This app is super good at looking at lots of data.
-This app expects to be run alongside [`cgsd-api-rails`](https://github.com/alphagov/cgsd-api-rails), which provides data through an API connection.
+This is the frontend application for viewing Government Service Data. It communicates with the [`gsd-api`](https://github.com/alphagov/cgsd-api-rails) application to retrive the data.
 
 ## Setup
 
