@@ -7,5 +7,6 @@ Rails.application.config.assets.precompile = [
   'screen-old-ie',
   'product-image.png',
   'govuk_template/source/assets/stylesheets/fonts',
+  'govuk_template/source/assets/javascripts/vendor/html5shiv-printshiv.js',
   'govuk_template/source/assets/images/gov.uk_logotype_crown_invert_trans.png'
 ]
