@@ -60,7 +60,7 @@
     var $searchButton
 
     var _search = function (fn) {
-      var query = $searchInput.val().toLowerCase().trim()
+      var query = $.trim($searchInput.val().toLowerCase())
       fn(query)
     }
 
