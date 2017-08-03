@@ -46,15 +46,15 @@
 
             <button type="submit" class="a-apply-button">Apply</button>
           </div>
-
-          <div class="m-search-filter hidden" data-behaviour="m-search-filter">
-            <label for="search-metrics">
-              Find <%= @metrics.group_by_screen_name %>
-            </label>
-            <input type="search" id="search-metrics" class="a-search-input" placeholder="Example: environment">
-            <input class="a-search-button" type="button" value="Search">
-          </div>
         <% end %>
+
+        <div class="m-search-filter hidden" data-behaviour="m-search-filter">
+          <label for="search-metrics">
+            Find <%= @metrics.group_by_screen_name %>
+          </label>
+          <input type="search" id="search-metrics" class="a-search-input" placeholder="Example: environment">
+          <input class="a-search-button" type="button" value="Search">
+        </div>
       </div>
 
       <!--end of filter-->

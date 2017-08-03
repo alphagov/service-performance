@@ -116,7 +116,7 @@
     bottom: 0;
 
     @include media(tablet) {
-      bottom: 22px;
+      bottom: 0;
     }
   }
 
@@ -125,16 +125,11 @@
 
 .o-filter-panel {
   border-top: 1px solid $grey-2;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
   form {
     padding: 0;
-  }
-
-  .m-sort-filter, .m-search-filter {
-    margin-top: 10px;
-    margin-bottom: 10px;
   }
 
   .a-apply-button {
@@ -144,7 +139,19 @@
 
 @media (min-width: 600px) {
   .o-filter-panel {
-    form { display: flex; }
+
+    form, .m-search-filter {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    form {
+      width: 66%;
+    }
+
+    .m-search-filter {
+      width: 33%;
+    }
   }
 
   .m-sort-filter {
@@ -157,9 +164,5 @@
 
   .m-sort-order {
     display: inline-block;
-  }
-
-  .m-search-filter {
-    flex-grow: 1;
   }
 }
