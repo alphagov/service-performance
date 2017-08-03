@@ -25,22 +25,22 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"9416cb3e34dd7abcadd9b8fe0e96fba4"
+      - W/"4edc2abf7cdaf225a07fdcc10799aa88"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - cae08af1-c294-40a7-a59d-3724e1f05c1a
+      - b39bfae2-a7db-4a39-9ff7-08a6158a52c8
       x-runtime:
-      - '0.006067'
+      - '0.005742'
       date:
-      - Mon, 17 Jul 2017 10:01:02 GMT
+      - Wed, 02 Aug 2017 13:25:52 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9}'
+      string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9}'
     http_version: 
-  recorded_at: Mon, 17 Jul 2017 10:01:02 GMT
+  recorded_at: Wed, 02 Aug 2017 13:25:52 GMT
 - request:
     method: get
     uri: http://gsd-api.dev/v1/data/departments/D0002/metrics?group_by=delivery_organisation
@@ -66,22 +66,22 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"569c968213a8be573076cdf440695b97"
+      - W/"3bc4d5d3340ed4c304f2cc7f99121bf1"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 3456d6ab-6f19-4584-88bd-790066ccf228
+      - f47847cb-6103-4e2a-885e-fe0cad635f39
       x-runtime:
-      - '0.022529'
+      - '0.023118'
       date:
-      - Mon, 17 Jul 2017 10:01:02 GMT
+      - Wed, 02 Aug 2017 13:25:52 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"group_by":"delivery_organisation","metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
-        and Vehicle Licensing Agency","hostname":"driver-and-vehicle-licensing-agency","services_count":5},"metrics":[{"type":"transactions-received","total":70123862,"online":45143108,"phone":7123719,"paper":17857035,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":70842643,"with_intended_outcome":58650122}]},{"entity":{"type":"delivery-organisation","natural_key":"04","name":"Driver
-        and Vehicle Standards Agency","hostname":"driver-and-vehicle-standards-agency","services_count":4},"metrics":[{"type":"transactions-received","total":48555649,"online":25567940,"phone":3000055,"paper":0,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":43745145,"with_intended_outcome":33670994}]}]}'
+      string: '{"group_by":"delivery_organisation","metrics":[{"type":"calls-received","total":0,"get_information":0,"chase_progress":0,"challenge_a_decision":0,"other":0,"sampled":false,"sampled_total":0},{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}],"metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
+        and Vehicle Licensing Agency","website":"http://example.com/driver-and-vehicle-licensing-agency","services_count":5},"metrics":[{"type":"calls-received","total":0,"get_information":0,"chase_progress":0,"challenge_a_decision":0,"other":0,"sampled":false,"sampled_total":0},{"type":"transactions-received","total":70123862,"online":45143108,"phone":7123719,"paper":17857035,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":70842643,"with_intended_outcome":58650122}]},{"entity":{"type":"delivery-organisation","natural_key":"04","name":"Driver
+        and Vehicle Standards Agency","website":"http://example.com/driver-and-vehicle-standards-agency","services_count":4},"metrics":[{"type":"calls-received","total":0,"get_information":0,"chase_progress":0,"challenge_a_decision":0,"other":0,"sampled":false,"sampled_total":0},{"type":"transactions-received","total":48555649,"online":25567940,"phone":3000055,"paper":0,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":43745145,"with_intended_outcome":33670994}]}]}'
     http_version: 
-  recorded_at: Mon, 17 Jul 2017 10:01:02 GMT
+  recorded_at: Wed, 02 Aug 2017 13:25:52 GMT
 recorded_with: VCR 3.0.3

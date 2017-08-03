@@ -25,22 +25,22 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"9416cb3e34dd7abcadd9b8fe0e96fba4"
+      - W/"4edc2abf7cdaf225a07fdcc10799aa88"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - dbfbe22a-074f-4684-a019-6e78f96e1d4f
+      - ad7c733e-d615-41a8-aa4c-7c5d77f063b9
       x-runtime:
-      - '0.013604'
+      - '0.008923'
       date:
-      - Mon, 17 Jul 2017 10:01:02 GMT
+      - Wed, 02 Aug 2017 13:25:52 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9}'
+      string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9}'
     http_version: 
-  recorded_at: Mon, 17 Jul 2017 10:01:02 GMT
+  recorded_at: Wed, 02 Aug 2017 13:25:52 GMT
 - request:
     method: get
     uri: http://gsd-api.dev/v1/data/departments/D0002/metrics?group_by=department
@@ -66,21 +66,21 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"f3a2a739765d38cd31925c3fde138be1"
+      - W/"4260a4e8d6a6d13e5b854fe0187622c6"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - fed16239-5309-48c2-ad45-3bcde95cede5
+      - 825ec2a2-993d-48d2-a443-36414c9e0880
       x-runtime:
-      - '0.019390'
+      - '0.026266'
       date:
-      - Mon, 17 Jul 2017 10:01:02 GMT
+      - Wed, 02 Aug 2017 13:25:52 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"group_by":"department","metric_groups":[{"entity":{"type":"department","natural_key":"D0002","name":"Department
-        for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9},"metrics":[{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}]}]}'
+      string: '{"group_by":"department","metrics":[{"type":"calls-received","total":0,"get_information":0,"chase_progress":0,"challenge_a_decision":0,"other":0,"sampled":false,"sampled_total":0},{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}],"metric_groups":[{"entity":{"type":"department","natural_key":"D0002","name":"Department
+        for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9},"metrics":[{"type":"calls-received","total":0,"get_information":0,"chase_progress":0,"challenge_a_decision":0,"other":0,"sampled":false,"sampled_total":0},{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}]}]}'
     http_version: 
-  recorded_at: Mon, 17 Jul 2017 10:01:02 GMT
+  recorded_at: Wed, 02 Aug 2017 13:25:52 GMT
 recorded_with: VCR 3.0.3

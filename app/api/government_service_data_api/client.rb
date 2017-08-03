@@ -27,7 +27,7 @@ class GovernmentServiceDataAPI::Client
     service = GovernmentServiceDataAPI::Service.build(response.body, department: department)
   end
 
-  def metric_groups(entity, group_by:)
+  def metrics(entity, group_by:)
     case entity
     when GovernmentServiceDataAPI::Government
       path = "/v1/data/government/metrics"
@@ -40,9 +40,7 @@ class GovernmentServiceDataAPI::Client
     end
 
     response = connection.get(path, group_by: group_by)
-    response.body['metric_groups'].map do |metric_group|
-      GovernmentServiceDataAPI::MetricGroup.build(metric_group)
-    end
+    GovernmentServiceDataAPI::Metrics.build(response.body, entity: entity)
   end
 
   private

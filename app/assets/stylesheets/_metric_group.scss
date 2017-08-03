@@ -1,14 +1,14 @@
 .m-metric-group {
   border-bottom: 1px solid #BFC1C3;
+  &> div { padding: 20px; }
 
   h2 {
+    margin-top: 0;
     margin-bottom: 0;
   }
 }
 
 .m-metric-group__collapsed {
-  &> div { margin: 16px 0; }
-
   .m-metric-group-header {
     display: inline-block;
     vertical-align: top;
@@ -32,4 +32,8 @@
     width: 10%;
     text-align: right;
   }
+}
+
+.m-metric-group__totals {
+  background-color: #EFF0F1;
 }

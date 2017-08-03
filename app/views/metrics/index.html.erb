@@ -61,6 +61,17 @@
 
       <div class="o-metric-groups" data-behaviour="o-metric-groups">
         <ul>
+          <li class="m-metric-group m-metric-group__totals" data-behaviour="m-metric-group<% if @metrics.collapsed? %> m-metric-group__collapsed<% end %>">
+            <div data-metric-group-expanded>
+              <div class="m-metric-group-header">
+                <h2 class="bold-medium">Total for <%= @metrics.organisation_name %></h2>
+              </div>
+
+              <div class="m-metrics">
+                <%= render @metrics.organisation_metrics %>
+              </div>
+            </div>
+          </li>
 
           <% @metrics.metric_groups.each do |metric_group|  %>
             <li class="m-metric-group" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsed<% end %>">
