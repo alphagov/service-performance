@@ -1,6 +1,9 @@
 @import "product-page-example/source/stylesheets/core";
 @import "__assets";
 
+* { @include box-sizing(border-box); }
+main { display: block; }
+
 @import "time_period_selector";
 @import "metrics";
 @import "metric_group";

@@ -22,9 +22,9 @@
       // information. Build the collapsed container with it's elements.
       var expandedContainer = $(element).find('[data-metric-group-expanded]')
 
-      var collapsedHeaderContainer = $('<div />', { class: 'm-metric-group-header' })
-      var metricItemDescriptionContainer = $('<div />', { class: 'm-metric-item-description' })
-      var openLinkContainer = $('<div />', { class: 'm-metric-group-open-toggle' })
+      var collapsedHeaderContainer = $('<div />', { 'class': 'm-metric-group-header' })
+      var metricItemDescriptionContainer = $('<div />', { 'class': 'm-metric-item-description' })
+      var openLinkContainer = $('<div />', { 'class': 'm-metric-group-open-toggle' })
       var collapsedContainer = $(
         '<div data-metric-group-collapsed>')
         .addClass('m-metric-group__collapsed')

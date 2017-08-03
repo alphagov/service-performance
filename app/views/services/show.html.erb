@@ -45,7 +45,7 @@
 
     <div class="column-one-third">
       <h2 class="bold-medium">Visit the service</h2>
-      <p>See how it appears to users:
+      <p>See how it appears to users:</p>
         <ul class="list">
           <% if @service.start_page_url.present? %>
             <li><%= link_to 'Start page', @service.start_page_url %></li>
@@ -55,7 +55,6 @@
             <li><%= link_to 'Paper form', @service.paper_form_url %></li>
           <% end %>
         </ul>
-      </p>
     </div>
   </div>
 
