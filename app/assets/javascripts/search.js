@@ -57,7 +57,6 @@
   var SearchFilter = (function () {
     var $searchFilter
     var $searchInput
-    var $searchButton
 
     var _search = function (fn) {
       var query = $.trim($searchInput.val().toLowerCase())
@@ -70,21 +69,12 @@
       })
     }
 
-    var _setClickListenerOnButton = function (fn) {
-      $searchButton.on('click', function (e) {
-        _search(fn)
-        e.preventDefault()
-      })
-    }
-
     var init = function (fn) {
       $searchFilter = $('[data-behaviour="m-search-filter"]').first()
       $searchInput = $searchFilter.find('input[type="search"]')
-      $searchButton = $searchFilter.find('input[type="button"]')
 
       $searchFilter.removeClass('hidden')
       _setListenersOnInput(fn)
-      _setClickListenerOnButton(fn)
     }
 
     return {
