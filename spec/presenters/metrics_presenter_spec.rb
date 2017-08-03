@@ -45,14 +45,14 @@ RSpec.describe MetricsPresenter do
 
   describe '#metric_groups' do
     it 'fetches the metric groups with the `group_by` parameter' do
-      expect(client).to receive(:metric_groups).with(entity, group_by: group_by) { [] }
+      expect(client).to receive(:metrics).with(entity, group_by: group_by) { instance_double(GovernmentServiceDataAPI::Metrics, metric_groups: []) }
       presenter.metric_groups
     end
 
     it 'wraps each metric group in a MetricGroupPresenter' do
       metric_group_1 = instance_double(GovernmentServiceDataAPI::MetricGroup)
       metric_group_2 = instance_double(GovernmentServiceDataAPI::MetricGroup)
-      allow(client).to receive(:metric_groups) { [metric_group_1, metric_group_2] }
+      allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, metric_groups: [metric_group_1, metric_group_2]) }
 
       metric_group_presenter_1 = instance_double(MetricGroupPresenter)
       metric_group_presenter_2 = instance_double(MetricGroupPresenter)
@@ -67,7 +67,7 @@ RSpec.describe MetricsPresenter do
 
     it "sets the metric group to be collapsed if it isn't ordered by name" do
       metric_group = instance_double(GovernmentServiceDataAPI::MetricGroup)
-      allow(client).to receive(:metric_groups) { [metric_group] }
+      allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, metric_groups: [metric_group]) }
 
       expect(MetricGroupPresenter).to receive(:new).with(metric_group, collapsed: true) { instance_double(MetricGroupPresenter) }
 
@@ -81,7 +81,7 @@ RSpec.describe MetricsPresenter do
       let(:metric_group_presenters) { 4.times.map { instance_double(MetricGroupPresenter) } }
 
       before do
-        allow(client).to receive(:metric_groups) { metric_groups }
+        allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, metric_groups: metric_groups) }
         allow(MetricGroupPresenter).to receive(:new).and_return(*metric_group_presenters)
 
         # Setup an expected `sorted_order`, then stub a "sorter" which sorts according
@@ -97,7 +97,7 @@ RSpec.describe MetricsPresenter do
         expect(presenter.metric_groups).to eq([metric_group_presenters[2], metric_group_presenters[3], metric_group_presenters[0], metric_group_presenters[1]])
       end
 
-      it 'revereses the order, if order is descending' do
+      it 'reverses the order, if order is descending' do
         presenter = described_class.new(entity, client: client, group_by: group_by, order: Metrics::Order::Descending)
         expect(presenter.metric_groups).to eq([metric_group_presenters[1], metric_group_presenters[0], metric_group_presenters[3], metric_group_presenters[2]])
       end

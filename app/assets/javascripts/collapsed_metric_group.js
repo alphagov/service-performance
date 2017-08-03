@@ -60,6 +60,6 @@
   }
 
   $(document).ready(function () {
-    $('[data-behaviour="m-metric-group__collapsed"]').collapsedMetricGroup()
+    $('[data-behaviour~="m-metric-group__collapsed"]').collapsedMetricGroup()
   })
 })(window)
