@@ -4,19 +4,8 @@
   <div class="hero hero--breaded">
     <div class="hero__content">
       <div class="hero__body">
-        <h1 class="hero__title">Get data about government services</h1>
-        <p class="hero__description">
-          Quickly access standardised high-level data so you can:
-          <ul class="list list-bullet">
-            <li>get an overview of all the services delivered by government</li>
-            <li>see how departments, agencies and services are related</li>
-            <li>track changes in service usage and delivery</li>
-          </ul>
-        </p>
+        <h1 class="hero__title">View data from government services</h1>
         <%= link_to 'View data', government_metrics_path(group_by: 'department'), class: 'hero-button', role: 'button' %>
-        <span class="hero-alternative-action">
-          or <a href="#">search for something specific</a>
-        </span>
       </div>
       <div class="hero__aside-image">
         <%= image_tag 'product-image.png', alt: 'Government Service Data', role: 'presentation' %>
@@ -29,63 +18,40 @@
   <div class="grid-row">
     <div class="column-two-thirds">
 
-      <h2 class="heading-large" id="1">Designed to give civil servants the data they need to transform government</h2>
+      <h2 class="heading-large" id="1">Civil servants haven’t had access to trusted data about service transactions</h2>
 
-      <p>Government Service Data is built for civil servants who work with multiple organisations across government.</p>
-
-      <p>It provides authoritative high-level metrics along with explanatory information to give them a rounded view of each department, agency and service.</p>
-
-      <p>It can be explored through the Government Service Data website or exported as a CSV.</p>
-
-      <hr class="m_0">
-
-      <h2 class="heading-large" id="2">Data available</h2>
-
-      <p>Where appropriate data is also aggregated to the agency, department and UK government level.</p>
-
-      <h3 class="heading-small">The purpose of the service</h3>
+      <p>This makes it difficult to:</p>
       <ul class="list list-bullet">
-        <li>How it works</li>
-        <li>Who the typical users are</li>
-        <li>How frequently it's used</li>
-        <li>How long it takes for a transaction to end in an outcome</li>
-      </ul>
-
-      <h3 class="heading-small">The number of transactions received by the service</h3>
-
-      <ul class="list list-bullet">
-        <li>Online</li>
-        <li>Phone</li>
-        <li>Paper</li>
-        <li>Face-to-face</li>
-      </ul>
-
-      <h3 class="heading-small">The number of transactions ending in an outcome</h3>
-      <ul class="list list-bullet">
-        <li>Ending in the user's intended outcome (where available)</li>
-      </ul>
-
-      <h3 class="heading-small">The total number of calls to the service</h3>
-      <ul class="list list-bullet">
-        <li>To get information</li>
-        <li>To chase progress</li>
-        <li>To challenge a decision</li>
-      </ul>
-
-      <h3 class="heading-small">How the data was collected</h3>
-      <ul class="list list-bullet">
-        <li>Department and agency responsible</li>
-        <li>When it was last updated</li>
+        <li>make sense of data quickly</li>
+        <li>group data to spot patterns</li>
+        <li>see trends over time</li>
+        <li>know where to go for best practice</li>
+        <li>decide where to intervene next</li>
+        <li>show the benefits of service transformation</li>
       </ul>
 
       <hr class="m_0">
 
-      <h2 class="heading-large" id="2">Contact the team</h2>
+      <h2 class="heading-large" id="2">Government Service Data can help</h2>
 
-      <p>Government Service Data is collected by the Government Digital Service.</p>
+      <p>Government Service Data provides:</p>
+      <ul class="list list-bullet">
+        <li>data from services across government, all in one place</li>
+        <li>access to new KPIs focused on service demand and performance</li>
+        <li>validation and standardisation of data before publication</li>
+      </ul>
 
-      <p><a class="link" href="mailto:performance-platform@digital.cabinet-office.gov.uk">Contact the team</a> if you have a question or would like to provide feedback.</p>
+      <hr class="m_0">
 
+      <h2 class="heading-large" id="3">The data</h2>
+
+      <p>Government Service Data gives you access to monthly data from services, based around the following KPIs:</p>
+      <ul class="list list-bullet">
+        <li>number of transactions received, split by channel</li>
+        <li>number of transactions ending in an outcome</li>
+        <li>number of transactions ending in the user’s intended outcome</li>
+        <li>number of calls received, split by reasons for calling</li>
+      </ul>
     </div> <!-- End Two Thirds -->
 
   </div> <!-- End row -->
