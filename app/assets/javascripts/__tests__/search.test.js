@@ -31,6 +31,31 @@ describe('On the search page', function () {
   var $searchInput
   var $results
 
+  function _assertAllResults (opts) {
+    return function (query) {
+      opts.filterFn(query)
+
+      expect($results.length).toBeGreaterThan(0)
+      $results.each(function () {
+        expect($(this).hasClass('hidden')).toEqual(!opts.isVisible)
+      })
+    }
+  }
+
+  function _assertOneResult (opts) {
+    return function (query) {
+      opts.filterFn(query)
+
+      expect($results.length).toBeGreaterThan(0)
+
+      var selector = opts.isVisible
+        ? ':not(.hidden)'
+        : '.hidden'
+      var $result = $results.filter(selector)
+      expect($result.length).toEqual(1)
+    }
+  }
+
   describe('the search page filter', function () {
     beforeEach(function () {
       // Add HTML to page
@@ -109,53 +134,53 @@ describe('On the search page', function () {
       $(document.body).empty()
     })
 
+    function _filterResults (query) {
+      expect(window.SearchResultsContainer).not.toBe(undefined)
+      window.SearchResultsContainer.filter(query)
+    }
+
+    var assertAllResultsAreHidden = _assertAllResults(
+      {filterFn: _filterResults, isVisible: false})
+
+    var assertAllResultsAreVisible = _assertAllResults(
+      {filterFn: _filterResults, isVisible: true})
+
+    var assertOneResultIsVisible = _assertOneResult(
+      {filterFn: _filterResults, isVisible: false})
+
     it('should have data-search attributes with search terms when the page loads', function () {
       expect($results.eq(0).attr('data-search')).toEqual('hm revenue & customs')
       expect($results.eq(1).attr('data-search')).toEqual('department for transport')
     })
 
     it('should be filtered when a matching substring query is given', function () {
-      window.SearchResultsContainer.filter('revenue')
-
-      expect($results.eq(0).hasClass('hidden')).toEqual(false)
-      expect($results.eq(1).hasClass('hidden')).toEqual(true)
+      assertOneResultIsVisible('revenue')
+      expect($results.filter(':contains("HM Revenue")').hasClass('hidden')).toEqual(false)
     })
 
     it('should be filtered when a exact matching query is given', function () {
-      window.SearchResultsContainer.filter('hm revenue & customs')
-
-      expect($results.eq(0).hasClass('hidden')).toEqual(false)
-      expect($results.eq(1).hasClass('hidden')).toEqual(true)
+      assertOneResultIsVisible('hm revenue & customs')
+      expect($results.filter(':contains("HM Revenue")').hasClass('hidden')).toEqual(false)
     })
 
     it('should be revealed when an empty query is given', function () {
-      window.SearchResultsContainer.filter('')
-
-      expect($results.eq(0).hasClass('hidden')).toEqual(false)
-      expect($results.eq(1).hasClass('hidden')).toEqual(false)
+      assertAllResultsAreVisible('')
     })
 
-    function _assertBothResultsAreHidden (query) {
-      window.SearchResultsContainer.filter(query)
-
-      expect($results.eq(0).hasClass('hidden')).toEqual(true)
-      expect($results.eq(1).hasClass('hidden')).toEqual(true)
-    }
-
     it('should be hidden when a non-matching query is given', function () {
-      _assertBothResultsAreHidden('zzz')
+      assertAllResultsAreHidden('zzz')
     })
 
     it('should be hidden when a misspelt word is given', function () {
-      _assertBothResultsAreHidden('tramsport')
+      assertAllResultsAreHidden('tramsport')
     })
 
     it('should be hidden when words are out of order', function () {
-      _assertBothResultsAreHidden('transport for department')
+      assertAllResultsAreHidden('transport for department')
     })
 
     it('should be hidden when punctuation is spelled out', function () {
-      _assertBothResultsAreHidden('hm revenue and customs')
+      assertAllResultsAreHidden('hm revenue and customs')
     })
   })
 })
