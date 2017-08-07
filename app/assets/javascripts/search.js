@@ -81,12 +81,16 @@
       if (matches === total) {
         searchCounterHTML = '<strong>' + matches + '</strong> total results'
       } else if (matches === 1) {
-        searchCounterHTML = '<strong>' + matches + '</strong> result found'
+        searchCounterHTML = '<strong>' + matches + '</strong> result'
       } else if (matches === 0) {
         searchCounterHTML = 'No results'
       } else {
-        searchCounterHTML = '<strong>' + matches + '</strong> results found'
+        searchCounterHTML = '<strong>' + matches + '</strong> results'
       }
+
+      searchCounterHTML += query
+        ? ' for <span>&ldquo;' + query + '&rdquo;</span>'
+        : ''
 
       $searchCounter.html(searchCounterHTML)
     }
