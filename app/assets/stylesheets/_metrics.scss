@@ -27,6 +27,10 @@ main {
 .m-metric ul li {
   border-bottom: 1px solid #BFC1C3;
   padding: 5px 0;
+
+  .row {
+    display: flex;
+  }
 }
 
 .m-metric .sampled .metric-value, .m-metric .m-metric-headline .sampled {
@@ -57,6 +61,7 @@ main {
 
   .total {
     display: inline-block;
+    width: 100%;
     vertical-align: top;
   }
 

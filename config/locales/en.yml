@@ -1,3 +1,54 @@
-
 en:
-  hello: "Hello world"
+  metric_guidance:
+    'transactions-received':
+      name: transactions received
+      description: Transactions are split by the channel through which they’re received. The channel is the initial method of contact even if additional information is collected in other ways afterwards.
+
+    'transactions-received-online':
+      name: online transactions received
+      description: Transactions received online. Doesn’t include services where you use an online tool to fill out a paper form or transactions received via web chat.
+
+    'transactions-received-phone':
+      name: phone transactions received
+      description: Transactions received via the phone. Doesn’t include IVR or purely informational calls that don’t affect the outcome of a transaction.
+
+    'transactions-received-paper':
+      name: paper transactions received
+      description: Transactions received via a paper form. The form can be sent in any way including by post, email, fax or uploading.
+
+    'transactions-received-face-to-face':
+      name: face-to-face transactions received
+      description: The transaction must be received through a face-to-face meeting with someone working for the service. Doesn’t include handing in a paper form in person.
+
+    'transactions-received-other':
+      name: other transactions received
+      description: Any other way the user provides the information needed to complete a transaction that doesn’t fit into the Online, Phone, Paper and Face-to-face channels.
+
+    'transactions-ending-in-outcome':
+      name: transactions ending in an outcome
+      description: The number of transactions where no further changes to the user’s relationship with government will be made in response to their request.
+
+    'transactions-ending-in-outcome-with-intended-outcome':
+      name: transactions ending in the user's intended outcome
+      description: A subset of the transactions ending in an outcome where the outcome is what the user set out to achieve.
+
+    'calls-received':
+      name: calls received
+      description: The total number of calls to the service. These calls should be categorised into one of four groups based on the thing that triggered the user to contact the service via the phone.
+
+    'calls-received-get-information':
+      name: calls received to get information
+      description: Calls to get advice or guidance about the service.
+
+    'calls-received-chase-progress':
+      name: calls received to chase progress
+      description: Calls to find out about a decision or action that the user expects the service to take.
+
+    'calls-received-challenge-a-decision':
+      name: calls received to challenge a decision
+      description: Calls to dispute an instruction or request from the service or to appeal an outcome.
+
+    'calls-received-other':
+      name: other calls received
+      description: Calls that don’t fit into the three previous categories.
+    
