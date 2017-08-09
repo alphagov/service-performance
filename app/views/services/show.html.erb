@@ -9,8 +9,6 @@
         <%= @service.name %>
       </h1>
 
-      <%= render 'metrics/time_period_selector' %>
-
       <dl class="metadata">
         <dt>Data provider:</dt>
         <dd><%= @service.department.name %></dd>
@@ -60,7 +58,7 @@
 
   <div class="grid-row">
     <div class="column-full">
-      <h2>Service data</h2>
+      <h2 class="heading-large">Service data</h2>
 
       <div class="m-metrics">
         <%= render @metrics.metric_groups.first.metrics %>

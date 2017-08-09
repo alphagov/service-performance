@@ -1,6 +1,4 @@
-<% Rails.logger.debug "DEBUG: #{calls_received_metric.inspect}" %>
-
-<div class="m-metric metric__calls-received">
+<div class="m-metric <% if calls_received_metric.sampled %>m-metric__sampled<% end %>">
   <ul class="list">
     <%= metric_item(Metrics::Items::CallsReceived, html: { class: 'm-metric-headline' }) do |item| %>
       <% item.description do %>
@@ -10,14 +8,11 @@
       <span class="total">
         <span class="bold-large"><%= metric_to_human(calls_received_metric.total) %></span>
         <span class="data-item bold">calls received</span>
-      </span>
-      
-      <% if calls_received_metric.sampled %>
-        <span class="sampled">
+      </span><% if calls_received_metric.sampled %><span class="sampled"><!-- this is intentionally squashed to preseve layout -->
           <span class="bold-large"><%= metric_to_human(calls_received_metric.sampled_total) %></span>
           <span class="data-item bold">calls sample size</span>
-        </span>
       <% end %>
+    </span>
     <% end %>
 
     <%= metric_item(Metrics::Items::CallsReceivedGetInformation, sampled: calls_received_metric.sampled) do |item| %>
