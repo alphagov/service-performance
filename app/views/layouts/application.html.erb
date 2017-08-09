@@ -42,18 +42,11 @@
 
           <nav id="navigation" class="header__navigation js-nav" aria-label="Top Level Navigation" aria-hidden="true">
             <ul>
-              <%
-                {
-                  'View data' => government_metrics_path(group_by: 'department'),
-                  'Search' => '/',
-                }.each do |title, path|
-              %>
-                <li<% if path == page.path %> class="active"<% end %>>
-                  <a href="<%= path == page.path ? "#main" : path %>">
-                    <%= title %>
-                  </a>
-                </li>
-              <% end %>
+              <li<% if government_metrics_path(group_by: 'department') == page.path %> class="active"<% end %>>
+                <a href="<%= government_metrics_path(group_by: 'department') == page.path ? "#main" : government_metrics_path(group_by: 'department') %>">
+                  View data
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

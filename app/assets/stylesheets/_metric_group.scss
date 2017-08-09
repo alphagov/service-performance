@@ -1,8 +1,13 @@
 .m-metric-group {
   border-bottom: 1px solid #BFC1C3;
-  &> div { padding: 20px; }
+  &> div { padding: $gutter-half; }
+
+  .m-metric-group-header {
+    margin-bottom: $gutter-half;
+  }
 
   h2 {
+    font-size: 24px;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -11,11 +16,13 @@
 .m-metric-group__collapsed {
   .m-metric-group-header {
     display: inline-block;
+    margin-bottom: 0;
     vertical-align: top;
     width: 50%;
 
     h2 {
       font-size: 19px;
+      padding-right: $gutter-half;
       margin: 0;
     }
   }

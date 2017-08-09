@@ -12,12 +12,12 @@
 .m-tab-link {
   display: block;
   padding: 10px 10px;
+  font-weight: bold;
 }
 
 .m-tab-item__selected {
   .m-tab-link {
     color: #000000;
-    font-weight: bold;
     text-decoration: none;
   }
 }
@@ -33,14 +33,9 @@
   .m-tab-item__selected {
     border: 1px solid #BFC1C3;
     border-bottom: 1px solid #FFFFFF;
-
-    .m-tab-link {
-      background-color: #FFFFFF;
-    }
   }
 
   .m-tab-link {
-    background-color: #DFE0E2;
     display: inline-block;
     margin: 5px;
     padding: 5px 10px;
