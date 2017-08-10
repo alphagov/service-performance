@@ -46,17 +46,18 @@
           </div>
         <% end %>
 
-        <div class="m-search-filter hidden" data-behaviour="m-search-filter">
+        <div class="m-search-filter hidden" data-behaviour="m-search-filter" role="search">
           <label for="search-metrics">
             Find <%= @metrics.group_by_screen_name %>
           </label>
           <input type="search" id="search-metrics" class="a-search-input" placeholder="Example: environment">
+          <p id="search-counter" class="a-search-counter" data-behaviour="a-search-counter" class="visuallyhidden" aria-live="polite" aria-atomic="true"></p>
         </div>
       </div>
 
       <!--end of filter-->
 
-      <div class="o-metric-groups" data-behaviour="o-metric-groups">
+      <div class="o-metric-groups" data-behaviour="o-metric-groups" id="o-metric-groups">
         <ul>
           <li class="m-metric-group m-metric-group__totals" data-behaviour="m-metric-group<% if @metrics.collapsed? %> m-metric-group__collapsed<% end %>">
             <div data-metric-group-expanded>
