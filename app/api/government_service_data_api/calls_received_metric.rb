@@ -2,7 +2,7 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
   def self.build(data)
     new(
       total: data['total'],
-      sampled: true, #data['sampled'],
+      sampled: data['sampled'],
       sampled_total: data['sampled_total'],
       get_information: data['get_information'],
       chase_progress: data['chase_progress'],
