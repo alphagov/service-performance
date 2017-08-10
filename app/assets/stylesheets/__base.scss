@@ -4,6 +4,7 @@
 * { @include box-sizing(border-box); }
 main { display: block; }
 
+@import "homepage";
 @import "metrics";
 @import "metric_group";
 @import "metric_guidance";
