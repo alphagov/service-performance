@@ -1,0 +1,26 @@
+.m-metric-guidance-toggle {
+  display: block;
+  height: 16px;
+  width: 16px;
+}
+
+.a-metric-guidance-expand, .a-metric-guidance-collapse {
+  display: block;
+  height: 16px;
+  width: 16px;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  text-indent: -999em;
+}
+
+.a-metric-guidance-expand {
+  background-image: url(image-path('icon-plus@2x.png'));
+}
+
+.a-metric-guidance-collapse {
+  background-image: url(image-path('icon-minus@2x.png'));
+}
+
+.a-metric-guidance {
+  margin: $gutter-one-third 0;
+}
