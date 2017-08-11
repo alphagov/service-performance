@@ -14,10 +14,12 @@
 }
 
 .m-metric-group__collapsed {
+  padding-top: 17px !important;
+
   .m-metric-group-header {
     display: inline-block;
     margin-bottom: 0;
-    vertical-align: top;
+    vertical-align: text-top;
     width: 50%;
 
     h2 {
@@ -29,13 +31,13 @@
 
   .m-metric-item-description {
     display: inline-block;
-    vertical-align: top;
+    vertical-align: text-top;
     width: 40%;
   }
 
   .m-metric-group-open-toggle {
     display: inline-block;
-    vertical-align: top;
+    vertical-align: text-top;
     width: 10%;
     text-align: right;
   }
