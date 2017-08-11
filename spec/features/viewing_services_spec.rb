@@ -15,7 +15,7 @@ RSpec.feature 'viewing services', type: :feature do
     expect(page).to have_content('Information about Apply for a provisional driving license')
     expect(page).to have_content('Service data')
     expect(page).to have_content('2m transactions received')
-    expect(page).to have_content('1.7m transactions ending in an outcome')
+    expect(page).to have_content('2m transactions ending in an outcome')
   end
 
 end
