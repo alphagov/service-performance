@@ -4,6 +4,7 @@ class ServiceSerializer < ActiveModel::Serializer
              :start_page_url, :paper_form_url
 
   has_one :department
+  has_one :delivery_organisation
 
    def type
      'service'
