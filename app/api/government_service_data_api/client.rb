@@ -23,8 +23,9 @@ class GovernmentServiceDataAPI::Client
     response = connection.get "/v1/data/services/#{id}"
 
     department = GovernmentServiceDataAPI::Department.build(response.body['department'])
+    delivery_organisation = GovernmentServiceDataAPI::DeliveryOrganisation.build(response.body['delivery_organisation'])
 
-    service = GovernmentServiceDataAPI::Service.build(response.body, department: department)
+    service = GovernmentServiceDataAPI::Service.build(response.body, department: department, delivery_organisation: delivery_organisation)
   end
 
   def metrics(entity, group_by:)

@@ -26,19 +26,29 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
   end
 
   describe '#delivery_organisation' do
-    it 'parses the delivery organisation', cassette: 'delivery-organisation-ok' do
-      delivery_organisation = client.delivery_organisation('02')
+    let(:delivery_organisation) { client.delivery_organisation('02') }
 
+    it 'parses the delivery organisation', cassette: 'delivery-organisation-ok' do
       expect(delivery_organisation.key).to eq('02')
       expect(delivery_organisation.name).to eq('NHS Blood and Transplant')
       expect(delivery_organisation.services_count).to eq(3)
     end
+
+    it 'parses the department', cassette: 'delivery-organisation-ok' do
+      department = delivery_organisation.department
+
+      expect(department.key).to eq('D0003')
+      expect(department.name).to eq('Department of Health')
+      expect(department.website).to eq('http://example.com/department-of-health')
+      expect(department.delivery_organisations_count).to eq(2)
+      expect(department.services_count).to eq(4)
+    end
   end
 
   describe '#service' do
-    it 'parses the service', cassette: 'service-ok' do
-      service = client.service('02')
+    let(:service) { client.service('02') }
 
+    it 'parses the service', cassette: 'service-ok' do
       expect(service.name).to eq('Apply for a provisional driving license')
       expect(service.purpose).to eq('Why the service was built, its policy objectives and the user need it meets.')
       expect(service.how_it_works).to eq('The processes and back-office operations that allow the service to operate.')
@@ -47,8 +57,19 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
       expect(service.duration_until_outcome).to eq('The average amount of time for each of the key user groups that it takes for a received transaction to end in an outcome.')
       expect(service.start_page_url).to eq('https://example.com')
       expect(service.paper_form_url).to eq('https://example.com')
+    end
 
+    it 'parses the delivery organisation', cassette: 'service-ok' do
+      delivery_organisation = service.delivery_organisation
+
+      expect(delivery_organisation.key).to eq('03')
+      expect(delivery_organisation.name).to eq('Driver and Vehicle Licensing Agency')
+      expect(delivery_organisation.services_count).to eq(5)
+    end
+
+    it 'parses the department', cassette: 'service-ok' do
       department = service.department
+
       expect(department.key).to eq('D0002')
       expect(department.name).to eq('Department for Transport')
       expect(department.delivery_organisations_count).to eq(2)

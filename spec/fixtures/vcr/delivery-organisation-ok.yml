@@ -25,21 +25,22 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"25fc838730876023778aeff430787c49"
+      - W/"e3bb258c7b6949364bd25e33c0dbd22e"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 07c550b6-0cb4-4de0-b2d0-29e8ff7f501e
+      - 633985c8-0e12-44e0-a556-6eeb7d1eb592
       x-runtime:
-      - '0.018195'
+      - '0.362452'
       date:
-      - Mon, 17 Jul 2017 10:01:01 GMT
+      - Mon, 14 Aug 2017 15:31:05 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"delivery-organisation","natural_key":"02","name":"NHS Blood
-        and Transplant","hostname":"nhs-blood-and-transplant","services_count":3}'
+        and Transplant","website":"http://example.com/nhs-blood-and-transplant","services_count":3,"department":{"type":"department","natural_key":"D0003","name":"Department
+        of Health","website":"http://example.com/department-of-health","delivery_organisations_count":2,"services_count":4}}'
     http_version: 
-  recorded_at: Mon, 17 Jul 2017 10:01:01 GMT
+  recorded_at: Mon, 14 Aug 2017 15:31:05 GMT
 recorded_with: VCR 3.0.3
