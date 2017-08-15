@@ -18,7 +18,7 @@ module BreadcrumbsHelper
       content
     end
 
-    nav = content_tag(:nav, list)
+    nav = content_tag(:nav, list, {'aria-label' => 'Breadcrumb'})
     content_tag(:div, nav, class: 'hierarchical-breadcrumbs')
   end
 end
