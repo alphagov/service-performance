@@ -13,27 +13,25 @@ RSpec.describe BreadcrumbsHelper, type: :helper do
       end
     end
 
-    context 'with breadcrumbs' do
-      let(:crumb) { double(:crumb, name: 'Crumbs', url: 'https://example.com') }
-      let(:page_breadcrumbs) { [crumb] }
+    context 'with one breadcrumb' do
+      let(:page_breadcrumbs) { [double(:crumb)] }
+
+      it 'renders nothing' do
+        expect(breadcrumbs).to eq('')
+      end
+    end
+
+    context 'with multiple breadcrumbs' do
+      let(:crumb_1) { double(:crumb, name: 'Crumb 1', url: 'https://example.com') }
+      let(:crumb_2) { double(:crumb, name: 'Crumb 2', url: 'https://example.com') }
+      let(:page_breadcrumbs) { [crumb_1, crumb_2] }
 
       it 'renders a list of breadcrumbs' do
-        expect(breadcrumbs).to have_selector('nav.breadcrumbs > ol > li.breadcrumbs__item > a')
-        expect(breadcrumbs).to have_link(text: 'Crumbs', href: 'https://example.com')
-      end
+        expect(breadcrumbs).to have_selector('.hierarchical-breadcrumbs > nav > a')
+        expect(breadcrumbs).to have_link(text: 'Crumb 1', href: 'https://example.com')
 
-      it "adds 'breadcrumbs-inverse' class if inverse is true" do
-        expect(breadcrumbs(inverse: true)).to have_selector('nav.breadcrumbs--inverse')
-      end
-
-      it 'marks-up the list with accessiblity metadata' do
-        output = breadcrumbs
-
-        expect(breadcrumbs).to have_selector('nav[aria-label="Breadcrumbs"]')
-        expect(breadcrumbs).to have_selector('ol[itemscope=itemscope][itemtype="http://schema.org/BreadcrumbList"]')
-        expect(breadcrumbs).to have_selector('li[itemscope=itemscope][itemprop="itemListElement"][itemtype="http://schema.org/ListItem"]')
-        expect(breadcrumbs).to have_selector('a[itemprop="item"]')
-        expect(breadcrumbs).to have_selector('span[itemprop="name"]')
+        expect(breadcrumbs).to have_selector('.hierarchical-breadcrumbs > nav > ul > li > a')
+        expect(breadcrumbs).to have_link(text: 'Crumb 2', href: 'https://example.com')
       end
     end
   end

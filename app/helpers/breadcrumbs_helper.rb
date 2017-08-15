@@ -1,17 +1,24 @@
 module BreadcrumbsHelper
-  def breadcrumbs(inverse: false)
-    return '' if page.breadcrumbs.empty?
+  def breadcrumbs
+    return '' if page.breadcrumbs.size <= 1
 
-    items = page.breadcrumbs.map do |crumb|
-      name = content_tag(:span, crumb.name, itemprop: 'name')
-      link = link_to(name, crumb.url, itemprop: 'item')
-      content_tag(:li, link, class: 'breadcrumbs__item', itemscope: 'itemscope', itemtype: 'http://schema.org/ListItem', itemprop: 'itemListElement')
+    list = page.breadcrumbs.reverse_each.with_index.reduce(ActiveSupport::SafeBuffer.new) do |output, (crumb, index)|
+      if crumb.url
+        content = link_to(crumb.name, crumb.url)
+      else
+        content = content_tag(:span, crumb.name)
+      end
+
+      # Wrap previous content in a "ul > li" container, unless this is the first
+      # item, in which case don't.
+      unless index.zero?
+        content += content_tag(:ul, content_tag(:li, output))
+      end
+
+      content
     end
 
-    list = content_tag(:ol, safe_join(items), itemscope: 'itemscope', itemtype: 'http://schema.org/BreadcrumbList')
-
-    nav_classes = ['breadcrumbs']
-    nav_classes << 'breadcrumbs--inverse' if inverse
-    content_tag(:nav, list, class: nav_classes, 'aria-label': 'Breadcrumbs')
+    nav = content_tag(:nav, list, {'aria-label' => 'Breadcrumb'})
+    content_tag(:div, nav, class: 'hierarchical-breadcrumbs')
   end
 end

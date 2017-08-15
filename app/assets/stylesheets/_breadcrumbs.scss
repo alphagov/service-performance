@@ -1,0 +1,52 @@
+$breadcrumb-indent: 15px;
+$breadcrumb-indent-desktop: 25px;
+
+.hierarchical-breadcrumbs {
+  position: relative;
+  margin-top: $gutter-one-third;
+  padding: 0;
+
+  &::after {
+    content:"";
+    display:block;
+    clear:both;
+  }
+  nav {
+    ul {
+      position: relative;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      padding-left: $breadcrumb-indent;
+      @include media(tablet) {
+        padding-left: $breadcrumb-indent-desktop;
+      }
+      li {
+        position: relative;
+        display: block;
+        line-height: 25px;
+        word-wrap: break-word;
+        &::before, &::after {
+          content: "";
+          position: absolute;
+          left: -12px;
+        }
+        &::before {
+          border-top: 1px solid #000;
+          top: 9px;
+          width: 8px;
+          height: 0;
+        }
+        &::after {
+          border-left: 1px solid #000;
+          height: 100%;
+          width: 0px;
+          top: 2px;
+        }
+        &:last-child::after {
+          height: 8px;
+        }
+      }
+    }
+  }
+}

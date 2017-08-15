@@ -1,4 +1,12 @@
 class Page
+  class Crumb
+    def initialize(name, url = nil)
+      @name, @url = name, url
+    end
+
+    attr_reader :name, :url
+  end
+
   def initialize(controller)
     @controller = controller
     @breadcrumbs = []
