@@ -25,14 +25,14 @@ RSpec.feature 'viewing metrics', type: :feature do
         all('a', text: /\AOpen\z/).each(&:click) if javascript_enabled
 
         expect(metric_groups(:name, :transactions_received_total)).to eq([
-          ["Total for UK government",                               "746067381"],
-          ['HM Revenue & Customs',                                          '0'],
-          ['Department for Business, Energy & Industrial Strategy',         '0'],
-          ['Department for Environment Food & Rural Affairs',         '3000039'],
-          ['Department for Education',                               '13000475'],
-          ['Department of Health',                                   '18132669'],
-          ['Department for Transport',                              '118679511'],
-          ['Ministry of Justice',                                   '593254687'],
+          ['Total for UK government', '746067381'],
+          ['HM Revenue & Customs', '0'],
+          ['Department for Business, Energy & Industrial Strategy', '0'],
+          ['Department for Environment Food & Rural Affairs', '3000039'],
+          ['Department for Education', '13000475'],
+          ['Department of Health', '18132669'],
+          ['Department for Transport', '118679511'],
+          ['Ministry of Justice', '593254687'],
         ])
 
         if javascript_enabled
@@ -45,14 +45,14 @@ RSpec.feature 'viewing metrics', type: :feature do
         all('a', text: /\AOpen\z/).each(&:click) if javascript_enabled
 
         expect(metric_groups(:name, :transactions_received_total)).to eq([
-          ["Total for UK government",                               "746067381"],
-          ['Ministry of Justice',                                   '593254687'],
-          ['Department for Transport',                              '118679511'],
-          ['Department of Health',                                   '18132669'],
-          ['Department for Education',                               '13000475'],
-          ['Department for Environment Food & Rural Affairs',         '3000039'],
-          ['Department for Business, Energy & Industrial Strategy',         '0'],
-          ['HM Revenue & Customs',                                          '0'],
+          ['Total for UK government', '746067381'],
+          ['Ministry of Justice', '593254687'],
+          ['Department for Transport', '118679511'],
+          ['Department of Health', '18132669'],
+          ['Department for Education', '13000475'],
+          ['Department for Environment Food & Rural Affairs', '3000039'],
+          ['Department for Business, Energy & Industrial Strategy', '0'],
+          ['HM Revenue & Customs', '0'],
         ])
       end
     end
@@ -71,7 +71,7 @@ RSpec.feature 'viewing metrics', type: :feature do
   private
 
   def metric_groups(*attrs)
-    attributes = ->(metric_group) { attrs.map {|attribute| metric_group.send(attribute) } }
+    attributes = ->(metric_group) { attrs.map { |attribute| metric_group.send(attribute) } }
 
     all('.m-metric-group', count: 8)
       .map { |element| MetricGroup.new(element) }

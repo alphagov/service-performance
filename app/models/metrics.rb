@@ -1,31 +1,30 @@
 module Metrics
   module Group
-    Government = 'government'
-    Department = 'department'
-    DeliveryOrganisation = 'delivery_organisation'
-    Service = 'service'
+    Government = 'government'.freeze
+    Department = 'department'.freeze
+    DeliveryOrganisation = 'delivery_organisation'.freeze
+    Service = 'service'.freeze
   end
 
   module Items
-    TransactionsReceived = 'transactions-received'
-    TransactionsReceivedOnline = 'transactions-received-online'
-    TransactionsReceivedPhone = 'transactions-received-phone'
-    TransactionsReceivedPaper = 'transactions-received-paper'
-    TransactionsReceivedFaceToFace = 'transactions-received-face-to-face'
-    TransactionsReceivedOther = 'transactions-received-other'
+    TransactionsReceived = 'transactions-received'.freeze
+    TransactionsReceivedOnline = 'transactions-received-online'.freeze
+    TransactionsReceivedPhone = 'transactions-received-phone'.freeze
+    TransactionsReceivedPaper = 'transactions-received-paper'.freeze
+    TransactionsReceivedFaceToFace = 'transactions-received-face-to-face'.freeze
+    TransactionsReceivedOther = 'transactions-received-other'.freeze
 
-    TransactionsEndingInOutcome = 'transactions-ending-in-outcome'
-    TransactionsEndingInOutcomeWithIntendedOutcome = 'transactions-ending-in-outcome-with-intended-outcome'
+    TransactionsEndingInOutcome = 'transactions-ending-in-outcome'.freeze
+    TransactionsEndingInOutcomeWithIntendedOutcome = 'transactions-ending-in-outcome-with-intended-outcome'.freeze
 
-    CallsReceived = 'calls-received'
-    CallsReceivedGetInformation = 'calls-received-get-information'
-    CallsReceivedChaseProgress = 'calls-received-chase-progress'
-    CallsReceivedChallengeADecision = 'calls-received-challenge-a-decision'
-    CallsReceivedOther = 'calls-received-other'
+    CallsReceived = 'calls-received'.freeze
+    CallsReceivedGetInformation = 'calls-received-get-information'.freeze
+    CallsReceivedChaseProgress = 'calls-received-chase-progress'.freeze
+    CallsReceivedChallengeADecision = 'calls-received-challenge-a-decision'.freeze
+    CallsReceivedOther = 'calls-received-other'.freeze
   end
 
   module OrderBy
-    private
     class Sorter
       def initialize(identifier, name:, keypath:)
         @identifier = identifier
@@ -51,20 +50,19 @@ module Metrics
     TransactionsEndingInOutcome = Sorter.new(Items::TransactionsEndingInOutcome, name: 'transactions ending in an outcome', keypath: [:transactions_with_outcome, :count])
     TransactionsEndingInOutcomeWithIntendedOutcome = Sorter.new(Items::TransactionsEndingInOutcomeWithIntendedOutcome,
       name: "transactions ending in the user's intended outcome",
-      keypath: [:transactions_with_outcome, :count_with_intended_outcome]
-    )
+      keypath: [:transactions_with_outcome, :count_with_intended_outcome])
 
     ALL = [
       Name,
       TransactionsReceived,
-        TransactionsReceivedOnline,
-        TransactionsReceivedPhone,
-        TransactionsReceivedPaper,
-        TransactionsReceivedFaceToFace,
-        TransactionsReceivedOther,
+      TransactionsReceivedOnline,
+      TransactionsReceivedPhone,
+      TransactionsReceivedPaper,
+      TransactionsReceivedFaceToFace,
+      TransactionsReceivedOther,
       TransactionsEndingInOutcome,
-        TransactionsEndingInOutcomeWithIntendedOutcome,
-    ]
+      TransactionsEndingInOutcomeWithIntendedOutcome,
+    ].freeze
 
     def self.fetch(identifier)
       ALL.index_by(&:identifier).fetch(identifier)
@@ -72,7 +70,7 @@ module Metrics
   end
 
   module Order
-    Ascending = 'asc'
-    Descending = 'desc'
+    Ascending = 'asc'.freeze
+    Descending = 'desc'.freeze
   end
 end

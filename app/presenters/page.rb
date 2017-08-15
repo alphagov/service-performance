@@ -20,5 +20,4 @@ class Page
   def path
     @controller.request.path
   end
-
 end

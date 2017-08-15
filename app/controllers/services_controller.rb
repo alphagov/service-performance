@@ -1,5 +1,4 @@
 class ServicesController < ApplicationController
-
   def show
     client = GovernmentServiceDataAPI::Client.new
     @service = client.service(params[:id])
@@ -8,5 +7,4 @@ class ServicesController < ApplicationController
 
     page.title = @service.name
   end
-
 end

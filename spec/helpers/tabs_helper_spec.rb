@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe TabsHelper, type: :helper do
-
   describe '#tabs' do
     let(:page) { instance_double(Page, path: '/') }
 
@@ -58,5 +57,4 @@ RSpec.describe TabsHelper, type: :helper do
       expect(output).to have_selector('span.count', text: '(10)')
     end
   end
-
 end

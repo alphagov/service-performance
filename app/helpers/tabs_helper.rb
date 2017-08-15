@@ -28,7 +28,6 @@ module TabsHelper
     safe_join([name, count_tag], ' ')
   end
 
-  private
 
   class Tabs
     def initialize

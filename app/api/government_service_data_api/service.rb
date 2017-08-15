@@ -18,5 +18,4 @@ GovernmentServiceDataAPI::Service = Struct.new(
       department,
     )
   end
-
 end

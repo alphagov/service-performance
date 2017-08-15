@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe BreadcrumbsHelper, type: :helper do
-
   describe '#breadcrumbs' do
     let(:page) { instance_double(Page, breadcrumbs: page_breadcrumbs) }
 
@@ -29,13 +28,12 @@ RSpec.describe BreadcrumbsHelper, type: :helper do
       it 'marks-up the list with accessiblity metadata' do
         output = breadcrumbs
 
-        expect(breadcrumbs).to have_selector('nav[aria-label="Breadcrumbs"]')
-        expect(breadcrumbs).to have_selector('ol[itemscope=itemscope][itemtype="http://schema.org/BreadcrumbList"]')
-        expect(breadcrumbs).to have_selector('li[itemscope=itemscope][itemprop="itemListElement"][itemtype="http://schema.org/ListItem"]')
-        expect(breadcrumbs).to have_selector('a[itemprop="item"]')
-        expect(breadcrumbs).to have_selector('span[itemprop="name"]')
+        expect(output).to have_selector('nav[aria-label="Breadcrumbs"]')
+        expect(output).to have_selector('ol[itemscope=itemscope][itemtype="http://schema.org/BreadcrumbList"]')
+        expect(output).to have_selector('li[itemscope=itemscope][itemprop="itemListElement"][itemtype="http://schema.org/ListItem"]')
+        expect(output).to have_selector('a[itemprop="item"]')
+        expect(output).to have_selector('span[itemprop="name"]')
       end
     end
   end
-
 end

@@ -23,7 +23,7 @@ RSpec.describe GovernmentMetricsController, type: :controller do
       presenter = instance_double(GovernmentMetricsPresenter)
       expect(GovernmentMetricsPresenter).to receive(:new).with(government, client: client, group_by: Metrics::Group::Department, order: 'asc', order_by: 'name') { presenter }
 
-      get :index, params: { group_by: Metrics::Group::Department, filter: { order: 'asc', order_by: 'name' }}
+      get :index, params: { group_by: Metrics::Group::Department, filter: { order: 'asc', order_by: 'name' } }
       expect(assigns[:metrics]).to eq(presenter)
     end
 

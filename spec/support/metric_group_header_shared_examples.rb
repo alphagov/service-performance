@@ -6,7 +6,7 @@ RSpec.shared_examples_for 'metric group header' do
     super(partial: partial, locals: { metric_group: metric_group })
   end
 
-  it "has a 'm-metric-group-header' container"  do |example|
+  it "has a 'm-metric-group-header' container" do
     render
     expect(rendered).to have_selector('.m-metric-group-header')
   end

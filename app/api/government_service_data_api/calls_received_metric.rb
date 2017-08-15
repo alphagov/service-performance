@@ -15,7 +15,7 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
     @total = total || 0
     @sampled = sampled || false
     @sampled_total = sampled_total || 0
-    @get_information =  get_information || 0
+    @get_information = get_information || 0
     @chase_progress = chase_progress || 0
     @challenge_a_decision = challenge_a_decision || 0
     @other = other || 0

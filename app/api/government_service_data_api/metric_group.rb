@@ -13,7 +13,7 @@ class GovernmentServiceDataAPI::MetricGroup
       entity = GovernmentServiceDataAPI::Service.build(response['entity'])
     end
 
-    metrics = response['metrics'].index_by {|metric| metric['type'] }
+    metrics = response['metrics'].index_by { |metric| metric['type'] }
     new(entity, metrics)
   end
 

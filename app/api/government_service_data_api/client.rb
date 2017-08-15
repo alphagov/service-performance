@@ -24,7 +24,7 @@ class GovernmentServiceDataAPI::Client
 
     department = GovernmentServiceDataAPI::Department.build(response.body['department'])
 
-    service = GovernmentServiceDataAPI::Service.build(response.body, department: department)
+    GovernmentServiceDataAPI::Service.build(response.body, department: department)
   end
 
   def metrics(entity, group_by:)
@@ -43,7 +43,8 @@ class GovernmentServiceDataAPI::Client
     GovernmentServiceDataAPI::Metrics.build(response.body, entity: entity)
   end
 
-  private
+private
+
   def connection
     @connection ||= Faraday.new(ENV.fetch('API_URL')) do |connection|
       connection.basic_auth ENV.fetch('API_USERNAME'), ENV.fetch('API_PASSWORD')

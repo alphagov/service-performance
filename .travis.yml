@@ -1,6 +1,7 @@
 dist: trusty
 language: ruby
 sudo: true
+cache: bundler
 
 env:
   global:
@@ -29,6 +30,7 @@ before_script:
   - bundle --without development production
 
 script:
+  - bundle exec govuk-lint-ruby app lib spec
   - xvfb-run -a bundle exec rspec
   - npm run lint
   - ./script/run-npm-test

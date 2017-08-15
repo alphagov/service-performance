@@ -1,5 +1,5 @@
 class MetricsController < ApplicationController
-  private
+private
 
   def client
     @client ||= GovernmentServiceDataAPI::Client.new
