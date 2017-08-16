@@ -1,7 +1,7 @@
 (function (global) {
   var $ = global.jQuery
 
-  $.fn.collapsedMetricGroup = function () {
+  $.fn.collapsibleMetricGroup = function () {
     // Determine which metric item has been sorted on. If we can't determine
     // it, then abort.
     var selectedMetricItem = $('[data-behaviour="o-filter-panel"] option:selected').val()
@@ -18,17 +18,18 @@
         return
       }
 
+      var collapsedHeaderContainer = $('<div />', { 'class': 'm-metric-group-header' })
+      var metricItemDescriptionContainer = $('<div />', { 'class': 'm-metric-item-description' })
+      var toggleLinkOpenContainer = $('<div />', { 'class': 'm-metric-group-open-toggle' })
+      var collapsedContainer = $(
+        '<div data-metric-group-collapsible>')
+        .addClass('m-metric-group__collapsible')
+        .append(collapsedHeaderContainer, metricItemDescriptionContainer, toggleLinkOpenContainer)
+
       // Find the "expanded" container, this has the full metric group
       // information. Build the collapsed container with it's elements.
       var expandedContainer = $(element).find('[data-metric-group-expanded]')
-
-      var collapsedHeaderContainer = $('<div />', { 'class': 'm-metric-group-header' })
-      var metricItemDescriptionContainer = $('<div />', { 'class': 'm-metric-item-description' })
-      var openLinkContainer = $('<div />', { 'class': 'm-metric-group-open-toggle' })
-      var collapsedContainer = $(
-        '<div data-metric-group-collapsed>')
-        .addClass('m-metric-group__collapsed')
-        .append(collapsedHeaderContainer, metricItemDescriptionContainer, openLinkContainer)
+      var toggleLinkCloseContainer = $('<div />', { 'class': 'm-metric-group-close-toggle' })
 
       // Populate the collapsed header container, with the header from the
       // expanded variant.
@@ -49,8 +50,20 @@
         collapsedContainer.hide()
         expandedContainer.show()
       })
-      openLinkContainer.append(openLink)
-      collapsedContainer.append(openLinkContainer)
+      toggleLinkOpenContainer.append(openLink)
+      collapsedContainer.append(toggleLinkOpenContainer)
+
+      // Create a closed link, and make its click behaviour hide
+      // the expanded variant.
+      var closeLink = $('<a href="#">Close</a>')
+      closeLink.on('click', function (e) {
+        e.preventDefault()
+
+        collapsedContainer.show()
+        expandedContainer.hide()
+      })
+      toggleLinkCloseContainer.append(closeLink)
+      expandedContainer.prepend(toggleLinkCloseContainer)
 
       // Add the collapsed container to the metric group, and hide the
       // expanded container.
@@ -60,6 +73,6 @@
   }
 
   $(document).ready(function () {
-    $('[data-behaviour~="m-metric-group__collapsed"]').collapsedMetricGroup()
+    $('[data-behaviour~="m-metric-group__collapsible"]').collapsibleMetricGroup()
   })
 })(window)
