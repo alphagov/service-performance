@@ -2,13 +2,15 @@ require 'rails_helper'
 
 RSpec.describe DeliveryOrganisationMetricsController, type: :controller do
   let(:client) { instance_double(GovernmentServiceDataAPI::Client) }
+  let(:page) { controller.send(:page) }
 
   before do
     allow(controller).to receive(:client) { client }
   end
 
   describe "GET index" do
-    let(:delivery_organisation) { instance_double(GovernmentServiceDataAPI::DeliveryOrganisation) }
+    let(:department) { instance_double(GovernmentServiceDataAPI::Department, key: '001', name: 'Department of Services') }
+    let(:delivery_organisation) { instance_double(GovernmentServiceDataAPI::DeliveryOrganisation, department: department, name: 'Delivery Organisation of Services') }
 
     before do
       allow(client).to receive(:delivery_organisation) { delivery_organisation }
@@ -30,6 +32,16 @@ RSpec.describe DeliveryOrganisationMetricsController, type: :controller do
     it 'renders metrics index' do
       get :index, params: { delivery_organisation_id: '1923', group_by: Metrics::Group::Service }
       expect(controller).to have_rendered('metrics/index')
+    end
+
+    it 'sets the breadcrumbs' do
+      get :index, params: { delivery_organisation_id: '1923', group_by: Metrics::Group::Service }
+
+      expect(page.breadcrumbs.map {|crumb| [crumb.name, crumb.url] }).to eq([
+        ['UK Government', government_metrics_path],
+        ['Department of Services', department_metrics_path(department_id: '001')],
+        ['Delivery Organisation of Services', nil],
+      ])
     end
   end
 end
