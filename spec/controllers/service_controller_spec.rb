@@ -30,5 +30,17 @@ RSpec.describe ServicesController, type: :controller do
         ['The Greatest Service in the World', nil],
       ])
     end
+
+    it 'sets the breadcrumbs without a delivery organisation' do
+      allow(service).to receive(:delivery_organisation) { nil }
+
+      get :show, params: { id: '2' }
+
+      expect(page.breadcrumbs.map { |crumb| [crumb.name, crumb.url] }).to eq([
+        ['UK Government', government_metrics_path],
+        ['Department of Services', department_metrics_path(department_id: '001')],
+        ['The Greatest Service in the World', nil],
+      ])
+    end
   end
 end
