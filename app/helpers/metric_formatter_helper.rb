@@ -5,6 +5,7 @@ module MetricFormatterHelper
   end
 
   def metric_to_percentage(value)
+    return number_to_percentage(0, precision: 0) if value.nan?
     number_to_percentage(value, precision: 0)
   end
 end
