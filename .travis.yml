@@ -1,7 +1,10 @@
 dist: trusty
 language: ruby
 sudo: true
-cache: bundler
+cache:
+  bundler: true
+  directories:
+  - node_modules 
 
 env:
   global:
