@@ -36,7 +36,7 @@ RSpec.describe GovernmentMetricsController, type: :controller do
     it 'sets the breadcrumbs' do
       get :index, params: { group_by: Metrics::Group::Department }
 
-      expect(page.breadcrumbs.map {|crumb| [crumb.name, crumb.url] }).to eq([
+      expect(page.breadcrumbs.map { |crumb| [crumb.name, crumb.url] }).to eq([
         ['UK Government', nil],
       ])
     end
