@@ -24,7 +24,7 @@ RSpec.describe GovernmentMetricsController, type: :controller do
       presenter = instance_double(GovernmentMetricsPresenter)
       expect(GovernmentMetricsPresenter).to receive(:new).with(government, client: client, group_by: Metrics::Group::Department, order: 'asc', order_by: 'name') { presenter }
 
-      get :index, params: { group_by: Metrics::Group::Department, filter: { order: 'asc', order_by: 'name' }}
+      get :index, params: { group_by: Metrics::Group::Department, filter: { order: 'asc', order_by: 'name' } }
       expect(assigns[:metrics]).to eq(presenter)
     end
 
@@ -36,7 +36,7 @@ RSpec.describe GovernmentMetricsController, type: :controller do
     it 'sets the breadcrumbs' do
       get :index, params: { group_by: Metrics::Group::Department }
 
-      expect(page.breadcrumbs.map {|crumb| [crumb.name, crumb.url] }).to eq([
+      expect(page.breadcrumbs.map { |crumb| [crumb.name, crumb.url] }).to eq([
         ['UK Government', nil],
       ])
     end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe BreadcrumbsHelper, type: :helper do
-
   describe '#breadcrumbs' do
     let(:page) { instance_double(Page, breadcrumbs: page_breadcrumbs) }
 
@@ -35,5 +34,4 @@ RSpec.describe BreadcrumbsHelper, type: :helper do
       end
     end
   end
-
 end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature 'viewing services', type: :feature do
-
   specify 'viewing a service', cassette: 'viewing-a-service' do
     visit government_metrics_path(group_by: Metrics::Group::Department)
 
@@ -17,5 +16,4 @@ RSpec.feature 'viewing services', type: :feature do
     expect(page).to have_content('2m transactions received')
     expect(page).to have_content('2m transactions ending in an outcome')
   end
-
 end

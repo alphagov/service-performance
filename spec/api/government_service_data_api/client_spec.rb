@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
-
   subject(:client) { GovernmentServiceDataAPI::Client.new }
 
   describe '#government' do
@@ -78,7 +77,6 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
   end
 
   describe '#metrics' do
-
     context 'for government' do
       let(:entity) { client.government }
 

@@ -1,7 +1,7 @@
 module MetricItemHelper
-  def metric_item(identifier, sampled: false, html: {}, &block)
+  def metric_item(identifier, sampled: false, html: {})
     item = MetricItem.new(self)
-    content = capture { block.call(item) } || ''
+    content = capture { yield(item) } || ''
 
     guidance = translate("metric_guidance.#{identifier}.description")
 
@@ -11,16 +11,15 @@ module MetricItemHelper
     html[:class] = Array.wrap(html[:class])
     html[:class] << 'sampled' if sampled
 
-    
+
     content += content_tag(:span, class: 'm-metric-guidance-toggle') do
-      content_tag(:a, '+', href: '#', class: 'a-metric-guidance-expand', data: {behaviour: 'a-metric-guidance-toggle'})
+      content_tag(:a, '+', href: '#', class: 'a-metric-guidance-expand', data: { behaviour: 'a-metric-guidance-toggle' })
     end
 
     row = content_tag(:div, content, class: 'row')
     content_tag(:li, row, html)
   end
 
-  private
 
   class MetricItem < ActionView::Base
     def initialize(helper = nil)

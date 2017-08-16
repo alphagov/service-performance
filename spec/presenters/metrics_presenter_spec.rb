@@ -50,19 +50,19 @@ RSpec.describe MetricsPresenter do
     end
 
     it 'wraps each metric group in a MetricGroupPresenter' do
-      metric_group_1 = instance_double(GovernmentServiceDataAPI::MetricGroup)
-      metric_group_2 = instance_double(GovernmentServiceDataAPI::MetricGroup)
-      allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, metric_groups: [metric_group_1, metric_group_2]) }
+      metric_group_one = instance_double(GovernmentServiceDataAPI::MetricGroup)
+      metric_group_two = instance_double(GovernmentServiceDataAPI::MetricGroup)
+      allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, metric_groups: [metric_group_one, metric_group_two]) }
 
-      metric_group_presenter_1 = instance_double(MetricGroupPresenter)
-      metric_group_presenter_2 = instance_double(MetricGroupPresenter)
-      expect(MetricGroupPresenter).to receive(:new).with(metric_group_1, collapsed: false) { metric_group_presenter_1 }
-      expect(MetricGroupPresenter).to receive(:new).with(metric_group_2, collapsed: false) { metric_group_presenter_2 }
+      metric_group_presenter_one = instance_double(MetricGroupPresenter)
+      metric_group_presenter_two = instance_double(MetricGroupPresenter)
+      expect(MetricGroupPresenter).to receive(:new).with(metric_group_one, collapsed: false) { metric_group_presenter_one }
+      expect(MetricGroupPresenter).to receive(:new).with(metric_group_two, collapsed: false) { metric_group_presenter_two }
 
       sorter = ->(_) {}
       allow(Metrics::OrderBy).to receive(:fetch) { sorter }
 
-      expect(presenter.metric_groups).to match_array([metric_group_presenter_1, metric_group_presenter_2])
+      expect(presenter.metric_groups).to match_array([metric_group_presenter_one, metric_group_presenter_two])
     end
 
     it "sets the metric group to be collapsed if it isn't ordered by name" do

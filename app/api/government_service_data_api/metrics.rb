@@ -1,6 +1,6 @@
 class GovernmentServiceDataAPI::Metrics
   def self.build(response, entity:)
-    metrics = GovernmentServiceDataAPI::MetricGroup.new(entity, response['metrics'].index_by {|metric| metric['type'] })
+    metrics = GovernmentServiceDataAPI::MetricGroup.new(entity, response['metrics'].index_by { |metric| metric['type'] })
 
     metric_groups = response['metric_groups'].map do |metric_group|
       GovernmentServiceDataAPI::MetricGroup.build(metric_group)

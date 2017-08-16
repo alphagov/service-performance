@@ -1,7 +1,8 @@
 class Page
   class Crumb
     def initialize(name, url = nil)
-      @name, @url = name, url
+      @name = name
+      @url = url
     end
 
     attr_reader :name, :url
@@ -28,5 +29,4 @@ class Page
   def path
     @controller.request.path
   end
-
 end

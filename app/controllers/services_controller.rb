@@ -1,5 +1,4 @@
 class ServicesController < ApplicationController
-
   def show
     client = GovernmentServiceDataAPI::Client.new
     @service = client.service(params[:id])
@@ -13,5 +12,4 @@ class ServicesController < ApplicationController
     page.breadcrumbs << Page::Crumb.new(@service.delivery_organisation.name, delivery_organisation_metrics_path(delivery_organisation_id: @service.delivery_organisation.key))
     page.breadcrumbs << Page::Crumb.new(@service.name)
   end
-
 end

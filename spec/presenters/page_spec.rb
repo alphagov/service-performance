@@ -24,5 +24,4 @@ RSpec.describe Page, type: :presenter do
       expect(page.path).to eq('/example')
     end
   end
-
 end

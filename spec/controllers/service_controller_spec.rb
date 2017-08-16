@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ServicesController, type: :controller do
-
   describe 'GET show' do
     let(:client) { instance_double(GovernmentServiceDataAPI::Client, service: service) }
 
@@ -24,7 +23,7 @@ RSpec.describe ServicesController, type: :controller do
     it 'sets the breadcrumbs' do
       get :show, params: { id: '2' }
 
-      expect(page.breadcrumbs.map {|crumb| [crumb.name, crumb.url] }).to eq([
+      expect(page.breadcrumbs.map { |crumb| [crumb.name, crumb.url] }).to eq([
         ['UK Government', government_metrics_path],
         ['Department of Services', department_metrics_path(department_id: '001')],
         ['Delivery Organisation of Services', delivery_organisation_metrics_path(delivery_organisation_id: '003')],
@@ -32,5 +31,4 @@ RSpec.describe ServicesController, type: :controller do
       ])
     end
   end
-
 end

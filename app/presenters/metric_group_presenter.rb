@@ -21,7 +21,7 @@ class MetricGroupPresenter
   end
 
   def metrics
-    @metrics ||= @metric_group.metrics.each {|metric| metric.extend(MetricToPartialPath) }
+    @metrics ||= @metric_group.metrics.each { |metric| metric.extend(MetricToPartialPath) }
   end
 
   delegate :name, to: :entity
@@ -30,16 +30,12 @@ class MetricGroupPresenter
   def delivery_organisations_count
     if entity.respond_to?(:delivery_organisations_count)
       entity.delivery_organisations_count
-    else
-      nil
     end
   end
 
   def services_count
     if entity.respond_to?(:services_count)
       entity.services_count
-    else
-      nil
     end
   end
 

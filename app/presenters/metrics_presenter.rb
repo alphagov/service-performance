@@ -57,24 +57,18 @@ class MetricsPresenter
   def departments_count
     if has_departments?
       entity.departments_count
-    else
-      nil
     end
   end
 
   def delivery_organisations_count
     if has_delivery_organisations?
       entity.delivery_organisations_count
-    else
-      nil
     end
   end
 
   def services_count
     if has_services?
       entity.services_count
-    else
-      nil
     end
   end
 
@@ -82,7 +76,7 @@ class MetricsPresenter
     order_by != Metrics::OrderBy::Name.identifier
   end
 
-  private
+private
 
   attr_reader :client, :entity, :sorter
 

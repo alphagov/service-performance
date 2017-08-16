@@ -30,7 +30,7 @@ RSpec.describe MetricItemHelper, type: :helper do
       end
 
       escaped_description = '&lt;strong&gt;transactions-received&lt;/strong&gt; description'
-      expect(output).to have_selector(%Q{li[data-metric-item-description="#{escaped_description}"]})
+      expect(output).to have_selector(%{li[data-metric-item-description="#{escaped_description}"]})
     end
 
     it 'adds a sampled class, if sampled' do

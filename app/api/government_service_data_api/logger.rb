@@ -1,5 +1,4 @@
 class GovernmentServiceDataAPI::Logger < Faraday::Response::Middleware
-
   extend Forwardable
 
   def initialize(app, logger: Rails.logger)
@@ -27,12 +26,12 @@ class GovernmentServiceDataAPI::Logger < Faraday::Response::Middleware
     end
     log(:response, "")
     env.body.each_line do |line|
-      log(:response, "#{line.chomp}")
+      log(:response, line.chomp.to_s)
     end
   end
 
 
-  private
+private
 
   def log(type, message)
     direction = case type
