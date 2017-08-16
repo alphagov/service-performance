@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://gsd-api.dev/v1/data/services/19
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Basic dGVzdDp0ZXN0
+      User-Agent:
+      - Faraday v0.12.1
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      etag:
+      - W/"7f6553b41cf72db5990ecb42cbf77f10"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - ceea9b92-f45a-458d-9b70-2c217998a5d6
+      x-runtime:
+      - '0.314203'
+      date:
+      - Wed, 16 Aug 2017 10:11:41 GMT
+      connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ0eXBlIjoic2VydmljZSIsIm5hdHVyYWxfa2V5IjoiMTkiLCJuYW1lIjoiU3RhdGUgcGVuc2lvbjogZXhpc3RpbmcgY2xhaW1zIiwiaG9zdG5hbWUiOiJzdGF0ZS1wZW5zaW9uLWV4aXNpdGluZy1jbGFpbXMiLCJwdXJwb3NlIjoiV2h5IHRoZSBzZXJ2aWNlIHdhcyBidWlsdCwgaXRzIHBvbGljeSBvYmplY3RpdmVzIGFuZCB0aGUgdXNlciBuZWVkIGl0IG1lZXRzLiIsImhvd19pdF93b3JrcyI6IlRoZSBwcm9jZXNzZXMgYW5kIGJhY2stb2ZmaWNlIG9wZXJhdGlvbnMgdGhhdCBhbGxvdyB0aGUgc2VydmljZSB0byBvcGVyYXRlLiIsInR5cGljYWxfdXNlcnMiOiJFYWNoIG9mIHRoZSBzZXJ2aWNl4oCZcyBrZXkgdXNlciBncm91cHMgd2l0aCB0aGVpciByZXNwZWN0aXZlIGRlbW9ncmFwaGljLCBnZW9ncmFwaGljIGRpc3RyaWJ1dGlvbiBhbmQgb3RoZXIgcmVsZXZhbnQgZGV0YWlscy4iLCJmcmVxdWVuY3lfdXNlZCI6Ik9uIGF2ZXJhZ2UsIGhvdyBvZnRlbiBlYWNoIG9mIHRoZSBrZXkgdXNlciBncm91cHMgdXNlcyB0aGUgc2VydmljZS4iLCJkdXJhdGlvbl91bnRpbF9vdXRjb21lIjoiVGhlIGF2ZXJhZ2UgYW1vdW50IG9mIHRpbWUgZm9yIGVhY2ggb2YgdGhlIGtleSB1c2VyIGdyb3VwcyB0aGF0IGl0IHRha2VzIGZvciBhIHJlY2VpdmVkIHRyYW5zYWN0aW9uIHRvIGVuZCBpbiBhbiBvdXRjb21lLiIsInN0YXJ0X3BhZ2VfdXJsIjoiaHR0cHM6Ly9leGFtcGxlLmNvbSIsInBhcGVyX2Zvcm1fdXJsIjoiaHR0cHM6Ly9leGFtcGxlLmNvbSIsImRlcGFydG1lbnQiOnsidHlwZSI6ImRlcGFydG1lbnQiLCJuYXR1cmFsX2tleSI6IkQwMDA0IiwibmFtZSI6IkhNIFJldmVudWUgXHUwMDI2IEN1c3RvbXMiLCJ3ZWJzaXRlIjoiaHR0cDovL2V4YW1wbGUuY29tL2htLXJldmVudWUtYW5kLWN1c3RvbXMiLCJkZWxpdmVyeV9vcmdhbmlzYXRpb25zX2NvdW50IjowLCJzZXJ2aWNlc19jb3VudCI6NX0sImRlbGl2ZXJ5X29yZ2FuaXNhdGlvbiI6bnVsbH0=
+    http_version: 
+  recorded_at: Wed, 16 Aug 2017 10:11:41 GMT
+recorded_with: VCR 3.0.3

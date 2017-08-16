@@ -74,6 +74,12 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
       expect(department.delivery_organisations_count).to eq(2)
       expect(department.services_count).to eq(9)
     end
+
+    it 'parses a service without a delivery organisation', cassette: 'service-no-delivery-organisation-ok' do
+      service = client.service('19')
+
+      expect(service.delivery_organisation).to be_nil
+    end
   end
 
   describe '#metrics' do
