@@ -44,15 +44,22 @@ RSpec.describe MetricsPresenter do
   end
 
   describe '#metric_groups' do
+    let(:totals) { instance_double(GovernmentServiceDataAPI::MetricGroup) }
+    let(:totals_metric_presenter) { instance_double(MetricGroupPresenter, "totals metric presenter") }
+
+    before do
+      allow(MetricGroupPresenter::Totals).to receive(:new).with(totals, hash_including(:collapsed)) { totals_metric_presenter }
+    end
+
     it 'fetches the metric groups with the `group_by` parameter' do
-      expect(client).to receive(:metrics).with(entity, group_by: group_by) { instance_double(GovernmentServiceDataAPI::Metrics, metric_groups: []) }
+      expect(client).to receive(:metrics).with(entity, group_by: group_by) { instance_double(GovernmentServiceDataAPI::Metrics, totals: totals, metric_groups: []) }
       presenter.metric_groups
     end
 
     it 'wraps each metric group in a MetricGroupPresenter' do
       metric_group_one = instance_double(GovernmentServiceDataAPI::MetricGroup)
       metric_group_two = instance_double(GovernmentServiceDataAPI::MetricGroup)
-      allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, metric_groups: [metric_group_one, metric_group_two]) }
+      allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, totals: totals, metric_groups: [metric_group_one, metric_group_two]) }
 
       metric_group_presenter_one = instance_double(MetricGroupPresenter)
       metric_group_presenter_two = instance_double(MetricGroupPresenter)
@@ -62,12 +69,12 @@ RSpec.describe MetricsPresenter do
       sorter = ->(_) {}
       allow(Metrics::OrderBy).to receive(:fetch) { sorter }
 
-      expect(presenter.metric_groups).to match_array([metric_group_presenter_one, metric_group_presenter_two])
+      expect(presenter.metric_groups).to match_array([totals_metric_presenter, metric_group_presenter_one, metric_group_presenter_two])
     end
 
     it "sets the metric group to be collapsed if it isn't ordered by name" do
       metric_group = instance_double(GovernmentServiceDataAPI::MetricGroup)
-      allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, metric_groups: [metric_group]) }
+      allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, totals: totals, metric_groups: [metric_group]) }
 
       expect(MetricGroupPresenter).to receive(:new).with(metric_group, collapsed: true) { instance_double(MetricGroupPresenter) }
 
@@ -81,7 +88,7 @@ RSpec.describe MetricsPresenter do
       let(:metric_group_presenters) { 4.times.map { instance_double(MetricGroupPresenter) } }
 
       before do
-        allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, metric_groups: metric_groups) }
+        allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, totals: totals, metric_groups: metric_groups) }
         allow(MetricGroupPresenter).to receive(:new).and_return(*metric_group_presenters)
 
         # Setup an expected `sorted_order`, then stub a "sorter" which sorts according
@@ -94,12 +101,46 @@ RSpec.describe MetricsPresenter do
       end
 
       it 'sorts the metric groups, according to order by' do
-        expect(presenter.metric_groups).to eq([metric_group_presenters[2], metric_group_presenters[3], metric_group_presenters[0], metric_group_presenters[1]])
+        expect(presenter.metric_groups).to eq([totals_metric_presenter, metric_group_presenters[2], metric_group_presenters[3], metric_group_presenters[0], metric_group_presenters[1]])
       end
 
       it 'reverses the order, if order is descending' do
         presenter = described_class.new(entity, client: client, group_by: group_by, order: Metrics::Order::Descending)
-        expect(presenter.metric_groups).to eq([metric_group_presenters[1], metric_group_presenters[0], metric_group_presenters[3], metric_group_presenters[2]])
+        expect(presenter.metric_groups).to eq([totals_metric_presenter, metric_group_presenters[1], metric_group_presenters[0], metric_group_presenters[3], metric_group_presenters[2]])
+      end
+    end
+
+    describe 'totals metrics group presenter' do
+      let(:metric_groups) { [instance_double(GovernmentServiceDataAPI::MetricGroup)] }
+      let(:metric_group_presenter) { instance_double(MetricGroupPresenter) }
+
+      before do
+        allow(client).to receive(:metrics) { instance_double(GovernmentServiceDataAPI::Metrics, totals: totals, metric_groups: metric_groups) }
+        allow(MetricGroupPresenter).to receive(:new).and_return(metric_group_presenter)
+
+        allow(Metrics::OrderBy).to receive(:fetch) { ->(_) { 0 } }
+      end
+
+      it 'is prepended when ordered by name' do
+        presenter = presenter(order_by: Metrics::OrderBy::Name.identifier, order: Metrics::Order::Ascending)
+        expect(presenter.metric_groups).to eq([totals_metric_presenter, metric_group_presenter])
+
+        presenter = presenter(order_by: Metrics::OrderBy::Name.identifier, order: Metrics::Order::Descending)
+        expect(presenter.metric_groups).to eq([totals_metric_presenter, metric_group_presenter])
+      end
+
+      it 'is prepended when ordered by descending' do
+        presenter = presenter(order_by: Metrics::OrderBy::TransactionsReceived.identifier, order: Metrics::Order::Descending)
+        expect(presenter.metric_groups).to eq([totals_metric_presenter, metric_group_presenter])
+      end
+
+      it 'is appended when ordered by ascending' do
+        presenter = presenter(order_by: Metrics::OrderBy::TransactionsReceived.identifier, order: Metrics::Order::Ascending)
+        expect(presenter.metric_groups).to eq([metric_group_presenter, totals_metric_presenter])
+      end
+
+      def presenter(order_by:, order:)
+        @presenter ||= described_class.new(entity, client: client, group_by: group_by, order_by: order_by, order: order)
       end
     end
   end

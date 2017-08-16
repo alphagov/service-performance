@@ -60,7 +60,7 @@
       <div class="o-metric-groups" data-behaviour="o-metric-groups" id="o-metric-groups">
         <ul>
           <% @metrics.metric_groups.each do |metric_group|  %>
-            <li class="m-metric-group<% if metric_group.total? %> m-metric-group__totals<% end %>" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsible<% end %>">
+            <li class="m-metric-group<% if metric_group.totals? %> m-metric-group__totals<% end %>" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsible<% end %>">
               <div data-metric-group-expanded>
                 <%= render metric_group.entity, metric_group: metric_group  %>
 
