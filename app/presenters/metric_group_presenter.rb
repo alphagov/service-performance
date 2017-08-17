@@ -11,6 +11,22 @@ class MetricGroupPresenter
     end
   end
 
+  class Totals < self
+    module EntityToPartialPath
+      def to_partial_path
+        'metric_groups/header/total'
+      end
+    end
+
+    def entity
+      @entity ||= @metric_group.entity.extend(EntityToPartialPath)
+    end
+
+    def totals?
+      true
+    end
+  end
+
   def initialize(metric_group, collapsed: false)
     @metric_group = metric_group
     @collapsed = collapsed
@@ -41,5 +57,9 @@ class MetricGroupPresenter
 
   def collapsed?
     @collapsed ? true : false
+  end
+
+  def totals?
+    false
   end
 end

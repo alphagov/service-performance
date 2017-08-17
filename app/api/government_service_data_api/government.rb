@@ -6,4 +6,8 @@ GovernmentServiceDataAPI::Government = Struct.new(:departments_count, :delivery_
       response['services_count'],
     )
   end
+
+  def name
+    'UK government'
+  end
 end
