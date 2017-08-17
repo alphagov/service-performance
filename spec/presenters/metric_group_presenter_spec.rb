@@ -5,7 +5,19 @@ RSpec.describe MetricGroupPresenter, type: :presenter do
   let(:metric) { double('metric') }
   let(:metrics) { [metric] }
   let(:metric_group) { instance_double(GovernmentServiceDataAPI::MetricGroup, entity: entity, metrics: metrics) }
-  subject(:presenter) { MetricGroupPresenter.new(metric_group) }
+  subject(:presenter) { described_class.new(metric_group) }
+
+  describe MetricGroupPresenter::Totals do
+    describe '#entity' do
+      it 'returns a partial path to display the metric group header' do
+        expect(presenter.entity.to_partial_path).to eq('metric_groups/header/total')
+      end
+    end
+
+    describe '#totals?' do
+      it { expect(presenter.totals?).to be_truthy }
+    end
+  end
 
   describe '#entity' do
     it 'returns a partial path to display the metric group header' do
@@ -59,5 +71,9 @@ RSpec.describe MetricGroupPresenter, type: :presenter do
       presenter = MetricGroupPresenter.new(metric_group, collapsed: true)
       expect(presenter).to be_collapsed
     end
+  end
+
+  describe '#totals?' do
+    it { expect(presenter.totals?).to be_falsey }
   end
 end

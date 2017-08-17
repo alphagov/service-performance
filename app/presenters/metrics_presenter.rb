@@ -28,16 +28,21 @@ class MetricsPresenter
     entity.name
   end
 
-  def organisation_metrics
-    MetricGroupPresenter.new(data.metrics, collapsed: collapsed?).metrics
-  end
-
   def metric_groups
     @metric_groups ||= begin
       metric_groups = data.metric_groups
                         .map { |metric_group| MetricGroupPresenter.new(metric_group, collapsed: collapsed?) }
                         .sort_by(&sorter)
       metric_groups.reverse! if order == Metrics::Order::Descending
+
+      if order_by == Metrics::OrderBy::Name.identifier
+        metric_groups.unshift(totals_metric_group_presenter)
+      elsif order == Metrics::Order::Ascending
+        metric_groups.push(totals_metric_group_presenter)
+      elsif order == Metrics::Order::Descending
+        metric_groups.unshift(totals_metric_group_presenter)
+      end
+
       metric_groups
     end
   end
@@ -90,8 +95,11 @@ private
 
   attr_reader :client, :entity, :sorter
 
-
   def data
     @data ||= client.metrics(entity, group_by: group_by)
+  end
+
+  def totals_metric_group_presenter
+    @totals_metric_group_presenter ||= MetricGroupPresenter::Totals.new(data.totals, collapsed: collapsed?)
   end
 end
