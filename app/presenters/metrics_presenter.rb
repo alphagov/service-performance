@@ -5,7 +5,7 @@ class MetricsPresenter
 
     @group_by = group_by
     @order_by = order_by || Metrics::OrderBy::Name.identifier
-    @order = order || Metrics::Order::Ascending
+    @order = order || Metrics::Order::Descending
     @sorter = Metrics::OrderBy.fetch(@order_by)
   end
 
@@ -40,6 +40,16 @@ class MetricsPresenter
       metric_groups.reverse! if order == Metrics::Order::Descending
       metric_groups
     end
+  end
+
+  def high_low_label
+    return "A to Z" if @order_by == Metrics::OrderBy::Name.identifier
+    "High to Low"
+  end
+
+  def low_high_label
+    return "Z to A" if @order_by == Metrics::OrderBy::Name.identifier
+    "Low to High"
   end
 
   def has_departments?
