@@ -1,15 +1,19 @@
 .m-metric-guidance-toggle {
   display: block;
-  height: 14px;
-  width: 14px;
+  height: 24px;
+  width: 24px;
+  position: relative;
+  margin: auto;
+  right: -6px;
 }
 
 .a-metric-guidance-expand, .a-metric-guidance-collapse {
   display: block;
-  height: 14px;
-  width: 14px;
+  height: 24px;
+  width: 24px;
   background-repeat: no-repeat;
-  background-size: 14px 14px;
+  background-position: center;
+  background-size: 12px 12px;
   text-indent: -999em;
 }
 
