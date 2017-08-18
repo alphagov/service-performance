@@ -25,34 +25,34 @@ RSpec.feature 'viewing metrics', type: :feature do
         all('a', text: /\AOpen\z/).each(&:click) if javascript_enabled
 
         expect(metric_groups(:name, :transactions_received_total)).to eq([
-          ['HM Revenue & Customs', '0'],
-          ['Department for Business, Energy & Industrial Strategy', '0'],
-          ['Department for Environment Food & Rural Affairs', '3000039'],
-          ['Department for Education', '13000475'],
-          ['Department of Health', '18132669'],
-          ['Department for Transport', '118679511'],
-          ['Ministry of Justice', '593254687'],
           ['Total for UK government', '746067381'],
+          ['Ministry of Justice', '593254687'],
+          ['Department for Transport', '118679511'],
+          ['Department of Health', '18132669'],
+          ['Department for Education', '13000475'],
+          ['Department for Environment Food & Rural Affairs', '3000039'],
+          ['Department for Business, Energy & Industrial Strategy', '0'],
+          ['HM Revenue & Customs', '0'],
         ])
 
         if javascript_enabled
-          find('label', text: 'High to Low').click
+          find('label', text: 'Low to High').click
         else
-          choose 'High to Low'
+          choose 'Low to High'
         end
         click_on 'Apply' unless javascript_enabled
 
         all('a', text: /\AOpen\z/).each(&:click) if javascript_enabled
 
         expect(metric_groups(:name, :transactions_received_total)).to eq([
-          ['Total for UK government', '746067381'],
-          ['Ministry of Justice', '593254687'],
-          ['Department for Transport', '118679511'],
-          ['Department of Health', '18132669'],
-          ['Department for Education', '13000475'],
-          ['Department for Environment Food & Rural Affairs', '3000039'],
-          ['Department for Business, Energy & Industrial Strategy', '0'],
           ['HM Revenue & Customs', '0'],
+          ['Department for Business, Energy & Industrial Strategy', '0'],
+          ['Department for Environment Food & Rural Affairs', '3000039'],
+          ['Department for Education', '13000475'],
+          ['Department of Health', '18132669'],
+          ['Department for Transport', '118679511'],
+          ['Ministry of Justice', '593254687'],
+          ['Total for UK government', '746067381'],
         ])
       end
     end
