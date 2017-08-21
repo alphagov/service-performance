@@ -18,6 +18,8 @@ Rails.application.configure do
 
   config.active_support.deprecation = :notify
 
+  config.exceptions_app = self.routes
+
   config.log_formatter = ::Logger::Formatter.new
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)

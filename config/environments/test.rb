@@ -9,10 +9,11 @@ Rails.application.configure do
     'Cache-Control' => "public, max-age=#{1.hour.seconds.to_i}"
   }
 
-  config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.action_dispatch.show_exceptions = true
+  config.consider_all_requests_local = false
+  config.exceptions_app = self.routes
 
-  config.action_dispatch.show_exceptions = false
+  config.action_controller.perform_caching = false
 
   config.action_controller.allow_forgery_protection = false
 
