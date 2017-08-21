@@ -3,7 +3,7 @@
 #footer .footer-meta {
 
   .footer-meta-inner .open-government-licence .logo a {
-    background: image-url("govuk_template/source/assets/stylesheets/images/open-government-licence.png") 0 0 no-repeat;
+    background-image: image-url("govuk_template/source/assets/stylesheets/images/open-government-licence.png");
 
     @include device-pixel-ratio() {
       background-image: image-url("govuk_template/source/assets/stylesheets/images/open-government-licence_2x.png");

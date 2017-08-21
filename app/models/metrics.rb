@@ -52,6 +52,12 @@ module Metrics
       name: "transactions ending in the user's intended outcome",
       keypath: [:transactions_with_outcome, :count_with_intended_outcome])
 
+    CallsReceived = Sorter.new(Items::CallsReceived, name: 'calls received', keypath: [:calls_received, :total])
+    CallsReceivedGetInformation = Sorter.new(Items::CallsReceivedGetInformation, name: 'calls received (get information)', keypath: [:calls_received, :get_information])
+    CallsReceivedChaseProgress = Sorter.new(Items::CallsReceivedChaseProgress, name: 'calls received (chase progress)', keypath: [:calls_received, :chase_progress])
+    CallsReceivedChallengeADecision = Sorter.new(Items::CallsReceivedChallengeADecision, name: 'calls received (challenge a decision)', keypath: [:calls_received, :challenge_a_decision])
+    CallsReceivedOther = Sorter.new(Items::CallsReceivedOther, name: 'calls received (other)', keypath: [:calls_received, :other])
+
     ALL = [
       Name,
       TransactionsReceived,
@@ -62,6 +68,11 @@ module Metrics
       TransactionsReceivedOther,
       TransactionsEndingInOutcome,
       TransactionsEndingInOutcomeWithIntendedOutcome,
+      CallsReceived,
+      CallsReceivedGetInformation,
+      CallsReceivedChaseProgress,
+      CallsReceivedChallengeADecision,
+      CallsReceivedOther,
     ].freeze
 
     def self.fetch(identifier)

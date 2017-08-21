@@ -7,11 +7,6 @@
   border: 2px solid $black;
   border-radius: 0;
   -webkit-appearance: none;
-
-  &.focus,
-  &:focus {
-    outline-offset: -3px;
-  }
 }
 
 .a-apply-button {
