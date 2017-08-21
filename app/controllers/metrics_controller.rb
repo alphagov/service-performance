@@ -1,5 +1,6 @@
 class MetricsController < ApplicationController
-  private
+private
+
   def group_by
     @group_by ||= params[:group_by] && params[:group_by].to_sym
   end

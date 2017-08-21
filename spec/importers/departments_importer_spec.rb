@@ -29,9 +29,9 @@ RSpec.describe DepartmentsImporter do
         FactoryGirl.create(:delivery_organisation, natural_key: 'D1000')
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
-        
+
         importer.import(input, output)
-        
+
         department.reload
         expect(department.name).to eq('Org 2')
         expect(department.website).to eq('http://example.org')
@@ -43,12 +43,12 @@ RSpec.describe DepartmentsImporter do
 
     describe 'existing department id, without updates' do
       it 'ignores the department' do
-        department = FactoryGirl.create(:department, natural_key: 'D1', name: 'Org', website: 'http://example.com')
+        FactoryGirl.create(:department, natural_key: 'D1', name: 'Org', website: 'http://example.com')
         FactoryGirl.create(:delivery_organisation, natural_key: 'D1', name: 'Org', website: 'http://example.com')
         FactoryGirl.create(:delivery_organisation, natural_key: 'D1000')
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
-        
+
         importer.import(input, output)
 
         output.rewind
@@ -63,7 +63,7 @@ RSpec.describe DepartmentsImporter do
         delivery_organisation = FactoryGirl.create(:delivery_organisation, natural_key: 'D1000')
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
-        
+
         importer.import(input, output)
 
         delivery_organisation.reload
@@ -74,11 +74,11 @@ RSpec.describe DepartmentsImporter do
       end
 
       it 'reports if no delivery organisation' do
-        department = FactoryGirl.create(:department, natural_key: 'D1')
+        FactoryGirl.create(:department, natural_key: 'D1')
         FactoryGirl.create(:delivery_organisation, natural_key: 'D1', name: 'Org', website: 'http://example.com')
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
-        
+
         importer.import(input, output)
 
         output.rewind

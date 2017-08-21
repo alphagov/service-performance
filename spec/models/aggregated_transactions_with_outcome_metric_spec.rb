@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe AggregatedTransactionsWithOutcomeMetric, type: :model do
-
   describe 'aggregates transactions with outcome metric' do
     specify 'for a given department' do
       department = FactoryGirl.create(:department)
@@ -77,5 +76,4 @@ RSpec.describe AggregatedTransactionsWithOutcomeMetric, type: :model do
       expect(metric.with_intended_outcome).to eq(165)
     end
   end
-
 end

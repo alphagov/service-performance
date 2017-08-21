@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe AggregatedCallsReceivedMetric, type: :model do
-
   describe 'aggregates calls received metric' do
     specify 'for a given department' do
       department = FactoryGirl.create(:department)
@@ -99,7 +98,7 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
         expect(metric.sampled).to be_truthy
         expect(metric.sampled_total).to eq(135)
       end
-      
+
       it "isn't sampled if none of the metrics are sampled" do
         service = FactoryGirl.create(:service)
         FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', quantity: 50, sampled: false)
@@ -114,5 +113,4 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       end
     end
   end
-
 end

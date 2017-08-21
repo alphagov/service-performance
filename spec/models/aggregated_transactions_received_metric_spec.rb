@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
-
   describe 'aggregates transactions received metric' do
     specify 'for a given department' do
       department = FactoryGirl.create(:department)
@@ -23,7 +22,7 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       FactoryGirl.create(:transactions_received_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-04-30', channel: 'online', quantity: 72)
 
       # ignores metrics for services, in other departments
-      other_department=  FactoryGirl.create(:department)
+      other_department = FactoryGirl.create(:department)
       other_service = FactoryGirl.create(:service, department: other_department)
       FactoryGirl.create(:transactions_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'online', quantity: 95)
 
@@ -57,7 +56,7 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       FactoryGirl.create(:transactions_received_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-04-30', channel: 'online', quantity: 72)
 
       # ignores metrics for services, in other delivery organisations
-      other_delivery_organisation =  FactoryGirl.create(:delivery_organisation)
+      other_delivery_organisation = FactoryGirl.create(:delivery_organisation)
       other_service = FactoryGirl.create(:service, delivery_organisation: other_delivery_organisation)
       FactoryGirl.create(:transactions_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'online', quantity: 95)
 
@@ -96,5 +95,4 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       expect(metric.other).to eq(0)
     end
   end
-
 end

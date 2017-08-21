@@ -4,11 +4,11 @@ class DeliveryOrganisationsImporter
       organisations = GovernmentOrganisationRegister::Organisations.new
       organisations.each do |organisation|
         log = ->(message) do
-          output.puts message % {key: organisation.key, name: organisation.name}
+          output.puts message % { key: organisation.key, name: organisation.name }
         end
 
         if organisation.retired?
-          log.("ignoring organisation, retired: key=%{key}, name=%{name}")
+          log.("ignoring organisation, retired: key=%<key>s, name=%<name>s")
           next
         end
 
@@ -16,13 +16,12 @@ class DeliveryOrganisationsImporter
         delivery_organisation.name = organisation.name
         delivery_organisation.website = organisation.website
 
-        case
-        when delivery_organisation.new_record?
-          log.("new organisation: key=%{key}, name=%{name}")
-        when delivery_organisation.changed?
-          log.("updating organisation: key=%{key}, name=%{name}")
+        if delivery_organisation.new_record?
+          log.("new organisation: key=%<key>s, name=%<name>s")
+        elsif delivery_organisation.changed?
+          log.("updating organisation: key=%<key>s, name=%<name>s")
         else
-          log.("ignoring organisation, no changes: key=%{key}, name=%{name}")
+          log.("ignoring organisation, no changes: key=%<key>s, name=%<name>s")
         end
 
         delivery_organisation.save!

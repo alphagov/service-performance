@@ -6,7 +6,7 @@ class ServiceSerializer < ActiveModel::Serializer
   has_one :department
   has_one :delivery_organisation
 
-   def type
-     'service'
-   end
+  def type
+    'service'
+  end
 end
