@@ -9,12 +9,12 @@ RSpec.describe MetricsPresenter do
   let(:presenter) { described_class.new(entity, client: client, group_by: group_by, order: order, order_by: order_by) }
 
   describe '#initialize' do
-    it 'defaults to Ascending order for name, when none provided' do
-      presenter = described_class.new(entity, client: client, group_by: group_by, order: "name")
-      expect(presenter.order).to eq(Metrics::Order::Ascending)
+    it 'defaults to Descending order when none provided' do
+      presenter = described_class.new(entity, client: client, group_by: group_by)
+      expect(presenter.order).to eq(Metrics::Order::Descending)
 
-      presenter = described_class.new(entity, client: client, group_by: group_by, order: "name")
-      expect(presenter.order).to eq(Metrics::Order::Ascending)
+      presenter = described_class.new(entity, client: client, group_by: group_by, order: nil)
+      expect(presenter.order).to eq(Metrics::Order::Descending)
     end
 
     it 'defaults to ordering by name, when none provided' do
@@ -27,7 +27,7 @@ RSpec.describe MetricsPresenter do
 
     it 'allows setting order' do
       presenter = described_class.new(entity, client: client, group_by: group_by, order: Metrics::Order::Descending)
-      expect(presenter.order).to eq(Metrics::Order::Ascending)
+      expect(presenter.order).to eq(Metrics::Order::Descending)
     end
 
     it 'allows setting order by' do

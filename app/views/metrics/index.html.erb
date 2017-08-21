@@ -38,10 +38,8 @@
             <%= f.select :order_by, Metrics::OrderBy::ALL.map {|order| [order.name, order.identifier]}, {}, class: 'form-control' %>
 
             <div class="m-sort-order">
-              <% if !@metrics.sorting_by_name? %>
-                <label><%= f.radio_button :order, Metrics::Order::Descending %> <span>High to Low</span></label>
-                <label><%= f.radio_button :order, Metrics::Order::Ascending %> <span>Low to High</span></label>
-              <% end %>
+              <label><%= f.radio_button :order, Metrics::Order::Descending %> <span><%= @metrics.high_to_low_label %></span></label>
+              <label><%= f.radio_button :order, Metrics::Order::Ascending %> <span><%= @metrics.low_to_high_label %></span></label>
             </div>
 
             <button type="submit" class="a-apply-button">Apply</button>
