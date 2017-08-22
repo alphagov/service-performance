@@ -4,7 +4,7 @@ This is the API for interacting with Government Service Data. It is currently co
 
 ## Setup
 
-First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/gsd-api/blob/master/.ruby-version) installed, which is currently `2.4.0`. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
+First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/gsd-api/blob/master/.ruby-version) installed, which is currently `2.4.1`. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
 
 ```
 brew install rbenv
@@ -13,7 +13,7 @@ brew install rbenv
 If you have rbenv installed, you can run
 
 ```
-rbenv install 2.4.0
+rbenv install 2.4.1
 ```
 
 Next, you'll need [`Bundler`](http://bundler.io/) in order to install all the dependencies you'll need to run the app.
