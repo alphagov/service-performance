@@ -5,11 +5,11 @@ module GovernmentOrganisationRegister
     def on_complete(env)
       header = env[:response_headers]['Link']
       links = LinkHeader.parse(header).to_a
-      env[:links] = links.each.with_object({}) do |(uri, attributes), links|
+      env[:links] = links.each.with_object({}) do |(uri, attributes), link_rels|
         uri = URI.parse(uri)
         _, relationship = attributes.detect { |(key, _value)| key == 'rel' }
 
-        links[relationship.to_sym] = uri
+        link_rels[relationship.to_sym] = uri
       end
     end
   end
