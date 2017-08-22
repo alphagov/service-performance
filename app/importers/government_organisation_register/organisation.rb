@@ -15,7 +15,7 @@ module GovernmentOrganisationRegister
       end_date && (end_date < Date.today)
     end
 
-    private
+  private
 
     DATE_PATTERN = /(?<year>\d{4})(-(?<month>\d{2})(-(?<day>\d{2}))?)?/
 

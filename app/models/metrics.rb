@@ -1,14 +1,15 @@
 class Metrics
   module GroupBy
-    Government = :government
-    Department = :department
-    DeliveryOrganisation = :delivery_organisation
-    Service = :service
+    GOVERNMENT = :government
+    DEPARTMENT = :department
+    DELIVERY_ORGANISATION = :delivery_organisation
+    SERVICE = :service
   end
 
   class MetricGroup
     def initialize(entity, metrics)
-      @entity, @metrics = entity, metrics
+      @entity = entity
+      @metrics = metrics
     end
 
     alias :read_attribute_for_serialization :send
@@ -50,7 +51,7 @@ class Metrics
     end
   end
 
-  private
+private
 
   def entities
     raise NotImplementedError, "must be implemented by sub-classes"

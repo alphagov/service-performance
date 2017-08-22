@@ -7,7 +7,7 @@ module GovernmentOrganisationRegister
       links = LinkHeader.parse(header).to_a
       env[:links] = links.each.with_object({}) do |(uri, attributes), links|
         uri = URI.parse(uri)
-        _, relationship = attributes.detect {|(key, value)| key == 'rel'}
+        _, relationship = attributes.detect { |(key, _value)| key == 'rel' }
 
         links[relationship.to_sym] = uri
       end
@@ -35,7 +35,7 @@ module GovernmentOrganisationRegister
       end
     end
 
-    private
+  private
 
     def connection
       @connection ||= Faraday.new do |client|

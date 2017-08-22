@@ -29,7 +29,8 @@ class DepartmentsImporter
 
       csv = CSV.new(input, headers: true)
       csv.each do |row|
-        organisation_id, department_id = row['Organisation ID'], row['Department ID']
+        organisation_id = row['Organisation ID']
+        department_id = row['Department ID']
         next if organisation_id.nil? || department_id.nil?
 
         department_ids << department_id
@@ -44,18 +45,17 @@ class DepartmentsImporter
         department.website = delivery_organisation.website
 
         log = ->(message) do
-          output.puts message % {key: department.natural_key, name: department.name}
+          output.puts message % { key: department.natural_key, name: department.name }
         end
 
-        case
-        when department.new_record?
-          log.("promoting delivery organisation to department: key=%{key}, name=%{name}")
-        when department.changed?
-          log.("updating department: key=%{key}, name=%{name}")
+        if department.new_record?
+          log.("promoting delivery organisation to department: key=%<key>s, name=%<name>s")
+        elsif department.changed?
+          log.("updating department: key=%<key>s, name=%<name>s")
         else
-          log.("ignoring department, no changes: key=%{key}, name=%{name}")
+          log.("ignoring department, no changes: key=%<key>s, name=%<name>s")
         end
-          
+
         department.save!
       end
 
@@ -64,20 +64,20 @@ class DepartmentsImporter
         delivery_organisation = DeliveryOrganisation.where(natural_key: organisation_id).first
 
         log = ->(message, args = nil) do
-          args ||= {key: delivery_organisation.natural_key, department_code: delivery_organisation.department_code}
+          args ||= { key: delivery_organisation.natural_key, department_code: delivery_organisation.department_code }
           output.puts message % args
         end
 
         if delivery_organisation
           delivery_organisation.department = department
           if delivery_organisation.changed?
-            log.("updating delivery organisation's department: key=%{key}, department_code=%{department_code}")
+            log.("updating delivery organisation's department: key=%<key>s, department_code=%<department_code>s")
           else
-            log.("ignoring delivery organisation, no changes: key=%{key}, department_code=%{department_code}")
+            log.("ignoring delivery organisation, no changes: key=%<key>s, department_code=%<department_code>s")
           end
           delivery_organisation.save!
         else
-          log.("unknown delivery organisation: key=%{key}", key: organisation_id)
+          log.("unknown delivery organisation: key=%<key>s", key: organisation_id)
         end
       end
     end

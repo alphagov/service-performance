@@ -10,14 +10,14 @@ RSpec.describe DepartmentMetrics, type: :model do
     context "grouped by department" do
       it_behaves_like 'uses the correct child entites, depending on the group by setting' do
         let(:children) { [department] }
-        let(:group_by) { Metrics::GroupBy::Department }
+        let(:group_by) { Metrics::GroupBy::DEPARTMENT }
       end
     end
 
     context "grouped by delivery organistaion" do
       it_behaves_like 'uses the correct child entites, depending on the group by setting' do
         let(:children) { [double(:delivery_organisation_1), double(:delivery_organisation_2)] }
-        let(:group_by) { Metrics::GroupBy::DeliveryOrganisation }
+        let(:group_by) { Metrics::GroupBy::DELIVERY_ORGANISATION }
 
         before do
           allow(root).to receive(:delivery_organisations) { children }
@@ -28,7 +28,7 @@ RSpec.describe DepartmentMetrics, type: :model do
     context "grouped by service" do
       it_behaves_like 'uses the correct child entites, depending on the group by setting' do
         let(:children) { [double(:service_1), double(:service_2)] }
-        let(:group_by) { Metrics::GroupBy::Service }
+        let(:group_by) { Metrics::GroupBy::SERVICE }
 
         before do
           allow(root).to receive(:services) { children }

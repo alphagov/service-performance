@@ -13,7 +13,7 @@ class AggregatedCallsReceivedMetric
     CallsReceivedMetric
       .where(service_code: organisation.services.pluck(:natural_key))
       .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
-      .each do |metric, memo|
+      .each do |metric, _memo|
         @total += metric.quantity
         @get_information += metric.quantity_of_get_information || 0
         @chase_progress += metric.quantity_of_chase_progress || 0
