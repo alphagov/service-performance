@@ -34,10 +34,16 @@ class MetricsPresenter
       metric_groups = data.metric_groups
                         .map { |metric_group| MetricGroupPresenter.new(metric_group, collapsed: collapsed?) }
                         .sort_by(&sorter)
-      metric_groups.reverse! if order == Metrics::Order::Descending
+
+      # When sorting by name, we want Descending (the default) to
+      # sort A-Z rather than Z-A, but to work as expected for metrics.
+      if order_by == Metrics::OrderBy::Name.identifier
+        metric_groups.reverse! if order == Metrics::Order::Ascending
+      elsif order == Metrics::Order::Descending
+        metric_groups.reverse!
+      end
 
       if order_by == Metrics::OrderBy::Name.identifier
-        metric_groups = metric_groups.reverse
         metric_groups.unshift(totals_metric_group_presenter)
       elsif order == Metrics::Order::Ascending
         metric_groups.push(totals_metric_group_presenter)
