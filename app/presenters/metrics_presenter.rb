@@ -5,7 +5,8 @@ class MetricsPresenter
 
     @group_by = group_by
     @order_by = order_by || Metrics::OrderBy::Name.identifier
-    @order = order || Metrics::Order::Ascending
+    @order = order || Metrics::Order::Descending
+
     @sorter = Metrics::OrderBy.fetch(@order_by)
   end
 
@@ -33,7 +34,14 @@ class MetricsPresenter
       metric_groups = data.metric_groups
                         .map { |metric_group| MetricGroupPresenter.new(metric_group, collapsed: collapsed?) }
                         .sort_by(&sorter)
-      metric_groups.reverse! if order == Metrics::Order::Descending
+
+      # When sorting by name, we want Descending (the default) to
+      # sort A-Z rather than Z-A, but to work as expected for metrics.
+      if order_by == Metrics::OrderBy::Name.identifier
+        metric_groups.reverse! if order == Metrics::Order::Ascending
+      elsif order == Metrics::Order::Descending
+        metric_groups.reverse!
+      end
 
       if order_by == Metrics::OrderBy::Name.identifier
         metric_groups.unshift(totals_metric_group_presenter)
@@ -45,6 +53,16 @@ class MetricsPresenter
 
       metric_groups
     end
+  end
+
+  def high_to_low_label
+    return "A - Z" if @order_by == Metrics::OrderBy::Name.identifier
+    "High to Low"
+  end
+
+  def low_to_high_label
+    return "Z - A" if @order_by == Metrics::OrderBy::Name.identifier
+    "Low to High"
   end
 
   def has_departments?

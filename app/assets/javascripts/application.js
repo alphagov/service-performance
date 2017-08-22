@@ -1,7 +1,7 @@
 // = require jquery
+// = require metrics_filter_panel
 // = require collapsed_metric_group
 // = require metric_guidance
-// = require metrics_filter_panel
 // = require search
 
 ;(function (global) {

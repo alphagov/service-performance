@@ -9,12 +9,12 @@ RSpec.describe MetricsPresenter do
   let(:presenter) { described_class.new(entity, client: client, group_by: group_by, order: order, order_by: order_by) }
 
   describe '#initialize' do
-    it 'defaults to Ascending order, when none provided' do
+    it 'defaults to Descending order when none provided' do
       presenter = described_class.new(entity, client: client, group_by: group_by)
-      expect(presenter.order).to eq(Metrics::Order::Ascending)
+      expect(presenter.order).to eq(Metrics::Order::Descending)
 
       presenter = described_class.new(entity, client: client, group_by: group_by, order: nil)
-      expect(presenter.order).to eq(Metrics::Order::Ascending)
+      expect(presenter.order).to eq(Metrics::Order::Descending)
     end
 
     it 'defaults to ordering by name, when none provided' do
@@ -104,9 +104,9 @@ RSpec.describe MetricsPresenter do
         expect(presenter.metric_groups).to eq([totals_metric_presenter, metric_group_presenters[2], metric_group_presenters[3], metric_group_presenters[0], metric_group_presenters[1]])
       end
 
-      it 'reverses the order, if order is descending' do
+      it 'reverses the order, if order is ascending' do
         presenter = described_class.new(entity, client: client, group_by: group_by, order: Metrics::Order::Descending)
-        expect(presenter.metric_groups).to eq([totals_metric_presenter, metric_group_presenters[1], metric_group_presenters[0], metric_group_presenters[3], metric_group_presenters[2]])
+        expect(presenter.metric_groups).to eq([totals_metric_presenter, metric_group_presenters[2], metric_group_presenters[3], metric_group_presenters[0], metric_group_presenters[1]])
       end
     end
 
