@@ -23,6 +23,8 @@ require 'csv'
 
 class DepartmentsImporter
   def import(input = ARGF, output = $stderr)
+    @output = output
+
     ActiveRecord::Base.transaction do
       department_ids = Set.new
       department_ids_by_organisation = {}
@@ -37,48 +39,55 @@ class DepartmentsImporter
         department_ids_by_organisation[organisation_id] = department_id
       end
 
-      department_ids.each do |department_id|
-        delivery_organisation = DeliveryOrganisation.where(natural_key: department_id).first!
+      add_departments(department_ids)
+      add_delivery_organisations(department_ids_by_organisation)
+    end
+  end
 
-        department = Department.where(natural_key: department_id).first_or_initialize
-        department.name = delivery_organisation.name
-        department.website = delivery_organisation.website
+  def add_departments(department_ids)
+    department_ids.each do |department_id|
+      delivery_organisation = DeliveryOrganisation.where(natural_key: department_id).first!
 
-        log = ->(message) do
-          output.puts message % { key: department.natural_key, name: department.name }
-        end
+      department = Department.where(natural_key: department_id).first_or_initialize
+      department.name = delivery_organisation.name
+      department.website = delivery_organisation.website
 
-        if department.new_record?
-          log.("promoting delivery organisation to department: key=%<key>s, name=%<name>s")
-        elsif department.changed?
-          log.("updating department: key=%<key>s, name=%<name>s")
-        else
-          log.("ignoring department, no changes: key=%<key>s, name=%<name>s")
-        end
-
-        department.save!
+      log = ->(message) do
+        @output.puts message % { key: department.natural_key, name: department.name }
       end
 
-      department_ids_by_organisation.each do |organisation_id, department_id|
-        department = Department.where(natural_key: department_id).first!
-        delivery_organisation = DeliveryOrganisation.where(natural_key: organisation_id).first
+      if department.new_record?
+        log.("promoting delivery organisation to department: key=%<key>s, name=%<name>s")
+      elsif department.changed?
+        log.("updating department: key=%<key>s, name=%<name>s")
+      else
+        log.("ignoring department, no changes: key=%<key>s, name=%<name>s")
+      end
 
-        log = ->(message, args = nil) do
-          args ||= { key: delivery_organisation.natural_key, department_code: delivery_organisation.department_code }
-          output.puts message % args
-        end
+      department.save!
+    end
+  end
 
-        if delivery_organisation
-          delivery_organisation.department = department
-          if delivery_organisation.changed?
-            log.("updating delivery organisation's department: key=%<key>s, department_code=%<department_code>s")
-          else
-            log.("ignoring delivery organisation, no changes: key=%<key>s, department_code=%<department_code>s")
-          end
-          delivery_organisation.save!
+  def add_delivery_organisations(department_ids_by_organisation)
+    department_ids_by_organisation.each do |organisation_id, department_id|
+      department = Department.where(natural_key: department_id).first!
+      delivery_organisation = DeliveryOrganisation.where(natural_key: organisation_id).first
+
+      log = ->(message, args = nil) do
+        args ||= { key: delivery_organisation.natural_key, department_code: delivery_organisation.department_code }
+        @output.puts message % args
+      end
+
+      if delivery_organisation
+        delivery_organisation.department = department
+        if delivery_organisation.changed?
+          log.("updating delivery organisation's department: key=%<key>s, department_code=%<department_code>s")
         else
-          log.("unknown delivery organisation: key=%<key>s", key: organisation_id)
+          log.("ignoring delivery organisation, no changes: key=%<key>s, department_code=%<department_code>s")
         end
+        delivery_organisation.save!
+      else
+        log.("unknown delivery organisation: key=%<key>s", key: organisation_id)
       end
     end
   end
