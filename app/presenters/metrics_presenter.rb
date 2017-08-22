@@ -56,12 +56,12 @@ class MetricsPresenter
   end
 
   def high_to_low_label
-    return "A - Z" if @order_by == Metrics::OrderBy::Name.identifier
+    return "A to Z" if @order_by == Metrics::OrderBy::Name.identifier
     "High to Low"
   end
 
   def low_to_high_label
-    return "Z - A" if @order_by == Metrics::OrderBy::Name.identifier
+    return "Z to A" if @order_by == Metrics::OrderBy::Name.identifier
     "Low to High"
   end
 
