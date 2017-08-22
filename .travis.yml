@@ -1,6 +1,8 @@
 dist: trusty
 sudo: true
 language: generic
+cache:
+  bundler: true
 
 env:
   global:
