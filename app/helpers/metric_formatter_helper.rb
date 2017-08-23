@@ -1,6 +1,6 @@
 module MetricFormatterHelper
   def metric_to_human(value)
-    text = number_to_human(value, precision: 0, significant: false, units: { thousand: 'k', million: 'm', billion: 'b' }, format: '%n%u')
+    text = number_to_human(value, precision: 3, significant: true, units: { thousand: 'k', million: 'm', billion: 'b' }, format: '%n%u')
     content_tag(:data, text, value: value)
   end
 
