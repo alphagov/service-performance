@@ -14,14 +14,14 @@ class AggregatedCallsReceivedMetric
       .where(service_code: organisation.services.pluck(:natural_key))
       .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
       .each do |metric, _memo|
-        @total += metric.quantity
-        @get_information += metric.quantity_of_get_information || 0
-        @chase_progress += metric.quantity_of_chase_progress || 0
-        @challenge_a_decision += metric.quantity_of_challenge_a_decision || 0
-        @other += metric.quantity_of_other || 0
+        @total += metric.quantity if metric.item == 'total'
+        @get_information += metric.quantity if metric.item == 'get-information'
+        @chase_progress += metric.quantity if metric.item == 'chase-progress'
+        @challenge_a_decision += metric.quantity if metric.item == 'challenge-a-decision'
+        @other += metric.quantity if metric.item == 'other'
 
         @sampled |= metric.sampled
-        @sampled_total += metric.sample_size || metric.quantity
+        @sampled_total += metric.sample_size || metric.quantity if metric.item == 'total'
       end
   end
 
