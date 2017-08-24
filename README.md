@@ -51,3 +51,12 @@ To run tests, you should run
 bin/rails spec
 ```
 
+## Deployment
+
+### Running Migrations
+
+The migrations aren't automatically run by CI on deployment. To run all pending
+migrations use the following:
+
+    cf run-task gsd-api "cd app && bundle exec rake db:migrate" --name migrate
+
