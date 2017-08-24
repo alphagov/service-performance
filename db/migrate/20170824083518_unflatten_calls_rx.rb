@@ -11,11 +11,12 @@ class UnflattenCallsRx < ActiveRecord::Migration[5.0]
 
     change_column :calls_received_metrics, :quantity, :integer, null: true
 
+    # Copy across data from tmp_calls_rx
+    CallsReceivedMetric.delete_all
+
     # Add new columns
     add_column :calls_received_metrics, :item, :string, null: false
 
-    # Copy across data from tmp_calls_rx
-    CallsReceivedMetric.delete_all
     sql = 'select * from tmp_calls_rx;'
     records_array = ActiveRecord::Base.connection.execute(sql)
     records_array.each{ |row|
