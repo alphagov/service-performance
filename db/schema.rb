@@ -66,24 +66,6 @@ ActiveRecord::Schema.define(version: 20170824083518) do
     t.index ["natural_key"], name: "index_services_on_natural_key", unique: true, using: :btree
   end
 
-  create_table "tmp_calls_rx", id: false, force: :cascade do |t|
-    t.integer  "id"
-    t.string   "department_code"
-    t.string   "delivery_organisation_code"
-    t.string   "service_code"
-    t.date     "starts_on"
-    t.date     "ends_on"
-    t.bigint   "quantity"
-    t.boolean  "sampled"
-    t.integer  "sample_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "quantity_of_get_information"
-    t.integer  "quantity_of_chase_progress"
-    t.integer  "quantity_of_challenge_a_decision"
-    t.integer  "quantity_of_other"
-  end
-
   create_table "transactions_received_metrics", force: :cascade do |t|
     t.string   "department_code",            null: false
     t.string   "delivery_organisation_code"
