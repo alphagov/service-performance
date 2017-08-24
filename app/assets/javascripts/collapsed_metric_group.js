@@ -18,6 +18,7 @@
         return
       }
 
+      var metricGroup = $(element)
       var collapsedHeaderContainer = $('<div />', { 'class': 'm-metric-group-header' })
       var metricItemDescriptionContainer = $('<div />', { 'class': 'm-metric-item-description' })
       var toggleLinkOpenContainer = $('<div />', { 'class': 'm-metric-group-open-toggle' })
@@ -41,14 +42,29 @@
       metricItemDescriptionContainer.html(metricItemDescription)
       collapsedContainer.append(metricItemDescriptionContainer)
 
+      // Define behaviours for expaning and collapsing, to be triggered in
+      // event handlers.
+      var expand = function () {
+        collapsedContainer.hide()
+        expandedContainer.show()
+        metricGroup.removeClass('m-metric-group__collapsed')
+        metricGroup.addClass('m-metric-group__expanded')
+      }
+
+      var collapse = function () {
+        collapsedContainer.show()
+        expandedContainer.hide()
+        metricGroup.removeClass('m-metric-group__expanded')
+        metricGroup.addClass('m-metric-group__collapsed')
+      }
+
       // Create an open link, and give it a click behaviour to show the
       // expanded variant.
       var openLink = $('<a href="#">Open</a>')
       openLink.on('click', function (e) {
         e.preventDefault()
 
-        collapsedContainer.hide()
-        expandedContainer.show()
+        expand()
       })
       toggleLinkOpenContainer.append(openLink)
       collapsedContainer.append(toggleLinkOpenContainer)
@@ -59,8 +75,7 @@
       closeLink.on('click', function (e) {
         e.preventDefault()
 
-        collapsedContainer.show()
-        expandedContainer.hide()
+        collapse()
       })
       toggleLinkCloseContainer.append(closeLink)
       expandedContainer.prepend(toggleLinkCloseContainer)
