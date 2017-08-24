@@ -9,8 +9,10 @@ class UnflattenCallsRx < ActiveRecord::Migration[5.0]
     remove_column :calls_received_metrics, :quantity_of_challenge_a_decision
     remove_column :calls_received_metrics, :quantity_of_other
 
+    change_column :calls_received_metrics, :quantity, :integer, null: true
+
     # Add new columns
-    add_column :calls_received_metrics, :item, :string, null: true
+    add_column :calls_received_metrics, :item, :string, null: false
 
     # Copy across data from tmp_calls_rx
     CallsReceivedMetric.delete_all
@@ -53,8 +55,6 @@ class UnflattenCallsRx < ActiveRecord::Migration[5.0]
     }
 
     drop_table :tmp_calls_rx
-    change_column :calls_received_metrics, :quantity, :integer, null: true
-    change_column :calls_received_metrics, :item, :string, null: false
   end
 
 end
