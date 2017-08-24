@@ -6,8 +6,8 @@ class AggregatedTransactionsWithOutcomeMetric
       .where(service_code: organisation.services.pluck(:natural_key))
       .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
       .each.with_object(total: 0, with_intended_outcome: 0) do |metric, memo|
-        memo[:total] += metric.quantity if metric.outcome == 'any'
-        memo[:with_intended_outcome] += metric.quantity if metric.outcome == 'intended'
+        memo[:total] += metric.quantity || 0 if metric.outcome == 'any'
+        memo[:with_intended_outcome] += metric.quantity || 0 if metric.outcome == 'intended'
       end
   end
 
