@@ -8,5 +8,5 @@ class TransactionsWithOutcomeMetric < ApplicationRecord
   validates_presence_of :starts_on, strict: true
   validates_presence_of :ends_on, strict: true
 
-  validates_presence_of :quantity_with_any_outcome, strict: true
+  validates_presence_of :outcome, strict: true
 end

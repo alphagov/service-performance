@@ -97,15 +97,15 @@ ActiveRecord::Schema.define(version: 20170824083518) do
   end
 
   create_table "transactions_with_outcome_metrics", force: :cascade do |t|
-    t.string   "department_code",                null: false
+    t.string   "department_code",            null: false
     t.string   "delivery_organisation_code"
-    t.string   "service_code",                   null: false
-    t.date     "starts_on",                      null: false
-    t.date     "ends_on",                        null: false
-    t.bigint   "quantity_with_any_outcome",      null: false
-    t.bigint   "quantity_with_intended_outcome"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "service_code",               null: false
+    t.date     "starts_on",                  null: false
+    t.date     "ends_on",                    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "outcome",                    null: false
+    t.integer  "quantity"
   end
 
   add_foreign_key "calls_received_metrics", "delivery_organisations", column: "delivery_organisation_code", primary_key: "natural_key"

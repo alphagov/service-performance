@@ -5,23 +5,29 @@ RSpec.describe AggregatedTransactionsWithOutcomeMetric, type: :model do
     specify 'for a given department' do
       department = FactoryGirl.create(:department)
       service1 = FactoryGirl.create(:service, department: department)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-01-01', ends_on: '2017-01-31', quantity_with_any_outcome: 50, quantity_with_intended_outcome: 45)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-02-01', ends_on: '2017-02-28', quantity_with_any_outcome: 60, quantity_with_intended_outcome: 55)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-03-01', ends_on: '2017-03-31', quantity_with_any_outcome: 70, quantity_with_intended_outcome: 65)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: 50)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-02-01', ends_on: '2017-02-28', outcome: 'any', quantity: 60)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-03-01', ends_on: '2017-03-31', outcome: 'any', quantity: 70)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'intended', quantity: 45)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-02-01', ends_on: '2017-02-28', outcome: 'intended', quantity: 55)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-03-01', ends_on: '2017-03-31', outcome: 'intended', quantity: 65)
 
       service2 = FactoryGirl.create(:service, department: department)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-01-01', ends_on: '2017-01-31', quantity_with_any_outcome: 50, quantity_with_intended_outcome: 45)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-02-28', quantity_with_any_outcome: 60, quantity_with_intended_outcome: 55)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-03-01', ends_on: '2017-03-31', quantity_with_any_outcome: 70, quantity_with_intended_outcome: 65)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: 50)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-02-28', outcome: 'any', quantity: 60)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-03-01', ends_on: '2017-03-31', outcome: 'any', quantity: 70)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'intended', quantity: 45)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-02-28', outcome: 'intended', quantity: 55)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-03-01', ends_on: '2017-03-31', outcome: 'intended', quantity: 65)
 
       # ignores metrics with overlapping ranges
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2016-12-01', ends_on: '2017-01-31', quantity_with_any_outcome: 30, quantity_with_intended_outcome: 25)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-04-30', quantity_with_any_outcome: 20, quantity_with_intended_outcome: 15)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2016-12-01', ends_on: '2017-01-31', outcome: 'any', quantity: 30)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-04-30', outcome: 'any', quantity: 20)
 
       # ignores metrics for services, in other departments
       other_department = FactoryGirl.create(:department)
       other_service = FactoryGirl.create(:service, department: other_department)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', quantity_with_any_outcome: 10, quantity_with_intended_outcome: 5)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: 10)
 
       time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
       metric = AggregatedTransactionsWithOutcomeMetric.new(department, time_period)
@@ -32,23 +38,29 @@ RSpec.describe AggregatedTransactionsWithOutcomeMetric, type: :model do
     specify 'for a given delivery_organisation' do
       delivery_organisation = FactoryGirl.create(:delivery_organisation)
       service1 = FactoryGirl.create(:service, delivery_organisation: delivery_organisation)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-01-01', ends_on: '2017-01-31', quantity_with_any_outcome: 50, quantity_with_intended_outcome: 45)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-02-01', ends_on: '2017-02-28', quantity_with_any_outcome: 60, quantity_with_intended_outcome: 55)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-03-01', ends_on: '2017-03-31', quantity_with_any_outcome: 70, quantity_with_intended_outcome: 65)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: 50)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-02-01', ends_on: '2017-02-28', outcome: 'any', quantity: 60)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-03-01', ends_on: '2017-03-31', outcome: 'any', quantity: 70)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'intended', quantity: 45)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-02-01', ends_on: '2017-02-28', outcome: 'intended', quantity: 55)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2017-03-01', ends_on: '2017-03-31', outcome: 'intended', quantity: 65)
 
       service2 = FactoryGirl.create(:service, delivery_organisation: delivery_organisation)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-01-01', ends_on: '2017-01-31', quantity_with_any_outcome: 50, quantity_with_intended_outcome: 45)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-02-28', quantity_with_any_outcome: 60, quantity_with_intended_outcome: 55)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-03-01', ends_on: '2017-03-31', quantity_with_any_outcome: 70, quantity_with_intended_outcome: 65)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: 50)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-02-28', outcome: 'any', quantity: 60)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-03-01', ends_on: '2017-03-31', outcome: 'any', quantity: 70)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'intended', quantity: 45)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-02-28', outcome: 'intended', quantity: 55)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-03-01', ends_on: '2017-03-31', outcome: 'intended', quantity: 65)
 
       # ignores metrics with overlapping ranges
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2016-12-01', ends_on: '2017-01-31', quantity_with_any_outcome: 30, quantity_with_intended_outcome: 25)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-04-30', quantity_with_any_outcome: 20, quantity_with_intended_outcome: 15)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service1, starts_on: '2016-12-01', ends_on: '2017-01-31', outcome: 'any', quantity: 30)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service2, starts_on: '2017-02-01', ends_on: '2017-04-30', outcome: 'any', quantity: 20)
 
       # ignores metrics for services, in other departments
       other_delivery_organisation = FactoryGirl.create(:delivery_organisation)
       other_service = FactoryGirl.create(:service, delivery_organisation: other_delivery_organisation)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', quantity_with_any_outcome: 10, quantity_with_intended_outcome: 5)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: 10)
 
       time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
       metric = AggregatedTransactionsWithOutcomeMetric.new(delivery_organisation, time_period)
@@ -58,17 +70,22 @@ RSpec.describe AggregatedTransactionsWithOutcomeMetric, type: :model do
 
     specify 'for a given service' do
       service = FactoryGirl.create(:service)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', quantity_with_any_outcome: 50, quantity_with_intended_outcome: 45)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-02-28', quantity_with_any_outcome: 60, quantity_with_intended_outcome: 55)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-03-01', ends_on: '2017-03-31', quantity_with_any_outcome: 70, quantity_with_intended_outcome: 65)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: 50)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-02-28', outcome: 'any', quantity: 60)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-03-01', ends_on: '2017-03-31', outcome: 'any', quantity: 70)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'intended', quantity: 45)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-02-28', outcome: 'intended', quantity: 55)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-03-01', ends_on: '2017-03-31', outcome: 'intended', quantity: 65)
 
       # ignores metrics with overlapping ranges
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2016-12-01', ends_on: '2017-01-31', quantity_with_any_outcome: 30, quantity_with_intended_outcome: 25)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-04-30', quantity_with_any_outcome: 20, quantity_with_intended_outcome: 15)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2016-12-01', ends_on: '2017-01-31', outcome: 'any', quantity: 30)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-04-30', outcome: 'any', quantity: 20)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2016-12-01', ends_on: '2017-01-31', outcome: 'intended', quantity: 25)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-04-30', outcome: 'intended', quantity: 15)
 
       # ignores metrics for other services
       other_service = FactoryGirl.create(:service)
-      FactoryGirl.create(:transactions_with_outcome_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', quantity_with_any_outcome: 10, quantity_with_intended_outcome: 5)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: 10)
 
       time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
       metric = AggregatedTransactionsWithOutcomeMetric.new(service, time_period)
