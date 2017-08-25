@@ -25,20 +25,20 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"9416cb3e34dd7abcadd9b8fe0e96fba4"
+      - W/"4edc2abf7cdaf225a07fdcc10799aa88"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - af93f74a-7791-442b-a857-8948eb381931
+      - abafa0ec-bfc8-4625-9ba0-69265ad22950
       x-runtime:
-      - '0.016298'
+      - '0.007610'
       date:
-      - Mon, 17 Jul 2017 10:01:01 GMT
+      - Fri, 25 Aug 2017 14:09:10 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","hostname":"department-for-transport","delivery_organisations_count":2,"services_count":9}'
+      string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9}'
     http_version: 
-  recorded_at: Mon, 17 Jul 2017 10:01:01 GMT
+  recorded_at: Fri, 25 Aug 2017 14:09:10 GMT
 recorded_with: VCR 3.0.3
