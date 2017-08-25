@@ -31,9 +31,9 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       expect(metric.total).to eq(2200)
       expect(metric.online).to eq(1200)
       expect(metric.phone).to eq(1000)
-      expect(metric.paper).to eq(0)
-      expect(metric.face_to_face).to eq(0)
-      expect(metric.other).to eq(0)
+      expect(metric.paper).to eq(nil)
+      expect(metric.face_to_face).to eq(nil)
+      expect(metric.other).to eq(nil)
     end
 
     specify 'for a given delivery organisation' do
@@ -65,9 +65,9 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       expect(metric.total).to eq(2200)
       expect(metric.online).to eq(1200)
       expect(metric.phone).to eq(1000)
-      expect(metric.paper).to eq(0)
-      expect(metric.face_to_face).to eq(0)
-      expect(metric.other).to eq(0)
+      expect(metric.paper).to eq(nil)
+      expect(metric.face_to_face).to eq(nil)
+      expect(metric.other).to eq(nil)
     end
 
     specify 'for a given service' do
@@ -90,9 +90,9 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       expect(metric.total).to eq(1100)
       expect(metric.online).to eq(600)
       expect(metric.phone).to eq(500)
-      expect(metric.paper).to eq(0)
-      expect(metric.face_to_face).to eq(0)
-      expect(metric.other).to eq(0)
+      expect(metric.paper).to eq(nil)
+      expect(metric.face_to_face).to eq(nil)
+      expect(metric.other).to eq(nil)
     end
   end
 end
