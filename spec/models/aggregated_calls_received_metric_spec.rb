@@ -36,9 +36,9 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       metric = AggregatedCallsReceivedMetric.new(department, time_period)
       expect(metric.total).to eq(360)
       expect(metric.get_information).to eq(330)
-      expect(metric.chase_progress).to eq(nil)
-      expect(metric.challenge_a_decision).to eq(nil)
-      expect(metric.other).to eq(nil)
+      expect(metric.chase_progress).to be_nil
+      expect(metric.challenge_a_decision).to be_nil
+      expect(metric.other).to be_nil
     end
 
     specify 'for a given delivery_organisation' do
@@ -77,9 +77,9 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       metric = AggregatedCallsReceivedMetric.new(delivery_organisation, time_period)
       expect(metric.total).to eq(360)
       expect(metric.get_information).to eq(330)
-      expect(metric.chase_progress).to eq(nil)
-      expect(metric.challenge_a_decision).to eq(nil)
-      expect(metric.other).to eq(nil)
+      expect(metric.chase_progress).to be_nil
+      expect(metric.challenge_a_decision).to be_nil
+      expect(metric.other).to be_nil
     end
 
     specify 'for a given service' do
@@ -106,9 +106,9 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       metric = AggregatedCallsReceivedMetric.new(service, time_period)
       expect(metric.total).to eq(180)
       expect(metric.get_information).to eq(165)
-      expect(metric.chase_progress).to eq(nil)
-      expect(metric.challenge_a_decision).to eq(nil)
-      expect(metric.other).to eq(nil)
+      expect(metric.chase_progress).to be_nil
+      expect(metric.challenge_a_decision).to be_nil
+      expect(metric.other).to be_nil
     end
 
     context 'aggregating sampled & non-sampled data' do
