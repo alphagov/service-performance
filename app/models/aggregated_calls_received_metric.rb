@@ -7,10 +7,12 @@ class AggregatedCallsReceivedMetric
       .where(service_code: organisation.services.pluck(:natural_key))
       .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
       .each.with_object({}) do |metric, memo|
-        memo[metric.item] ||= 0
-        memo[metric.item] += metric.quantity
+        if !metric.quantity.nil?
+          memo[metric.item] ||= 0
+          memo[metric.item] += metric.quantity
+        end
         memo['sampled-total'] ||= 0
-        memo['sampled-total'] += metric.sample_size || metric.quantity || 0
+        memo['sampled-total'] += metric.sample_size || (metric.quantity || 0)
         @sampled |= metric.sampled
       end
   end
