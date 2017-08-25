@@ -12,26 +12,26 @@ class AggregatedTransactionsReceivedMetric
   end
 
   def total
-    online + phone + paper + face_to_face + other
+    [online, phone, paper, face_to_face, other].compact.sum
   end
 
   def online
-    @totals['online'] || 0
+    @totals['online']
   end
 
   def phone
-    @totals['phone'] || 0
+    @totals['phone']
   end
 
   def paper
-    @totals['paper'] || 0
+    @totals['paper']
   end
 
   def face_to_face
-    @totals['face_to_face'] || 0
+    @totals['face_to_face']
   end
 
   def other
-    @totals['other'] || 0
+    @totals['other']
   end
 end
