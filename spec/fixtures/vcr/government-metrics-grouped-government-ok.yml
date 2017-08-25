@@ -29,18 +29,18 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 11a68dc1-bea4-4eb4-b97f-85d23bbd7ac0
+      - 4f675df0-afff-4a0f-aaaa-2822eccc1139
       x-runtime:
-      - '0.003676'
+      - '0.005710'
       date:
-      - Wed, 02 Aug 2017 13:25:52 GMT
+      - Fri, 25 Aug 2017 14:09:10 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31}'
     http_version: 
-  recorded_at: Wed, 02 Aug 2017 13:25:52 GMT
+  recorded_at: Fri, 25 Aug 2017 14:09:10 GMT
 - request:
     method: get
     uri: http://gsd-api.dev/v1/data/government/metrics?group_by=government
@@ -66,20 +66,20 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"4826f17f486db3760ae3b2b8917a6afc"
+      - W/"d88884862608111d22fa8129036b9010"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - c722a022-8045-4695-917c-11743767b2f4
+      - '0405568d-b6da-4599-b559-d10f64025fb6'
       x-runtime:
-      - '0.012601'
+      - '0.022170'
       date:
-      - Wed, 02 Aug 2017 13:25:52 GMT
+      - Fri, 25 Aug 2017 14:09:10 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"group_by":"government","metrics":[{"type":"calls-received","total":0,"get_information":0,"chase_progress":0,"challenge_a_decision":0,"other":0,"sampled":false,"sampled_total":0},{"type":"transactions-received","total":746067381,"online":648825681,"phone":38355269,"paper":35775321,"face_to_face":0,"other":23111110},{"type":"transactions-with-outcome","total":710427383,"with_intended_outcome":604814744}],"metric_groups":[{"entity":{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31},"metrics":[{"type":"calls-received","total":0,"get_information":0,"chase_progress":0,"challenge_a_decision":0,"other":0,"sampled":false,"sampled_total":0},{"type":"transactions-received","total":746067381,"online":648825681,"phone":38355269,"paper":35775321,"face_to_face":0,"other":23111110},{"type":"transactions-with-outcome","total":710427383,"with_intended_outcome":604814744}]}]}'
+      string: '{"group_by":"government","metrics":[{"type":"calls-received","total":null,"get_information":null,"chase_progress":null,"challenge_a_decision":null,"other":null,"sampled":false,"sampled_total":null},{"type":"transactions-received","total":746067381,"online":648825681,"phone":38355269,"paper":35775321,"face_to_face":null,"other":23111110},{"type":"transactions-with-outcome","total":710427383,"with_intended_outcome":604814744}],"metric_groups":[{"entity":{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31},"metrics":[{"type":"calls-received","total":null,"get_information":null,"chase_progress":null,"challenge_a_decision":null,"other":null,"sampled":false,"sampled_total":null},{"type":"transactions-received","total":746067381,"online":648825681,"phone":38355269,"paper":35775321,"face_to_face":null,"other":23111110},{"type":"transactions-with-outcome","total":710427383,"with_intended_outcome":604814744}]}]}'
     http_version: 
-  recorded_at: Wed, 02 Aug 2017 13:25:52 GMT
+  recorded_at: Fri, 25 Aug 2017 14:09:10 GMT
 recorded_with: VCR 3.0.3

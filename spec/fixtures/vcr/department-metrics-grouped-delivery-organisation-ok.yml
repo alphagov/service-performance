@@ -29,18 +29,18 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - f3122f3e-fe25-4d80-87f8-c85c5f0023da
+      - a583af2f-8bb2-476b-a544-357e2c0455a2
       x-runtime:
-      - '0.007943'
+      - '0.007726'
       date:
-      - Mon, 14 Aug 2017 15:32:13 GMT
+      - Fri, 25 Aug 2017 14:09:11 GMT
       connection:
       - close
     body:
       encoding: UTF-8
       string: '{"type":"department","natural_key":"D0002","name":"Department for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9}'
     http_version: 
-  recorded_at: Mon, 14 Aug 2017 15:32:13 GMT
+  recorded_at: Fri, 25 Aug 2017 14:09:11 GMT
 - request:
     method: get
     uri: http://gsd-api.dev/v1/data/departments/D0002/metrics?group_by=delivery_organisation
@@ -66,24 +66,24 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"36b695f7e8f84c36efc60402a99efbb4"
+      - W/"6bcf374fb8f963a0946a3c7ae44c19d0"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 955e8ac1-85cd-40f0-b514-bacfcd7dc4c1
+      - 86e14444-c5f3-4879-9ad6-e0a46ff3daae
       x-runtime:
-      - '0.042351'
+      - '0.033872'
       date:
-      - Mon, 14 Aug 2017 15:32:13 GMT
+      - Fri, 25 Aug 2017 14:09:11 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"group_by":"delivery_organisation","metrics":[{"type":"calls-received","total":0,"get_information":0,"chase_progress":0,"challenge_a_decision":0,"other":0,"sampled":false,"sampled_total":0},{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}],"metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
+      string: '{"group_by":"delivery_organisation","metrics":[{"type":"calls-received","total":null,"get_information":null,"chase_progress":null,"challenge_a_decision":null,"other":null,"sampled":false,"sampled_total":null},{"type":"transactions-received","total":118679511,"online":70711048,"phone":10123774,"paper":17857035,"face_to_face":null,"other":19987654},{"type":"transactions-with-outcome","total":114587788,"with_intended_outcome":92321116}],"metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
         and Vehicle Licensing Agency","website":"http://example.com/driver-and-vehicle-licensing-agency","services_count":5,"department":{"type":"department","natural_key":"D0002","name":"Department
-        for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9}},"metrics":[{"type":"calls-received","total":0,"get_information":0,"chase_progress":0,"challenge_a_decision":0,"other":0,"sampled":false,"sampled_total":0},{"type":"transactions-received","total":70123862,"online":45143108,"phone":7123719,"paper":17857035,"face_to_face":0,"other":0},{"type":"transactions-with-outcome","total":70842643,"with_intended_outcome":58650122}]},{"entity":{"type":"delivery-organisation","natural_key":"04","name":"Driver
+        for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9}},"metrics":[{"type":"calls-received","total":null,"get_information":null,"chase_progress":null,"challenge_a_decision":null,"other":null,"sampled":false,"sampled_total":null},{"type":"transactions-received","total":70123862,"online":45143108,"phone":7123719,"paper":17857035,"face_to_face":null,"other":null},{"type":"transactions-with-outcome","total":70842643,"with_intended_outcome":58650122}]},{"entity":{"type":"delivery-organisation","natural_key":"04","name":"Driver
         and Vehicle Standards Agency","website":"http://example.com/driver-and-vehicle-standards-agency","services_count":4,"department":{"type":"department","natural_key":"D0002","name":"Department
-        for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9}},"metrics":[{"type":"calls-received","total":0,"get_information":0,"chase_progress":0,"challenge_a_decision":0,"other":0,"sampled":false,"sampled_total":0},{"type":"transactions-received","total":48555649,"online":25567940,"phone":3000055,"paper":0,"face_to_face":0,"other":19987654},{"type":"transactions-with-outcome","total":43745145,"with_intended_outcome":33670994}]}]}'
+        for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9}},"metrics":[{"type":"calls-received","total":null,"get_information":null,"chase_progress":null,"challenge_a_decision":null,"other":null,"sampled":false,"sampled_total":null},{"type":"transactions-received","total":48555649,"online":25567940,"phone":3000055,"paper":null,"face_to_face":null,"other":19987654},{"type":"transactions-with-outcome","total":43745145,"with_intended_outcome":33670994}]}]}'
     http_version: 
-  recorded_at: Mon, 14 Aug 2017 15:32:13 GMT
+  recorded_at: Fri, 25 Aug 2017 14:09:11 GMT
 recorded_with: VCR 3.0.3
