@@ -11,15 +11,15 @@
       </span>
     <% end %>
 
-    <%= metric_item(Metrics::Items::TransactionsEndingInOutcomeWithIntendedOutcome) do |item| %>
+    <%= metric_item(Metrics::Items::TransactionsEndingInOutcomeWithIntendedOutcome, metric_value: transactions_with_outcome_metric.count_with_intended_outcome) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(transactions_with_outcome_metric.count_with_intended_outcome) %></strong> transactions with intended outcome (<%= metric_to_percentage(transactions_with_outcome_metric.with_intended_outcome_percentage) %>)
       <% end %>
 
       <span class="metric-name">Ending in the user&apos;s intended outcome</span>
       <span class="metric-value">
-        <span class="metric-value-count"><%= metric_to_human(transactions_with_outcome_metric.count_with_intended_outcome) %></span>
-        <span class="metric-value-percentage">(<%= metric_to_percentage(transactions_with_outcome_metric.with_intended_outcome_percentage) %>)</span>
+        <%= item.value %>
+        <%= item.percentage transactions_with_outcome_metric.with_intended_outcome_percentage %>
       </span>
     <% end %>
   </ul>

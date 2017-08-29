@@ -11,8 +11,15 @@
 
     $(this).each(function (idx, element) {
       // Find the description for the selected metric item. If none is found
-      // then, continue with the next metric group.
+      // then, continue with the next metric group. The _not_applicable_* and
+      // _not_provided_* partials do not have access to the selectedMetric and
+      // so we will attempt to find them based on a different identifier if
+      // we can't find a proper identifier.
       var metricItem = $(element).find('[data-metric-item-identifier="' + selectedMetricItem + '"]')
+      if (metricItem.prop("tagName") != "LI") {
+        metricItem = $(element).find('[data-metric-item-identifier="no-description"]')
+      }
+
       var metricItemDescription = metricItem.data('metric-item-description')
       if (!metricItemDescription) {
         return

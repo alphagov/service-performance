@@ -29,6 +29,8 @@ RSpec.describe MetricGroupPresenter, type: :presenter do
   describe '#metrics' do
     it 'extends metrics with a partial path to display the metric' do
       allow(metric).to receive_message_chain(:class, :name) { 'FakeMetric' }
+      allow(metric).to receive(:not_provided?) { false }
+      allow(metric).to receive(:not_applicable?) { false }
       expect(presenter.metrics.first.to_partial_path).to eq('metrics/fake_metric')
     end
   end
