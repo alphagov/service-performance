@@ -11,6 +11,10 @@ class AggregatedTransactionsReceivedMetric
       end
   end
 
+  def is_applicable?
+    @totals.size.positive?
+  end
+
   def total
     [online, phone, paper, face_to_face, other].compact.sum
   end

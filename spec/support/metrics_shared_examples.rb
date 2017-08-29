@@ -16,18 +16,33 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
     metric_doubles = children.each.with_object([]) do |child, memo|
       double = instance_double(AggregatedCallsReceivedMetric)
       allow(AggregatedCallsReceivedMetric).to receive(:new).with(child, time_period) { double }
+      allow(double).to receive(:is_applicable?) { true }
 
       memo << double
     end
 
     metrics = government_metrics.metric_groups.flat_map(&:metrics)
     expect(metrics).to include(*metric_doubles)
+  end
+
+  it 'does not include aggregated calls received metric, for each child entry where not applicable' do
+    metric_doubles = children.each.with_object([]) do |child, memo|
+      double = instance_double(AggregatedCallsReceivedMetric)
+      allow(AggregatedCallsReceivedMetric).to receive(:new).with(child, time_period) { double }
+      allow(double).to receive(:is_applicable?) { false }
+
+      memo << double
+    end
+
+    metrics = government_metrics.metric_groups.flat_map(&:metrics)
+    expect(metrics).not_to include(*metric_doubles)
   end
 
   it 'includes aggregated transactions received metric, for each child entity' do
     metric_doubles = children.each.with_object([]) do |child, memo|
       double = instance_double(AggregatedTransactionsReceivedMetric)
       allow(AggregatedTransactionsReceivedMetric).to receive(:new).with(child, time_period) { double }
+      allow(double).to receive(:is_applicable?) { true }
 
       memo << double
     end
@@ -36,15 +51,42 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
     expect(metrics).to include(*metric_doubles)
   end
 
+  it 'does not include aggregated transactions received metric, for each child entity when not applicable' do
+    metric_doubles = children.each.with_object([]) do |child, memo|
+      double = instance_double(AggregatedTransactionsReceivedMetric)
+      allow(AggregatedTransactionsReceivedMetric).to receive(:new).with(child, time_period) { double }
+      allow(double).to receive(:is_applicable?) { false }
+
+      memo << double
+    end
+
+    metrics = government_metrics.metric_groups.flat_map(&:metrics)
+    expect(metrics).not_to include(*metric_doubles)
+  end
+
   it 'includes aggregated transactions received metric, for each child entity' do
     metric_doubles = children.each.with_object([]) do |child, memo|
       double = instance_double(AggregatedTransactionsWithOutcomeMetric)
       allow(AggregatedTransactionsWithOutcomeMetric).to receive(:new).with(child, time_period) { double }
+      allow(double).to receive(:is_applicable?) { true }
 
       memo << double
     end
 
     metrics = government_metrics.metric_groups.flat_map(&:metrics)
     expect(metrics).to include(*metric_doubles)
+  end
+
+  it 'does not include aggregated transactions received metric, for each child entity when not applicable' do
+    metric_doubles = children.each.with_object([]) do |child, memo|
+      double = instance_double(AggregatedTransactionsWithOutcomeMetric)
+      allow(AggregatedTransactionsWithOutcomeMetric).to receive(:new).with(child, time_period) { double }
+      allow(double).to receive(:is_applicable?) { false }
+
+      memo << double
+    end
+
+    metrics = government_metrics.metric_groups.flat_map(&:metrics)
+    expect(metrics).not_to include(*metric_doubles)
   end
 end

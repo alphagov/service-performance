@@ -11,6 +11,10 @@ class AggregatedTransactionsWithOutcomeMetric
       end
   end
 
+  def is_applicable?
+    @totals.size.positive?
+  end
+
   def total
     @totals[:total]
   end
