@@ -29,14 +29,17 @@ class GovernmentServiceDataAPI::MetricGroup
   end
 
   def transactions_received
-    GovernmentServiceDataAPI::TransactionsReceivedMetric.build(@metrics['transactions-received'])
+    return GovernmentServiceDataAPI::TransactionsReceivedMetric.build(@metrics['transactions-received']) if @metrics.has_key? 'transactions-received'
+    GovernmentServiceDataAPI::NonApplicableMetric.new("doesn't record transactions")
   end
 
   def transactions_with_outcome
-    GovernmentServiceDataAPI::TransactionsWithOutcomeMetric.build(@metrics['transactions-with-outcome'])
+    return GovernmentServiceDataAPI::TransactionsWithOutcomeMetric.build(@metrics['transactions-with-outcome']) if @metrics.has_key? 'transactions-with-outcome'
+    GovernmentServiceDataAPI::NonApplicableMetric.new("doesn't measure outcomes")
   end
 
   def calls_received
-    GovernmentServiceDataAPI::CallsReceivedMetric.build(@metrics['calls-received'])
+    return GovernmentServiceDataAPI::CallsReceivedMetric.build(@metrics['calls-received']) if @metrics.has_key? 'calls-received'
+    GovernmentServiceDataAPI::NonApplicableMetric.new("doesn't receive calls")
   end
 end
