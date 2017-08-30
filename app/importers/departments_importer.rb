@@ -22,6 +22,10 @@
 require 'csv'
 
 class DepartmentsImporter
+  def self.import
+    new.import
+  end
+
   def import(input = ARGF, output = $stderr)
     @output = output
 
