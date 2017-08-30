@@ -1,6 +1,6 @@
 # Importing departments, and associating them with delivery organisations.
 #
-# Department's are a special case of delivery organisations, they're the parent,
+# Departments are a special case of delivery organisations, they're the parent,
 # or top-level, organisation. The list of delivery organisations is imported from
 # the Government Organisation Register, but this lacks the hierarchy information.
 #
@@ -17,7 +17,7 @@
 #
 # Usage:
 #
-#.   cat mapping.csv | rails runner 'DepartmentsImporter.new.import'
+#     cat mapping.csv | rails runner 'DepartmentsImporter.new.import'
 
 require 'csv'
 
