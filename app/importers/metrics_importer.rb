@@ -1,3 +1,16 @@
+# Imports services, and their metrics, and associates them with departments
+# and delivery organisations.
+#
+# We've collected data[1] from various services to aid our user research process.
+# Each of the sheets in this document are in the same format, and can be exported
+# to CSV. Once placed in the same directory, this script will load them in.
+#
+# [1]: https://docs.google.com/a/digital.cabinet-office.gov.uk/spreadsheets/d/1Evb18ro1xFp1_rkzktYvOsALBTu4Nx1r9UsV3xXlPC0/edit?usp=sharing
+#
+# Usage:
+#
+#     rails runner 'MetricsImporter.import'
+
 require 'csv'
 require 'pathname'
 
