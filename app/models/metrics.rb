@@ -33,7 +33,7 @@ class Metrics
   alias :read_attribute_for_serialization :send
   attr_reader :group_by, :root, :time_period
 
-  def totals(entity: root)
+  def metrics(entity: root)
     [
       AggregatedCallsReceivedMetric.new(entity, time_period),
       AggregatedTransactionsReceivedMetric.new(entity, time_period),
@@ -43,7 +43,7 @@ class Metrics
 
   def metric_groups
     entities.map { |entity|
-      m = totals(entity: entity)
+      m = metrics(entity: entity)
       MetricGroup.new(entity, m)
     }
   end

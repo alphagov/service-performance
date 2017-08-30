@@ -26,7 +26,7 @@ RSpec.describe Metrics, type: :model do
       expect(AggregatedTransactionsWithOutcomeMetric).to receive(:new).with(root, time_period) { transactions_with_outcome_metric }
       expect(transactions_with_outcome_metric).to receive(:applicable?) { true }
 
-      expect(metrics.totals).to match_array([calls_received_metric, transactions_received_metric, transactions_with_outcome_metric])
+      expect(metrics.metrics).to match_array([calls_received_metric, transactions_received_metric, transactions_with_outcome_metric])
     end
   end
 end
