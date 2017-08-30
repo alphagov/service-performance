@@ -3,7 +3,7 @@ class AggregatedCallsReceivedMetric
 
   def initialize(organisation, time_period)
     @sampled = false
-    @totals = CallsReceivedMetric
+    @channels = CallsReceivedMetric
       .where(service_code: organisation.services.pluck(:natural_key))
       .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
       .each.with_object({}) do |metric, memo|
@@ -17,32 +17,32 @@ class AggregatedCallsReceivedMetric
       end
   end
 
-  def is_applicable?
-    @totals.size.positive?
+  def applicable?
+    @channels.any?
   end
 
   def total
-    @totals['total']
+    @channels['total']
   end
 
   def get_information
-    @totals['get-information']
+    @channels['get-information']
   end
 
   def chase_progress
-    @totals['chase-progress']
+    @channels['chase-progress']
   end
 
   def challenge_a_decision
-    @totals['challenge-a-decision']
+    @channels['challenge-a-decision']
   end
 
   def other
-    @totals['other']
+    @channels['other']
   end
 
   def sampled_total
-    @totals['sampled-total']
+    @channels['sampled-total']
   end
 
   attr_reader :sampled

@@ -16,7 +16,7 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
     metric_doubles = children.each.with_object([]) do |child, memo|
       double = instance_double(AggregatedCallsReceivedMetric)
       allow(AggregatedCallsReceivedMetric).to receive(:new).with(child, time_period) { double }
-      allow(double).to receive(:is_applicable?) { true }
+      allow(double).to receive(:applicable?) { true }
 
       memo << double
     end
@@ -29,7 +29,7 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
     metric_doubles = children.each.with_object([]) do |child, memo|
       double = instance_double(AggregatedCallsReceivedMetric)
       allow(AggregatedCallsReceivedMetric).to receive(:new).with(child, time_period) { double }
-      allow(double).to receive(:is_applicable?) { false }
+      allow(double).to receive(:applicable?) { false }
 
       memo << double
     end
@@ -42,7 +42,7 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
     metric_doubles = children.each.with_object([]) do |child, memo|
       double = instance_double(AggregatedTransactionsReceivedMetric)
       allow(AggregatedTransactionsReceivedMetric).to receive(:new).with(child, time_period) { double }
-      allow(double).to receive(:is_applicable?) { true }
+      allow(double).to receive(:applicable?) { true }
 
       memo << double
     end
@@ -55,7 +55,7 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
     metric_doubles = children.each.with_object([]) do |child, memo|
       double = instance_double(AggregatedTransactionsReceivedMetric)
       allow(AggregatedTransactionsReceivedMetric).to receive(:new).with(child, time_period) { double }
-      allow(double).to receive(:is_applicable?) { false }
+      allow(double).to receive(:applicable?) { false }
 
       memo << double
     end
@@ -68,7 +68,7 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
     metric_doubles = children.each.with_object([]) do |child, memo|
       double = instance_double(AggregatedTransactionsWithOutcomeMetric)
       allow(AggregatedTransactionsWithOutcomeMetric).to receive(:new).with(child, time_period) { double }
-      allow(double).to receive(:is_applicable?) { true }
+      allow(double).to receive(:applicable?) { true }
 
       memo << double
     end
@@ -81,7 +81,7 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
     metric_doubles = children.each.with_object([]) do |child, memo|
       double = instance_double(AggregatedTransactionsWithOutcomeMetric)
       allow(AggregatedTransactionsWithOutcomeMetric).to receive(:new).with(child, time_period) { double }
-      allow(double).to receive(:is_applicable?) { false }
+      allow(double).to receive(:applicable?) { false }
 
       memo << double
     end

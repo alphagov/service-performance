@@ -2,7 +2,7 @@ class AggregatedTransactionsReceivedMetric
   alias :read_attribute_for_serialization :send
 
   def initialize(organisation, time_period)
-    @totals = TransactionsReceivedMetric
+    @channels = TransactionsReceivedMetric
       .where(service_code: organisation.services.pluck(:natural_key))
       .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
       .each.with_object({}) do |metric, memo|
@@ -11,8 +11,8 @@ class AggregatedTransactionsReceivedMetric
       end
   end
 
-  def is_applicable?
-    @totals.size.positive?
+  def applicable?
+    @channels.any?
   end
 
   def total
@@ -20,22 +20,22 @@ class AggregatedTransactionsReceivedMetric
   end
 
   def online
-    @totals['online']
+    @channels['online']
   end
 
   def phone
-    @totals['phone']
+    @channels['phone']
   end
 
   def paper
-    @totals['paper']
+    @channels['paper']
   end
 
   def face_to_face
-    @totals['face_to_face']
+    @channels['face_to_face']
   end
 
   def other
-    @totals['other']
+    @channels['other']
   end
 end
