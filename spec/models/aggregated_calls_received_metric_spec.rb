@@ -36,9 +36,9 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       metric = AggregatedCallsReceivedMetric.new(department, time_period)
       expect(metric.total).to eq(360)
       expect(metric.get_information).to eq(330)
-      expect(metric.chase_progress).to be_nil
-      expect(metric.challenge_a_decision).to be_nil
-      expect(metric.other).to be_nil
+      expect(metric.chase_progress).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.challenge_a_decision).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.other).to eq(Metric::NOT_APPLICABLE)
     end
 
     specify 'for a given delivery_organisation' do
@@ -77,9 +77,9 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       metric = AggregatedCallsReceivedMetric.new(delivery_organisation, time_period)
       expect(metric.total).to eq(360)
       expect(metric.get_information).to eq(330)
-      expect(metric.chase_progress).to be_nil
-      expect(metric.challenge_a_decision).to be_nil
-      expect(metric.other).to be_nil
+      expect(metric.chase_progress).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.challenge_a_decision).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.other).to eq(Metric::NOT_APPLICABLE)
     end
 
     specify 'for a given service' do
@@ -106,9 +106,9 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       metric = AggregatedCallsReceivedMetric.new(service, time_period)
       expect(metric.total).to eq(180)
       expect(metric.get_information).to eq(165)
-      expect(metric.chase_progress).to be_nil
-      expect(metric.challenge_a_decision).to be_nil
-      expect(metric.other).to be_nil
+      expect(metric.chase_progress).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.challenge_a_decision).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.other).to eq(Metric::NOT_APPLICABLE)
     end
 
     context 'aggregating sampled & non-sampled data' do
@@ -137,6 +137,37 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
         expect(metric.sampled).to be_falsey
         expect(metric.sampled_total).to eq(180)
       end
+    end
+
+    specify 'with not applicable fields' do
+      service = FactoryGirl.create(:service)
+
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      metric = AggregatedCallsReceivedMetric.new(service, time_period)
+
+      expect(metric.total).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.get_information).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.chase_progress).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.challenge_a_decision).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.other).to eq(Metric::NOT_APPLICABLE)
+    end
+
+    specify 'with not provided fields' do
+      service = FactoryGirl.create(:service)
+      FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'total', quantity: nil)
+      FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'get-information', quantity: nil)
+      FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'chase-progress', quantity: nil)
+      FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'challenge-a-decision', quantity: nil)
+      FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'other', quantity: nil)
+
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-01-31'))
+      metric = AggregatedCallsReceivedMetric.new(service, time_period)
+
+      expect(metric.total).to eq(Metric::NOT_PROVIDED)
+      expect(metric.get_information).to eq(Metric::NOT_PROVIDED)
+      expect(metric.chase_progress).to eq(Metric::NOT_PROVIDED)
+      expect(metric.challenge_a_decision).to eq(Metric::NOT_PROVIDED)
+      expect(metric.other).to eq(Metric::NOT_PROVIDED)
     end
   end
 end
