@@ -28,6 +28,6 @@ RSpec.feature 'viewing services', type: :feature do
 
     click_on 'Apply for a provisional driving license'
     expect(page).to have_content('Not provided')
-    expect(page).to have_content('Calls not provided')
+    expect(page).to have_content('calls received')
   end
 end
