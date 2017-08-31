@@ -16,7 +16,7 @@
       // so we will attempt to find them based on a different identifier if
       // we can't find a proper identifier.
       var metricItem = $(element).find('[data-metric-item-identifier="' + selectedMetricItem + '"]')
-      if (metricItem.prop("tagName") != "LI") {
+      if (metricItem.prop('tagName') !== 'LI') {
         metricItem = $(element).find('[data-metric-item-identifier="no-description"]')
       }
 
