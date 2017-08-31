@@ -21,11 +21,6 @@ RSpec.describe TransactionsReceivedMetric, type: :model do
       expect(transactions_received_metric).to fail_strict_validations
     end
 
-    it 'requires a quantity' do
-      transactions_received_metric.quantity = nil
-      expect(transactions_received_metric).to fail_strict_validations
-    end
-
     it "references a valid department" do
       transactions_received_metric.department = nil
       expect(transactions_received_metric).to fail_strict_validations

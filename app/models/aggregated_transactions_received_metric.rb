@@ -7,7 +7,7 @@ class AggregatedTransactionsReceivedMetric
       .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
       .each.with_object({}) do |metric, memo|
         memo[metric.channel] ||= 0
-        memo[metric.channel] += metric.quantity
+        memo[metric.channel] += metric.quantity || 0
       end
   end
 

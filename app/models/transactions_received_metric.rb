@@ -9,5 +9,4 @@ class TransactionsReceivedMetric < ApplicationRecord
   validates_presence_of :ends_on, strict: true
 
   validates_presence_of :channel, strict: true
-  validates_presence_of :quantity, strict: true
 end
