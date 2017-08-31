@@ -2,9 +2,11 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
   subject(:government_metrics) { described_class.new(root, group_by: group_by, time_period: time_period) }
 
   before do
-    allow(AggregatedCallsReceivedMetric).to receive(:new)
-    allow(AggregatedTransactionsReceivedMetric).to receive(:new)
-    allow(AggregatedTransactionsWithOutcomeMetric).to receive(:new)
+    obj = double(applicable?: true)
+
+    allow(AggregatedCallsReceivedMetric).to receive(:new) { obj }
+    allow(AggregatedTransactionsReceivedMetric).to receive(:new) { obj }
+    allow(AggregatedTransactionsWithOutcomeMetric).to receive(:new) { obj }
   end
 
   it 'returns a metric group for each child entity' do

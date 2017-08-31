@@ -38,7 +38,7 @@ class Metrics
       AggregatedCallsReceivedMetric.new(entity, time_period),
       AggregatedTransactionsReceivedMetric.new(entity, time_period),
       AggregatedTransactionsWithOutcomeMetric.new(entity, time_period)
-    ].compact.select(&:applicable?)
+    ].select(&:applicable?)
   end
 
   def metric_groups
