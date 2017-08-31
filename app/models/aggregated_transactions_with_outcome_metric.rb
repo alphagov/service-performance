@@ -5,29 +5,26 @@ class AggregatedTransactionsWithOutcomeMetric
     @organisation = organisation
     @time_period = time_period
 
-    defaults = { total: Metric::NOT_APPLICABLE, with_intended_outcome: Metric::NOT_APPLICABLE }
+    defaults = Hash.new(Metric::NOT_APPLICABLE)
     @totals = metrics.group_by(&:outcome).each.with_object(defaults) do |(outcome, metrics), memo|
-      quantity = if metrics.any?(&:quantity)
-                   metrics.sum { |metric| metric.quantity || 0 }
-                 else
-                   Metric::NOT_PROVIDED
-                 end
-
-      case outcome
-      when 'any'
-        memo[:total] = quantity
-      when 'intended'
-        memo[:with_intended_outcome] = quantity
+      quantity = begin
+        if metrics.any?(&:quantity)
+          metrics.sum { |metric| metric.quantity || 0 }
+        else
+          Metric::NOT_PROVIDED
+        end
       end
+
+      memo[outcome] = quantity
     end
   end
 
   def total
-    @totals[:total]
+    @totals['any']
   end
 
   def with_intended_outcome
-    @totals[:with_intended_outcome]
+    @totals['intended']
   end
 
 private
