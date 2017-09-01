@@ -1,6 +1,6 @@
 <div class="m-metric m-metric__transactions-with-outcome">
   <ul class="list">
-    <%= metric_item(Metrics::Items::TransactionsEndingInOutcome, html: { class: 'm-metric-headline' }) do |item| %>
+    <%= metric_item(Metrics::Items::TransactionsEndingInOutcome, transactions_with_outcome_metric.count, html: { class: 'm-metric-headline' }) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(transactions_with_outcome_metric.count) %></strong> transactions ending in an outcome
       <% end %>
@@ -11,7 +11,7 @@
       </span>
     <% end %>
 
-    <%= metric_item(Metrics::Items::TransactionsEndingInOutcomeWithIntendedOutcome, metric_value: transactions_with_outcome_metric.count_with_intended_outcome) do |item| %>
+    <%= metric_item(Metrics::Items::TransactionsEndingInOutcomeWithIntendedOutcome, transactions_with_outcome_metric.count_with_intended_outcome) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(transactions_with_outcome_metric.count_with_intended_outcome) %></strong> transactions with intended outcome (<%= metric_to_percentage(transactions_with_outcome_metric.with_intended_outcome_percentage) %>)
       <% end %>

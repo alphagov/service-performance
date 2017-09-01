@@ -1,6 +1,6 @@
 <div class="m-metric m-metric__transactions-received">
   <ul class="list">
-    <%= metric_item(Metrics::Items::TransactionsReceived, metric_value: transactions_received_metric.total, html: { class: 'm-metric-headline' }) do |item| %>
+    <%= metric_item(Metrics::Items::TransactionsReceived, transactions_received_metric.total, html: { class: 'm-metric-headline' }) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(transactions_received_metric.total) %></strong> transactions received
       <% end %>
@@ -11,7 +11,7 @@
       </span>
     <% end %>
 
-    <%= metric_item(Metrics::Items::TransactionsReceivedOnline, metric_value: transactions_received_metric.online) do |item| %>
+    <%= metric_item(Metrics::Items::TransactionsReceivedOnline, transactions_received_metric.online) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(transactions_received_metric.online) %></strong> online transactions (<%= metric_to_percentage(transactions_received_metric.online_percentage) %>)
       <% end %>
@@ -22,7 +22,7 @@
       </span>
     <% end %>
 
-    <%= metric_item(Metrics::Items::TransactionsReceivedPhone, metric_value: transactions_received_metric.phone) do |item| %>
+    <%= metric_item(Metrics::Items::TransactionsReceivedPhone, transactions_received_metric.phone) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(transactions_received_metric.phone) %></strong> phone transactions (<%= metric_to_percentage(transactions_received_metric.phone_percentage) %>)
       <% end %>
@@ -34,7 +34,7 @@
       </span>
     <% end %>
 
-    <%= metric_item(Metrics::Items::TransactionsReceivedPaper, metric_value: transactions_received_metric.paper) do |item| %>
+    <%= metric_item(Metrics::Items::TransactionsReceivedPaper, transactions_received_metric.paper) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(transactions_received_metric.paper) %></strong> paper transactions (<%= metric_to_percentage(transactions_received_metric.paper_percentage) %>)
       <% end %>
@@ -46,7 +46,7 @@
       </span>
     <% end %>
 
-    <%= metric_item(Metrics::Items::TransactionsReceivedFaceToFace, metric_value: transactions_received_metric.face_to_face) do |item| %>
+    <%= metric_item(Metrics::Items::TransactionsReceivedFaceToFace, transactions_received_metric.face_to_face) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(transactions_received_metric.face_to_face) %></strong> face to face transactions (<%= metric_to_percentage(transactions_received_metric.face_to_face_percentage) %>)
       <% end %>
@@ -58,7 +58,7 @@
       </span>
     <% end %>
 
-    <%= metric_item(Metrics::Items::TransactionsReceivedOther, metric_value: transactions_received_metric.other) do |item| %>
+    <%= metric_item(Metrics::Items::TransactionsReceivedOther, transactions_received_metric.other) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(transactions_received_metric.other) %></strong> other transactions (<%= metric_to_percentage(transactions_received_metric.other_percentage) %>)
       <% end %>

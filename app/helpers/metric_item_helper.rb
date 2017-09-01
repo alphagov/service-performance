@@ -1,7 +1,7 @@
 module MetricItemHelper
   include GovernmentServiceDataAPI::MetricStatus
 
-  def metric_item(identifier, sampled: false, metric_value: nil, html: {})
+  def metric_item(identifier, metric_value, sampled: false, html: {})
     return if metric_value == NOT_APPLICABLE
 
     item = MetricItem.new(self, metric_value)
@@ -48,7 +48,7 @@ module MetricItemHelper
     end
 
     def description(&content)
-      return @description = "" if [NOT_PROVIDED, NOT_APPLICABLE].include? @metric_value
+      return @description if [NOT_PROVIDED, NOT_APPLICABLE].include? @metric_value
 
       if content
         @description = @helper.capture(&content)
