@@ -29,14 +29,14 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
 
   def not_applicable?
     [
-      @total, @sampled, @sampled_total, @get_information,
+      @total, @get_information,
       @chase_progress, @challenge_a_decision, @other,
     ].all? { |item| item == NOT_APPLICABLE }
   end
 
   def not_provided?
     [
-      @total, @sampled, @sampled_total, @get_information,
+      @total, @get_information,
       @chase_progress, @challenge_a_decision, @other,
     ].all? { |item| item == NOT_PROVIDED }
   end
