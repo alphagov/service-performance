@@ -10,6 +10,16 @@
     margin-top: 0;
     margin-bottom: 0;
   }
+
+  .completeness {
+    float: right;
+    padding: 4px;
+    margin-top: -$gutter-half;
+    margin-right: -$gutter-half;
+    font-size: 16px;
+    color: #141414;
+    background-color: #DEE0E2;
+  }
 }
 
 .m-metric-group__collapsible {

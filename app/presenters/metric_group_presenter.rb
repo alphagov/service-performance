@@ -43,6 +43,10 @@ class MetricGroupPresenter
   delegate :name, to: :entity
   delegate :transactions_received, :transactions_with_outcome, :calls_received, to: :@metric_group
 
+  def completeness
+    0
+  end
+
   def delivery_organisations_count
     if entity.respond_to?(:delivery_organisations_count)
       entity.delivery_organisations_count
