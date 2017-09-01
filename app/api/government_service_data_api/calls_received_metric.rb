@@ -5,7 +5,7 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
     data ||= {}
     new(
       total: data.fetch('total', NOT_APPLICABLE),
-      sampled: data.fetch('sampled', NOT_APPLICABLE),
+      sampled: data.fetch('sampled', false),
       sampled_total: data.fetch('sampled_total', NOT_APPLICABLE),
       get_information: data.fetch('get_information', NOT_APPLICABLE),
       chase_progress: data.fetch('chase_progress', NOT_APPLICABLE),
@@ -16,7 +16,7 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
 
   def initialize(total: nil, sampled: nil, sampled_total: nil, get_information: nil, chase_progress: nil, challenge_a_decision: nil, other: nil)
     @total = total || NOT_PROVIDED
-    @sampled = sampled || NOT_PROVIDED
+    @sampled = sampled
     @sampled_total = sampled_total || NOT_PROVIDED
     @get_information = get_information || NOT_PROVIDED
     @chase_progress = chase_progress || NOT_PROVIDED
