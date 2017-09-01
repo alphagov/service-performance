@@ -76,9 +76,9 @@ class MetricsImporter
 
     create_calls_received_metric = ->(item, quantity) { create_metric.(CallsReceivedMetric, quantity, item: item, sampled: false) }
     create_calls_received_metric.('total', row.calls_received)
-    create_calls_received_metric.('get_information', row.calls_received_get_information)
-    create_calls_received_metric.('chase_progress', row.calls_received_chase_progress)
-    create_calls_received_metric.('challenge_a_decision', row.calls_received_challenge_a_decision)
+    create_calls_received_metric.('get-information', row.calls_received_get_information)
+    create_calls_received_metric.('chase-progress', row.calls_received_chase_progress)
+    create_calls_received_metric.('challenge-a-decision', row.calls_received_challenge_a_decision)
     create_calls_received_metric.('other', row.calls_received_other)
   end
 
