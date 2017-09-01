@@ -7,7 +7,13 @@ class MetricGroupPresenter
 
   module MetricToPartialPath
     def to_partial_path
-      'metrics/' + self.class.name.demodulize.underscore
+      if self.not_provided?
+        'metrics/not_provided_' + self.class.name.demodulize.underscore
+      elsif self.not_applicable?
+        'metrics/not_applicable_' + self.class.name.demodulize.underscore
+      else
+        'metrics/' + self.class.name.demodulize.underscore
+      end
     end
   end
 
