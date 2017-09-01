@@ -92,5 +92,27 @@ RSpec.describe AggregatedTransactionsWithOutcomeMetric, type: :model do
       expect(metric.total).to eq(180)
       expect(metric.with_intended_outcome).to eq(165)
     end
+
+    specify 'with not applicable fields' do
+      service = FactoryGirl.create(:service)
+
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      metric = AggregatedTransactionsWithOutcomeMetric.new(service, time_period)
+
+      expect(metric.total).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.with_intended_outcome).to eq(Metric::NOT_APPLICABLE)
+    end
+
+    specify 'with not provided fields' do
+      service = FactoryGirl.create(:service)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: nil)
+      FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'intended', quantity: nil)
+
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-01-31'))
+      metric = AggregatedTransactionsWithOutcomeMetric.new(service, time_period)
+
+      expect(metric.total).to eq(Metric::NOT_PROVIDED)
+      expect(metric.with_intended_outcome).to eq(Metric::NOT_PROVIDED)
+    end
   end
 end

@@ -31,9 +31,9 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       expect(metric.total).to eq(2200)
       expect(metric.online).to eq(1200)
       expect(metric.phone).to eq(1000)
-      expect(metric.paper).to be_nil
-      expect(metric.face_to_face).to be_nil
-      expect(metric.other).to be_nil
+      expect(metric.paper).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.face_to_face).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.other).to eq(Metric::NOT_APPLICABLE)
     end
 
     specify 'for a given delivery organisation' do
@@ -65,9 +65,9 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       expect(metric.total).to eq(2200)
       expect(metric.online).to eq(1200)
       expect(metric.phone).to eq(1000)
-      expect(metric.paper).to be_nil
-      expect(metric.face_to_face).to be_nil
-      expect(metric.other).to be_nil
+      expect(metric.paper).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.face_to_face).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.other).to eq(Metric::NOT_APPLICABLE)
     end
 
     specify 'for a given service' do
@@ -90,9 +90,41 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       expect(metric.total).to eq(1100)
       expect(metric.online).to eq(600)
       expect(metric.phone).to eq(500)
-      expect(metric.paper).to be_nil
-      expect(metric.face_to_face).to be_nil
-      expect(metric.other).to be_nil
+      expect(metric.paper).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.face_to_face).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.other).to eq(Metric::NOT_APPLICABLE)
+    end
+
+    specify 'with not applicable fields' do
+      service = FactoryGirl.create(:service)
+
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      metric = AggregatedTransactionsReceivedMetric.new(service, time_period)
+
+      expect(metric.total).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.online).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.phone).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.paper).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.face_to_face).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.other).to eq(Metric::NOT_APPLICABLE)
+    end
+
+    specify 'with not provided fields' do
+      service = FactoryGirl.create(:service)
+      FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'online', quantity: nil)
+      FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'phone', quantity: nil)
+      FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'paper', quantity: nil)
+      FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'face_to_face', quantity: nil)
+      FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'other', quantity: nil)
+
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-01-31'))
+      metric = AggregatedTransactionsReceivedMetric.new(service, time_period)
+
+      expect(metric.online).to eq(Metric::NOT_PROVIDED)
+      expect(metric.phone).to eq(Metric::NOT_PROVIDED)
+      expect(metric.paper).to eq(Metric::NOT_PROVIDED)
+      expect(metric.face_to_face).to eq(Metric::NOT_PROVIDED)
+      expect(metric.other).to eq(Metric::NOT_PROVIDED)
     end
   end
 end
