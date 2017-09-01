@@ -12,6 +12,27 @@
   }
 }
 
+.metric-value-not-provided {
+  color: #888;
+  font-weight: 700;
+}
+
+.not-applicable {
+   font-size: 36px;
+   margin-top: 0;
+   margin-bottom: 0;
+   color: #888;
+   line-height: 1.1;
+   font-weight: 700;
+ }
+
+ span.not-applicable-message {
+   font-size: 16px;
+   color: #666;
+   margin-top: 0;
+   line-height: 1;
+ }
+
 .m-metric-group__collapsible {
   padding-top: 17px !important;
 

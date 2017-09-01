@@ -10,13 +10,8 @@
     }
 
     $(this).each(function (idx, element) {
-      // Find the description for the selected metric item. If none is found
-      // then, continue with the next metric group.
       var metricItem = $(element).find('[data-metric-item-identifier="' + selectedMetricItem + '"]')
       var metricItemDescription = metricItem.data('metric-item-description')
-      if (!metricItemDescription) {
-        return
-      }
 
       var metricGroup = $(element)
       var collapsedHeaderContainer = $('<div />', { 'class': 'm-metric-group-header' })
