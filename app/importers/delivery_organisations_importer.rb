@@ -1,4 +1,8 @@
 class DeliveryOrganisationsImporter
+  def self.import
+    new.import
+  end
+
   def import(output = $stderr)
     ActiveRecord::Base.transaction do
       organisations = GovernmentOrganisationRegister::Organisations.new

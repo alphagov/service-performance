@@ -2,15 +2,21 @@ class AggregatedTransactionsReceivedMetric
   alias :read_attribute_for_serialization :send
 
   def initialize(organisation, time_period)
-    @channels = TransactionsReceivedMetric
-      .where(service_code: organisation.services.pluck(:natural_key))
-      .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
-      .each.with_object({}) do |metric, memo|
-        if metric.quantity.present?
-          memo[metric.channel] ||= 0
-          memo[metric.channel] += metric.quantity
+    @organisation = organisation
+    @time_period = time_period
+
+    defaults = Hash.new(Metric::NOT_APPLICABLE)
+    @channels = metrics.group_by(&:channel).each.with_object(defaults) do |(channel, metrics), memo|
+      quantity = begin
+        if metrics.any?(&:quantity)
+          metrics.sum { |metric| metric.quantity || 0 }
+        else
+          Metric::NOT_PROVIDED
         end
       end
+
+      memo[channel] = quantity
+    end
   end
 
   def applicable?
@@ -18,7 +24,12 @@ class AggregatedTransactionsReceivedMetric
   end
 
   def total
-    [online, phone, paper, face_to_face, other].compact.sum
+    metrics = [online, phone, paper, face_to_face, other].reject { |item| item.in?([Metric::NOT_APPLICABLE, Metric::NOT_PROVIDED]) }
+    if metrics.any?
+      metrics.sum
+    else
+      Metric::NOT_APPLICABLE
+    end
   end
 
   def online
@@ -39,5 +50,15 @@ class AggregatedTransactionsReceivedMetric
 
   def other
     @channels['other']
+  end
+
+private
+
+  attr_reader :organisation, :time_period
+
+  def metrics
+    TransactionsReceivedMetric
+      .where(service_code: organisation.services.pluck(:natural_key))
+      .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
   end
 end
