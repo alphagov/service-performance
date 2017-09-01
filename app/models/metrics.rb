@@ -33,22 +33,19 @@ class Metrics
   alias :read_attribute_for_serialization :send
   attr_reader :group_by, :root, :time_period
 
-  def metrics
+  def metrics(entity: root)
     [
-      AggregatedCallsReceivedMetric.new(root, time_period),
-      AggregatedTransactionsReceivedMetric.new(root, time_period),
-      AggregatedTransactionsWithOutcomeMetric.new(root, time_period)
-    ]
+      AggregatedCallsReceivedMetric.new(entity, time_period),
+      AggregatedTransactionsReceivedMetric.new(entity, time_period),
+      AggregatedTransactionsWithOutcomeMetric.new(entity, time_period)
+    ].select(&:applicable?)
   end
 
   def metric_groups
-    entities.map do |entity|
-      MetricGroup.new(entity, [
-        AggregatedCallsReceivedMetric.new(entity, time_period),
-        AggregatedTransactionsReceivedMetric.new(entity, time_period),
-        AggregatedTransactionsWithOutcomeMetric.new(entity, time_period)
-      ])
-    end
+    entities.map { |entity|
+      m = metrics(entity: entity)
+      MetricGroup.new(entity, m)
+    }
   end
 
 private

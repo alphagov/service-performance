@@ -9,7 +9,7 @@ class AggregatedCallsReceivedMetric
 
     defaults = Hash.new(Metric::NOT_APPLICABLE)
     defaults['sampled-total'] = 0
-    @totals = metrics.group_by(&:item).each.with_object(defaults) do |(item, metrics), memo|
+    @channels = metrics.group_by(&:item).each.with_object(defaults) do |(item, metrics), memo|
       quantity = begin
         if metrics.any?(&:quantity)
           metrics.sum { |metric| metric.quantity || 0 }
@@ -32,28 +32,32 @@ class AggregatedCallsReceivedMetric
     end
   end
 
+  def applicable?
+    @channels.any?
+  end
+
   def total
-    @totals['total']
+    @channels['total']
   end
 
   def get_information
-    @totals['get-information']
+    @channels['get-information']
   end
 
   def chase_progress
-    @totals['chase-progress']
+    @channels['chase-progress']
   end
 
   def challenge_a_decision
-    @totals['challenge-a-decision']
+    @channels['challenge-a-decision']
   end
 
   def other
-    @totals['other']
+    @channels['other']
   end
 
   def sampled_total
-    @totals['sampled-total']
+    @channels['sampled-total']
   end
 
   attr_reader :sampled

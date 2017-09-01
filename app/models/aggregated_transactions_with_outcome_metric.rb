@@ -6,7 +6,7 @@ class AggregatedTransactionsWithOutcomeMetric
     @time_period = time_period
 
     defaults = Hash.new(Metric::NOT_APPLICABLE)
-    @totals = metrics.group_by(&:outcome).each.with_object(defaults) do |(outcome, metrics), memo|
+    @items = metrics.group_by(&:outcome).each.with_object(defaults) do |(outcome, metrics), memo|
       quantity = begin
         if metrics.any?(&:quantity)
           metrics.sum { |metric| metric.quantity || 0 }
@@ -19,12 +19,16 @@ class AggregatedTransactionsWithOutcomeMetric
     end
   end
 
+  def applicable?
+    @items.any?
+  end
+
   def total
-    @totals['any']
+    @items['any']
   end
 
   def with_intended_outcome
-    @totals['intended']
+    @items['intended']
   end
 
 private

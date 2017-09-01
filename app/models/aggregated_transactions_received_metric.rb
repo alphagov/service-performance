@@ -6,7 +6,7 @@ class AggregatedTransactionsReceivedMetric
     @time_period = time_period
 
     defaults = Hash.new(Metric::NOT_APPLICABLE)
-    @totals = metrics.group_by(&:channel).each.with_object(defaults) do |(channel, metrics), memo|
+    @channels = metrics.group_by(&:channel).each.with_object(defaults) do |(channel, metrics), memo|
       quantity = begin
         if metrics.any?(&:quantity)
           metrics.sum { |metric| metric.quantity || 0 }
@@ -19,6 +19,10 @@ class AggregatedTransactionsReceivedMetric
     end
   end
 
+  def applicable?
+    @channels.any?
+  end
+
   def total
     metrics = [online, phone, paper, face_to_face, other].reject { |item| item.in?([Metric::NOT_APPLICABLE, Metric::NOT_PROVIDED]) }
     if metrics.any?
@@ -29,23 +33,23 @@ class AggregatedTransactionsReceivedMetric
   end
 
   def online
-    @totals['online']
+    @channels['online']
   end
 
   def phone
-    @totals['phone']
+    @channels['phone']
   end
 
   def paper
-    @totals['paper']
+    @channels['paper']
   end
 
   def face_to_face
-    @totals['face_to_face']
+    @channels['face_to_face']
   end
 
   def other
-    @totals['other']
+    @channels['other']
   end
 
 private
