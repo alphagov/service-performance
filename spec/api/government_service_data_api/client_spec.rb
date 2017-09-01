@@ -1,4 +1,5 @@
 require 'rails_helper'
+include GovernmentServiceDataAPI::MetricStatus
 
 RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
   subject(:client) { GovernmentServiceDataAPI::Client.new }
@@ -105,7 +106,7 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         expect(transactions_received.online).to eq(648825681)
         expect(transactions_received.phone).to eq(38355269)
         expect(transactions_received.paper).to eq(35775321)
-        expect(transactions_received.face_to_face).to eq(:not_provided)
+        expect(transactions_received.face_to_face).to eq(NOT_PROVIDED)
         expect(transactions_received.other).to eq(23111110)
 
         transactions_with_outcome = metric_group.transactions_with_outcome
@@ -133,8 +134,8 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         expect(transactions_received.online).to eq(1000032)
         expect(transactions_received.phone).to eq(1000003)
         expect(transactions_received.paper).to eq(1000004)
-        expect(transactions_received.face_to_face).to eq(:not_provided)
-        expect(transactions_received.other).to eq(:not_provided)
+        expect(transactions_received.face_to_face).to eq(NOT_PROVIDED)
+        expect(transactions_received.other).to eq(NOT_PROVIDED)
 
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(2435098)
@@ -160,8 +161,8 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         expect(transactions_received.online).to eq(1000032)
         expect(transactions_received.phone).to eq(1000003)
         expect(transactions_received.paper).to eq(1000004)
-        expect(transactions_received.face_to_face).to eq(:not_provided)
-        expect(transactions_received.other).to eq(:not_provided)
+        expect(transactions_received.face_to_face).to eq(NOT_PROVIDED)
+        expect(transactions_received.other).to eq(NOT_PROVIDED)
 
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(2435098)
@@ -186,8 +187,8 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         expect(transactions_received.online).to eq(1000032)
         expect(transactions_received.phone).to eq(1000003)
         expect(transactions_received.paper).to eq(1000004)
-        expect(transactions_received.face_to_face).to eq(:not_provided)
-        expect(transactions_received.other).to eq(:not_provided)
+        expect(transactions_received.face_to_face).to eq(NOT_PROVIDED)
+        expect(transactions_received.other).to eq(NOT_PROVIDED)
 
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(2435098)
@@ -218,7 +219,7 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         expect(transactions_received.online).to eq(70711048)
         expect(transactions_received.phone).to eq(10123774)
         expect(transactions_received.paper).to eq(17857035)
-        expect(transactions_received.face_to_face).to eq(:not_provided)
+        expect(transactions_received.face_to_face).to eq(NOT_PROVIDED)
         expect(transactions_received.other).to eq(19987654)
 
         transactions_with_outcome = metric_group.transactions_with_outcome
@@ -245,8 +246,8 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         expect(transactions_received.online).to eq(45143108)
         expect(transactions_received.phone).to eq(7123719)
         expect(transactions_received.paper).to eq(17857035)
-        expect(transactions_received.face_to_face).to eq(:not_provided)
-        expect(transactions_received.other).to eq(:not_provided)
+        expect(transactions_received.face_to_face).to eq(NOT_PROVIDED)
+        expect(transactions_received.other).to eq(NOT_PROVIDED)
 
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(70842643)
@@ -270,9 +271,9 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         expect(transactions_received.total).to eq(2000093)
         expect(transactions_received.online).to eq(1000050)
         expect(transactions_received.phone).to eq(1000043)
-        expect(transactions_received.paper).to eq(:not_provided)
-        expect(transactions_received.face_to_face).to eq(:not_provided)
-        expect(transactions_received.other).to eq(:not_provided)
+        expect(transactions_received.paper).to eq(NOT_PROVIDED)
+        expect(transactions_received.face_to_face).to eq(NOT_PROVIDED)
+        expect(transactions_received.other).to eq(NOT_PROVIDED)
 
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(1735098)
@@ -302,8 +303,8 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         expect(transactions_received.online).to eq(45143108)
         expect(transactions_received.phone).to eq(7123719)
         expect(transactions_received.paper).to eq(17857035)
-        expect(transactions_received.face_to_face).to eq(:not_provided)
-        expect(transactions_received.other).to eq(:not_provided)
+        expect(transactions_received.face_to_face).to eq(NOT_PROVIDED)
+        expect(transactions_received.other).to eq(NOT_PROVIDED)
 
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(70842643)
@@ -327,9 +328,9 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         expect(transactions_received.total).to eq(2000093)
         expect(transactions_received.online).to eq(1000050)
         expect(transactions_received.phone).to eq(1000043)
-        expect(transactions_received.paper).to eq(:not_provided)
-        expect(transactions_received.face_to_face).to eq(:not_provided)
-        expect(transactions_received.other).to eq(:not_provided)
+        expect(transactions_received.paper).to eq(NOT_PROVIDED)
+        expect(transactions_received.face_to_face).to eq(NOT_PROVIDED)
+        expect(transactions_received.other).to eq(NOT_PROVIDED)
 
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(1735098)
@@ -357,9 +358,9 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         expect(transactions_received.total).to eq(2000093)
         expect(transactions_received.online).to eq(1000050)
         expect(transactions_received.phone).to eq(1000043)
-        expect(transactions_received.paper).to eq(:not_provided)
-        expect(transactions_received.face_to_face).to eq(:not_provided)
-        expect(transactions_received.other).to eq(:not_provided)
+        expect(transactions_received.paper).to eq(NOT_PROVIDED)
+        expect(transactions_received.face_to_face).to eq(NOT_PROVIDED)
+        expect(transactions_received.other).to eq(NOT_PROVIDED)
 
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(1735098)
