@@ -40,11 +40,12 @@ module Metrics
     end
 
     class MetricSorter < Sorter
+      include GovernmentServiceDataAPI::MetricStatus
+
       def to_proc
         ->(metric_group) do
           value = super.(metric_group)
-          if value.in? [GovernmentServiceDataAPI::MetricStatus::NOT_PROVIDED,
-                        GovernmentServiceDataAPI::MetricStatus::NOT_APPLICABLE]
+          if value.in? [NOT_PROVIDED, NOT_APPLICABLE]
             0
           else
             value

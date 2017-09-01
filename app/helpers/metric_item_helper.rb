@@ -48,9 +48,7 @@ module MetricItemHelper
     end
 
     def description(&content)
-      if [NOT_PROVIDED, NOT_APPLICABLE].include? @metric_value
-        return @description = "Erm"
-      end
+      return @description = "" if [NOT_PROVIDED, NOT_APPLICABLE].include? @metric_value
 
       if content
         @description = @helper.capture(&content)
