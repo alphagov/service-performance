@@ -1,7 +1,7 @@
 class AggregatedTransactionsWithOutcomeMetricSerializer < ActiveModel::Serializer
   extend MetricSerializer
 
-  attributes :type
+  attributes :type, :completeness
   metrics :total, :with_intended_outcome
 
   def type

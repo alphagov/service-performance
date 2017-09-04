@@ -1,9 +1,10 @@
 class AggregatedCallsReceivedMetric
   alias :read_attribute_for_serialization :send
 
-  def initialize(organisation, time_period)
+  def initialize(organisation, time_period, expected_multiplier = 1)
     @organisation = organisation
     @time_period = time_period
+    @completeness = {}
 
     @sampled = metrics.any?(&:sampled)
 
@@ -18,6 +19,10 @@ class AggregatedCallsReceivedMetric
         end
       end
 
+      @completeness[item] = {
+        actual: metrics.count { |m| !m.quantity.in?([Metric::NOT_PROVIDED, nil]) },
+        expected: 12 * expected_multiplier
+      }
       memo[item] = quantity
 
       if item == 'total'
@@ -61,6 +66,7 @@ class AggregatedCallsReceivedMetric
   end
 
   attr_reader :sampled
+  attr_accessor :completeness
 
 private
 

@@ -1,9 +1,10 @@
 class AggregatedTransactionsWithOutcomeMetric
   alias :read_attribute_for_serialization :send
 
-  def initialize(organisation, time_period)
+  def initialize(organisation, time_period, expected_multiplier = 1)
     @organisation = organisation
     @time_period = time_period
+    @completeness = {}
 
     defaults = Hash.new(Metric::NOT_APPLICABLE)
     @items = metrics.group_by(&:outcome).each.with_object(defaults) do |(outcome, metrics), memo|
@@ -15,6 +16,10 @@ class AggregatedTransactionsWithOutcomeMetric
         end
       end
 
+      @completeness[outcome] = {
+        actual: metrics.count { |m| !m.quantity.in?([Metric::NOT_PROVIDED, nil]) },
+        expected: 12 * expected_multiplier
+      }
       memo[outcome] = quantity
     end
   end
@@ -30,6 +35,8 @@ class AggregatedTransactionsWithOutcomeMetric
   def with_intended_outcome
     @items['intended']
   end
+
+  attr_accessor :completeness
 
 private
 

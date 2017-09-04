@@ -1,9 +1,10 @@
 class AggregatedTransactionsReceivedMetric
   alias :read_attribute_for_serialization :send
 
-  def initialize(organisation, time_period)
+  def initialize(organisation, time_period, expected_multiplier = 1)
     @organisation = organisation
     @time_period = time_period
+    @completeness = {}
 
     defaults = Hash.new(Metric::NOT_APPLICABLE)
     @channels = metrics.group_by(&:channel).each.with_object(defaults) do |(channel, metrics), memo|
@@ -15,6 +16,10 @@ class AggregatedTransactionsReceivedMetric
         end
       end
 
+      @completeness[channel] = {
+        actual: metrics.count { |m| !m.quantity.in?([Metric::NOT_PROVIDED, nil]) },
+        expected: 12 * expected_multiplier
+      }
       memo[channel] = quantity
     end
   end
@@ -51,6 +56,8 @@ class AggregatedTransactionsReceivedMetric
   def other
     @channels['other']
   end
+
+  attr_accessor :completeness
 
 private
 

@@ -34,10 +34,11 @@ class Metrics
   attr_reader :group_by, :root, :time_period
 
   def metrics(entity: root)
+    multiplier = expected_multiplier(entity)
     [
-      AggregatedCallsReceivedMetric.new(entity, time_period),
-      AggregatedTransactionsReceivedMetric.new(entity, time_period),
-      AggregatedTransactionsWithOutcomeMetric.new(entity, time_period)
+      AggregatedCallsReceivedMetric.new(entity, time_period, multiplier),
+      AggregatedTransactionsReceivedMetric.new(entity, time_period, multiplier),
+      AggregatedTransactionsWithOutcomeMetric.new(entity, time_period, multiplier)
     ].select(&:applicable?)
   end
 
@@ -46,6 +47,25 @@ class Metrics
       m = metrics(entity: entity)
       MetricGroup.new(entity, m)
     }
+  end
+
+  def expected_multiplier(obj)
+    case obj
+    when Service
+      1
+    when Department
+      obj.delivery_organisations.reduce(0) { |memo, delivery_organisation|
+        memo + delivery_organisation.services.count
+      }
+    when DeliveryOrganisation
+      obj.services.count
+    when Government
+      obj.departments.reduce(0) { |memo, department|
+        memo + department.delivery_organisations.reduce(0) { |acc, delivery_organisation|
+          acc + delivery_organisation.services.count
+        }
+      }
+    end
   end
 
 private
