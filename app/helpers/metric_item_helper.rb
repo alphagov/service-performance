@@ -28,7 +28,7 @@ module MetricItemHelper
     include GovernmentServiceDataAPI::MetricStatus
     include MetricFormatterHelper
 
-    def initialize(helper = nil, metric_value = nil)
+    def initialize(helper, metric_value)
       @helper = helper || self
       @metric_value = metric_value
     end
@@ -45,6 +45,23 @@ module MetricItemHelper
 
       percentage_string = metric_to_percentage(pct)
       content_tag(:span, "(#{percentage_string})", class: 'metric-value-percentage')
+    end
+
+    def incomplete(completeness)
+      return '' if !completeness
+      if completeness.values.any? { |item| item['actual'] != item['expected'] }
+        content_tag(:div, 'Based on incomplete data', class: 'metric-subheading-grey')
+      end
+    end
+
+    def completeness(scores)
+      return '' if !scores || @metric_value.in?([NOT_PROVIDED, NOT_APPLICABLE])
+
+      actual = scores['actual']
+      expected = scores['expected']
+
+      content = "Data provided for<br>#{actual} of #{expected} months".html_safe
+      content_tag(:div, content, class: 'metric-text-grey')
     end
 
     def description(&content)

@@ -1,3 +1,4 @@
+
 <div class="m-metric <% if calls_received_metric.sampled %>m-metric__sampled<% end %>">
   <ul class="list">
     <%= metric_item(Metrics::Items::CallsReceived, calls_received_metric.total, html: { class: 'm-metric-headline' }) do |item| %>
@@ -8,10 +9,14 @@
       <span class="total">
         <span class="bold-large"><%= metric_to_human(calls_received_metric.total) %></span>
         <span class="data-item bold">calls received</span>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.incomplete calls_received_metric.completeness %>
+        <% end %>
       </span><% if calls_received_metric.sampled %><span class="sampled"><!-- this is intentionally squashed to preseve layout -->
           <span class="bold-large"><%= metric_to_human(calls_received_metric.sampled_total) %></span>
           <span class="data-item bold">calls sample size</span>
       <% end %>
+
     </span>
     <% end %>
 
@@ -24,6 +29,9 @@
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage calls_received_metric.get_information_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness calls_received_metric.completeness['get-information'] %>
+        <% end %>
       </span>
     <% end %>
 
@@ -36,6 +44,9 @@
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage calls_received_metric.chase_progress_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness calls_received_metric.completeness['chase-progress'] %>
+        <% end %>
       </span>
     <% end %>
 
@@ -48,6 +59,9 @@
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage calls_received_metric.challenge_a_decision_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness calls_received_metric.completeness['challenge-a-decision'] %>
+        <% end %>
       </span>
     <% end %>
 
@@ -60,6 +74,9 @@
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage calls_received_metric.other_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness calls_received_metric.completeness['other'] %>
+        <% end %>
       </span>
     <% end %>
   </ul>

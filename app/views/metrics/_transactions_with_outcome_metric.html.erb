@@ -8,6 +8,9 @@
       <span class="total">
         <span class="data-item bold-large"><%= metric_to_human(transactions_with_outcome_metric.count) %></span>
         <span class="data-item bold">transactions ending in an outcome</span>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.incomplete transactions_with_outcome_metric.completeness %>
+        <% end %>
       </span>
     <% end %>
 
@@ -20,6 +23,9 @@
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage transactions_with_outcome_metric.with_intended_outcome_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness transactions_with_outcome_metric.completeness['intended'] %>
+        <% end %>
       </span>
     <% end %>
   </ul>

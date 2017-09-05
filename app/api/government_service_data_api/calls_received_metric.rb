@@ -11,10 +11,11 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
       chase_progress: data.fetch('chase_progress', NOT_APPLICABLE),
       challenge_a_decision: data.fetch('challenge_a_decision', NOT_APPLICABLE),
       other: data.fetch('other', NOT_APPLICABLE),
+      completeness: data['completeness']
     )
   end
 
-  def initialize(total: nil, sampled: nil, sampled_total: nil, get_information: nil, chase_progress: nil, challenge_a_decision: nil, other: nil)
+  def initialize(total: nil, sampled: nil, sampled_total: nil, get_information: nil, chase_progress: nil, challenge_a_decision: nil, other: nil, completeness: nil)
     @total = total || NOT_PROVIDED
     @sampled = sampled
     @sampled_total = sampled_total || NOT_PROVIDED
@@ -22,10 +23,11 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
     @chase_progress = chase_progress || NOT_PROVIDED
     @challenge_a_decision = challenge_a_decision || NOT_PROVIDED
     @other = other || NOT_PROVIDED
+    @completeness = completeness || {}
   end
 
   attr_reader :total, :sampled, :sampled_total, :get_information, :chase_progress,
-              :challenge_a_decision, :other
+              :challenge_a_decision, :other, :completeness
 
   def not_applicable?
     [

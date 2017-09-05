@@ -8,6 +8,9 @@
       <span class="total">
         <span class="data-item bold-large"><%= metric_to_human(transactions_received_metric.total) %></span>
         <span class="data-item bold">transactions received</span>
+        <% if @metrics.show_completeness? && !metric_group.totals? %>
+          <%= item.incomplete transactions_received_metric.completeness %>
+        <% end %>
       </span>
     <% end %>
 
@@ -19,6 +22,9 @@
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage transactions_received_metric.online_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness transactions_received_metric.completeness['online'] %>
+        <% end %>
       </span>
     <% end %>
 
@@ -31,6 +37,9 @@
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage transactions_received_metric.phone_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness transactions_received_metric.completeness['phone'] %>
+        <% end %>
       </span>
     <% end %>
 
@@ -43,6 +52,9 @@
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage transactions_received_metric.paper_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness transactions_received_metric.completeness['paper'] %>
+        <% end %>
       </span>
     <% end %>
 
@@ -55,6 +67,9 @@
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage transactions_received_metric.face_to_face_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness transactions_received_metric.completeness['face_to_face'] %>
+        <% end %>
       </span>
     <% end %>
 
@@ -67,6 +82,9 @@
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage transactions_received_metric.other_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness transactions_received_metric.completeness['other'] %>
+        <% end %>
       </span>
     <% end %>
   </ul>

@@ -11,19 +11,21 @@ class GovernmentServiceDataAPI::TransactionsReceivedMetric
       paper: data.fetch('paper', NOT_APPLICABLE),
       face_to_face: data.fetch('face_to_face', NOT_APPLICABLE),
       other: data.fetch('other', NOT_APPLICABLE),
+      completeness: data['completeness']
     )
   end
 
-  def initialize(total: nil, online: nil, phone: nil, paper: nil, face_to_face: nil, other: nil)
+  def initialize(total: nil, online: nil, phone: nil, paper: nil, face_to_face: nil, other: nil, completeness: nil)
     @total = total || NOT_PROVIDED
     @online = online || NOT_PROVIDED
     @phone = phone || NOT_PROVIDED
     @paper = paper || NOT_PROVIDED
     @face_to_face = face_to_face || NOT_PROVIDED
     @other = other || NOT_PROVIDED
+    @completeness = completeness || {}
   end
 
-  attr_reader :total, :online, :phone, :paper, :face_to_face, :other
+  attr_reader :total, :online, :phone, :paper, :face_to_face, :other, :completeness
 
   def not_applicable?
     [
