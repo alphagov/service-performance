@@ -4,6 +4,9 @@ class AggregatedTransactionsReceivedMetric
   def initialize(organisation, time_period)
     @organisation = organisation
     @time_period = time_period
+    @completeness = {}
+
+    expected_multiplier = Completeness.multiplier(@organisation)
 
     defaults = Hash.new(Metric::NOT_APPLICABLE)
     @channels = metrics.group_by(&:channel).each.with_object(defaults) do |(channel, metrics), memo|
@@ -14,6 +17,11 @@ class AggregatedTransactionsReceivedMetric
           Metric::NOT_PROVIDED
         end
       end
+
+      @completeness[channel] = {
+        actual: metrics.count { |m| !m.quantity.in?([Metric::NOT_PROVIDED, nil]) },
+        expected: @time_period.months * expected_multiplier
+      }
 
       memo[channel] = quantity
     end
@@ -51,6 +59,8 @@ class AggregatedTransactionsReceivedMetric
   def other
     @channels['other']
   end
+
+  attr_reader :completeness
 
 private
 

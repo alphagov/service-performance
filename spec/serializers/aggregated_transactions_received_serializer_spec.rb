@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AggregatedTransactionsReceivedMetricSerializer, type: :serializer do
-  let(:metric) { serializable_double(AggregatedTransactionsReceivedMetric, total: 1000, online: 456, phone: 789, paper: 876, face_to_face: 843, other: 543) }
+  let(:metric) { serializable_double(AggregatedTransactionsReceivedMetric, total: 1000, online: 456, phone: 789, paper: 876, face_to_face: 843, other: 543, completeness: {}) }
   subject(:serializer) { AggregatedTransactionsReceivedMetricSerializer.new(metric) }
 
   it 'serializes a aggregated transactions received metric' do

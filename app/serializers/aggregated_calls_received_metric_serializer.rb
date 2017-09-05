@@ -1,7 +1,7 @@
 class AggregatedCallsReceivedMetricSerializer < ActiveModel::Serializer
   extend MetricSerializer
 
-  attributes :type
+  attributes :type, :completeness
 
   metrics :total, :get_information, :chase_progress,
           :challenge_a_decision, :other, :sampled, :sampled_total

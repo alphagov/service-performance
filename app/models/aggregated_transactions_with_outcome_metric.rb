@@ -4,6 +4,9 @@ class AggregatedTransactionsWithOutcomeMetric
   def initialize(organisation, time_period)
     @organisation = organisation
     @time_period = time_period
+    @completeness = {}
+
+    expected_multiplier = Completeness.multiplier(@organisation)
 
     defaults = Hash.new(Metric::NOT_APPLICABLE)
     @items = metrics.group_by(&:outcome).each.with_object(defaults) do |(outcome, metrics), memo|
@@ -14,6 +17,11 @@ class AggregatedTransactionsWithOutcomeMetric
           Metric::NOT_PROVIDED
         end
       end
+
+      @completeness[outcome] = {
+        actual: metrics.count { |m| !m.quantity.in?([Metric::NOT_PROVIDED, nil]) },
+        expected: @time_period.months * expected_multiplier
+      }
 
       memo[outcome] = quantity
     end
@@ -30,6 +38,8 @@ class AggregatedTransactionsWithOutcomeMetric
   def with_intended_outcome
     @items['intended']
   end
+
+  attr_reader :completeness
 
 private
 

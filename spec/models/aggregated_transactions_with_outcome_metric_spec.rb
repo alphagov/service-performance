@@ -29,7 +29,7 @@ RSpec.describe AggregatedTransactionsWithOutcomeMetric, type: :model do
       other_service = FactoryGirl.create(:service, department: other_department)
       FactoryGirl.create(:transactions_with_outcome_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: 10)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
       metric = AggregatedTransactionsWithOutcomeMetric.new(department, time_period)
       expect(metric.total).to eq(360)
       expect(metric.with_intended_outcome).to eq(330)
@@ -62,7 +62,7 @@ RSpec.describe AggregatedTransactionsWithOutcomeMetric, type: :model do
       other_service = FactoryGirl.create(:service, delivery_organisation: other_delivery_organisation)
       FactoryGirl.create(:transactions_with_outcome_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: 10)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
       metric = AggregatedTransactionsWithOutcomeMetric.new(delivery_organisation, time_period)
       expect(metric.total).to eq(360)
       expect(metric.with_intended_outcome).to eq(330)
@@ -87,7 +87,7 @@ RSpec.describe AggregatedTransactionsWithOutcomeMetric, type: :model do
       other_service = FactoryGirl.create(:service)
       FactoryGirl.create(:transactions_with_outcome_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: 10)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
       metric = AggregatedTransactionsWithOutcomeMetric.new(service, time_period)
       expect(metric.total).to eq(180)
       expect(metric.with_intended_outcome).to eq(165)
@@ -108,7 +108,7 @@ RSpec.describe AggregatedTransactionsWithOutcomeMetric, type: :model do
       FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'any', quantity: nil)
       FactoryGirl.create(:transactions_with_outcome_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', outcome: 'intended', quantity: nil)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-01-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-01-31'), months: 12)
       metric = AggregatedTransactionsWithOutcomeMetric.new(service, time_period)
 
       expect(metric.total).to eq(Metric::NOT_PROVIDED)
