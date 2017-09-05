@@ -22,22 +22,22 @@
 
   <div class="grid-row">
 
-    <div class="column-two-thirds">
+    <div class="column-two-thirds service-context">
 
       <h2 class="bold-medium">What is the purpose of the service?</h2>
-      <%= simple_format(@service.purpose) %>
+      <%= @service.purpose.html_safe %>
 
       <h2 class="bold-medium">How does the service work?</h2>
-      <%= simple_format(@service.how_it_works) %>
+      <%= @service.how_it_works.html_safe %>
 
       <h2 class="bold-medium">Who are the typical users of the service?</h2>
-      <%= simple_format(@service.typical_users) %>
+      <%= @service.typical_users.html_safe %>
 
       <h2 class="bold-medium">How frequently is the service used?</h2>
-      <%= simple_format(@service.frequency_used) %>
+      <%= @service.frequency_used.html_safe %>
 
       <h2 class="bold-medium">How long does it take a transaction to end in outcome?</h2>
-      <%= simple_format(@service.duration_until_outcome) %>
+      <%= @service.duration_until_outcome.html_safe %>
 
     </div>
 
