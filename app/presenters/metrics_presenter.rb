@@ -25,6 +25,10 @@ class MetricsPresenter
     end
   end
 
+  def show_completeness?
+    group_by == Metrics::Group::Service
+  end
+
   def organisation_name
     entity.name
   end

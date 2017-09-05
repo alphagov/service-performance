@@ -49,6 +49,23 @@ class MetricGroupPresenter
   delegate :name, to: :entity
   delegate :transactions_received, :transactions_with_outcome, :calls_received, to: :@metric_group
 
+  def completeness
+    res = @metric_group.metrics.reduce([0, 0]) { |memo, hash|
+      if hash.completeness && hash.completeness.size.positive?
+        val = %w(actual expected).map { |k|
+          hash.completeness.values.map { |m| m[k] }.reduce(:+)
+        }
+
+        [memo[0] + val[0], memo[1] + val[1]]
+      else
+        [memo[0], memo[1]]
+      end
+    }
+
+    v = (res[0].to_f / res[1].to_f) * 100
+    helper.number_to_percentage(v, precision: 0)
+  end
+
   def delivery_organisations_count
     if entity.respond_to?(:delivery_organisations_count)
       entity.delivery_organisations_count
@@ -67,5 +84,12 @@ class MetricGroupPresenter
 
   def totals?
     false
+  end
+
+  def helper
+    h = @helper ||= Class.new do
+      include ActionView::Helpers::NumberHelper
+    end
+    h.new
   end
 end

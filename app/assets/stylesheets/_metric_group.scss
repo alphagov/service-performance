@@ -12,7 +12,28 @@
   }
 }
 
+.completeness {
+  float: right;
+  padding: 4px;
+  margin-top: -$gutter-half;
+  margin-right: -$gutter-half;
+  font-size: 16px;
+  color: #141414;
+  background-color: #DEE0E2;
+}
+
+
 .metric-value-not-provided {
+  color: #888;
+  font-weight: 700;
+}
+
+.metric-text-grey {
+  color: #888;
+  font-weight: 400;
+}
+
+.metric-subheading-grey {
   color: #888;
   font-weight: 700;
 }
@@ -87,6 +108,8 @@
   display: inline-block;
   vertical-align: text-top;
   float: right;
+  margin-top: 20px;
+  width: 5%;
 }
 
 .m-metric-group__totals {
