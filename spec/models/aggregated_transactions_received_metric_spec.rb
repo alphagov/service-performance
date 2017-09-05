@@ -26,7 +26,7 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       other_service = FactoryGirl.create(:service, department: other_department)
       FactoryGirl.create(:transactions_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'online', quantity: 95)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
       metric = AggregatedTransactionsReceivedMetric.new(department, time_period)
       expect(metric.total).to eq(2200)
       expect(metric.online).to eq(1200)
@@ -60,7 +60,7 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       other_service = FactoryGirl.create(:service, delivery_organisation: other_delivery_organisation)
       FactoryGirl.create(:transactions_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'online', quantity: 95)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
       metric = AggregatedTransactionsReceivedMetric.new(delivery_organisation, time_period)
       expect(metric.total).to eq(2200)
       expect(metric.online).to eq(1200)
@@ -85,7 +85,7 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       other_service = FactoryGirl.create(:service)
       FactoryGirl.create(:transactions_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'online', quantity: 95)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
       metric = AggregatedTransactionsReceivedMetric.new(service, time_period)
       expect(metric.total).to eq(1100)
       expect(metric.online).to eq(600)
@@ -98,7 +98,7 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
     specify 'with not applicable fields' do
       service = FactoryGirl.create(:service)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
       metric = AggregatedTransactionsReceivedMetric.new(service, time_period)
 
       expect(metric.total).to eq(Metric::NOT_APPLICABLE)
@@ -117,7 +117,7 @@ RSpec.describe AggregatedTransactionsReceivedMetric, type: :model do
       FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'face_to_face', quantity: nil)
       FactoryGirl.create(:transactions_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', channel: 'other', quantity: nil)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-01-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-01-31'), months: 12)
       metric = AggregatedTransactionsReceivedMetric.new(service, time_period)
 
       expect(metric.online).to eq(Metric::NOT_PROVIDED)

@@ -4,8 +4,10 @@ class AggregatedCallsReceivedMetric
   def initialize(organisation, time_period)
     @organisation = organisation
     @time_period = time_period
-
+    @completeness = {}
     @sampled = metrics.any?(&:sampled)
+
+    expected_multiplier = Completeness.multiplier(@organisation)
 
     defaults = Hash.new(Metric::NOT_APPLICABLE)
     defaults['sampled-total'] = 0
@@ -18,6 +20,10 @@ class AggregatedCallsReceivedMetric
         end
       end
 
+      @completeness[item] = {
+        actual: metrics.count { |m| !m.quantity.in?([Metric::NOT_PROVIDED, nil]) },
+        expected: @time_period.months * expected_multiplier
+      }
       memo[item] = quantity
 
       if item == 'total'
@@ -60,7 +66,7 @@ class AggregatedCallsReceivedMetric
     @channels['sampled-total']
   end
 
-  attr_reader :sampled
+  attr_reader :sampled, :completeness
 
 private
 

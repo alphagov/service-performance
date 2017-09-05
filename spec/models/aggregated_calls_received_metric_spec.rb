@@ -32,7 +32,7 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       FactoryGirl.create(:calls_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'total', quantity: 10)
       FactoryGirl.create(:calls_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'get-information', quantity: 5)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
       metric = AggregatedCallsReceivedMetric.new(department, time_period)
       expect(metric.total).to eq(360)
       expect(metric.get_information).to eq(330)
@@ -73,7 +73,7 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       FactoryGirl.create(:calls_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'total', quantity: 10)
       FactoryGirl.create(:calls_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'get-information', quantity: 5)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
       metric = AggregatedCallsReceivedMetric.new(delivery_organisation, time_period)
       expect(metric.total).to eq(360)
       expect(metric.get_information).to eq(330)
@@ -102,7 +102,7 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       FactoryGirl.create(:calls_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'total', quantity: 10)
       FactoryGirl.create(:calls_received_metric, service: other_service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'get-information', quantity: 5)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
       metric = AggregatedCallsReceivedMetric.new(service, time_period)
       expect(metric.total).to eq(180)
       expect(metric.get_information).to eq(165)
@@ -118,7 +118,7 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
         FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-02-28', item: 'total', quantity: 60, sampled: true, sample_size: 15)
         FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-03-01', ends_on: '2017-03-31', item: 'total', quantity: 70, sampled: false)
 
-        time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+        time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
         metric = AggregatedCallsReceivedMetric.new(service, time_period)
         expect(metric.total).to eq(180)
         expect(metric.sampled).to be_truthy
@@ -131,7 +131,7 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
         FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-02-01', ends_on: '2017-02-28', item: 'total', quantity: 60, sampled: false)
         FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-03-01', ends_on: '2017-03-31', item: 'total', quantity: 70, sampled: false)
 
-        time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+        time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
         metric = AggregatedCallsReceivedMetric.new(service, time_period)
         expect(metric.total).to eq(180)
         expect(metric.sampled).to be_falsey
@@ -142,7 +142,7 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
     specify 'with not applicable fields' do
       service = FactoryGirl.create(:service)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-03-31'), months: 12)
       metric = AggregatedCallsReceivedMetric.new(service, time_period)
 
       expect(metric.total).to eq(Metric::NOT_APPLICABLE)
@@ -160,7 +160,7 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'challenge-a-decision', quantity: nil)
       FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'other', quantity: nil)
 
-      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-01-31'))
+      time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-01-31'), months: 12)
       metric = AggregatedCallsReceivedMetric.new(service, time_period)
 
       expect(metric.total).to eq(Metric::NOT_PROVIDED)

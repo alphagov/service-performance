@@ -1,7 +1,7 @@
 class AggregatedTransactionsReceivedMetricSerializer < ActiveModel::Serializer
   extend MetricSerializer
 
-  attributes :type
+  attributes :type, :completeness
   metrics :total, :online, :phone, :paper, :face_to_face, :other
 
   def type
