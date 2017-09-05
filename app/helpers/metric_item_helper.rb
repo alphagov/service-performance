@@ -1,5 +1,6 @@
 module MetricItemHelper
   include GovernmentServiceDataAPI::MetricStatus
+  include Metrics::Items
 
   def metric_item(identifier, metric_value, sampled: false, html: {})
     return if metric_value == NOT_APPLICABLE
@@ -7,7 +8,7 @@ module MetricItemHelper
     item = MetricItem.new(self, metric_value)
     content = capture { yield(item) } || ''
 
-    guidance = translate("metric_guidance.#{identifier}.description")
+    guidance = translate("metric_guidance.#{identifier}.description") if guidance?(identifier)
 
     html[:data] ||= {}
     html[:data].merge!('metric-item-identifier' => identifier, 'metric-item-description' => item.description.try(:strip), 'metric-item-guidance' => guidance)
@@ -15,12 +16,18 @@ module MetricItemHelper
     html[:class] = Array.wrap(html[:class])
     html[:class] << 'sampled' if sampled
 
-    content += content_tag(:span, class: 'm-metric-guidance-toggle') do
-      content_tag(:a, '+', href: '#', class: 'a-metric-guidance-expand', data: { behaviour: 'a-metric-guidance-toggle' })
+    if guidance?(identifier)
+      content += content_tag(:span, class: 'm-metric-guidance-toggle') do
+        content_tag(:a, '+', href: '#', class: 'a-metric-guidance-expand', data: { behaviour: 'a-metric-guidance-toggle' })
+      end
     end
 
     row = content_tag(:div, content, class: 'row')
     content_tag(:li, row, html)
+  end
+
+  def guidance?(identifier)
+    identifier.in?([CallsReceived, TransactionsEndingInOutcome, TransactionsReceived, TransactionsEndingInOutcomeWithIntendedOutcome])
   end
 
 

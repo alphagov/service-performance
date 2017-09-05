@@ -54,7 +54,12 @@ main {
 
   .metric-name, .metric-value {
     vertical-align: top;
-    width: 50%;
+    width: 60%;
+  }
+
+  .metric-value {
+    vertical-align: top;
+    width: 40%;
   }
 
   .total {
