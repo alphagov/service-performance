@@ -1,6 +1,6 @@
 main {
   h1.heading-xlarge {
-    margin: $gutter-half 0 $gutter 0;
+    margin: $gutter-half 0 0 0;
   }
 
   h1 .prefix {
@@ -54,12 +54,7 @@ main {
 
   .metric-name, .metric-value {
     vertical-align: top;
-    width: 60%;
-  }
-
-  .metric-value {
-    vertical-align: top;
-    width: 40%;
+    width: 50%;
   }
 
   .total {

@@ -60,15 +60,17 @@
     <div class="column-full">
       <h2 class="heading-large">Service data</h2>
 
-      <div class='completeness'>
-        <%= @metrics.metric_groups.last.completeness %> of data points complete
-      </div>
-      <div class="clear:both">&nbsp;</div>
+      <div class='m-metric-group'>
+        <div>
+          <div class='completeness service-context-completeness'>
+            <%= @metrics.metric_groups.last.completeness %> of data points complete
+          </div>
 
-      <div class="m-metrics">
-        <%= render @metrics.metric_groups.last.metrics, metric_group: @metrics.metric_groups.last%>
+          <div class="m-metrics">
+            <%= render @metrics.metric_groups.last.metrics, metric_group: @metrics.metric_groups.last%>
+          </div>
+        </div>
       </div>
-
     </div>
   </div>
 </main>

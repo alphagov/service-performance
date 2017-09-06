@@ -67,7 +67,9 @@ module MetricItemHelper
       actual = scores['actual']
       expected = scores['expected']
 
-      content = "Data provided for<br>#{actual} of #{expected} months".html_safe
+      return '' if actual == expected
+
+      content = "Data provided for #{actual} of #{expected} months".html_safe
       content_tag(:div, content, class: 'metric-text-grey')
     end
 

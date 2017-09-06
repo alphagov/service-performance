@@ -13,28 +13,27 @@
 }
 
 .completeness {
-  float: right;
-  padding: 4px;
-  margin-top: -$gutter-half;
-  margin-right: -$gutter-half;
+  padding: 4px 8px;
   font-size: 16px;
   color: #141414;
   background-color: #DEE0E2;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 
 .metric-value-not-provided {
-  color: #888;
-  font-weight: 700;
+  color: #6F777B;
 }
 
 .metric-text-grey {
-  color: #888;
+  color: #6F777B;
   font-weight: 400;
 }
 
 .metric-subheading-grey {
-  color: #888;
+  color: #6F777B;
   font-weight: 700;
 }
 
@@ -42,14 +41,15 @@
    font-size: 36px;
    margin-top: 0;
    margin-bottom: 0;
-   color: #888;
+   color: #6F777B;
    line-height: 1.1;
    font-weight: 700;
  }
 
  span.not-applicable-message {
    font-size: 16px;
-   color: #666;
+   font-weight: 700;
+   color: #6F777B;
    margin-top: 0;
    line-height: 1;
  }
@@ -85,6 +85,10 @@
 
 }
 
+.m-metric-group>div {
+  position: relative;
+}
+
 .m-metric-group__expanded {
   border: 1px solid #BFC1C3;
   margin: $gutter-half 0;
@@ -114,4 +118,8 @@
 
 .m-metric-group__totals {
   background-color: #EFF0F1;
+}
+
+.m-time-period-selector {
+  margin-bottom: $gutter;
 }
