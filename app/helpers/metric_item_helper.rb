@@ -27,7 +27,7 @@ module MetricItemHelper
   end
 
   def guidance?(identifier)
-    identifier.in?([CallsReceived, TransactionsEndingInOutcome, TransactionsReceived, TransactionsEndingInOutcomeWithIntendedOutcome])
+    identifier.in?([CallsReceived, TransactionsEndingInOutcome, TransactionsReceived])
   end
 
 

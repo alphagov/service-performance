@@ -6,11 +6,7 @@ en:
 
     'transactions-ending-in-outcome':
       name: transactions ending in an outcome
-      description: This number tells you how many transactions the service processed.
-
-    'transactions-ending-in-outcome-with-intended-outcome':
-      name: transactions ending in the user's intended outcome
-      description: This number tells you how well the service met users’ needs.
+      description: These numbers tell you how many transactions the service processed, and how well these transaction met users' needs.
 
     'calls-received':
       name: calls received
