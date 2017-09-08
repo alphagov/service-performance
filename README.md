@@ -1,24 +1,55 @@
-# README
+# Government Service Data – API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the publishing component for Government Service Data.
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/gsd-api/blob/master/.ruby-version) installed, which is currently `2.4.1`. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
 
-* System dependencies
+```
+brew install rbenv
+```
 
-* Configuration
+If you have rbenv installed, you can run
 
-* Database creation
+```
+rbenv install 2.4.0
+```
 
-* Database initialization
+Next, you'll need [`Bundler`](http://bundler.io/) in order to install all the dependencies you'll need to run the app.
 
-* How to run the test suite
+```
+gem install bundler
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Installing Bundler means that you have it for the current version of Ruby. If you ever switch Ruby versions, you'll need to re-install Bundler.
+After bundle has been installed, install the dependencies for this application with
 
-* Deployment instructions
+```
+bundle
+```
 
-* ...
+Once you have all the dependencies, you need to configure the database you will be using.  Copy config/database.yml.example to config/database.yml to use the suggested database name. Once you have done this you should run
+
+```
+bin/rails db:create db:migrate db:seed
+```
+
+To start the server.
+
+1. You can check out [`Pow`](http://pow.cx/) for a really easy no-config server solution.
+2. You can do the more conventional `rails -s` command. If you're already running another app on port 3000 (the API, for example), then pass in a new port number with `rails -s --port 3000`
+
+You can test the server is up and running by visiting [http://127.0.0.1:3000/v1/data/government](http://127.0.0.1:3000/v1/data/government) or [http://gsd-api.dev/v1/data/government](http://gsd-api.dev/v1/data/government) if you are using [`Pow`](http://pow.cx/).
+
+
+## Tests
+
+To run tests, you should run
+
+```
+bin/rails spec
+```
+
+## Deployment
+
