@@ -1,0 +1,45 @@
+/* Overwrite image paths in vendor/submodules/govuk_template/source/assets/stylesheets/_footer.scss */
+
+#footer .footer-meta {
+
+  .footer-meta-inner .open-government-licence .logo a {
+    background-image: image-url("govuk_template/source/assets/stylesheets/images/open-government-licence.png");
+
+    @include device-pixel-ratio() {
+      background-image: image-url("govuk_template/source/assets/stylesheets/images/open-government-licence_2x.png");
+    }
+  }
+
+  .copyright a {
+    background-image: image-url("govuk_template/source/assets/stylesheets/images/govuk-crest.png");
+
+    @include device-pixel-ratio() {
+      background-image: image-url("govuk_template/source/assets/stylesheets/images/govuk-crest-2x.png");
+    }
+
+    @include ie(6) {
+      background-image: image-url("govuk_template/source/assets/stylesheets/images/govuk-crest-ie.png");
+    }
+  }
+}
+
+/* Overwrite image paths in vendor/submodules/govuk_template/packages/govuk-elements-sass/public/sass/elements/_buttons.scss */
+
+.button-start,
+.button-get-started {
+  background-image: file-url("govuk_frontend_toolkit/images/icon-pointer.png");
+
+  @include device-pixel-ratio {
+    background-image: file-url("govuk_frontend_toolkit/images/icon-pointer-2x.png");
+  }
+
+  @include ie(6) {
+    background-image: file-url("govuk_frontend_toolkit/images/icon-pointer-2x.png");
+  }
+}
+
+/* Overwrite image path in vendor/submodules/product-page-example/source/stylesheets/modules/hero-button */
+
+a.hero-button {
+  background-image: file-url('product-page-example/source/images/hero-button/arrow.png');
+}
