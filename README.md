@@ -1,4 +1,4 @@
-# Government Service Data – API
+# Government Service Data – Publish Data
 
 This is the publishing component for Government Service Data.
 
