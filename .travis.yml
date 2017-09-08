@@ -1,0 +1,17 @@
+dist: trusty
+language: ruby
+sudo: true
+cache:
+  bundler: true
+  directories:
+  - node_modules
+
+before_script:
+  - cp .env.example .env
+  - npm install
+  - bundle --without development production
+
+script:
+  - bundle exec govuk-lint-ruby app lib spec
+  - xvfb-run -a bundle exec rspec
+
