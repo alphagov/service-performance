@@ -1,6 +1,6 @@
 # Government Service Data – Publish Data
 
-This is the publishing component for Government Service Data.
+This is the publishing application for Government Service Data. This application interacts with the [GSD API](https://github.com/alphagov/gsd-api) to provide data for [View data](https://github.com/alphagov/gsd-view-data)
 
 ## Setup
 
