@@ -11,10 +11,12 @@ gem 'faraday'
 gem 'faraday_middleware'
 gem 'govuk-lint'
 gem 'devise'
+gem 'administrate'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
+  gem 'factory_girl_rails'
   gem 'launchy'
   gem 'rspec-rails'
 end
