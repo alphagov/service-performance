@@ -53,3 +53,12 @@ bin/rails spec
 
 ## Deployment
 
+### Staging
+
+Deployments are initiated by merging master into staging, and then pushing the staging branch.
+
+### Running Migrations
+
+The migrations aren't automatically run by CI on deployment. To run all pending migrations use the following:
+
+    cf run-task gsd-publish-data "cd /app && bundle exec rake db:migrate" --name migrate
