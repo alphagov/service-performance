@@ -56,13 +56,15 @@ class MetricGroupPresenter
           hash.completeness.values.map { |m| m[k] }.reduce(:+)
         }
 
-        [memo[0] + val[0], memo[1] + val[1]]
+        [memo, val].transpose.map { |x| x.reduce(:+) }
       else
-        [memo[0], memo[1]]
+        memo
       end
     }
 
     v = (res[0].to_f / res[1].to_f) * 100
+    v = 0 if v.nan?
+
     helper.number_to_percentage(v, precision: 0)
   end
 
