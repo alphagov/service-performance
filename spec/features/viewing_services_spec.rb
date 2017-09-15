@@ -27,7 +27,7 @@ RSpec.feature 'viewing services', type: :feature do
     expect(page).to have_content('Service data for Driver and Vehicle Licensing Agency')
 
     click_on 'Apply for a provisional driving license'
-    expect(page).to have_content('Not provided')
-    expect(page).to have_content('calls received')
+    expect(page).to have_content('N/A')
+    expect(page).to have_content("doesn't receive calls")
   end
 end

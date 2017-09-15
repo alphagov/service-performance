@@ -31,8 +31,8 @@ RSpec.feature 'viewing metrics', type: :feature do
           ['Department of Health', '18132669'],
           ['Department for Education', '13000475'],
           ['Department for Environment Food & Rural Affairs', '3000039'],
-          ['Department for Business, Energy & Industrial Strategy', '0'],
-          ['HM Revenue & Customs', '0'],
+          ['Department for Business, Energy & Industrial Strategy', nil],
+          ['HM Revenue & Customs', nil],
         ])
 
         if javascript_enabled
@@ -45,8 +45,8 @@ RSpec.feature 'viewing metrics', type: :feature do
         all('a', text: /\AOpen\z/).each(&:click) if javascript_enabled
 
         expect(metric_groups(:name, :transactions_received_total)).to eq([
-          ['HM Revenue & Customs', '0'],
-          ['Department for Business, Energy & Industrial Strategy', '0'],
+          ['HM Revenue & Customs', nil],
+          ['Department for Business, Energy & Industrial Strategy', nil],
           ['Department for Environment Food & Rural Affairs', '3000039'],
           ['Department for Education', '13000475'],
           ['Department of Health', '18132669'],
@@ -90,7 +90,11 @@ RSpec.feature 'viewing metrics', type: :feature do
     end
 
     def transactions_received_total
-      element.find('.m-metric__transactions-received .m-metric-headline data', visible: false)[:value]
+      begin
+        element.find('.m-metric__transactions-received .m-metric-headline data', visible: false)[:value]
+      rescue
+        nil
+      end
     end
   end
 end

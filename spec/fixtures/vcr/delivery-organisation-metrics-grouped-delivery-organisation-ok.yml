@@ -29,11 +29,11 @@ http_interactions:
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 1d2be974-4cf0-4f16-aae8-170df8f183cc
+      - 8eb18059-8c5a-42e3-a5fd-a4a93d1b823e
       x-runtime:
-      - '0.012547'
+      - '0.008560'
       date:
-      - Fri, 25 Aug 2017 14:09:11 GMT
+      - Mon, 11 Sep 2017 14:20:55 GMT
       connection:
       - close
     body:
@@ -42,7 +42,7 @@ http_interactions:
         Vehicle Licensing Agency","website":"http://example.com/driver-and-vehicle-licensing-agency","services_count":5,"department":{"type":"department","natural_key":"D0002","name":"Department
         for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9}}'
     http_version: 
-  recorded_at: Fri, 25 Aug 2017 14:09:11 GMT
+  recorded_at: Mon, 11 Sep 2017 14:20:55 GMT
 - request:
     method: get
     uri: http://gsd-api.dev/v1/data/delivery_organisations/03/metrics?group_by=delivery_organisation
@@ -68,22 +68,22 @@ http_interactions:
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"09e7e06bfab9f2a93aa011026b2b839f"
+      - W/"776133f71d1f947a92375b4de91d4b59"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - f17e0dbd-fde8-43aa-bae6-f568b2debc36
+      - da1b39ab-0884-4163-ab42-f11ea122228e
       x-runtime:
-      - '0.019681'
+      - '0.025508'
       date:
-      - Fri, 25 Aug 2017 14:09:11 GMT
+      - Mon, 11 Sep 2017 14:20:55 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"group_by":"delivery_organisation","metrics":[{"type":"calls-received","total":null,"get_information":null,"chase_progress":null,"challenge_a_decision":null,"other":null,"sampled":false,"sampled_total":null},{"type":"transactions-received","total":70123862,"online":45143108,"phone":7123719,"paper":17857035,"face_to_face":null,"other":null},{"type":"transactions-with-outcome","total":70842643,"with_intended_outcome":58650122}],"metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
+      string: '{"group_by":"delivery_organisation","metrics":[{"type":"calls-received","completeness":{},"sampled":false,"sampled_total":0},{"type":"transactions-received","completeness":{"online":{"actual":5,"expected":30},"phone":{"actual":4,"expected":30},"face-to-face":{"actual":1,"expected":30},"paper":{"actual":3,"expected":30}},"total":70123862,"online":45143108,"phone":7123719,"paper":17857035},{"type":"transactions-with-outcome","completeness":{"any":{"actual":5,"expected":30},"intended":{"actual":5,"expected":30}},"total":70842643,"with_intended_outcome":58650122}],"metric_groups":[{"entity":{"type":"delivery-organisation","natural_key":"03","name":"Driver
         and Vehicle Licensing Agency","website":"http://example.com/driver-and-vehicle-licensing-agency","services_count":5,"department":{"type":"department","natural_key":"D0002","name":"Department
-        for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9}},"metrics":[{"type":"calls-received","total":null,"get_information":null,"chase_progress":null,"challenge_a_decision":null,"other":null,"sampled":false,"sampled_total":null},{"type":"transactions-received","total":70123862,"online":45143108,"phone":7123719,"paper":17857035,"face_to_face":null,"other":null},{"type":"transactions-with-outcome","total":70842643,"with_intended_outcome":58650122}]}]}'
+        for Transport","website":"http://example.com/department-for-transport","delivery_organisations_count":2,"services_count":9}},"metrics":[{"type":"calls-received","completeness":{},"sampled":false,"sampled_total":0},{"type":"transactions-received","completeness":{"online":{"actual":5,"expected":30},"phone":{"actual":4,"expected":30},"face-to-face":{"actual":1,"expected":30},"paper":{"actual":3,"expected":30}},"total":70123862,"online":45143108,"phone":7123719,"paper":17857035},{"type":"transactions-with-outcome","completeness":{"any":{"actual":5,"expected":30},"intended":{"actual":5,"expected":30}},"total":70842643,"with_intended_outcome":58650122}]}]}'
     http_version: 
-  recorded_at: Fri, 25 Aug 2017 14:09:11 GMT
+  recorded_at: Mon, 11 Sep 2017 14:20:55 GMT
 recorded_with: VCR 3.0.3
