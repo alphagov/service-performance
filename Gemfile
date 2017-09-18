@@ -9,12 +9,14 @@ gem 'jquery-rails'
 
 gem 'faraday'
 gem 'faraday_middleware'
+gem 'google-tag-manager-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
   gem 'launchy'
   gem 'rspec-rails'
+  gem 'govuk-lint'
 end
 
 group :development do
@@ -23,7 +25,6 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'govuk-lint'
 end
 
 group :test do
@@ -32,7 +33,6 @@ group :test do
   gem 'rails-controller-testing'
   gem 'vcr'
   gem 'webmock'
-  gem 'govuk-lint'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
