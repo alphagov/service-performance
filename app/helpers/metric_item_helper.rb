@@ -8,7 +8,7 @@ module MetricItemHelper
     item = MetricItem.new(self, metric_value)
     content = capture { yield(item) } || ''
 
-    guidance = translate("metric_guidance.#{identifier}.description") if guidance?(identifier)
+    guidance = translate(:description_html, default: :description, scope: ['metric_guidance', identifier]) if guidance?(identifier)
 
     html[:data] ||= {}
     html[:data].merge!('metric-item-identifier' => identifier, 'metric-item-description' => item.description.try(:strip), 'metric-item-guidance' => guidance)

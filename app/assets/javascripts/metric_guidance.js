@@ -12,8 +12,8 @@
 
       var metricGuidance = container.find('[data-metric-guidance]')
       if (metricGuidance.length === 0) {
-        var descriptionElement = $('<p />', {'class': 'a-metric-guidance', 'data-metric-guidance': 'data-metric-guidance'})
-        descriptionElement.text(guidance)
+        var descriptionElement = $('<div />', {'class': 'a-metric-guidance', 'data-metric-guidance': 'data-metric-guidance'})
+        descriptionElement.html(guidance)
 
         container.append(descriptionElement)
         metricGuidance = descriptionElement
