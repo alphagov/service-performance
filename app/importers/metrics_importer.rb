@@ -40,7 +40,7 @@ class MetricsImporter
   end
 
   def import_row(row)
-    service = service(row.service_name)
+    service = service(row.service_name.strip)
     delivery_organisation = delivery_organisation(row.delivery_organisation_name)
 
     service.natural_key ||= SecureRandom.hex(2)
