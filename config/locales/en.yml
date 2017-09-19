@@ -6,8 +6,12 @@ en:
 
     'transactions-ending-in-outcome':
       name: transactions ending in an outcome
-      description: These numbers tell you how many transactions the service processed, and how well these transaction met users' needs.
+      description: These numbers tell you how many transactions the service processed, and how well these transactions met users' needs.
 
     'calls-received':
       name: calls received
       description: These numbers tell you how much the call centre was used, and why.
+      
+      If the total number of calls is high then the number of transactions, that’s an indication that effort is high compared to output.
+      
+If the proportion of users calling to chase progress is high, this might mean that the service isn’t processing transactions as quickly as it should. A high proportion of calls to get more information could indicate that the information available online is incomplete or unclear.
