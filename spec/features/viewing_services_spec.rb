@@ -30,4 +30,16 @@ RSpec.feature 'viewing services', type: :feature do
     expect(page).to have_content('N/A')
     expect(page).to have_content("doesn't receive calls")
   end
+
+  specify 'viewing a service with completeness info', cassette: 'viewing-a-service' do
+    visit government_metrics_path(group_by: Metrics::Group::Department)
+
+    click_on 'Department for Transport'
+    click_on 'Driver and Vehicle Licensing Agency'
+    click_on 'Apply for a provisional driving license'
+
+    expect(page).to have_content('17% of data points complete')
+    expect(page).to have_content('Based on incomplete data')
+    expect(page).to have_content('Data provided for 1 of 6 months', count: 3)
+  end
 end

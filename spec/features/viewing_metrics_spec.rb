@@ -62,6 +62,7 @@ RSpec.feature 'viewing metrics', type: :feature do
 
       expect(page).to have_selector('.m-metric-group', count: 8)
       expect(page).to have_selector('.m-metric-group[data-behaviour~="m-metric-group__collapsible"]', count: 0)
+      expect(page).to have_selector('.completeness', count: 8)
 
       select 'transactions received', from: 'Sort by'
       expect(page).to have_selector('.m-metric-group[data-behaviour~="m-metric-group__collapsible"]', count: 8)
