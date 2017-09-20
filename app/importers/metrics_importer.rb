@@ -76,6 +76,7 @@ class MetricsImporter
 
     create_calls_received_metric = ->(item, quantity) { create_metric.(CallsReceivedMetric, quantity, item: item, sampled: false) }
     create_calls_received_metric.('total', row.calls_received)
+    create_calls_received_metric.('perform-transaction', row.calls_received_perform_transaction)
     create_calls_received_metric.('get-information', row.calls_received_get_information)
     create_calls_received_metric.('chase-progress', row.calls_received_chase_progress)
     create_calls_received_metric.('challenge-a-decision', row.calls_received_challenge_a_decision)
@@ -207,6 +208,10 @@ private
 
     def calls_received
       parse_metric(@row[13])
+    end
+
+    def calls_received_perform_transaction
+      transactions_received_phone
     end
 
     def calls_received_get_information
