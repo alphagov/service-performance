@@ -100,6 +100,19 @@
   &:last-child {
     margin-bottom: 0;
   }
+
+  h2 {
+    width: 75%;
+  }
+}
+
+@media (max-width: 480px) {
+  .m-metric-group__expanded {
+    h2 {
+      margin-top: 20px;
+      width: 100%;
+    }
+  }
 }
 
 .m-metric-group__collapsed {
