@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <%= tag_manager_js -%>
     <meta charset="utf-8">
 
     <title><%= page.title %></title>
@@ -20,7 +21,7 @@
   </head>
 
   <body>
-    <%= google_tag_manager %>
+    <%= tag_manager_nojs -%>
     <a href="#main" class="skip-link">Skip to main content</a>
 
     <header class="header<% unless page.display_header_border %> header--without-border<% end %>">
