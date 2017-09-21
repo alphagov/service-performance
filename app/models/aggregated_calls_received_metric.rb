@@ -58,6 +58,10 @@ class AggregatedCallsReceivedMetric
     @channels['challenge-a-decision']
   end
 
+  def perform_transaction
+    @channels['perform-transaction']
+  end
+
   def other
     @channels['other']
   end

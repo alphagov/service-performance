@@ -158,6 +158,7 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'get-information', quantity: nil)
       FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'chase-progress', quantity: nil)
       FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'challenge-a-decision', quantity: nil)
+      FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'perform-transaction', quantity: nil)
       FactoryGirl.create(:calls_received_metric, service: service, starts_on: '2017-01-01', ends_on: '2017-01-31', item: 'other', quantity: nil)
 
       time_period = instance_double(TimePeriod, starts_on: Date.parse('2017-01-01'), ends_on: Date.parse('2017-01-31'), months: 12)
@@ -167,6 +168,7 @@ RSpec.describe AggregatedCallsReceivedMetric, type: :model do
       expect(metric.get_information).to eq(Metric::NOT_PROVIDED)
       expect(metric.chase_progress).to eq(Metric::NOT_PROVIDED)
       expect(metric.challenge_a_decision).to eq(Metric::NOT_PROVIDED)
+      expect(metric.perform_transaction).to eq(Metric::NOT_PROVIDED)
       expect(metric.other).to eq(Metric::NOT_PROVIDED)
     end
   end
