@@ -8,16 +8,12 @@ RSpec.describe TimePeriod, type: :model do
       end
     end
 
-    it 'starts on 6 months before the end date' do
-      expect(period.starts_on).to eq(Date.parse('2017-01-01'))
+    it 'starts on 12 months before the end date' do
+      expect(period.starts_on).to eq(Date.parse('2016-04-01'))
     end
 
-    it 'ends on the end of the month' do
-      expect(period.ends_on).to eq(Date.parse('2017-06-30'))
-    end
-
-    it 'is exactly 6 months apart' do
-      expect(period.months).to eq(6)
+    it 'ends on the end of the month 2 months ago' do
+      expect(period.ends_on).to eq(Date.parse('2017-03-31'))
     end
   end
 end
