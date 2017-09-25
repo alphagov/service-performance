@@ -5,3 +5,13 @@
 main { display: block; }
 
 @import "homepage";
+
+fieldset {
+  border: 0;
+  padding: 0;
+}
+
+fieldset > h2 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}

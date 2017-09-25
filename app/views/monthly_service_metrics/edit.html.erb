@@ -1,0 +1,56 @@
+<div class="grid-row">
+
+  <div class="column-two-thirds">
+
+    <h1 class="heading-large">
+      Provide data for the period <%= @metrics.month.to_formatted_s %>
+    </h1>
+
+    <p>
+     Here's a <a href="../service-manual">reminder of what you need to provide</a>. Your data will be published on <%= @metrics.publish_date.to_formatted_s(:long_day_month_year) %>.
+    </p>
+
+    <%= form_for(@metrics, as: :metrics, builder: FormHelper::MonthlyServiceMetricsFormBuilder, url: '', method: :patch) do |f| %>
+      <fieldset>
+        <h2 class="bold-medium">Number of transactions received, split by channel</h2>
+
+        <%= f.metric :online_transactions %>
+        <%= f.metric :phone_transactions %>
+        <%= f.metric :paper_transactions %>
+        <%= f.metric :face_to_face_transactions %>
+        <%= f.metric :other_transactions %>
+      </fieldset>
+
+      <fieldset>
+        <h2 class="bold-medium">Number of transactions ending in an outcome</h2>
+
+        <%= f.metric :transactions_with_outcome %>
+      </fieldset>
+
+      <fieldset>
+        <h2 class="bold-medium">Number of transactions ending in the user’s intended outcome</h2>
+
+        <%= f.metric :transactions_with_intended_outcome %>
+      </fieldset>
+
+      <fieldset>
+        <h2 class="bold-medium">Total number of phone calls received</h2>
+
+        <%= f.metric :calls_received %>
+      </fieldset>
+
+      <fieldset>
+        <h2 class="bold-medium">Number of phone calls received, split by reasons for calling</h2>
+
+        <%= f.metric :calls_received_get_information %>
+        <%= f.metric :calls_received_chase_progress %>
+        <%= f.metric :calls_received_challenge_decision %>
+        <%= f.metric :calls_received_other %>
+      </fieldset>
+
+      <p>
+        <%= f.submit 'Submit', class: 'button' %>
+      </p>
+    <% end %>
+  </div>
+</div>
