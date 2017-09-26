@@ -112,6 +112,11 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(710427383)
         expect(transactions_with_outcome.count_with_intended_outcome).to eq(604814744)
+
+        calls_received = metric_group.calls_received
+        expect(calls_received.total).to eq(2000046)
+        expect(calls_received.perform_transaction).to eq(2000046)
+        expect(calls_received.get_information).to eq(NOT_APPLICABLE)
       end
 
       it 'parses the metrics, grouped by department', cassette: 'government-metrics-grouped-department-ok' do
@@ -140,6 +145,11 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(2435098)
         expect(transactions_with_outcome.count_with_intended_outcome).to eq(2400000)
+
+        calls_received = metric_group.calls_received
+        expect(calls_received.total).to eq(1000003)
+        expect(calls_received.perform_transaction).to eq(1000003)
+        expect(calls_received.get_information).to eq(NOT_APPLICABLE)
       end
 
       it 'parses the metrics, grouped by delivery organisation', cassette: 'government-metrics-grouped-delivery-organisation-ok' do
@@ -167,6 +177,11 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(2435098)
         expect(transactions_with_outcome.count_with_intended_outcome).to eq(2400000)
+
+        calls_received = metric_group.calls_received
+        expect(calls_received.total).to eq(1000003)
+        expect(calls_received.perform_transaction).to eq(1000003)
+        expect(calls_received.get_information).to eq(NOT_APPLICABLE)
       end
 
       it 'parses the metrics, grouped by service', cassette: 'government-metrics-grouped-service-ok' do
@@ -193,6 +208,11 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(2435098)
         expect(transactions_with_outcome.count_with_intended_outcome).to eq(2400000)
+
+        calls_received = metric_group.calls_received
+        expect(calls_received.total).to eq(1000003)
+        expect(calls_received.perform_transaction).to eq(1000003)
+        expect(calls_received.get_information).to eq(NOT_APPLICABLE)
       end
     end
 
@@ -225,6 +245,11 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(114587788)
         expect(transactions_with_outcome.count_with_intended_outcome).to eq(92321116)
+
+        calls_received = metric_group.calls_received
+        expect(calls_received.total).to eq(1000043)
+        expect(calls_received.perform_transaction).to eq(1000043)
+        expect(calls_received.get_information).to eq(NOT_APPLICABLE)
       end
 
       it 'parses the metrics, grouped by delivery organisation', cassette: 'department-metrics-grouped-delivery-organisation-ok' do
@@ -252,6 +277,11 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(70842643)
         expect(transactions_with_outcome.count_with_intended_outcome).to eq(58650122)
+
+        calls_received = metric_group.calls_received
+        expect(calls_received.total).to eq(1000043)
+        expect(calls_received.perform_transaction).to eq(1000043)
+        expect(calls_received.get_information).to eq(NOT_APPLICABLE)
       end
 
       it 'parses the metrics, grouped by service', cassette: 'department-metrics-grouped-service-ok' do
@@ -278,6 +308,11 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(1735098)
         expect(transactions_with_outcome.count_with_intended_outcome).to eq(1500000)
+
+        calls_received = metric_group.calls_received
+        expect(calls_received.total).to eq(1000043)
+        expect(calls_received.perform_transaction).to eq(1000043)
+        expect(calls_received.get_information).to eq(NOT_APPLICABLE)
       end
     end
 
@@ -309,6 +344,11 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(70842643)
         expect(transactions_with_outcome.count_with_intended_outcome).to eq(58650122)
+
+        calls_received = metric_group.calls_received
+        expect(calls_received.total).to eq(1000043)
+        expect(calls_received.perform_transaction).to eq(1000043)
+        expect(calls_received.get_information).to eq(NOT_APPLICABLE)
       end
 
       it 'parses the metrics, grouped by service', cassette: 'delivery-organisation-metrics-grouped-service-ok' do
@@ -335,6 +375,11 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(1735098)
         expect(transactions_with_outcome.count_with_intended_outcome).to eq(1500000)
+
+        calls_received = metric_group.calls_received
+        expect(calls_received.total).to eq(1000043)
+        expect(calls_received.perform_transaction).to eq(1000043)
+        expect(calls_received.get_information).to eq(NOT_APPLICABLE)
       end
     end
 
@@ -365,6 +410,11 @@ RSpec.describe GovernmentServiceDataAPI::Client, type: :api do
         transactions_with_outcome = metric_group.transactions_with_outcome
         expect(transactions_with_outcome.count).to eq(1735098)
         expect(transactions_with_outcome.count_with_intended_outcome).to eq(1500000)
+
+        calls_received = metric_group.calls_received
+        expect(calls_received.total).to eq(1000043)
+        expect(calls_received.perform_transaction).to eq(1000043)
+        expect(calls_received.get_information).to eq(NOT_APPLICABLE)
       end
     end
   end

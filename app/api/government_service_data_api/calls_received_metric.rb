@@ -7,6 +7,7 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
       total: data.fetch('total', NOT_APPLICABLE),
       sampled: data.fetch('sampled', false),
       sampled_total: data.fetch('sampled_total', NOT_APPLICABLE),
+      perform_transaction: data.fetch('perform_transaction', NOT_APPLICABLE),
       get_information: data.fetch('get_information', NOT_APPLICABLE),
       chase_progress: data.fetch('chase_progress', NOT_APPLICABLE),
       challenge_a_decision: data.fetch('challenge_a_decision', NOT_APPLICABLE),
@@ -15,10 +16,11 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
     )
   end
 
-  def initialize(total: nil, sampled: nil, sampled_total: nil, get_information: nil, chase_progress: nil, challenge_a_decision: nil, other: nil, completeness: nil)
+  def initialize(total: nil, sampled: nil, sampled_total: nil, perform_transaction: nil, get_information: nil, chase_progress: nil, challenge_a_decision: nil, other: nil, completeness: nil)
     @total = total || NOT_PROVIDED
     @sampled = sampled
     @sampled_total = sampled_total || NOT_PROVIDED
+    @perform_transaction = perform_transaction || NOT_PROVIDED
     @get_information = get_information || NOT_PROVIDED
     @chase_progress = chase_progress || NOT_PROVIDED
     @challenge_a_decision = challenge_a_decision || NOT_PROVIDED
@@ -27,12 +29,13 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
   end
 
   attr_reader :total, :sampled, :sampled_total, :get_information, :chase_progress,
-              :challenge_a_decision, :other, :completeness
+              :perform_transaction, :challenge_a_decision, :other, :completeness
 
   def not_applicable?
     [
       @total, @get_information,
       @chase_progress, @challenge_a_decision, @other,
+      @perform_transaction
     ].all? { |item| item == NOT_APPLICABLE }
   end
 
@@ -40,7 +43,13 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
     [
       @total, @get_information,
       @chase_progress, @challenge_a_decision, @other,
+      @perform_transaction
     ].all? { |item| item == NOT_PROVIDED }
+  end
+
+  def perform_transaction_percentage
+    return @perform_transaction if @perform_transaction.in? [NOT_PROVIDED, NOT_APPLICABLE]
+    (@perform_transaction.to_f / sampled_total) * 100
   end
 
   def get_information_percentage

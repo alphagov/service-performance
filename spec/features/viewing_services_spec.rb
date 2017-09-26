@@ -26,7 +26,7 @@ RSpec.feature 'viewing services', type: :feature do
     click_on 'Driver and Vehicle Licensing Agency'
     expect(page).to have_content('Service data for Driver and Vehicle Licensing Agency')
 
-    click_on 'Apply for a provisional driving license'
+    click_on 'Tax your vehicle'
     expect(page).to have_content('N/A')
     expect(page).to have_content("doesn't receive calls")
   end
@@ -38,8 +38,8 @@ RSpec.feature 'viewing services', type: :feature do
     click_on 'Driver and Vehicle Licensing Agency'
     click_on 'Apply for a provisional driving license'
 
-    expect(page).to have_content('17% of data points complete')
+    expect(page).to have_content('8% of data points complete')
     expect(page).to have_content('Based on incomplete data')
-    expect(page).to have_content('Data provided for 1 of 6 months', count: 3)
+    expect(page).to have_content('Data provided for 1 of 12 months', count: 4)
   end
 end
