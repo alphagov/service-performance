@@ -237,6 +237,27 @@ ActiveRecord::Base.transaction do
     )
   end
 
+  [
+    { service_code: '01', starts_on: '2017-05-01', ends_on: '2017-05-31', item: 'total', quantity: 1000003, sampled: false, sample_size: nil },
+    { service_code: '02', starts_on: '2017-05-01', ends_on: '2017-05-31', item: 'total', quantity: 1000043, sampled: false, sample_size: nil },
+    { service_code: '01', starts_on: '2017-05-01', ends_on: '2017-05-31', item: 'perform-transaction', quantity: 1000003, sampled: false, sample_size: nil },
+    { service_code: '02', starts_on: '2017-05-01', ends_on: '2017-05-31', item: 'perform-transaction', quantity: 1000043, sampled: false, sample_size: nil },
+  ].each do |calls_received_metric|
+    service = Service.where(natural_key: calls_received_metric[:service_code]).first!
+
+    CallsReceivedMetric.create!(
+      department_code: service.department_code,
+      delivery_organisation_code: service.delivery_organisation_code,
+      service_code: service.natural_key,
+      starts_on: calls_received_metric[:starts_on],
+      ends_on: Date.parse(calls_received_metric[:ends_on]) + 1.day,
+      item: calls_received_metric[:item],
+      quantity: calls_received_metric[:quantity],
+      sampled: calls_received_metric[:sampled],
+      sample_size: calls_received_metric[:sample_size]
+    )
+  end
+
   Service.update_all(
     start_page_url: 'https://example.com',
     paper_form_url: 'https://example.com',
