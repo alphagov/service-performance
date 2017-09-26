@@ -48,8 +48,8 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
   end
 
   def perform_transaction_percentage
-    return @provide_transaction if @provide_transaction.in? [NOT_PROVIDED, NOT_APPLICABLE]
-    (@provide_transaction.to_f / sampled_total) * 100
+    return @perform_transaction if @perform_transaction.in? [NOT_PROVIDED, NOT_APPLICABLE]
+    (@perform_transaction.to_f / sampled_total) * 100
   end
 
   def get_information_percentage

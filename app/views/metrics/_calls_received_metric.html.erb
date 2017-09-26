@@ -22,7 +22,7 @@
 
     <%= metric_item(Metrics::Items::CallsReceivedPerformTransaction, calls_received_metric.perform_transaction, sampled: calls_received_metric.sampled) do |item| %>
       <% item.description do %>
-        <strong><%= metric_to_human(calls_received_metric.perform_transaction) %></strong> calls received to get information (<%= metric_to_percentage(calls_received_metric.perform_transaction_percentage) %>)
+        <strong><%= metric_to_human(calls_received_metric.perform_transaction) %></strong> calls received to perform a transaction (<%= metric_to_percentage(calls_received_metric.perform_transaction_percentage) %>)
       <% end %>
 
       <span class="metric-name">To perform a transaction</span>
