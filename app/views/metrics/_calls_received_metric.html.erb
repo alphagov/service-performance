@@ -20,6 +20,21 @@
     </span>
     <% end %>
 
+    <%= metric_item(Metrics::Items::CallsReceivedPerformTransaction, calls_received_metric.perform_transaction, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.perform_transaction) %></strong> calls received to get information (<%= metric_to_percentage(calls_received_metric.perform_transaction_percentage) %>)
+      <% end %>
+
+      <span class="metric-name">To perform a transaction</span>
+      <span class="metric-value">
+        <%= item.value %>
+        <%= item.percentage calls_received_metric.perform_transaction_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness calls_received_metric.completeness['perform-transaction'] %>
+        <% end %>
+      </span>
+    <% end %>
+
     <%= metric_item(Metrics::Items::CallsReceivedGetInformation, calls_received_metric.get_information, sampled: calls_received_metric.sampled) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(calls_received_metric.get_information) %></strong> calls received to get information (<%= metric_to_percentage(calls_received_metric.get_information_percentage) %>)

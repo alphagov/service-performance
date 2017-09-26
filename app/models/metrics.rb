@@ -18,6 +18,7 @@ module Metrics
     TransactionsEndingInOutcomeWithIntendedOutcome = 'transactions-ending-in-outcome-with-intended-outcome'.freeze
 
     CallsReceived = 'calls-received'.freeze
+    CallsReceivedPerformTransaction = 'calls-received-perform-transaction'.freeze
     CallsReceivedGetInformation = 'calls-received-get-information'.freeze
     CallsReceivedChaseProgress = 'calls-received-chase-progress'.freeze
     CallsReceivedChallengeADecision = 'calls-received-challenge-a-decision'.freeze
@@ -68,6 +69,7 @@ module Metrics
       keypath: [:transactions_with_outcome, :count_with_intended_outcome])
 
     CallsReceived = MetricSorter.new(Items::CallsReceived, name: 'calls received', keypath: [:calls_received, :total])
+    CallsReceivedPerformTransaction = MetricSorter.new(Items::CallsReceivedGetInformation, name: 'calls received (perform transaction)', keypath: [:calls_received, :perform_transaction])
     CallsReceivedGetInformation = MetricSorter.new(Items::CallsReceivedGetInformation, name: 'calls received (get information)', keypath: [:calls_received, :get_information])
     CallsReceivedChaseProgress = MetricSorter.new(Items::CallsReceivedChaseProgress, name: 'calls received (chase progress)', keypath: [:calls_received, :chase_progress])
     CallsReceivedChallengeADecision = MetricSorter.new(Items::CallsReceivedChallengeADecision, name: 'calls received (challenge a decision)', keypath: [:calls_received, :challenge_a_decision])
