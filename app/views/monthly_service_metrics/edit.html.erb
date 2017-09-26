@@ -10,7 +10,7 @@
      Here's a <a href="../service-manual">reminder of what you need to provide</a>. Your data will be published on <%= @metrics.publish_date.to_formatted_s(:long_day_month_year) %>.
     </p>
 
-    <%= form_for(@metrics, as: :metrics, builder: FormHelper::MonthlyServiceMetricsFormBuilder, url: '', method: :patch) do |f| %>
+    <%= form_for(@metrics, as: :metrics, url: service_metrics_path, method: :patch, builder: FormHelper::MonthlyServiceMetricsFormBuilder) do |f| %>
       <fieldset>
         <h2 class="bold-medium">Number of transactions received, split by channel</h2>
 
