@@ -238,6 +238,8 @@ ActiveRecord::Base.transaction do
   end
 
   [
+    { service_code: '01', starts_on: '2017-05-01', ends_on: '2017-05-31', item: 'total', quantity: 1000003, sampled: false, sample_size: nil },
+    { service_code: '02', starts_on: '2017-05-01', ends_on: '2017-05-31', item: 'total', quantity: 1000043, sampled: false, sample_size: nil },
     { service_code: '01', starts_on: '2017-05-01', ends_on: '2017-05-31', item: 'perform-transaction', quantity: 1000003, sampled: false, sample_size: nil },
     { service_code: '02', starts_on: '2017-05-01', ends_on: '2017-05-31', item: 'perform-transaction', quantity: 1000043, sampled: false, sample_size: nil },
   ].each do |calls_received_metric|
