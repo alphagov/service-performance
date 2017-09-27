@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'monthly service metrics routing', type: :routing do
-
   specify 'GET MonthlyServiceMetrics#edit' do
-    expect({ get: '/services/001/metrics/2017/09' }).to route_to(
+    expect(get: '/services/001/metrics/2017/09').to route_to(
       controller: 'monthly_service_metrics',
       action: 'edit',
       service_id: '001',
@@ -13,7 +12,7 @@ RSpec.describe 'monthly service metrics routing', type: :routing do
   end
 
   specify 'PATCH MonthlyServiceMetrics#edit' do
-    expect({ patch: '/services/001/metrics/2017/09' }).to route_to(
+    expect(patch: '/services/001/metrics/2017/09').to route_to(
       controller: 'monthly_service_metrics',
       action: 'update',
       service_id: '001',
@@ -21,5 +20,4 @@ RSpec.describe 'monthly service metrics routing', type: :routing do
       month: '09',
     )
   end
-
 end

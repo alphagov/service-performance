@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe MonthlyServiceMetricsController, type: :controller do
-
   shared_examples_for 'validating publish token' do
     context 'with an invalid publish token' do
       before do
@@ -50,7 +49,7 @@ RSpec.describe MonthlyServiceMetricsController, type: :controller do
     end
 
     let(:publish_token) { 'PuBlIsHtOkEn' }
-    let(:metrics_params) { {'online_transactions' => '1000'} }
+    let(:metrics_params) { { 'online_transactions' => '1000' } }
     let(:metrics) { instance_double(MonthlyServiceMetrics, :service= => nil, :month= => nil, :attributes= => nil) }
     let(:service) { instance_double(Service, id: '01') }
 
@@ -85,5 +84,4 @@ RSpec.describe MonthlyServiceMetricsController, type: :controller do
       end
     end
   end
-  
 end

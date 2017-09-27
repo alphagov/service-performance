@@ -19,8 +19,6 @@ class YearMonth
       when String
         date = Date.parse(value)
         YearMonth.new(date.year, date.month)
-      else
-        nil
       end
     end
   end

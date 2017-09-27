@@ -1,10 +1,7 @@
 class MonthlyServiceMetricsPublishToken
   def self.generate(service:, month:)
     verifier = ActiveSupport::MessageVerifier.new(service.publish_token)
-    verifier.generate({
-      year: month.year,
-      month: month.month
-    })
+    verifier.generate(year: month.year, month: month.month)
   end
 
   def self.valid?(token:, metrics:)

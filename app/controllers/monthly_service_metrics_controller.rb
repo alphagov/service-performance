@@ -1,16 +1,15 @@
 class MonthlyServiceMetricsController < ApplicationController
-  before_action :load_service, only: [:edit, :update]
-  before_action :load_metrics, only: [:edit, :update]
+  before_action :load_service, only: %i(edit update)
+  before_action :load_metrics, only: %i(edit update)
 
-  def edit
-  end
+  def edit; end
 
   def update
     @metrics.attributes = params.require(:metrics).permit(:online_transactions,
       :phone_transactions, :paper_transactions, :face_to_face_transactions,
       :other_transactions, :transactions_with_outcome, :transactions_with_intended_outcome,
       :calls_received, :calls_received_get_information, :calls_received_chase_progress,
-      :calls_received_challenge_decision, :calls_received_other).each {|_, value| value.gsub!(/\D/, '')}
+      :calls_received_challenge_decision, :calls_received_other).each { |_, value| value.gsub!(/\D/, '') }
 
     if @metrics.save
       render :success
@@ -19,7 +18,7 @@ class MonthlyServiceMetricsController < ApplicationController
     end
   end
 
-  private
+private
 
   def load_service
     @service ||= Service.find(params[:service_id])

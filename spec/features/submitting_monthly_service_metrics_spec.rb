@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature 'submitting monthly service metrics' do
-
   specify 'submitting metrics' do
     service = FactoryGirl.create(:service)
     publish_token = MonthlyServiceMetricsPublishToken.generate(service: service, month: YearMonth.new(2017, 9))
