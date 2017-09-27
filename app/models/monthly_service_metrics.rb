@@ -5,6 +5,8 @@ class MonthlyServiceMetrics < ApplicationRecord
 
   attribute :month, YearMonth::Serializer.new
 
+  validates_uniqueness_of :month, scope: :service, strict: true
+
   def publish_date
     if month
       month.date + 2.months

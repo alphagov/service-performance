@@ -25,7 +25,7 @@ RSpec.describe MonthlyServiceMetricsController, type: :controller do
     let(:service) { instance_double(Service, id: '01') }
 
     before do
-      allow(MonthlyServiceMetrics).to receive(:new) { metrics }
+      allow(MonthlyServiceMetrics).to receive_message_chain(:where, :first_or_initialize) { metrics }
       allow(Service).to receive(:find).with(service.id) { service }
     end
 
@@ -54,7 +54,7 @@ RSpec.describe MonthlyServiceMetricsController, type: :controller do
     let(:service) { instance_double(Service, id: '01') }
 
     before do
-      allow(MonthlyServiceMetrics).to receive(:new) { metrics }
+      allow(MonthlyServiceMetrics).to receive_message_chain(:where, :first_or_initialize) { metrics }
       allow(Service).to receive(:find).with(service.id) { service }
     end
 

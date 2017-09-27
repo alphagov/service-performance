@@ -25,9 +25,8 @@ private
   end
 
   def load_metrics
-    @metrics = MonthlyServiceMetrics.new
-    @metrics.service = @service
-    @metrics.month = YearMonth.new(params[:year], params[:month])
+    month = YearMonth.new(params[:year], params[:month])
+    @metrics = MonthlyServiceMetrics.where(service: @service, month: month).first_or_initialize
 
     unless MonthlyServiceMetricsPublishToken.valid?(token: params[:publish_token], metrics: @metrics)
       render 'invalid_publish_token', status: :unauthorized

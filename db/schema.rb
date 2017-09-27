@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926142130) do
+ActiveRecord::Schema.define(version: 20170927103203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170926142130) do
     t.integer "calls_received_chase_progress"
     t.integer "calls_received_challenge_decision"
     t.integer "calls_received_other"
+    t.index "service_id, date_trunc('month'::text, (month)::timestamp without time zone)", name: "unique_monthly_service_metrics", unique: true
     t.index ["service_id"], name: "index_monthly_service_metrics_on_service_id"
   end
 
