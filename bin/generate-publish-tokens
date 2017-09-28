@@ -1,0 +1,38 @@
+#!./rails runner
+#
+# Usage: ./generate-publish-tokens <year> <month>
+#
+# Generates a CSV file, with a row per service, containing a publish token
+# (and path) for that month's service metrics submission.
+
+require 'csv'
+
+include Rails.application.routes.url_helpers
+
+year = ARGV[0]
+month = ARGV[1]
+if year.nil? || month.nil?
+  $stderr.puts "invalid arguments: year='%s' month='%s'" % [year, month]
+  exit 1
+end
+
+begin
+  month = YearMonth.new(ARGV[0], ARGV[1])
+rescue
+  $stderr.puts "invalid date: year='%s' month='%s'" % [year, month]
+  exit 1
+end
+
+csv = CSV.new($stdout)
+csv << ['Service', 'Year', 'Month', 'Publish Token', 'Publish Metrics URL']
+
+services = Service.all
+
+services.each do |service|
+  token = MonthlyServiceMetricsPublishToken.generate(service: service, month: month)
+  path = service_metrics_path(service_id: service.to_param, year: month.year, month: month.month.to_s.rjust(2, '0'), publish_token: token)
+  csv << [service.name, month.year, month.month, token, path]
+end
+
+csv.close
+
