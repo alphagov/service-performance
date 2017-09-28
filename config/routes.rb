@@ -6,7 +6,13 @@ Rails.application.routes.draw do
     root to: "services#index"
   end
 
+  resources :services, only: [] do
+    constraints year: /\d{4}/, month: /\d{2}/ do
+      get 'metrics/:year/:month(/:publish_token)', to: 'monthly_service_metrics#edit', as: :metrics
+      patch 'metrics/:year/:month(/:publish_token)', to: 'monthly_service_metrics#update'
+    end
+  end
+
   devise_for :users
   root 'pages#homepage'
-
 end
