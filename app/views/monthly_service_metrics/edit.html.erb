@@ -43,6 +43,7 @@
         <fieldset>
           <h2 class="bold-medium">Number of phone calls received, split by reasons for calling</h2>
 
+          <%= f.metric :calls_received_perform_transaction %>
           <%= f.metric :calls_received_get_information %>
           <%= f.metric :calls_received_chase_progress %>
           <%= f.metric :calls_received_challenge_decision %>

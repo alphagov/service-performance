@@ -10,6 +10,7 @@ en:
         transactions_with_outcome: Transactions ending in an outcome
         transactions_with_intended_outcome: Transactions ending in the user's intended outcome
         calls_received: Calls received
+        calls_received_perform_transaction: to perform a transaction
         calls_received_get_information: to get information
         calls_received_chase_progress: to chase progress
         calls_received_challenge_decision: to challenge a decision

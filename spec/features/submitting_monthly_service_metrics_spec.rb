@@ -31,6 +31,7 @@ RSpec.feature 'submitting monthly service metrics' do
     end
 
     within_fieldset('Number of phone calls received, split by reasons for calling') do
+      fill_in 'to perform a transaction', with: '6,000'
       fill_in 'to get information', with: '10,000'
       fill_in 'to chase progress', with: '9,000'
       fill_in 'to challenge a decision', with: '8,000'
@@ -50,6 +51,7 @@ RSpec.feature 'submitting monthly service metrics' do
     expect(metrics.transactions_with_outcome).to eq(13000)
     expect(metrics.transactions_with_intended_outcome).to eq(12000)
     expect(metrics.calls_received).to eq(11000)
+    expect(metrics.calls_received_perform_transaction).to eq(6000)
     expect(metrics.calls_received_get_information).to eq(10000)
     expect(metrics.calls_received_chase_progress).to eq(9000)
     expect(metrics.calls_received_challenge_decision).to eq(8000)
