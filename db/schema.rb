@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170928100829) do
+ActiveRecord::Schema.define(version: 20170929101025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,19 +18,19 @@ ActiveRecord::Schema.define(version: 20170928100829) do
   create_table "monthly_service_metrics", force: :cascade do |t|
     t.bigint "service_id", null: false
     t.date "month", null: false
-    t.integer "online_transactions"
-    t.integer "phone_transactions"
-    t.integer "paper_transactions"
-    t.integer "face_to_face_transactions"
-    t.integer "other_transactions"
-    t.integer "transactions_with_outcome"
-    t.integer "transactions_with_intended_outcome"
-    t.integer "calls_received"
-    t.integer "calls_received_get_information"
-    t.integer "calls_received_chase_progress"
-    t.integer "calls_received_challenge_decision"
-    t.integer "calls_received_other"
-    t.integer "calls_received_perform_transaction"
+    t.bigint "online_transactions"
+    t.bigint "phone_transactions"
+    t.bigint "paper_transactions"
+    t.bigint "face_to_face_transactions"
+    t.bigint "other_transactions"
+    t.bigint "transactions_with_outcome"
+    t.bigint "transactions_with_intended_outcome"
+    t.bigint "calls_received"
+    t.bigint "calls_received_get_information"
+    t.bigint "calls_received_chase_progress"
+    t.bigint "calls_received_challenge_decision"
+    t.bigint "calls_received_other"
+    t.bigint "calls_received_perform_transaction"
     t.index "service_id, date_trunc('month'::text, (month)::timestamp without time zone)", name: "unique_monthly_service_metrics", unique: true
     t.index ["service_id"], name: "index_monthly_service_metrics_on_service_id"
   end
