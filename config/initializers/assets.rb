@@ -13,4 +13,5 @@ Rails.application.config.assets.precompile = [
   'govuk_template/source/assets/images/gov.uk_logotype_crown_invert_trans.png',
   'administrate/application.css',
   'administrate/application.js',
+  'admin/admin.css',
 ]

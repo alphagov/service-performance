@@ -35,8 +35,12 @@ class YearMonth
     year == other.year && month == other.month
   end
 
-  def to_formatted_s
-    end_date = date.end_of_month
-    "#{date.to_formatted_s(:day_excluding_leading_zero)} to #{end_date.to_formatted_s(:long_day_month_year)}"
+  def to_formatted_s(format = :long_day_month_year)
+    if format == :long_day_month_year
+      end_date = date.end_of_month
+      "#{date.to_formatted_s(:day_excluding_leading_zero)} to #{end_date.to_formatted_s(:long_day_month_year)}"
+    else
+      date.to_formatted_s(format)
+    end
   end
 end
