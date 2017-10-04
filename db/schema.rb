@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929101025) do
+ActiveRecord::Schema.define(version: 20171004130253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "delivery_organisations", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "monthly_service_metrics", force: :cascade do |t|
     t.bigint "service_id", null: false
@@ -47,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170929101025) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "publish_token"
+    t.integer "delivery_organisation_id"
     t.index ["publish_token"], name: "index_services_on_publish_token", unique: true
   end
 
@@ -71,4 +78,5 @@ ActiveRecord::Schema.define(version: 20170929101025) do
   end
 
   add_foreign_key "monthly_service_metrics", "services"
+  add_foreign_key "services", "delivery_organisations"
 end

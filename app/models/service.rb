@@ -1,4 +1,6 @@
 class Service < ApplicationRecord
+  belongs_to :delivery_organisation
+
   has_many :metrics, class_name: 'MonthlyServiceMetrics'
 
   validates_presence_of :name
