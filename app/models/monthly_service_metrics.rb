@@ -20,4 +20,8 @@ class MonthlyServiceMetrics < ApplicationRecord
       month.date + 1.month
     end
   end
+
+  def transactions_received
+    [online_transactions, phone_transactions, paper_transactions, face_to_face_transactions, other_transactions].compact.sum
+  end
 end
