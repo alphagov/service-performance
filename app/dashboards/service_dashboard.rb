@@ -57,10 +57,7 @@ class ServiceDashboard < Administrate::BaseDashboard
     paper_form_url
   ].freeze
 
-  # Overwrite this method to customize how services are displayed
-  # across all pages of the admin dashboard.
-  #
-  # def display_resource(service)
-  #   "Service ##{service.id}"
-  # end
+  def display_resource(service)
+    service.name
+  end
 end
