@@ -10,6 +10,8 @@ class ServiceDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     name: Field::String,
+    department: Field::HasOne,
+    delivery_organisation: Field::BelongsTo,
     purpose: Field::Text,
     how_it_works: Field::Text,
     typical_users: Field::Text,
@@ -27,6 +29,8 @@ class ServiceDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     name
+    department
+    delivery_organisation
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -34,6 +38,8 @@ class ServiceDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     name
+    department
+    delivery_organisation
     purpose
     how_it_works
     typical_users
@@ -48,6 +54,7 @@ class ServiceDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     name
+    delivery_organisation
     purpose
     how_it_works
     typical_users
@@ -57,10 +64,7 @@ class ServiceDashboard < Administrate::BaseDashboard
     paper_form_url
   ].freeze
 
-  # Overwrite this method to customize how services are displayed
-  # across all pages of the admin dashboard.
-  #
-  # def display_resource(service)
-  #   "Service ##{service.id}"
-  # end
+  def display_resource(service)
+    service.name
+  end
 end
