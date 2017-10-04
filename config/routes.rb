@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :metrics, controller: 'monthly_service_metrics', only: [:index, :show]
     resources :delivery_organisations
+    resources :departments
     resources :services
     resources :users
 

@@ -10,6 +10,7 @@ class ServiceDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     name: Field::String,
+    department: Field::HasOne,
     delivery_organisation: Field::BelongsTo,
     purpose: Field::Text,
     how_it_works: Field::Text,
@@ -28,6 +29,7 @@ class ServiceDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     name
+    department
     delivery_organisation
   ].freeze
 
@@ -36,6 +38,7 @@ class ServiceDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     name
+    department
     delivery_organisation
     purpose
     how_it_works

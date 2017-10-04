@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004130253) do
+ActiveRecord::Schema.define(version: 20171004131648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "delivery_organisations", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "department_id"
+  end
+
+  create_table "departments", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -77,6 +84,7 @@ ActiveRecord::Schema.define(version: 20171004130253) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "delivery_organisations", "departments"
   add_foreign_key "monthly_service_metrics", "services"
   add_foreign_key "services", "delivery_organisations"
 end

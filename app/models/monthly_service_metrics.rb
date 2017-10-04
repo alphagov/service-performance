@@ -2,6 +2,8 @@ class MonthlyServiceMetrics < ApplicationRecord
   self.table_name = 'monthly_service_metrics'
 
   belongs_to :service
+  has_one :delivery_organisation, through: :service
+  has_one :department, through: :delivery_organisation
 
   attribute :month, YearMonth::Serializer.new
 

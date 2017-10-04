@@ -9,6 +9,8 @@ class MonthlyServiceMetricsDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
 
   ATTRIBUTE_TYPES = {
+    department: Field::HasOne,
+    delivery_organisation: Field::HasOne,
     service: Field::BelongsTo,
     month: YearMonthField,
     online_transactions: MetricField,
@@ -32,6 +34,8 @@ class MonthlyServiceMetricsDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
+    department
+    delivery_organisation
     service
     month
   ].freeze
