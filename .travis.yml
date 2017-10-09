@@ -1,61 +1,30 @@
 dist: trusty
 sudo: true
 language: generic
-cache:
-  bundler: true
-  directories:
-    - node_modules
 services:
   - postgresql
-  - docker
-
+cache:
+  directories:
+    - vendor/cache
 env:
   global:
-    - APP_API_URL=https://gsd-api.cloudapps.digital
-    - APP_API_USERNAME=performance123
-    - PAAS_USER=gsd-deploy@digital.cabinet-office.gov.uk
-    - PAAS_SERVICE=gsd-api
-    - DOCKER_USER=gsddeploy
-    - DOCKER_REPOSITORY=gsddeploy
-    - DOCKER_IMAGE=gsd-api
-    - DOCKER_FILE=etc/gsd-api.df
-    # APP_API_PASSWORD
-    - secure: "TBTQbYoqPcELX6PJHtbxNDiydn+nlTY7eP8Y6XbnXFD/n369K3MhTb9/K/3kSjtLnqrk0W7AqON0KC6a7IBpqm+fLR4A8Yb44tTLWEMCv8RUpd5BxIulc9XzX4+RknY9gLIWRha0skTuPwybjOGMOXlHX95BjG727+AkLdd1iTAjuIGjZek6lSXcw5ONg2Gec+10lZ/olJMwCzWXj154EaPbDX1cQzkhmxaEMz4q0UUFaVq6F2ys0GEnglCOk/NDRPyb9OtSZ2JqMA6GEwChviK82lshFuTuVJOojfT7heM0B8d5VrhAtKk5j7ZXLlzFUVxgX6mMpy1lc/pOZgkeeyRf0mcizc9bIGGrwvfy29eQqiFvSlg9pvhWIhrgfQKJEYTYtsH06rP4hTBNayeVAdLeS4HZcr2Ex58gVimOtyVtOzADusazZBXOjEuTBSQdhGJ/0oJ2OWYtWGz/ZeHra15/go1iaOX/kWpY1nVHPQeRQ0WB2IJY4TA3kbAj+W6igOGeWOfS3Pfh35SOwBL017mr8/2HOPlSLyZBlUXz/QWiobW0JzRF6BShWae13PlDRSDRfdlOV8Ogk2SYwrZ80Kc0/GYUwVvUnL89iltrtnrIDURHAjcDqbGHzxnLiWFDydN+NO9/OzI0vsYN1TuN2k33plRz5pFKnebV28vbQpY="
-    # APP_SECRET_KEY_BASE_STAGING
-    - secure: ZXwFWDrfCjIIiUR2CbPlDsPiRSnUgmXtXpTV/Cjn/aTuLxHI0iKQf6MWx52ihEDPlQ9vKSpz/hVhcpuxfS1TkgiuhGnZ2zfXdn6NAdZ4at6PvbdbXLHBDV1HKAc8biMJOkbiloijjcnlL/FehWmlgHK4UO+yXiTK9xhukeMfNAH4VPj85XECpvYfkudkWfp71gFdOa3DOEYw/tQO1zwJHwSZl/KofuIbZ79EacCAYkwvJLn9DTzlESVmxjeZeL9m6cXsP3bFjzJa87pn8Sy4UD+kRo6TOnXJQ3m0L2dqb1YMzTtYBp9xhwz8yIgE4AfBPIV7lI9RnT2I7oCmQmtexXdZEds0RIpW1TaqEEZ2OTKdQPpZIxdpX54F+rq8P/sq/pF8h3VDao8A9r6bGxZhetP/wkQA7ohU0lQPgyU9IOnOM54nJ21DJvxs3deipl9ntbk836UdaAN+76S+UZULa3XeyaA8krHsjr2q4osME7wcu0b/0J7so239prKltoNcNu1zP3XIXs11KRR44JyKnT3LHpD42wegu7YaCADh4zX54P9en3o9nXLdC0u7mQ/ajZBuujqPapAWfXJGeBnOEgNq0g5XsXjbzwLr2HKkeMv2ptPZe62oLyH4bOXlTdFXnNHid7Abkjqay6+lx5OFFdOAOqdG/Qwjgk5WE88fl1Q=
-    # APP_SECRET_KEY_BASE_PRODUCTION
-    - secure: NszykA9pTf7EyPMDx7j79CZg3AfL84nVfp8D6/nr8G8i2fNP2qIwSXj6raWlf19nbgyrf/wTbc2w81uZRlqbZOhCPa+YpZcgkn79tKd1u4knV+c/dltyPpt/GUApbn0gEW++DHW/zu5jFs/zOSQC4UEvw7Rlu4pdpsJXPVRMtbWGbupWDAkJaqMD7+ehZrJDOsV1msg698pQ6x+zkyXspV6yo4K/lc7AQpAqqwFS21q4UtjUYLoDg/9QbcVAcnv6GQYRj1UsXRF9fd+esC5IFj34W425ujwpNYf/0Zv6sUEy9DWpGpDjuazFX0pjcP3bN3dcqPLi7JAIe/H0Tkh2+E3MIpv0tmkrbFfqxAEmMGxRVrrag2pApYxvuWwU5/OW0iQssVNv7kFHFnLG1qvQiL+MzAOuLp/PT7TRoF+8jReKp1y3RNUtFE5ebKxvbXjYDmUN2sOgaS/ZQg3od3O8zBrgLNkSrX7uJ0C3sf7ynCP5oVx7yWcJG+zVTV2YgY9zOQEt1/upByTqM5XRjVYVZvLEwQvaseKjgYTNjLl2L/DqnFoSbxuCzju8Nv8GC67rB2cqX3UOrC7ThR2YI5Pk3Gzy2h2v/rqJoeafBpFiCPk6N7oFyySK6xNd8jmUtxVjru05Vp6QlW6zZc4OdxUoz7rNfCKqDZOS5/LJRSVVq5c=
+    - PASS_USERNAME=gsd-deploy@digital.cabinet-office.gov.uk
     # PAAS_PASSWORD
     - secure: KOgddT+pu8ItC9IWMnxcB1b2tJRmIJ2/MOygQcYwXJiXjCPsUrZ6g6HdtXjqzrRoqtyIDkY41L6iZvHQ8p2epm+FRm1YAoZS265ZW0Cw1W2Dd5Jfy0nghebaZ6AODl35zBnViYt+1MJrHhfRBwW0iIQgMk3nuz8rRNZaUKkyM4lm54wsZs+8f/A1MQpCsKC/0Qt1TfTmpJVe3MIPRRWy+DRHDmItNEIFBSSeNOhcg2rioO8g9H7n/Rx193JvHlOODEViO1yOumXYkvfWHh77ycD7APNrDovdzqxL9HoP6XzyWxLLIY7K9rifPGNZXfN0xgX0wpWSecCshM+eelfvGNiHD8/S//HT23alYk437hyNa0VJHmfLvGD27P1IIR8/ASKx9x6lX7SOKIzMQUWAh7VGlEYIGNLy1T+MzoS4OPUl54PgUNpGuklVbWf9YrOW7SL/HAZRqMMFAsR13xsWkVfZgyPJaPIxeuW8E4lLJszjposWMoMdiGK/Yw516gkE2B3SBmHPGhp9abf1QcND6/nzRESplooN+dDpqbiZ3+JBiyes80uI+J7PdQyAQoYrvaDvEdt77binwggTNjxL7s2RUSM63IwtorARsLupbHs7ui9Jn4NjT3U+CQAXIv+xOK6EoiO5aHmBLEzz44Tf3Fo54bmfJCSrlFwfsMSsIQw=
-    # DOCKER_PASSWORD for user gsddeploy
-    - secure: K1T7/qXo+uOegI0aDIl+P0LCYmIjofjOTSprE3TvDGtRqVtuwAlSGlctJBIlK91demtvoU+eJNG1bNUHFevHwFsBkiJhTttpSwEi+D8pAGTdyrTd08ryak0wsAX9eOZhAsMNvnBsRuG9tjFf0TECheKlXrfvoAp2Ryh02e8X4m5QZi+mI6zjXlAkYy32WlaFZ+ezK+Y2GIYYCDXlDskOWTXvywdB9fXVsQVN5ondk+HcAov9dpXlN6I1+gmW4tlfZzSc0vrtFg7peykjcNdc+yzlCGc8Lz80DbftcIK2QcNvX6TuAHWOpNjBb21JNJAfFbF9XebhaNPWIefVQo6dggyeU8xsQAd7P+DlOQbqzJaHxpPGYWRSXNzYV8CHVd4hEdw+NY7duqAlLAxYiqH2WoKies2TIxBJHHc5k5nKvZ/O1laq0SYbMcl2gRcDfclpewOx+GITjzy9H7WYm59WJXs5DPmOjfaDYWRhUPUtRkvOkMrU/PTKB2RmsSprJl7S/z7hrPK6hEWRIDvo9B146wfa/TKw8taPAED+rIWew++bGk/LbqI086zj/7nXmEGOFvE7zooSRVy5puv/pv17i/st2KoAwD0TlmrXe91J6DBdi7asR2FSXA+583Ne/hC+/xLW1vYz2+fTlCr+LpNK491B36GvNTKIZaZFW6nzr4A=
-
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - cp .env.example .env
-  - npm install
-  - bundle --without development production
-  - bundle exec rake assets:precompile
+  - bundle config build.nokogiri --use-system-libraries
+  - bundle install --deployment
   - cp config/database.yml.travis config/database.yml
-
+  - bundle exec rails db:test:prepare
 script:
-  - cp config/database.yml.travis config/database.yml
-  - docker run -d --name=postgres postgres:9.6.3-alpine
-  - docker run --link postgres:postgres --volume=$TRAVIS_BUILD_DIR:/app -it $DOCKER_REPOSITORY/gsd-api-ci:latest /bin/sh -c "bundle --without development production && bundle exec rake db:test:prepare && bundle exec rspec spec && bundle exec govuk-lint-ruby app lib spec"
   - bundle exec govuk-lint-ruby app lib spec
-  - xvfb-run -a bundle exec rspec
-
-before_deploy:
-  - chmod +x etc/deploy.sh
-
+  - bundle exec rspec
 deploy:
-  - provider: script
-    script: APP_SECRET_KEY_BASE=$APP_SECRET_KEY_BASE_STAGING etc/deploy.sh staging
-    skip_cleanup: true
-    on:
-      branch: staging
-  - provider: script
-    script: APP_SECRET_KEY_BASE=$APP_SECRET_KEY_BASE_PRODUCTION etc/deploy.sh production
-    skip_cleanup: true
-    on:
-      branch: production
+  provider: cloudfoundry
+  username: ${PASS_USERNAME}
+  password: ${PAAS_PASSWORD}
+  api: https://api.cloud.service.gov.uk
+  organization: government-service-data
+  space: staging
+  on:
+    branch: staging
