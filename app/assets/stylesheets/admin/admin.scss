@@ -13,3 +13,11 @@ dl {
 th {
   vertical-align: bottom;
 }
+
+.field-unit__radio_button {
+  label {
+    display: inline-block;
+    font-weight: normal;
+    margin-right: 40px;
+  }
+}

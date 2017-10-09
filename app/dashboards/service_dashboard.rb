@@ -19,6 +19,19 @@ class ServiceDashboard < Administrate::BaseDashboard
     duration_until_outcome: Field::Text,
     start_page_url: Field::String,
     paper_form_url: Field::String,
+    online_transactions_applicable: ApplicableMetricField,
+    phone_transactions_applicable: ApplicableMetricField,
+    paper_transactions_applicable: ApplicableMetricField,
+    face_to_face_transactions_applicable: ApplicableMetricField,
+    other_transactions_applicable: ApplicableMetricField,
+    transactions_with_outcome_applicable: ApplicableMetricField,
+    transactions_with_intended_outcome_applicable: ApplicableMetricField,
+    calls_received_applicable: ApplicableMetricField,
+    calls_received_get_information_applicable: ApplicableMetricField,
+    calls_received_chase_progress_applicable: ApplicableMetricField,
+    calls_received_challenge_decision_applicable: ApplicableMetricField,
+    calls_received_other_applicable: ApplicableMetricField,
+    calls_received_perform_transaction_applicable: ApplicableMetricField,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -62,6 +75,19 @@ class ServiceDashboard < Administrate::BaseDashboard
     duration_until_outcome
     start_page_url
     paper_form_url
+    online_transactions_applicable
+    phone_transactions_applicable
+    paper_transactions_applicable
+    face_to_face_transactions_applicable
+    other_transactions_applicable
+    transactions_with_outcome_applicable
+    transactions_with_intended_outcome_applicable
+    calls_received_applicable
+    calls_received_get_information_applicable
+    calls_received_chase_progress_applicable
+    calls_received_challenge_decision_applicable
+    calls_received_other_applicable
+    calls_received_perform_transaction_applicable
   ].freeze
 
   def display_resource(service)

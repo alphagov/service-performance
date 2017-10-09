@@ -12,43 +12,33 @@
       </p>
 
       <%= form_for(@metrics, as: :metrics, url: service_metrics_path(publish_token: params[:publish_token]), method: :patch, builder: FormHelper::MonthlyServiceMetricsFormBuilder) do |f| %>
-        <fieldset>
-          <h2 class="bold-medium">Number of transactions received, split by channel</h2>
+        <%= f.fieldset 'Number of transactions received, split by channel' do %>
+          <%= f.metric :online_transactions, applicable: @metrics.service.online_transactions_applicable %>
+          <%= f.metric :phone_transactions, applicable: @metrics.service.phone_transactions_applicable %>
+          <%= f.metric :paper_transactions, applicable: @metrics.service.paper_transactions_applicable %>
+          <%= f.metric :face_to_face_transactions, applicable: @metrics.service.face_to_face_transactions_applicable %>
+          <%= f.metric :other_transactions, applicable: @metrics.service.other_transactions_applicable %>
+        <% end %>
 
-          <%= f.metric :online_transactions %>
-          <%= f.metric :phone_transactions %>
-          <%= f.metric :paper_transactions %>
-          <%= f.metric :face_to_face_transactions %>
-          <%= f.metric :other_transactions %>
-        </fieldset>
+        <%= f.fieldset 'Number of transactions ending in an outcome' do %>
+          <%= f.metric :transactions_with_outcome, applicable: @metrics.service.transactions_with_outcome_applicable %>
+        <% end %>
 
-        <fieldset>
-          <h2 class="bold-medium">Number of transactions ending in an outcome</h2>
+        <%= f.fieldset 'Number of transactions ending in the user’s intended outcome' do %>
+          <%= f.metric :transactions_with_intended_outcome, applicable: @metrics.service.transactions_with_intended_outcome_applicable %>
+        <% end %>
 
-          <%= f.metric :transactions_with_outcome %>
-        </fieldset>
+        <%= f.fieldset 'Total number of phone calls received' do %>
+          <%= f.metric :calls_received, applicable: @metrics.service.calls_received_applicable %>
+        <% end %>
 
-        <fieldset>
-          <h2 class="bold-medium">Number of transactions ending in the user’s intended outcome</h2>
-
-          <%= f.metric :transactions_with_intended_outcome %>
-        </fieldset>
-
-        <fieldset>
-          <h2 class="bold-medium">Total number of phone calls received</h2>
-
-          <%= f.metric :calls_received %>
-        </fieldset>
-
-        <fieldset>
-          <h2 class="bold-medium">Number of phone calls received, split by reasons for calling</h2>
-
-          <%= f.metric :calls_received_perform_transaction %>
-          <%= f.metric :calls_received_get_information %>
-          <%= f.metric :calls_received_chase_progress %>
-          <%= f.metric :calls_received_challenge_decision %>
-          <%= f.metric :calls_received_other %>
-        </fieldset>
+        <%= f.fieldset 'Number of phone calls received, split by reasons for calling' do %>
+          <%= f.metric :calls_received_perform_transaction, applicable: @metrics.service.calls_received_perform_transaction_applicable %>
+          <%= f.metric :calls_received_get_information, applicable: @metrics.service.calls_received_get_information_applicable %>
+          <%= f.metric :calls_received_chase_progress, applicable: @metrics.service.calls_received_chase_progress_applicable %>
+          <%= f.metric :calls_received_challenge_decision, applicable: @metrics.service.calls_received_challenge_decision_applicable %>
+          <%= f.metric :calls_received_other, applicable: @metrics.service.calls_received_other_applicable %>
+        <% end %>
 
         <p>
           <%= f.submit 'Submit', class: 'button' %>

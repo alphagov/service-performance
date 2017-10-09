@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004131648) do
+ActiveRecord::Schema.define(version: 20171005093133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,19 @@ ActiveRecord::Schema.define(version: 20171004131648) do
     t.datetime "updated_at", null: false
     t.string "publish_token"
     t.integer "delivery_organisation_id"
+    t.boolean "online_transactions_applicable", default: true
+    t.boolean "phone_transactions_applicable", default: true
+    t.boolean "paper_transactions_applicable", default: true
+    t.boolean "face_to_face_transactions_applicable", default: true
+    t.boolean "other_transactions_applicable", default: true
+    t.boolean "transactions_with_outcome_applicable", default: true
+    t.boolean "transactions_with_intended_outcome_applicable", default: true
+    t.boolean "calls_received_applicable", default: true
+    t.boolean "calls_received_get_information_applicable", default: true
+    t.boolean "calls_received_chase_progress_applicable", default: true
+    t.boolean "calls_received_challenge_decision_applicable", default: true
+    t.boolean "calls_received_other_applicable", default: true
+    t.boolean "calls_received_perform_transaction_applicable", default: true
     t.index ["publish_token"], name: "index_services_on_publish_token", unique: true
   end
 
