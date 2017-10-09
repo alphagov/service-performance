@@ -24,7 +24,7 @@ class MetricsCSVExporter
   ].freeze
 
   def initialize(metrics)
-    @metrics = metrics.preload(:department).preload(:delivery_organisation)
+    @metrics = metrics.preload(service: { delivery_organisation: :department })
   end
 
   attr_reader :metrics
@@ -34,6 +34,8 @@ class MetricsCSVExporter
       csv << HEADERS
 
       metrics.each do |metric|
+        service = metric.service
+
         csv << [
           format_month(metric.month),
           metric.service.name,
@@ -41,19 +43,19 @@ class MetricsCSVExporter
           metric.delivery_organisation.name,
           metric.service.start_page_url,
           format_metric(metric.transactions_received),
-          format_metric(metric.online_transactions),
-          format_metric(metric.phone_transactions),
-          format_metric(metric.paper_transactions),
-          format_metric(metric.face_to_face_transactions),
-          format_metric(metric.other_transactions),
-          format_metric(metric.transactions_with_outcome),
-          format_metric(metric.transactions_with_intended_outcome),
-          format_metric(metric.calls_received),
-          format_metric(metric.calls_received_get_information),
-          format_metric(metric.calls_received_chase_progress),
-          format_metric(metric.calls_received_challenge_decision),
-          format_metric(metric.calls_received_other),
-          format_metric(metric.calls_received_perform_transaction),
+          format_metric(metric.online_transactions, applicable: service.online_transactions_applicable),
+          format_metric(metric.phone_transactions, applicable: service.phone_transactions_applicable),
+          format_metric(metric.paper_transactions, applicable: service.paper_transactions_applicable),
+          format_metric(metric.face_to_face_transactions, applicable: service.face_to_face_transactions_applicable),
+          format_metric(metric.other_transactions, applicable: service.other_transactions_applicable),
+          format_metric(metric.transactions_with_outcome, applicable: service.transactions_with_outcome_applicable),
+          format_metric(metric.transactions_with_intended_outcome, applicable: service.transactions_with_intended_outcome_applicable),
+          format_metric(metric.calls_received, applicable: service.calls_received_applicable),
+          format_metric(metric.calls_received_get_information, applicable: service.calls_received_get_information_applicable),
+          format_metric(metric.calls_received_perform_transaction, applicable: service.calls_received_perform_transaction_applicable),
+          format_metric(metric.calls_received_chase_progress, applicable: service.calls_received_chase_progress_applicable),
+          format_metric(metric.calls_received_challenge_decision, applicable: service.calls_received_challenge_decision_applicable),
+          format_metric(metric.calls_received_other, applicable: service.calls_received_other_applicable),
         ]
       end
     end
@@ -65,7 +67,13 @@ private
     month.to_formatted_s(:short_month_year)
   end
 
-  def format_metric(metric)
-    metric.presence || 'N/P'
+  def format_metric(metric, applicable: true)
+    if applicable
+      metric.presence || 'N/P'
+    else
+      'N/A'
+    end
   end
 end
+
+MonthlyCsvExporter = MetricsCSVExporter
