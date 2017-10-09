@@ -11,7 +11,7 @@
        Here's a <a href="../service-manual">reminder of what you need to provide</a>. Your data will be published on <%= @metrics.publish_date.to_formatted_s(:long_day_month_year) %>.
       </p>
 
-      <%= form_for(@metrics, as: :metrics, url: service_metrics_path(publish_token: params[:publish_token]), method: :patch, builder: FormHelper::MonthlyServiceMetricsFormBuilder) do |f| %>
+      <%= form_for(@metrics, as: :metrics, url: publish_service_metrics_path(publish_token: params[:publish_token]), method: :patch, builder: FormHelper::MonthlyServiceMetricsFormBuilder) do |f| %>
         <%= f.fieldset 'Number of transactions received, split by channel' do %>
           <%= f.metric :online_transactions, applicable: @metrics.service.online_transactions_applicable %>
           <%= f.metric :phone_transactions, applicable: @metrics.service.phone_transactions_applicable %>

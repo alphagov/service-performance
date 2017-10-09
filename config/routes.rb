@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :publish do
+  scope :publish do
     namespace :admin do
       resources :metrics, controller: 'monthly_service_metrics', only: [:index, :show]
       resources :delivery_organisations
@@ -29,7 +29,9 @@ Rails.application.routes.draw do
 
       root to: "services#index"
     end
+  end
 
+  namespace :publish, module: nil do
     resources :services, only: [] do
       constraints year: /\d{4}/, month: /\d{2}/ do
         get 'metrics/:year/:month(/:publish_token)', to: 'monthly_service_metrics#edit', as: :metrics

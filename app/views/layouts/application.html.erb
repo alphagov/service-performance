@@ -42,8 +42,8 @@
 
           <nav id="navigation" class="header__navigation js-nav" aria-label="Top Level Navigation" aria-hidden="true">
             <ul>
-              <li<% if root_path == page.path %> class="active"<% end %>>
-                <a href="<%= root_path %>">
+              <li<% if publish_root_path == page.path %> class="active"<% end %>>
+                <a href="<%= publish_root_path %>">
                   Publish data
                 </a>
               </li>

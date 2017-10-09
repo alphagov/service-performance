@@ -5,5 +5,6 @@ FactoryGirl.define do
     hostname 'renew-service'
 
     department
+    delivery_organisation
   end
 end

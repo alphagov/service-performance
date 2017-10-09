@@ -3,7 +3,7 @@ class MonthlyServiceMetrics < ApplicationRecord
 
   belongs_to :service
   has_one :delivery_organisation, through: :service
-  has_one :department, through: :delivery_organisation
+  has_one :department, through: :service
 
   attribute :month, YearMonth::Serializer.new
 
