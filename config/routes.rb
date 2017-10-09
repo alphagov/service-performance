@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
       resources :services, only: [:index, :show], controller: 'services' do
         resources :metrics, only: [:index], controller: 'service_metrics'
+        resources :download, only: [:index], controller: 'service_download'
       end
     end
   end
