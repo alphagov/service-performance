@@ -1,4 +1,4 @@
-class GovernmentsController < ApplicationController
+class GovernmentsController < APIController
   def show
     government = Government.new
     render json: government

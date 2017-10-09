@@ -1,0 +1,17 @@
+@import "product-page-example/source/stylesheets/core";
+@import "__assets";
+
+* { @include box-sizing(border-box); }
+main { display: block; }
+
+@import "homepage";
+
+fieldset {
+  border: 0;
+  padding: 0;
+}
+
+fieldset > h2 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}

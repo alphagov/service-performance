@@ -6,8 +6,12 @@ default: &default
 
 development:
   <<: *default
-  database: cgsd_development
+  database: gsd_development
+
+profile:
+  <<: *default
+  database: gsd_development
 
 test:
   <<: *default
-  database: cgsd_test
+  database: gsd_test

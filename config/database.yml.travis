@@ -8,4 +8,4 @@ test:
   <<: *default
   user: postgres
   host: postgres
-  database: ci_test
+  database: travis_ci_test

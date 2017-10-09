@@ -1,10 +1,12 @@
-# Government Service Data – API
+# Government Service Data
 
-This is the API for interacting with Government Service Data. It is currently consumed by the the [`gsd-view-data`](https://github.com/alphagov/gsd-view-data) application.
+This is the API for interacting with Government Service Data. This is currently consumed by the the [`gsd-view-data`](https://github.com/alphagov/gsd-view-data) application.
+
+It also contains the publishing workflow for collecting metrics from Services, and an admin interface to coordinate data collection. 
 
 ## Setup
 
-First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/gsd-api/blob/master/.ruby-version) installed, which is currently `2.4.0`. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
+First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/gsd-api/blob/master/.ruby-version) installed, which is currently `2.4.1`. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
 
 ```
 brew install rbenv
@@ -13,7 +15,7 @@ brew install rbenv
 If you have rbenv installed, you can run
 
 ```
-rbenv install 2.4.0
+rbenv install 2.4.1
 ```
 
 Next, you'll need [`Bundler`](http://bundler.io/) in order to install all the dependencies you'll need to run the app.
@@ -60,3 +62,6 @@ migrations use the following:
 
     cf run-task gsd-api "cd app && bundle exec rake db:migrate" --name migrate
 
+### Staging
+
+Deployments are initiated by merging master into staging, and then pushing the staging branch.

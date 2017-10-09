@@ -1,0 +1,99 @@
+<%#
+# Show
+
+This view is the template for the show page.
+It renders the attributes of a resource,
+as well as a link to its edit page.
+
+## Local variables:
+
+- `page`:
+  An instance of [Administrate::Page::Show][1].
+  Contains methods for accessing the resource to be displayed on the page,
+  as well as helpers for describing how each attribute of the resource
+  should be displayed.
+
+[1]: http://www.rubydoc.info/gems/administrate/Administrate/Page/Show
+%>
+
+<% content_for(:title) { "#{t("administrate.actions.show")} #{page.page_title}" } %>
+
+<header class="main-content__header" role="banner">
+  <h1 class="main-content__page-title">
+    <%= content_for(:title) %>
+  </h1>
+
+  <div>
+    <%= link_to(
+      "#{t("administrate.actions.edit")} #{page.page_title}",
+      [:edit, namespace, page.resource],
+      class: "button",
+    ) if valid_action? :edit %>
+  </div>
+</header>
+
+<section class="main-content__body">
+  <dl>
+    <% page.attributes.each do |attribute| %>
+      <dt class="attribute-label" id="<%= attribute.name %>">
+      <%= t(
+        "helpers.label.#{resource_name}.#{attribute.name}",
+        default: attribute.name.titleize,
+      ) %>
+      </dt>
+
+      <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
+          ><%= render_field attribute %></dd>
+    <% end %>
+  </dl>
+</section>
+
+<section class="main-content__body">
+  <h2>Metrics</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th colspan="6">Transactions Received</th>
+        <th colspan="2">Transactions with Outcome</th>
+        <th colspan="6">Calls Received</th>
+      </tr>
+      <tr>
+        <th>Month</th>
+        <th>Online</th>
+        <th>Phone</th>
+        <th>Paper</th>
+        <th>Face-to-face</th>
+        <th>Other</th>
+        <th>Any</th>
+        <th>Intended</th>
+        <th>Total</th>
+        <th>to perform a transaction</th>
+        <th>to get information</th>
+        <th>to chase progress</th>
+        <th>to challenge a decision</th>
+        <th>other</th>
+        
+      </tr>
+    </thead>
+    <% page.resource.metrics.order('month DESC').each do |metric| %>
+      <tr>
+        <td><%= metric.month.to_formatted_s(:long_month_year) %></td>
+        <td><%= number_with_delimiter(metric.online_transactions) %></td>
+        <td><%= number_with_delimiter(metric.phone_transactions) %></td>
+        <td><%= number_with_delimiter(metric.paper_transactions) %></td>
+        <td><%= number_with_delimiter(metric.face_to_face_transactions) %></td>
+        <td><%= number_with_delimiter(metric.other_transactions) %></td>
+        <td><%= number_with_delimiter(metric.transactions_with_outcome) %></td>
+        <td><%= number_with_delimiter(metric.transactions_with_intended_outcome) %></td>
+        <td><%= number_with_delimiter(metric.calls_received) %></td>
+        <td><%= number_with_delimiter(metric.calls_received_get_information) %></td>
+        <td><%= number_with_delimiter(metric.calls_received_chase_progress) %></td>
+        <td><%= number_with_delimiter(metric.calls_received_challenge_decision) %></td>
+        <td><%= number_with_delimiter(metric.calls_received_other) %></td>
+        <td><%= number_with_delimiter(metric.calls_received_perform_transaction) %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
