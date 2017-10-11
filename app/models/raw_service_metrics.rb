@@ -18,17 +18,17 @@ private
         "department" => @root.department.name,
         "agency" => @root.delivery_organisation.name,
         "service" => @root.name
-      }}
+      }
+    }
 
-    metrics.inject(data) { |h, (k, _v)|
-      # We have 'other' in two different metrics...
-      keyname = if k[key] == 'other'
-                  "#{key}-other"
-                else
-                  k[key]
-                end
+    results = metrics.inject(data) { |h, (metric, _v)|
+      keyname = clean_keyname(metric, key)
+      h[metric['starts_on']][keyname] = metric['quantity']
+      h
+    }
 
-      h[k['starts_on']][keyname] = k['quantity']
+    results.reduce({}) { |h, (k, v)|
+      h[k] = [v]
       h
     }
   end
