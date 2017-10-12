@@ -1,11 +1,7 @@
-default: &default
+test:
   adapter: postgresql
+  user: postgres
+  database: travis_ci_test
   encoding: unicode
   pool: 5
   timeout: 5000
-
-test:
-  <<: *default
-  user: postgres
-  host: postgres
-  database: ci_test

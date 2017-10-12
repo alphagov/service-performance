@@ -1,4 +1,4 @@
-class MetricsController < ApplicationController
+class MetricsController < APIController
 private
 
   def group_by

@@ -1,0 +1,12 @@
+<main id="content" role="main" class="container">
+  <div class="column-two-thirds">
+    <h1 class="heading-large">
+      Upload successful
+    </h1>
+
+    <p>Thank you for providing your monthly data. It will be published on <%= @metrics.publish_date.to_formatted_s(:long_day_month_year) %>.</p>
+
+    <p>You will next be asked to provide data on <%= @metrics.next_metrics_due_date.to_formatted_s(:long_day_month) %>.</p>
+
+  </div>
+</main>

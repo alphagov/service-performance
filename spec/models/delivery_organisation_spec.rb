@@ -8,17 +8,17 @@ RSpec.describe DeliveryOrganisation, type: :model do
 
     it 'requires a natural_key' do
       delivery_organisation.natural_key = ''
-      expect(delivery_organisation).to fail_strict_validations
+      expect(delivery_organisation).to_not be_valid
     end
 
     it 'requires a name' do
       delivery_organisation.name = ''
-      expect(delivery_organisation).to fail_strict_validations
+      expect(delivery_organisation).to_not be_valid
     end
 
     it 'requires a website' do
       delivery_organisation.website = ''
-      expect(delivery_organisation).to fail_strict_validations
+      expect(delivery_organisation).to_not be_valid
     end
   end
 
