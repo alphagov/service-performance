@@ -18,6 +18,7 @@ before_script:
 script:
   - bundle audit
   - bundle exec govuk-lint-ruby app lib spec
+  - brakeman
   - bundle exec rspec
 deploy:
   provider: cloudfoundry
