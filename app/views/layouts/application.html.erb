@@ -33,7 +33,7 @@
               GOV.UK
             </span>
             <span class="header__title">
-              Government Service Data
+              Service Performance
               <span class="phase-banner">Beta</span>
             </span>
           </a>
@@ -47,6 +47,11 @@
               <li<% if government_metrics_path(group_by: 'department') == page.path %> class="active"<% end %>>
                 <a href="<%= government_metrics_path(group_by: 'department') == page.path ? "#main" : government_metrics_path(group_by: 'department') %>">
                   View data
+                </a>
+              </li>
+              <li<% if how_to_use_path == page.path %> class="active"<% end %>>
+                <a href="<%= how_to_use_path == page.path ? "#main" : how_to_use_path %>">
+                  How to use
                 </a>
               </li>
             </ul>

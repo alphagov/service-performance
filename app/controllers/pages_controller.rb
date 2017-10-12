@@ -3,9 +3,6 @@ class PagesController < ApplicationController
     page.display_header_border = false
   end
 
-  def using_our_data
-  end
-
-  def roadmap
+  def how_to_use
   end
 end

@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :services, only: [:show]
   end
 
-  get "/using-our-data", to: "pages#using_our_data"
+  get "/how-to-use", to: "pages#how_to_use"
 
   match "/404", to: "errors#not_found", :via => :all
   match "/500", to: "errors#internal_server_error", :via => :all
