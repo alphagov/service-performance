@@ -1,17 +1,13 @@
 require "administrate/base_dashboard"
 
 class ServiceDashboard < Administrate::BaseDashboard
-  # ATTRIBUTE_TYPES
-  # a hash that describes the type of each of the model's fields.
-  #
-  # Each different type represents an Administrate::Field object,
-  # which determines how the attribute is displayed
-  # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
+    natural_key: Field::String,
     name: Field::String,
     department: Field::HasOne,
-    delivery_organisation: Field::BelongsTo,
+    delivery_organisation: Field::BelongsTo.with_options(primary_key: :natural_key, foreign_key: :delivery_organisation_code),
+    hostname: Field::String,
     purpose: Field::Text,
     how_it_works: Field::Text,
     typical_users: Field::Text,
@@ -34,11 +30,6 @@ class ServiceDashboard < Administrate::BaseDashboard
     calls_received_perform_transaction_applicable: ApplicableMetricField,
   }.freeze
 
-  # COLLECTION_ATTRIBUTES
-  # an array of attributes that will be displayed on the model's index page.
-  #
-  # By default, it's limited to four items to reduce clutter on index pages.
-  # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
     name
@@ -46,8 +37,6 @@ class ServiceDashboard < Administrate::BaseDashboard
     delivery_organisation
   ].freeze
 
-  # SHOW_PAGE_ATTRIBUTES
-  # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     name
@@ -62,12 +51,11 @@ class ServiceDashboard < Administrate::BaseDashboard
     paper_form_url
   ].freeze
 
-  # FORM_ATTRIBUTES
-  # an array of attributes that will be displayed
-  # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
+    natural_key
     name
     delivery_organisation
+    hostname
     purpose
     how_it_works
     typical_users

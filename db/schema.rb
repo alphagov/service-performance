@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009143006) do
+ActiveRecord::Schema.define(version: 20171012104431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 20171009143006) do
     t.string "hostname", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "department_code", null: false
     t.string "delivery_organisation_code"
     t.text "purpose"
     t.text "how_it_works"
@@ -151,7 +150,6 @@ ActiveRecord::Schema.define(version: 20171009143006) do
   add_foreign_key "delivery_organisations", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "monthly_service_metrics", "services"
   add_foreign_key "services", "delivery_organisations", column: "delivery_organisation_code", primary_key: "natural_key"
-  add_foreign_key "services", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "transactions_received_metrics", "delivery_organisations", column: "delivery_organisation_code", primary_key: "natural_key"
   add_foreign_key "transactions_received_metrics", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "transactions_received_metrics", "services", column: "service_code", primary_key: "natural_key"

@@ -20,11 +20,6 @@ RSpec.describe Service, type: :model do
       service.hostname = ''
       expect(service).to_not be_valid
     end
-
-    it "references a valid department" do
-      service.department = nil
-      expect(service).to_not be_valid
-    end
   end
 
   describe '#services' do

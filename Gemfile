@@ -25,7 +25,7 @@ gem 'link_header'
 
 # Publish Admin
 gem 'devise'
-gem 'administrate'
+gem 'administrate', github: 'thoughtbot/administrate'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

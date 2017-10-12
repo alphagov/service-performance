@@ -1,3 +1,19 @@
+GIT
+  remote: https://github.com/thoughtbot/administrate.git
+  revision: 7ed139ef474961bb2ad4346f17acaeb7ae2b7f1f
+  specs:
+    administrate (0.8.1)
+      actionpack (>= 4.2, < 5.2)
+      actionview (>= 4.2, < 5.2)
+      activerecord (>= 4.2, < 5.2)
+      autoprefixer-rails (>= 6.0)
+      datetime_picker_rails (~> 0.0.7)
+      jquery-rails (>= 4.0)
+      kaminari (>= 1.0)
+      momentjs-rails (~> 2.8)
+      sass-rails (~> 5.0)
+      selectize-rails (~> 0.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -45,17 +61,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    administrate (0.8.1)
-      actionpack (>= 4.2, < 5.2)
-      actionview (>= 4.2, < 5.2)
-      activerecord (>= 4.2, < 5.2)
-      autoprefixer-rails (>= 6.0)
-      datetime_picker_rails (~> 0.0.7)
-      jquery-rails (>= 4.0)
-      kaminari (>= 1.0)
-      momentjs-rails (~> 2.8)
-      sass-rails (~> 5.0)
-      selectize-rails (~> 0.6)
     arel (8.0.0)
     ast (2.3.0)
     autoprefixer-rails (7.1.5)
@@ -285,7 +290,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
-  administrate
+  administrate!
   byebug
   capybara
   capybara-webkit

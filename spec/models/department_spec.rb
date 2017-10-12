@@ -25,8 +25,9 @@ RSpec.describe Department, type: :model do
   describe '#services' do
     it 'returns a scope of services, which belong to the department' do
       department = FactoryGirl.create(:department)
-      service1 = FactoryGirl.create(:service, department_code: department.natural_key)
-      service2 = FactoryGirl.create(:service, department_code: department.natural_key)
+      delivery_organisation = FactoryGirl.create(:delivery_organisation, department: department)
+      service1 = FactoryGirl.create(:service, delivery_organisation: delivery_organisation)
+      service2 = FactoryGirl.create(:service, delivery_organisation: delivery_organisation)
 
       expect(department.services.to_a).to match_array([service1, service2])
     end
