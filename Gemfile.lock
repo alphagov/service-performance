@@ -67,7 +67,11 @@ GEM
       execjs
     bcrypt (3.1.11)
     bindex (0.5.0)
+    brakeman (4.0.1)
     builder (3.2.3)
+    bundler-audit (0.6.0)
+      bundler (~> 1.2)
+      thor (~> 0.18)
     byebug (9.0.6)
     capybara (2.13.0)
       addressable
@@ -291,6 +295,8 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   administrate!
+  brakeman
+  bundler-audit
   byebug
   capybara
   capybara-webkit

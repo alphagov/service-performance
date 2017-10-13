@@ -16,7 +16,9 @@ before_script:
   - cp config/database.yml.travis config/database.yml
   - bundle exec rails db:test:prepare
 script:
+  - bundle audit
   - bundle exec govuk-lint-ruby app lib spec
+  - brakeman
   - bundle exec rspec
 deploy:
   provider: cloudfoundry
