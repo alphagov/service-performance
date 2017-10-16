@@ -7,7 +7,7 @@ cache:
   bundler: true
 env:
   global:
-    - PASS_USERNAME=gsd-deploy@digital.cabinet-office.gov.uk
+    - PAAS_USERNAME=gsd-deploy@digital.cabinet-office.gov.uk
     # PAAS_PASSWORD
     - secure: KOgddT+pu8ItC9IWMnxcB1b2tJRmIJ2/MOygQcYwXJiXjCPsUrZ6g6HdtXjqzrRoqtyIDkY41L6iZvHQ8p2epm+FRm1YAoZS265ZW0Cw1W2Dd5Jfy0nghebaZ6AODl35zBnViYt+1MJrHhfRBwW0iIQgMk3nuz8rRNZaUKkyM4lm54wsZs+8f/A1MQpCsKC/0Qt1TfTmpJVe3MIPRRWy+DRHDmItNEIFBSSeNOhcg2rioO8g9H7n/Rx193JvHlOODEViO1yOumXYkvfWHh77ycD7APNrDovdzqxL9HoP6XzyWxLLIY7K9rifPGNZXfN0xgX0wpWSecCshM+eelfvGNiHD8/S//HT23alYk437hyNa0VJHmfLvGD27P1IIR8/ASKx9x6lX7SOKIzMQUWAh7VGlEYIGNLy1T+MzoS4OPUl54PgUNpGuklVbWf9YrOW7SL/HAZRqMMFAsR13xsWkVfZgyPJaPIxeuW8E4lLJszjposWMoMdiGK/Yw516gkE2B3SBmHPGhp9abf1QcND6/nzRESplooN+dDpqbiZ3+JBiyes80uI+J7PdQyAQoYrvaDvEdt77binwggTNjxL7s2RUSM63IwtorARsLupbHs7ui9Jn4NjT3U+CQAXIv+xOK6EoiO5aHmBLEzz44Tf3Fo54bmfJCSrlFwfsMSsIQw=
 before_script:
@@ -22,7 +22,7 @@ script:
   - bundle exec rspec
 deploy:
   provider: cloudfoundry
-  username: ${PASS_USERNAME}
+  username: ${PAAS_USERNAME}
   password: ${PAAS_PASSWORD}
   api: https://api.cloud.service.gov.uk
   organization: government-service-data
