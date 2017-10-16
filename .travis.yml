@@ -8,8 +8,17 @@ cache:
 env:
   global:
     - PASS_USERNAME=gsd-deploy@digital.cabinet-office.gov.uk
+    - PAAS_SERVICE=gsd-api
     # PAAS_PASSWORD
     - secure: KOgddT+pu8ItC9IWMnxcB1b2tJRmIJ2/MOygQcYwXJiXjCPsUrZ6g6HdtXjqzrRoqtyIDkY41L6iZvHQ8p2epm+FRm1YAoZS265ZW0Cw1W2Dd5Jfy0nghebaZ6AODl35zBnViYt+1MJrHhfRBwW0iIQgMk3nuz8rRNZaUKkyM4lm54wsZs+8f/A1MQpCsKC/0Qt1TfTmpJVe3MIPRRWy+DRHDmItNEIFBSSeNOhcg2rioO8g9H7n/Rx193JvHlOODEViO1yOumXYkvfWHh77ycD7APNrDovdzqxL9HoP6XzyWxLLIY7K9rifPGNZXfN0xgX0wpWSecCshM+eelfvGNiHD8/S//HT23alYk437hyNa0VJHmfLvGD27P1IIR8/ASKx9x6lX7SOKIzMQUWAh7VGlEYIGNLy1T+MzoS4OPUl54PgUNpGuklVbWf9YrOW7SL/HAZRqMMFAsR13xsWkVfZgyPJaPIxeuW8E4lLJszjposWMoMdiGK/Yw516gkE2B3SBmHPGhp9abf1QcND6/nzRESplooN+dDpqbiZ3+JBiyes80uI+J7PdQyAQoYrvaDvEdt77binwggTNjxL7s2RUSM63IwtorARsLupbHs7ui9Jn4NjT3U+CQAXIv+xOK6EoiO5aHmBLEzz44Tf3Fo54bmfJCSrlFwfsMSsIQw=
+    # APP_SECRET_KEY_BASE_STAGING
+    - secure: "rkL+PN5yP0MYGcuoczK0Ua8UN6ddGJk/ZdPAzuX+YxCgmZ7aWtEweSY5GzFIcDh4KbcLNCVo1HqP3NMp7qvNHtd8U6VH97CDF16nGHoHQVjlfk5VTfca5PIBXsM6/zI8lwVER0AaX6Zj5SwIVPHZRgHBAi8QDcsPoO9G0mbmLF5So0bdO5u6hib48FvqqxIWfdW+Pykg+9IeJ9DV9LlWSdQgTGspmo8zjJ0wldrf2G4T7acpmKe9CytcbOyl+U8yCguTvJecFGLyl7IT0az4jEu+NlZzjE1NIeVNpBuiXjR//stnlTjmtU/yT41fA5F+EwWezY/ODqNKqB2xATGaGA1EsAbB6CcLaOr7tOPP538k8DPHdZSY8G+nsvXYgjaTO3A8Tv0AtJ46LwL5tMyMQYVJ4setb/BHt2Zt5PyzsL1H7/qcGhn4jpnKFrUMHn/fjyh6bVQlWSzVaEPIOye+uvpCGkMnnatBg6F3XbEFc4aBf4a13BBuWoQJcfbs4kmeSzARJQrPXpm+Cfm+1EUPuR+fYKlgvKzJljugR2Avgc9sP2mBfxbQfA5lQUN2xBqR+KChr/3hCS0ylij3urSyULpT5MBVBSz5kQCorTPmN/gILStDrmq6q9mh4HcHcuAyp0lfQm08Xu1iIo6rAfFrTHjQYLvdVFCZHteIwitGVvA="
+    # APP_SECRET_KEY_BASE_PRODUCTION
+    - secure: "E4zspj13uXhY5rthF0y65Igs5xAOwxEMbkt90dJFnMCcgmVdwjWHH7D5kpb+KbgttxGSGhB5zboc94NP4u9YR3EgdlJxgskfl/vtGGaj8oMQBWB/4+PMEHcqnvgwaotZL4OcTH0JMAy+do6mPJPp+frIqnfBmvH0QeAtwj2ez4hDB0YLDyKIvtJhrkkYLRU8n/54oGbwk/zAXopt5iut8clbnLDHfSLrb7VoY6ZAcfc3BQs3YlIVpN4Fwqo3AbxPWlR7v3oRpKs40E5RXRWJ5TRZgYu0E41T5iO4m1udMuFf4xbW9POOXdFLq6Bibx3uMK7VGb2GzGjOPxLLTF0SSjbDQMXkxRHlikayGTCkGBEoZpyB8oIBJOUZhg2zP6K1fZw7KtxKE4WCVTFWF2AxPHy5XGo/twb3RFLrp7eKBuxY7QJ49XO9EY304SFbLr/feZqLD8Xv42GHHjpxifFEyDE7pR5iU217bguVgmWWVXbSGiczCWVUQi3n6alesQ1YoaL7COCHLpt/uCZkRaHXGeV1TJN7aAqi8Sh8co2f243zl4CkbhObs62sZHc6D94D+wqHytoSs6EbCYEvvb5fp7m4HYdRibmF13P6s4QGXki6jQwAeJtyqIloS3QjaRlR+HPeZO/nBIxX7y+Gn22zzxH2z3dIaFHi53LtJT6vHvU="
+    # HTTP Username
+    - secure: "k4A2/ZzrtdXaC4QjI2zPTWehNAgbArw/oOvkwqJ17lsSjqMX3CCNmcHG6JrP1decF0bV8K5MP4c8izp29PZ3la0pAHj+Cdn/w7FKuM1wscoOm/s9HOPiNjwIKuMqu7zqs9s1ojDiHxtbg3yIXWUfWLSbU/rt4KUXf9yTk3bIDKlX2NZR4WCY7MK7Bn5leYtlfyR5poJW4rmkw93oxLLUVhjurbo87SIrKRltpRDob77Gk/KqbRt6yqBczyYEyJfrzMXd24L1tp6iIUG/UUldzmFdOlf7p69A2TreQCgF6NSUDCywvnCib7SEBoV3UvKmqB49Sf0yN0kIo3IRMAVlACBGx0sA87g6X51VUgeZW/RZC2kNgp6djHxIvMcdAAkm+rcomGUv1gbvTPoh6WVgi35bxIJQcGRv/CseNiTyjBML+28ZK95xJolLOIpeVvPRxlhEQB/3ZQPLbKT0E+k1xF9mNAIqeiJrIi/gbmMEU2iRq7rSsOPCZ/uaDD/5Lm6fQLU2nsjLXz+n+iNRgdfdbr3zZNCnPk4eBP4SDiv7X0YYvRRudj06pvcKLRXcnnfkiqDjSUxww2oZ2F5AZh+9pLLo2luMhdNLdNAu19IqhEe1wtDegaPD9PsLQYbFUvD+Tux9Qu9fPewvE8Eqwna1D8EkSjnzDy4W4ytu07xbOgI="
+    # HTTP Password
+    - secure: "WTBVhhlgmLPcdMV3hVGv0fUwhEYx6HLt14XvCDe59bjfwhAVwDP9Iw6Xs4V0yqPdTP1vFsjybgE129Leck/yQMkmsJ7uvqPzluZfhhMGvM3Bfoo1pIgcWRq1u+YaYnn0Pfu5NswNXC55qRqZU7Y4ePuSeqSUR3IbS5SJv+lIR7qDuhvs5iv+CwWM8HxJf2rNynBtFnqwawkenadNOwobwklskyxM5hXhbatvjrSFxkYndbKzwJetaNVqcdurtG5ur2WlNYFo4MlJxtDhdlAjXXsAKqgopk3+NjNJXyfuyS8ctS68vWpF/asx9reuJK2DLpjzQ7c+KN72waTWNm/poL2cP1FgXemReQmXk96a7dlVBBLpYSqaBQ8lG8rv+1nbtYTXwNNEHMNQzvuS8OlDEfM3/zoLs42pQgpv3LVyp3kTrs5n/rdqd/px4FVEvXtKxvGsyCtYgajVXsN5yyva324RZRDRAg+0UMKf5yRDnoAnYZeqjoV5+pHU2+OixXXvBuSypOiOR1/vZ8NEKXEa15qnkitLaenigxy3FCnvlIp4D9enJH/wDEVq8ag2SmbaMrVWCpAHof2Xv64X78U648g2KFyfWTvX/UdFuJfKU2b+6+PLtz6Uw7cyUr8iFhzgStbc+YJ/lR3EyErW5JkXSYkPQajQyM+2ZpnbcPIkO5A="
 before_script:
   - bundle config build.nokogiri --use-system-libraries
   - bundle install
@@ -21,11 +30,13 @@ script:
   - brakeman
   - bundle exec rspec
 deploy:
-  provider: cloudfoundry
-  username: ${PASS_USERNAME}
-  password: ${PAAS_PASSWORD}
-  api: https://api.cloud.service.gov.uk
-  organization: government-service-data
-  space: staging
-  on:
-    branch: staging
+ - provider: script
+   script: APP_SECRET_KEY_BASE=$APP_SECRET_KEY_BASE_STAGING etc/deploy.sh staging
+   skip_cleanup: true
+   on:
+     branch: staging
+ - provider: script
+   script: APP_SECRET_KEY_BASE=$APP_SECRET_KEY_BASE_PRODUCTION etc/deploy.sh production
+   skip_cleanup: true
+   on:
+     branch: production
