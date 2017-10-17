@@ -11,15 +11,13 @@
       <%= render 'metrics/time_period_selector' %>
     </div>
 
-    <aside class="column-third download">
-      <div class="notice">
-        <i class="icon icon-file-download">
-          <span class="visuallyhidden">Download file</span>
-        </i>
-        <strong class="bold-small">
-          <a href="#">Download data for this page (CSV 10KB)</a>
-        </strong>
-      </div>
+    <aside class="column-one-third download">
+      <i class="icon icon-file-download">
+        <span class="visuallyhidden">Download file</span>
+      </i>
+      <strong class="bold-small">
+        <a href="<%= download_link %>">Download data for this page (CSV)</a>
+      </strong>
     </aside>
   </header>
 

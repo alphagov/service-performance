@@ -3,7 +3,7 @@
   <%= breadcrumbs %>
 
   <div class="grid-row">
-    <div class="column-full">
+    <div class="column-two-thirds">
       <h1 class="heading-xlarge small-top-margin">
         <span class="prefix">Information about</span>
         <%= @service.name %>
@@ -18,6 +18,17 @@
         <dd>30 June 2017</dd>
       </dl>
     </div>
+
+    <aside class="column-one-third download">
+      <i class="icon icon-file-download">
+        <span class="visuallyhidden">Download file</span>
+      </i>
+      <strong class="xbold-small">
+        <a href="<%= download_link %>">Download data for this page (CSV)</a>
+      </strong>
+    </aside>
+  </header>
+
   </div>
 
   <div class="grid-row">
