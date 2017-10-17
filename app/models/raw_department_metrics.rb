@@ -14,7 +14,7 @@ private
     }]
 
     metrics = cls
-      .where('service_code IN (?)', service_ids.keys)
+      .where('department_code = ?', @root.natural_key)
       .where('starts_on >= ? AND ends_on <= ?', time_period.starts_on, time_period.ends_on)
       .order('starts_on')
       .group_by { |m| [m.service_code, m.delivery_organisation_code, m.starts_on] }
