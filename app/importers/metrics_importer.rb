@@ -46,7 +46,7 @@ class MetricsImporter
     service.natural_key ||= SecureRandom.hex(2)
     service.hostname = service.natural_key
     service.delivery_organisation_code = delivery_organisation.natural_key
-    service.department_code = delivery_organisation.department_code
+    # service.department_code = delivery_organisation.department_code
     service.start_page_url = row.service_url
     service.save!
 
@@ -210,24 +210,24 @@ private
       parse_metric(@row[13])
     end
 
-    def calls_received_perform_transaction
-      transactions_received_phone
-    end
-
     def calls_received_get_information
       parse_metric(@row[14])
     end
 
-    def calls_received_chase_progress
+    def calls_received_perform_transaction
       parse_metric(@row[15])
     end
 
-    def calls_received_challenge_a_decision
+    def calls_received_chase_progress
       parse_metric(@row[16])
     end
 
-    def calls_received_other
+    def calls_received_challenge_a_decision
       parse_metric(@row[17])
+    end
+
+    def calls_received_other
+      parse_metric(@row[18])
     end
 
   private
