@@ -15,7 +15,7 @@ main {
   }
 
   aside.download {
-    display: none;
+    white-space: nowrap;
   }
 
   .o-metric-groups {
@@ -109,4 +109,12 @@ main {
       margin-right: 0;
     };
   }
+
+  aside.download {
+    margin-top: 48px;
+    white-space: nowrap;
+  }
 }
+
+
+
