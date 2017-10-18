@@ -9,12 +9,12 @@
 #
 # Usage:
 #
-#     rails runner 'MetricsImporter.import'
+#     rails runner 'OldMetricsImporter.import'
 
 require 'csv'
 require 'pathname'
 
-class MetricsImporter
+class OldMetricsImporter
   NOT_APPLICABLE = :not_applicable
   NOT_PROVIDED = :not_provided
 
@@ -46,41 +46,41 @@ class MetricsImporter
     service.natural_key ||= SecureRandom.hex(2)
     service.hostname = service.natural_key
     service.delivery_organisation_code = delivery_organisation.natural_key
+    # service.department_code = delivery_organisation.department_code
     service.start_page_url = row.service_url
     service.save!
 
-    month_date = row.date
-    msm = MonthlyServiceMetrics.find_or_create_by(
-      service_id: service.id,
-      month: YearMonth.new(month_date.year, month_date.month)
-    )
+    create_metric = ->(klass, quantity, params) {
+      return if quantity == NOT_APPLICABLE
 
-    fields = {
-      online_transactions: row.transactions_received_online,
-      phone_transactions: row.transactions_received_phone,
-      paper_transactions: row.transactions_received_paper,
-      face_to_face_transactions: row.transactions_received_face_to_face,
-      other_transactions: row.transactions_received_other,
-      transactions_with_outcome: row.transactions_with_outcome,
-      transactions_with_intended_outcome: row.transactions_with_intended_outcome,
-      calls_received: row.calls_received,
-      calls_received_get_information: row.calls_received_get_information,
-      calls_received_perform_transaction: row.calls_received_perform_transaction,
-      calls_received_chase_progress: row.calls_received_chase_progress,
-      calls_received_challenge_decision: row.calls_received_challenge_a_decision,
-      calls_received_other: row.calls_received_other
+      klass.create!({
+        department_code: delivery_organisation.department_code,
+        delivery_organisation_code: delivery_organisation.natural_key,
+        service_code: service.natural_key,
+        starts_on: row.date.beginning_of_month,
+        ends_on: row.date.end_of_month,
+        quantity: quantity,
+      }.merge(params))
     }
 
-    fields.each do |k, v|
-      # We always update the applicable field in case this is an update and some
-      # of the values have changed state from applicable to not_applicable
-      applicable_field = "#{k}_applicable"
-      service.send("#{applicable_field}=".to_sym, v != :not_applicable)
-      msm.send("#{k}=".to_sym, v)
-    end
+    create_transactions_received_metric = ->(channel, quantity) { create_metric.(TransactionsReceivedMetric, quantity, channel: channel) }
+    create_transactions_received_metric.('online', row.transactions_received_online)
+    create_transactions_received_metric.('phone', row.transactions_received_phone)
+    create_transactions_received_metric.('paper', row.transactions_received_paper)
+    create_transactions_received_metric.('face_to_face', row.transactions_received_face_to_face)
+    create_transactions_received_metric.('other', row.transactions_received_other)
 
-    msm.save!
-    service.save!
+    create_transactions_with_outcome_metric = ->(outcome, quantity) { create_metric.(TransactionsWithOutcomeMetric, quantity, outcome: outcome) }
+    create_transactions_with_outcome_metric.('any', row.transactions_with_outcome)
+    create_transactions_with_outcome_metric.('intended', row.transactions_with_intended_outcome)
+
+    create_calls_received_metric = ->(item, quantity) { create_metric.(CallsReceivedMetric, quantity, item: item, sampled: false) }
+    create_calls_received_metric.('total', row.calls_received)
+    create_calls_received_metric.('perform-transaction', row.calls_received_perform_transaction)
+    create_calls_received_metric.('get-information', row.calls_received_get_information)
+    create_calls_received_metric.('chase-progress', row.calls_received_chase_progress)
+    create_calls_received_metric.('challenge-a-decision', row.calls_received_challenge_a_decision)
+    create_calls_received_metric.('other', row.calls_received_other)
   end
 
   def rows
