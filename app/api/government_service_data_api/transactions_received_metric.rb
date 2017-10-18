@@ -35,7 +35,7 @@ class GovernmentServiceDataAPI::TransactionsReceivedMetric
 
   def not_provided?
     [
-      @total, @online, @phone, @paper, @face_to_face, @other
+      @online, @phone, @paper, @face_to_face, @other
     ].all? { |item| item == NOT_PROVIDED }
   end
 
