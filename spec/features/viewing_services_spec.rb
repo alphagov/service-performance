@@ -27,7 +27,7 @@ RSpec.feature 'viewing services', type: :feature do
     expect(page).to have_content('Service data for Driver and Vehicle Licensing Agency')
 
     click_on 'Tax your vehicle'
-    expect(page).to have_content('N/A')
+    expect(page).to have_content('Not applicable')
     expect(page).to have_content("doesn't receive calls")
   end
 
