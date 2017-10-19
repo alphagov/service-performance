@@ -20,7 +20,7 @@
           <%= f.metric :other_transactions, applicable: @metrics.service.other_transactions_applicable %>
         <% end %>
 
-        <%= f.fieldset 'Number of transactions ending in an outcome' do %>
+        <%= f.fieldset 'Number of transactions processed' do %>
           <%= f.metric :transactions_with_outcome, applicable: @metrics.service.transactions_with_outcome_applicable %>
         <% end %>
 
