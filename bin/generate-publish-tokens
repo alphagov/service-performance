@@ -1,4 +1,4 @@
-#!./rails runner
+#!rails runner
 #
 # Usage: ./generate-publish-tokens <year> <month>
 #

@@ -18,8 +18,8 @@ RSpec.feature 'submitting monthly service metrics' do
       fill_in 'Other', with: '14,000'
     end
 
-    within_fieldset('Number of transactions ending in an outcome') do
-      fill_in 'Transactions ending in an outcome', with: '13,000'
+    within_fieldset('Number of transactions processed') do
+      fill_in 'Transactions processed', with: '13,000'
     end
 
     within_fieldset('Number of transactions ending in the user’s intended outcome') do

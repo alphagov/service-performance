@@ -7,7 +7,7 @@ en:
         paper_transactions: Paper
         face_to_face_transactions: Face-to-face
         other_transactions: Other
-        transactions_with_outcome: Transactions ending in an outcome
+        transactions_with_outcome: Transactions processed
         transactions_with_intended_outcome: Transactions ending in the user's intended outcome
         calls_received: Calls received
         calls_received_perform_transaction: to perform a transaction
