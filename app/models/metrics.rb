@@ -63,7 +63,7 @@ module Metrics
     TransactionsReceivedFaceToFace = MetricSorter.new(Items::TransactionsReceivedFaceToFace, name: 'transactions received (face to face)', keypath: [:transactions_received, :face_to_face])
     TransactionsReceivedOther = MetricSorter.new(Items::TransactionsReceivedOther, name: 'transactions received (other)', keypath: [:transactions_received, :other])
 
-    TransactionsEndingInOutcome = MetricSorter.new(Items::TransactionsEndingInOutcome, name: 'transactions ending in an outcome', keypath: [:transactions_with_outcome, :count])
+    TransactionsEndingInOutcome = MetricSorter.new(Items::TransactionsEndingInOutcome, name: 'transactions processed', keypath: [:transactions_with_outcome, :count])
     TransactionsEndingInOutcomeWithIntendedOutcome = MetricSorter.new(Items::TransactionsEndingInOutcomeWithIntendedOutcome,
       name: "transactions ending in the user's intended outcome",
       keypath: [:transactions_with_outcome, :count_with_intended_outcome])

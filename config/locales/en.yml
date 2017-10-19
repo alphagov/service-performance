@@ -5,7 +5,7 @@ en:
       description: These numbers tell you how much the service was used, and which channels were used the most.
 
     'transactions-ending-in-outcome':
-      name: transactions ending in an outcome
+      name: transactions processed
       description: These numbers tell you how many transactions the service processed, and how well these transactions met users' needs.
 
     'calls-received':

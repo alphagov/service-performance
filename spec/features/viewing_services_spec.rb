@@ -14,7 +14,7 @@ RSpec.feature 'viewing services', type: :feature do
     expect(page).to have_content('Information about Apply for a provisional driving license')
     expect(page).to have_content('Service data')
     expect(page).to have_content('2m transactions received')
-    expect(page).to have_content('1.74m transactions ending in an outcome')
+    expect(page).to have_content('1.74m transactions processed')
   end
 
   specify 'viewing a service with not-provided data', cassette: 'viewing-a-service' do
@@ -27,7 +27,7 @@ RSpec.feature 'viewing services', type: :feature do
     expect(page).to have_content('Service data for Driver and Vehicle Licensing Agency')
 
     click_on 'Tax your vehicle'
-    expect(page).to have_content('N/A')
+    expect(page).to have_content('Not applicable')
     expect(page).to have_content("doesn't receive calls")
   end
 

@@ -2,12 +2,12 @@
   <ul class="list">
     <%= metric_item(Metrics::Items::TransactionsEndingInOutcome, transactions_with_outcome_metric.count, html: { class: 'm-metric-headline' }) do |item| %>
       <% item.description do %>
-        <strong><%= metric_to_human(transactions_with_outcome_metric.count) %></strong> transactions ending in an outcome
+        <strong><%= metric_to_human(transactions_with_outcome_metric.count) %></strong> transactions processed
       <% end %>
 
       <span class="total">
         <span class="data-item bold-large"><%= metric_to_human(transactions_with_outcome_metric.count) %></span>
-        <span class="data-item bold">transactions ending in an outcome</span>
+        <span class="data-item bold">transactions processed</span>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
           <%= item.incomplete transactions_with_outcome_metric.completeness %>
         <% end %>
