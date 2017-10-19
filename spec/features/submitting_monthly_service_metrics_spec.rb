@@ -18,7 +18,7 @@ RSpec.feature 'submitting monthly service metrics' do
       fill_in 'Other', with: '14,000'
     end
 
-    within_fieldset('Transactions processed') do
+    within_fieldset('Number of transactions processed') do
       fill_in 'Transactions processed', with: '13,000'
     end
 
