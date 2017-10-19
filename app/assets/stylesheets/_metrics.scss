@@ -15,7 +15,7 @@ main {
   }
 
   aside.download {
-    white-space: nowrap;
+    margin-bottom: 20px;
   }
 
   .o-metric-groups {
@@ -24,6 +24,22 @@ main {
       padding: 0;
     }
   }
+}
+
+.notice .icon {
+  position: absolute;
+  left: 0;
+}
+
+.icon-file-download {
+  background-image: url(/assets/icon-file-download-2x.png);
+  background-size: 100%;
+  width: 24px;
+  height: 31px;
+}
+
+.notice strong {
+  margin-left: -25px;
 }
 
 .m-metric ul li {
@@ -112,7 +128,6 @@ main {
 
   aside.download {
     margin-top: 48px;
-    white-space: nowrap;
   }
 }
 
