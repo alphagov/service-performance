@@ -8,7 +8,9 @@
       </h1>
 
       <p>
-       Here's a <a href="../service-manual">reminder of what you need to provide</a>. Your data will be published on <%= @metrics.publish_date.to_formatted_s(:long_day_month_year) %>.
+       Complete all fields for which your service collects data. Any fields you don't complete will appear as 'not provided' when published.</p>
+        
+      <p>Your data will be published on <%= @metrics.publish_date.to_formatted_s(:long_day_month_year) %>. 
       </p>
 
       <%= form_for(@metrics, as: :metrics, url: publish_service_metrics_path(publish_token: params[:publish_token]), method: :patch, builder: FormHelper::MonthlyServiceMetricsFormBuilder) do |f| %>
