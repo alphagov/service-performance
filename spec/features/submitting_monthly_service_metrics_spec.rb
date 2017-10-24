@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.feature 'submitting monthly service metrics' do
   specify 'submitting metrics' do
-    service = FactoryGirl.create(:service)
+    service = FactoryGirl.create(:service, name: 'The Submitting Data Service')
     publish_token = MonthlyServiceMetricsPublishToken.generate(service: service, month: YearMonth.new(2017, 9))
 
     visit publish_service_metrics_path(service_id: service, year: '2017', month: '09', publish_token: publish_token)
 
-    expect(page).to have_text('Provide data for the period 1 to 30 September 2017')
+    expect(page).to have_text('Provide data for The Submitting Data Service – 1 to 30 September 2017')
     expect(page).to have_text('Your data will be published on 1 November 2017.')
 
     within_fieldset('Number of transactions received, split by channel') do
