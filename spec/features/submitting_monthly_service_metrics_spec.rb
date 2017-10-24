@@ -23,7 +23,7 @@ RSpec.feature 'submitting monthly service metrics' do
     end
 
     within_fieldset('Number of transactions ending in the user’s intended outcome') do
-      fill_in "Transactions ending in the user's intended outcome", with: '12,000'
+      fill_in "Transactions processed with the user's intended outcome", with: '12,000'
     end
 
     within_fieldset('Total number of phone calls received') do
