@@ -30,7 +30,7 @@ services = Service.all
 
 services.each do |service|
   token = MonthlyServiceMetricsPublishToken.generate(service: service, month: month)
-  path = service_metrics_path(service_id: service.to_param, year: month.year, month: month.month.to_s.rjust(2, '0'), publish_token: token)
+  path = publish_service_metrics_path(service_id: service.to_param, year: month.year, month: month.month.to_s.rjust(2, '0'), publish_token: token)
   csv << [service.name, month.year, month.month, token, path]
 end
 
