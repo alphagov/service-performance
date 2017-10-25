@@ -1,5 +1,6 @@
 @import "product-page-example/source/stylesheets/core";
 @import "__assets";
+@import "__service_manual";
 
 * { @include box-sizing(border-box); }
 main { display: block; }
