@@ -1,8 +1,8 @@
 # Government Service Data
 
-This is the API for interacting with Government Service Data. This is currently consumed by the the [`gsd-view-data`](https://github.com/alphagov/gsd-view-data) application.
+This is the API for interacting with Service Performance Data. This is currently consumed by the the [`gsd-view-data`](https://github.com/alphagov/gsd-view-data) application.
 
-It also contains the publishing workflow for collecting metrics from Services, and an admin interface to coordinate data collection. 
+It also contains the publishing workflow for collecting metrics from Services, and an admin interface to coordinate data collection.
 
 ## Setup
 
