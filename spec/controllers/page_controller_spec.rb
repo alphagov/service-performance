@@ -6,7 +6,7 @@ RSpec.describe PagesController, type: :controller do
 
     it 'sets the page title to the service page' do
       get :homepage
-      expect(page.title).to match(/\AGovernment Service Data/)
+      expect(page.title).to match(/\AService Performance/)
     end
   end
 end

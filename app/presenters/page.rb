@@ -9,9 +9,9 @@ class Page
 
   def title
     if @title.present?
-      "#{@title} - Government Service Data"
+      "#{@title} - Service Performance"
     else
-      'Government Service Data'
+      'Service Performance'
     end
   end
 
