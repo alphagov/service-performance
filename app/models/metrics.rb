@@ -8,11 +8,27 @@ module Metrics
 
   module Items
     class MetricSortAttribute
+      @attributes = {}
+
+      def self.add(identifier, obj)
+        @attributes[identifier] = obj
+      end
+
+      def self.get(identifier)
+        @attributes.fetch(identifier, nil)
+      end
+
+      def self.all
+        @attributes.values.sort_by(&:index)
+      end
+
       def initialize(identifier, name:, keypath:, index:)
         @identifier = identifier
         @name = name
         @keypath = keypath
         @index = index
+
+        self.class.add(identifier, self)
       end
 
       attr_reader :identifier, :name, :index
@@ -49,15 +65,10 @@ module Metrics
     CallsReceivedOther = MetricSortAttribute.new('calls-received-other', name: 'calls received (other)', keypath: [:calls_received, :other], index: 14)
 
     def get_metric_sort_attribute(identifier)
-      get_all_metric_sort_attributes.detect { |obj| obj.identifier == identifier } || Name
+      MetricSortAttribute.get(identifier) || Name
     end
 
-    def get_all_metric_sort_attributes
-      ObjectSpace.each_object(MetricSortAttribute).sort_by(&:index)
-    end
-
-
-    module_function :get_metric_sort_attribute, :get_all_metric_sort_attributes
+    module_function :get_metric_sort_attribute
   end
 
   module Order
