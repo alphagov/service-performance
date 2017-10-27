@@ -1,12 +1,12 @@
 {
-  "name": "cgsd-view-data",
+  "name": "gsd-view-data",
   "version": "0.0.1",
-  "description": "Frontend application for Cross-Government Service Data",
+  "description": "Frontend application for Service Performance",
   "license": "MIT",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alphagov/cgsd-view-data.git"
+    "url": "git+https://github.com/alphagov/gsd-view-data.git"
   },
   "scripts": {
     "test": "./node_modules/jest/bin/jest.js",
