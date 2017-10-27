@@ -4,13 +4,12 @@ class MetricsPresenter
     @client = client
 
     @group_by = group_by
-    @order_by = order_by || Metrics::OrderBy::Name.identifier
+    @order_by = order_by
+    @selected_metric_sort_attribute = Metrics::Items.get_metric_sort_attribute(order_by)
     @order = order || Metrics::Order::Descending
-
-    @sorter = Metrics::OrderBy.fetch(@order_by)
   end
 
-  attr_reader :group_by, :order_by, :order
+  attr_reader :group_by, :order_by, :selected_metric_sort_attribute, :order
 
   def group_by_screen_name
     case group_by
@@ -36,18 +35,22 @@ class MetricsPresenter
   def metric_groups
     @metric_groups ||= begin
       metric_groups = data.metric_groups
-                        .map { |metric_group| MetricGroupPresenter.new(metric_group, collapsed: collapsed?) }
-                        .sort_by(&sorter)
+                        .map { |metric_group|
+                          v = @selected_metric_sort_attribute.value(metric_group)
+                          MetricGroupPresenter.new(metric_group, collapsed: collapsed?, sort_value: v)
+                        }
+                        .select(&:has_sort_value?)
+                        .sort_by(&:sort_value)
 
       # When sorting by name, we want Descending (the default) to
       # sort A-Z rather than Z-A, but to work as expected for metrics.
-      if order_by == Metrics::OrderBy::Name.identifier
+      if @selected_metric_sort_attribute == Metrics::Items::Name
         metric_groups.reverse! if order == Metrics::Order::Ascending
       elsif order == Metrics::Order::Descending
         metric_groups.reverse!
       end
 
-      if order_by == Metrics::OrderBy::Name.identifier
+      if @selected_metric_sort_attribute == Metrics::Items::Name
         metric_groups.unshift(totals_metric_group_presenter)
       elsif order == Metrics::Order::Ascending
         metric_groups.push(totals_metric_group_presenter)
@@ -60,12 +63,12 @@ class MetricsPresenter
   end
 
   def high_to_low_label
-    return "A to Z" if @order_by == Metrics::OrderBy::Name.identifier
+    return "A to Z" if @selected_metric_sort_attribute == Metrics::Items::Name
     "High to Low"
   end
 
   def low_to_high_label
-    return "Z to A" if @order_by == Metrics::OrderBy::Name.identifier
+    return "Z to A" if @selected_metric_sort_attribute == Metrics::Items::Name
     "Low to High"
   end
 
@@ -100,12 +103,12 @@ class MetricsPresenter
   end
 
   def collapsed?
-    order_by != Metrics::OrderBy::Name.identifier
+    @selected_metric_sort_attribute != Metrics::Items::Name
   end
 
 private
 
-  attr_reader :client, :entity, :sorter
+  attr_reader :client, :entity
 
   def data
     @data ||= client.metrics(entity, group_by: group_by)

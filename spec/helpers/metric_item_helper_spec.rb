@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MetricItemHelper, type: :helper do
   describe '#metric_item' do
-    let(:identifier) { 'transactions-received' }
+    let(:identifier) { Metrics::Items::TransactionsReceived }
 
     it 'wraps the content in an <li>' do
       output = metric_item(identifier, 0) do

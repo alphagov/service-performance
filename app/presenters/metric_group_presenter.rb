@@ -33,9 +33,10 @@ class MetricGroupPresenter
     end
   end
 
-  def initialize(metric_group, collapsed: false)
+  def initialize(metric_group, collapsed: false, sort_value: nil)
     @metric_group = metric_group
     @collapsed = collapsed
+    @sort_value = sort_value
   end
 
   def entity
@@ -48,6 +49,8 @@ class MetricGroupPresenter
 
   delegate :name, to: :entity
   delegate :transactions_received, :transactions_with_outcome, :calls_received, to: :@metric_group
+
+  attr_reader :sort_value
 
   def completeness
     res = @metric_group.metrics.reduce([0, 0]) { |memo, hash|
@@ -78,6 +81,10 @@ class MetricGroupPresenter
     if entity.respond_to?(:services_count)
       entity.services_count
     end
+  end
+
+  def has_sort_value?
+    !@sort_value.in? [:not_provided, :not_applicable]
   end
 
   def collapsed?
