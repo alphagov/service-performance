@@ -49,7 +49,7 @@ module Metrics
     CallsReceivedOther = MetricSortAttribute.new('calls-received-other', name: 'calls received (other)', keypath: [:calls_received, :other], index: 14)
 
     def get_metric_sort_attribute(identifier)
-      get_all_metric_sort_attributes.select { |obj| obj.identifier == identifier }.first || Name
+      get_all_metric_sort_attributes.detect { |obj| obj.identifier == identifier } || Name
     end
 
     def get_all_metric_sort_attributes
