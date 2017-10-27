@@ -2,6 +2,8 @@ class MonthlyServiceMetricsController < ApplicationController
   before_action :load_service, only: %i(edit update)
   before_action :load_metrics, only: %i(edit update)
 
+  skip_authentication
+
   def edit; end
 
   def update
