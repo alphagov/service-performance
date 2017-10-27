@@ -1,6 +1,5 @@
 module MetricItemHelper
   include GovernmentServiceDataAPI::MetricStatus
-  #include Metrics::Items
 
   def metric_item(metric_item, metric_value, sampled: false, html: {})
     return if metric_value == NOT_APPLICABLE
