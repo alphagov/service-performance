@@ -1,6 +1,6 @@
-# Government Service Data – View Data
+# Service Performance – View Data
 
-This is the frontend application for viewing Government Service Data. It communicates with the [`gsd-api`](https://github.com/alphagov/gsd-api-rails) application to retrive the data.
+This is the frontend application for viewing Service Performance data. It communicates with the [`gsd-api`](https://github.com/alphagov/gsd-api) application to retrieve the data.
 
 ## Setup
 
