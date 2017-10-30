@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Publisher, type: :model do
-  describe '#publishing actual data' do
+  describe 'publishing actual data' do
     it 'marks monthly service metrics as published' do
       department = FactoryGirl.create(:department)
       service = FactoryGirl.create(:service, department: department)

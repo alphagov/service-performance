@@ -3,9 +3,10 @@ namespace :publish do
   task all: :environment do
     before = Date.today.beginning_of_month
 
-    metrics = MonthlyServiceMetrics.where("month < ? and published=false", [before])
-    metrics.each do |metric|
-      Publisher.publish(metric)
+    ActiveRecord::Base.transaction do
+      MonthlyServiceMetrics.unpublished.where("month < ?", [before]).find_each do |monthly_metrics|
+        Publisher.publish(monthly_metrics)
+      end
     end
   end
 end

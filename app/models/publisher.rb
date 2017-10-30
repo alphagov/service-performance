@@ -1,20 +1,32 @@
 class Publisher
   def self.publish(monthly_metrics)
-    new.publish(monthly_metrics)
+    new(monthly_metrics).publish
   end
 
-  def publish(monthly_metrics)
-    service = Service.find(monthly_metrics.service_id)
-    beginning_of_month = monthly_metrics.month.date.beginning_of_month
-    end_of_month = monthly_metrics.month.date.end_of_month
-
-    publish_calls(service, monthly_metrics, beginning_of_month, end_of_month)
-    publish_transactions_received(service, monthly_metrics, beginning_of_month, end_of_month)
-    publish_transactions_with_outcome(service, monthly_metrics, beginning_of_month, end_of_month)
-
-    monthly_metrics.published = true
-    monthly_metrics.save!
+  def initialize(monthly_metrics)
+    @monthly_metrics = monthly_metrics
+    @service = monthly_metrics.service
+    @delivery_organisation = service.delivery_organisation
+    @department = service.department
   end
+
+  attr_reader :monthly_metrics, :service, :delivery_organisation, :department
+
+  def publish
+    ActiveRecord::Base.transaction do
+      beginning_of_month = monthly_metrics.month.date.beginning_of_month
+      end_of_month = monthly_metrics.month.date.end_of_month
+
+      publish_calls(service, monthly_metrics, beginning_of_month, end_of_month)
+      publish_transactions_received(service, monthly_metrics, beginning_of_month, end_of_month)
+      publish_transactions_with_outcome(service, monthly_metrics, beginning_of_month, end_of_month)
+
+      monthly_metrics.published = true
+      monthly_metrics.save!
+    end
+  end
+
+private
 
   def publish_transactions_received(service, monthly_metrics, beginning_of_month, end_of_month)
     mapping = delete_not_applicable_items(service,
@@ -24,16 +36,13 @@ class Publisher
       "face-to-face" => :face_to_face_transactions,
       "other" => :other_transactions)
 
-    delivery_org = service.delivery_organisation.natural_key
-    department = service.delivery_organisation.department.natural_key
-
     # Delete any existing values
     TransactionsReceivedMetric.where(service_code: service.natural_key, starts_on: beginning_of_month).destroy_all
 
     mapping.each do |item_name, metric|
       TransactionsReceivedMetric.create!(
-        department_code: department,
-        delivery_organisation_code: delivery_org,
+        department_code: department.natural_key,
+        delivery_organisation_code: delivery_organisation.natural_key,
         service_code: service.natural_key,
         starts_on: beginning_of_month,
         ends_on: end_of_month,
@@ -48,16 +57,13 @@ class Publisher
       "any" => :transactions_with_outcome,
       "intended" => :transactions_with_intended_outcome)
 
-    delivery_org = service.delivery_organisation.natural_key
-    department = service.delivery_organisation.department.natural_key
-
     # Delete any existing values
     TransactionsWithOutcomeMetric.where(service_code: service.natural_key, starts_on: beginning_of_month).destroy_all
 
     mapping.each do |item_name, metric|
       TransactionsWithOutcomeMetric.create!(
-        department_code: department,
-        delivery_organisation_code: delivery_org,
+        department_code: department.natural_key,
+        delivery_organisation_code: delivery_organisation.natural_key,
         service_code: service.natural_key,
         starts_on: beginning_of_month,
         ends_on: end_of_month,
@@ -76,16 +82,13 @@ class Publisher
       "perform-transaction" => :calls_received_perform_transaction,
       "other" => :calls_received_other)
 
-    delivery_org = service.delivery_organisation.natural_key
-    department = service.delivery_organisation.department.natural_key
-
     # Delete any existing values
     CallsReceivedMetric.where(service_code: service.natural_key, starts_on: beginning_of_month).destroy_all
 
     calls_mapping.each do |item_name, metric|
       CallsReceivedMetric.create!(
-        department_code: department,
-        delivery_organisation_code: delivery_org,
+        department_code: department.natural_key,
+        delivery_organisation_code: delivery_organisation.natural_key,
         service_code: service.natural_key,
         starts_on: beginning_of_month,
         ends_on: end_of_month,

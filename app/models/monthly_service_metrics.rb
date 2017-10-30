@@ -9,6 +9,8 @@ class MonthlyServiceMetrics < ApplicationRecord
 
   validates_uniqueness_of :month, scope: :service, strict: true
 
+  scope :unpublished, -> { where(published: false) }
+
   def publish_date
     if month
       month.date + 2.months
