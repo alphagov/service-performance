@@ -25,7 +25,7 @@
     <header class="header<% unless page.display_header_border %> header--without-border<% end %>">
       <div class="header__container">
         <div class="header__brand">
-          <a href="/">
+          <span>
             <span class="govuk-logo">
               <%= image_tag 'govuk_template/source/assets/images/gov.uk_logotype_crown_invert_trans.png', class: 'govuk-logo__printable-crown', height: 32, width: 36 %>
               GOV.UK
@@ -34,14 +34,14 @@
               Service Performance
               <span class="phase-banner">Beta</span>
             </span>
-          </a>
+          </span>
         </div>
 
         <div data-module="navigation">
           <button type="button" class="header__navigation-toggle js-nav-toggle" aria-controls="navigation" aria-label="Show or hide top level navigation">Menu</button>
 
           <nav id="navigation" class="header__navigation js-nav" aria-label="Top Level Navigation" aria-hidden="true">
-            <ul>
+            <ul style="display:none;">
               <li<% if publish_root_path == page.path %> class="active"<% end %>>
                 <a href="<%= publish_root_path %>">
                   Publish data
