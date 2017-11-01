@@ -1,7 +1,13 @@
 class CallsReceivedMetric
+  alias :read_attribute_for_serialization :send
+
   def initialize(metrics)
     @metrics = metrics
     @service = metrics.service
+  end
+
+  def applicable?
+    [total, get_information, chase_progress, challenge_a_decision, perform_transaction, other].any? { |value| value != Metric::NOT_APPLICABLE }
   end
 
   def total
@@ -77,11 +83,15 @@ class CallsReceivedMetric
   end
 
   def sampled
-    raise NotImplementedError
+    false
   end
 
   def sampled_total
-    raise NotImplementedError
+    total
+  end
+
+  def completeness
+    Completeness.new
   end
 
 private

@@ -1,7 +1,17 @@
 class TransactionsReceivedMetric
+  alias :read_attribute_for_serialization :send
+
   def initialize(metrics)
     @metrics = metrics
     @service = metrics.service
+  end
+
+  def applicable?
+    [online, phone, paper, face_to_face, other].any? { |value| value != Metric::NOT_APPLICABLE }
+  end
+
+  def total
+    0
   end
 
   def online
@@ -62,6 +72,10 @@ class TransactionsReceivedMetric
         Metric::NOT_APPLICABLE
       end
     end
+  end
+
+  def completeness
+    Completeness.new
   end
 
 private

@@ -1,7 +1,13 @@
 class TransactionsWithOutcomeMetric
+  alias :read_attribute_for_serialization :send
+
   def initialize(metrics)
     @metrics = metrics
     @service = metrics.service
+  end
+
+  def applicable?
+    [total, with_intended_outcome].any? { |value| value != Metric::NOT_APPLICABLE }
   end
 
   def total
@@ -26,6 +32,10 @@ class TransactionsWithOutcomeMetric
         Metric::NOT_APPLICABLE
       end
     end
+  end
+
+  def completeness
+    Completeness.new
   end
 
 private
