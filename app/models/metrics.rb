@@ -37,9 +37,9 @@ class Metrics
     metrics = entity.metrics #.between(time_period.start_month, time_period.end_month) # .published
 
     [
-      metrics.map {|m| TransactionsReceivedMetric.new(m)}.first,
-      metrics.map {|m| TransactionsWithOutcomeMetric.new(m)}.first,
-      metrics.map {|m| CallsReceivedMetric.new(m)}.first,
+      metrics.map(&TransactionsReceivedMetric).first,
+      metrics.map(&TransactionsWithOutcomeMetric).first,
+      metrics.map(&CallsReceivedMetric).first,
     ].select(&:applicable?)
   end
 

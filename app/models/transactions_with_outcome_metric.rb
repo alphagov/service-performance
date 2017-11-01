@@ -1,6 +1,10 @@
 class TransactionsWithOutcomeMetric
   alias :read_attribute_for_serialization :send
 
+  def self.to_proc
+    ->(metrics) { new(metrics) }
+  end
+
   def initialize(metrics)
     @metrics = metrics
     @service = metrics.service
