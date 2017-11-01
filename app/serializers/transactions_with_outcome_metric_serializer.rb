@@ -1,4 +1,4 @@
-class AggregatedTransactionsWithOutcomeMetricSerializer < ActiveModel::Serializer
+class TransactionsWithOutcomeMetricSerializer < ActiveModel::Serializer
   extend MetricSerializer
 
   attributes :type, :completeness
