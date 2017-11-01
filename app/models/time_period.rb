@@ -19,4 +19,12 @@ class TimePeriod
   end
 
   attr_reader :starts_on, :ends_on
+
+  def start_month
+    YearMonth.new(starts_on.year, starts_on.month)
+  end
+
+  def end_month
+    YearMonth.new(starts_on.year, ends_on.month)
+  end
 end

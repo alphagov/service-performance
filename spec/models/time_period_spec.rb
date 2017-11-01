@@ -16,4 +16,18 @@ RSpec.describe TimePeriod, type: :model do
       expect(period.ends_on).to eq(Date.parse('2017-03-31'))
     end
   end
+
+  describe '#start_month' do
+    it 'returns a YearMonth representing the start date' do
+      period = TimePeriod.new(Date.new(2017, 10, 1), Date.new(2017, 11, 30))
+      expect(period.start_month).to eq(YearMonth.new(2017, 10))
+    end
+  end
+
+  describe '#end_month' do
+    it 'returns a YearMonth representing the end date' do
+      period = TimePeriod.new(Date.new(2017, 10, 1), Date.new(2017, 11, 30))
+      expect(period.end_month).to eq(YearMonth.new(2017, 11))
+    end
+  end
 end

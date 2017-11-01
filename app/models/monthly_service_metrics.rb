@@ -11,6 +11,11 @@ class MonthlyServiceMetrics < ApplicationRecord
 
   scope :unpublished, -> { where(published: false) }
 
+  def self.between(start_month, end_month)
+    serializer = YearMonth::Serializer.new
+    where('month >= :start AND month <= :end', start: serializer.serialize(start_month), end: serializer.serialize(end_month))
+  end
+
   def publish_date
     if month
       month.date + 2.months
