@@ -1,12 +1,70 @@
-class TransactionsReceivedMetric < ApplicationRecord
-  belongs_to :department, primary_key: :natural_key, foreign_key: :department_code, optional: true
-  belongs_to :delivery_organisation, primary_key: :natural_key, foreign_key: :delivery_organisation_code, optional: true
-  belongs_to :service, primary_key: :natural_key, foreign_key: :service_code, optional: true
+class TransactionsReceivedMetric
+  def initialize(metrics)
+    @metrics = metrics
+    @service = metrics.service
+  end
 
-  validates_presence_of :department, strict: true
-  validates_presence_of :service, strict: true
-  validates_presence_of :starts_on, strict: true
-  validates_presence_of :ends_on, strict: true
+  def online
+    if metrics.online_transactions
+      metrics.online_transactions
+    else
+      if service.online_transactions_applicable?
+        Metric::NOT_PROVIDED
+      else
+        Metric::NOT_APPLICABLE
+      end
+    end
+  end
 
-  validates_presence_of :channel, strict: true
+  def phone
+    if metrics.phone_transactions
+      metrics.phone_transactions
+    else
+      if service.phone_transactions_applicable?
+        Metric::NOT_PROVIDED
+      else
+        Metric::NOT_APPLICABLE
+      end
+    end
+  end
+
+  def paper
+    if metrics.paper_transactions
+      metrics.paper_transactions
+    else
+      if service.paper_transactions_applicable?
+        Metric::NOT_PROVIDED
+      else
+        Metric::NOT_APPLICABLE
+      end
+    end
+  end
+
+  def face_to_face
+    if metrics.face_to_face_transactions
+      metrics.face_to_face_transactions
+    else
+      if service.face_to_face_transactions_applicable?
+        Metric::NOT_PROVIDED
+      else
+        Metric::NOT_APPLICABLE
+      end
+    end
+  end
+
+  def other
+    if metrics.other_transactions
+      metrics.other_transactions
+    else
+      if service.other_transactions_applicable?
+        Metric::NOT_PROVIDED
+      else
+        Metric::NOT_APPLICABLE
+      end
+    end
+  end
+
+private
+
+  attr_reader :metrics, :service
 end

@@ -1,34 +1,59 @@
 require 'rails_helper'
 
 RSpec.describe TransactionsReceivedMetric, type: :model do
-  describe "validations" do
-    subject(:transactions_received_metric) { FactoryGirl.build(:transactions_received_metric) }
+  let(:monthly_metrics) { FactoryGirl.build(:monthly_service_metrics, service: service) }
+  subject(:metric) { TransactionsReceivedMetric.new(monthly_metrics) }
 
-    it { should be_valid }
+  context 'with a service, not configured as "Not Applicable"' do
+    let(:service) { FactoryGirl.build(:service, online_transactions_applicable: true, phone_transactions_applicable: true, paper_transactions_applicable: true, face_to_face_transactions_applicable: true, other_transactions_applicable: true) }
 
-    it 'requires a start date' do
-      transactions_received_metric.starts_on = nil
-      expect(transactions_received_metric).to fail_strict_validations
+    it 'returns a value if there is one' do
+      monthly_metrics.online_transactions = 100
+      monthly_metrics.phone_transactions = 200
+      monthly_metrics.paper_transactions = 300
+      monthly_metrics.face_to_face_transactions = 400
+      monthly_metrics.other_transactions = 500
+
+      expect(metric.online).to eq(100)
+      expect(metric.phone).to eq(200)
+      expect(metric.paper).to eq(300)
+      expect(metric.face_to_face).to eq(400)
+      expect(metric.other).to eq(500)
     end
 
-    it 'requires an end date' do
-      transactions_received_metric.ends_on = nil
-      expect(transactions_received_metric).to fail_strict_validations
+    it 'returns not applicable, if no value is provided' do
+      expect(metric.online).to eq(Metric::NOT_PROVIDED)
+      expect(metric.phone).to eq(Metric::NOT_PROVIDED)
+      expect(metric.paper).to eq(Metric::NOT_PROVIDED)
+      expect(metric.face_to_face).to eq(Metric::NOT_PROVIDED)
+      expect(metric.other).to eq(Metric::NOT_PROVIDED)
+    end
+  end
+
+
+  context 'with a service, configured as "Not Applicable"' do
+    let(:service) { FactoryGirl.build(:service, online_transactions_applicable: false, phone_transactions_applicable: false, paper_transactions_applicable: false, face_to_face_transactions_applicable: false, other_transactions_applicable: false) }
+
+    it 'returns a value if there is one' do
+      monthly_metrics.online_transactions = 100
+      monthly_metrics.phone_transactions = 200
+      monthly_metrics.paper_transactions = 300
+      monthly_metrics.face_to_face_transactions = 400
+      monthly_metrics.other_transactions = 500
+
+      expect(metric.online).to eq(100)
+      expect(metric.phone).to eq(200)
+      expect(metric.paper).to eq(300)
+      expect(metric.face_to_face).to eq(400)
+      expect(metric.other).to eq(500)
     end
 
-    it 'requires a channel' do
-      transactions_received_metric.channel = nil
-      expect(transactions_received_metric).to fail_strict_validations
-    end
-
-    it "references a valid department" do
-      transactions_received_metric.department = nil
-      expect(transactions_received_metric).to fail_strict_validations
-    end
-
-    it "references a service" do
-      transactions_received_metric.service = nil
-      expect(transactions_received_metric).to fail_strict_validations
+    it 'returns not applicable, if no value is provided' do
+      expect(metric.online).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.phone).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.paper).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.face_to_face).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.other).to eq(Metric::NOT_APPLICABLE)
     end
   end
 end

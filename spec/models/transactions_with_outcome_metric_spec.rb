@@ -1,34 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe TransactionsWithOutcomeMetric, type: :model do
-  describe "validations" do
-    subject(:transactions_with_outcome_metric) { FactoryGirl.build(:transactions_with_outcome_metric) }
+  let(:monthly_metrics) { FactoryGirl.build(:monthly_service_metrics, service: service) }
+  subject(:metric) { TransactionsWithOutcomeMetric.new(monthly_metrics) }
 
-    it { should be_valid }
+  context 'with a service, not configured as "Not Applicable"' do
+    let(:service) { FactoryGirl.build(:service, transactions_with_outcome_applicable: true, transactions_with_intended_outcome_applicable: true) }
 
-    it 'requires a start date' do
-      transactions_with_outcome_metric.starts_on = nil
-      expect(transactions_with_outcome_metric).to fail_strict_validations
+    it 'returns a value if there is one' do
+      monthly_metrics.transactions_with_outcome = 200
+      monthly_metrics.transactions_with_intended_outcome = 150
+
+      expect(metric.total).to eq(200)
+      expect(metric.with_intended_outcome).to eq(150)
     end
 
-    it 'requires an end date' do
-      transactions_with_outcome_metric.ends_on = nil
-      expect(transactions_with_outcome_metric).to fail_strict_validations
+    it 'returns not applicable, if no value is provided' do
+      expect(metric.total).to eq(Metric::NOT_PROVIDED)
+      expect(metric.with_intended_outcome).to eq(Metric::NOT_PROVIDED)
+    end
+  end
+
+
+  context 'with a service, configured as "Not Applicable"' do
+    let(:service) { FactoryGirl.build(:service, transactions_with_outcome_applicable: false, transactions_with_intended_outcome_applicable: false) }
+
+    it 'returns a value if there is one' do
+      monthly_metrics.transactions_with_outcome = 200
+      monthly_metrics.transactions_with_intended_outcome = 150
+
+      expect(metric.total).to eq(200)
+      expect(metric.with_intended_outcome).to eq(150)
     end
 
-    it 'allows a missing quantity' do
-      transactions_with_outcome_metric.quantity = nil
-      expect(transactions_with_outcome_metric).to pass_strict_validations
-    end
-
-    it "references a valid department" do
-      transactions_with_outcome_metric.department = nil
-      expect(transactions_with_outcome_metric).to fail_strict_validations
-    end
-
-    it "references a service" do
-      transactions_with_outcome_metric.service = nil
-      expect(transactions_with_outcome_metric).to fail_strict_validations
+    it 'returns not applicable, if no value is provided' do
+      expect(metric.total).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.with_intended_outcome).to eq(Metric::NOT_APPLICABLE)
     end
   end
 end

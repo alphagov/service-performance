@@ -1,34 +1,65 @@
 require 'rails_helper'
 
 RSpec.describe CallsReceivedMetric, type: :model do
-  describe "validations" do
-    subject(:calls_received_metric) { FactoryGirl.build(:calls_received_metric) }
+  let(:monthly_metrics) { FactoryGirl.build(:monthly_service_metrics, service: service) }
+  subject(:metric) { CallsReceivedMetric.new(monthly_metrics) }
 
-    it { should be_valid }
+  context 'with a service, not configured as "Not Applicable"' do
+    let(:service) { FactoryGirl.build(:service, calls_received_applicable: true, calls_received_get_information_applicable: true, calls_received_chase_progress_applicable: true, calls_received_challenge_decision_applicable: true, calls_received_other_applicable: true, calls_received_perform_transaction_applicable: true, ) }
 
-    it 'requires a start date' do
-      calls_received_metric.starts_on = nil
-      expect(calls_received_metric).to fail_strict_validations
+    it 'returns a value if there is one' do
+      monthly_metrics.calls_received = 100
+      monthly_metrics.calls_received_get_information = 200
+      monthly_metrics.calls_received_chase_progress = 300
+      monthly_metrics.calls_received_challenge_decision = 400
+      monthly_metrics.calls_received_perform_transaction = 500
+      monthly_metrics.calls_received_other = 600
+
+      expect(metric.total).to eq(100)
+      expect(metric.get_information).to eq(200)
+      expect(metric.chase_progress).to eq(300)
+      expect(metric.challenge_a_decision).to eq(400)
+      expect(metric.perform_transaction).to eq(500)
+      expect(metric.other).to eq(600)
     end
 
-    it 'requires an end date' do
-      calls_received_metric.ends_on = nil
-      expect(calls_received_metric).to fail_strict_validations
+    it 'returns not applicable, if no value is provided' do
+      expect(metric.total).to eq(Metric::NOT_PROVIDED)
+      expect(metric.get_information).to eq(Metric::NOT_PROVIDED)
+      expect(metric.chase_progress).to eq(Metric::NOT_PROVIDED)
+      expect(metric.challenge_a_decision).to eq(Metric::NOT_PROVIDED)
+      expect(metric.perform_transaction).to eq(Metric::NOT_PROVIDED)
+      expect(metric.other).to eq(Metric::NOT_PROVIDED)
+    end
+  end
+
+
+  context 'with a service, configured as "Not Applicable"' do
+    let(:service) { FactoryGirl.build(:service, calls_received_applicable: false, calls_received_get_information_applicable: false, calls_received_chase_progress_applicable: false, calls_received_challenge_decision_applicable: false, calls_received_other_applicable: false, calls_received_perform_transaction_applicable: false, ) }
+
+    it 'returns a value if there is one' do
+      monthly_metrics.calls_received = 100
+      monthly_metrics.calls_received_get_information = 200
+      monthly_metrics.calls_received_chase_progress = 300
+      monthly_metrics.calls_received_challenge_decision = 400
+      monthly_metrics.calls_received_perform_transaction = 500
+      monthly_metrics.calls_received_other = 600
+
+      expect(metric.total).to eq(100)
+      expect(metric.get_information).to eq(200)
+      expect(metric.chase_progress).to eq(300)
+      expect(metric.challenge_a_decision).to eq(400)
+      expect(metric.perform_transaction).to eq(500)
+      expect(metric.other).to eq(600)
     end
 
-    it 'indicates whether it was sampled' do
-      calls_received_metric.sampled = nil
-      expect(calls_received_metric).to fail_strict_validations
-    end
-
-    it "references a valid department" do
-      calls_received_metric.department = nil
-      expect(calls_received_metric).to fail_strict_validations
-    end
-
-    it "references a service" do
-      calls_received_metric.service = nil
-      expect(calls_received_metric).to fail_strict_validations
+    it 'returns not applicable, if no value is provided' do
+      expect(metric.total).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.get_information).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.chase_progress).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.challenge_a_decision).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.perform_transaction).to eq(Metric::NOT_APPLICABLE)
+      expect(metric.other).to eq(Metric::NOT_APPLICABLE)
     end
   end
 end
