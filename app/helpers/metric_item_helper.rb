@@ -17,7 +17,8 @@ module MetricItemHelper
 
     if guidance?(metric_item)
       content += content_tag(:span, class: 'm-metric-guidance-toggle') do
-        content_tag(:a, '+', href: '#', class: 'a-metric-guidance-expand', data: { behaviour: 'a-metric-guidance-toggle' })
+        id_text = "guidance-#{metric_item.identifier}"
+        content_tag(:a, '+', id: id_text, href: '#', class: 'a-metric-guidance-expand', data: { behaviour: 'a-metric-guidance-toggle' })
       end
     end
 
@@ -26,7 +27,7 @@ module MetricItemHelper
   end
 
   def guidance?(metric_item)
-    metric_item.in? %w[Metrics::Items::CallsReceived Metrics::Items::TransactionsEndingInOutcome Metrics::Items::TransactionsReceived]
+    metric_item.identifier.in? %w[transactions-received transactions-ending-in-outcome calls-received]
   end
 
 
