@@ -63,6 +63,16 @@ RSpec.feature 'viewing metrics', type: :feature do
       select 'transactions received', from: 'Sort by'
       expect(page).to have_selector('.m-metric-group[data-behaviour~="m-metric-group__collapsible"]', count: 6)
     end
+
+    it 'gov totals show how many services', cassette: 'viewing-metrics-collapsing-metric-groups', js: true do
+      visit government_metrics_path(group_by: Metrics::Group::Department, order_by: "name")
+      expect(page).to have_content('based on 31 services', count: 1)
+    end
+
+    it 'collapsed totals show how many services', cassette: 'viewing-metrics-collapsing-metric-groups', js: true do
+      visit government_metrics_path(group_by: Metrics::Group::Department, order_by: "transactions-received")
+      expect(page).to have_content('based on 31 services', count: 1)
+    end
   end
 
   private

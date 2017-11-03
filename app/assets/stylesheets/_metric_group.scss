@@ -119,6 +119,11 @@
   border: 1px solid #BFC1C3;
   margin-top: -1px;
   margin-bottom: 0;
+  .total-heading:after {
+    content: attr(subheading);
+    padding-left: 4px;
+    font-weight: normal;
+  }
 }
 
 .m-metric-group-close-toggle {
