@@ -94,5 +94,17 @@
         <% end %>
       </span>
     <% end %>
+
+    <%= metric_item(Metrics::Items::CallsReceivedUnspecified, calls_received_metric.unspecified, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.unspecified) %></strong> other calls received (<%= metric_to_percentage(calls_received_metric.unspecified_percentage) %>)
+      <% end %>
+
+      <span class="metric-name">Unspecified</span>
+      <span class="metric-value">
+        <%= item.value %>
+        <%= item.percentage calls_received_metric.unspecified_percentage %>
+      </span>
+    <% end %>
   </ul>
 </div>

@@ -47,6 +47,26 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
     ].all? { |item| item == NOT_PROVIDED }
   end
 
+  def unspecified
+    return NOT_APPLICABLE if not_applicable? || not_provided?
+
+    value = @total - [@get_information,
+                      @chase_progress,
+                      @challenge_a_decision,
+                      @other,
+                      @perform_transaction].select { |v|
+                        !v.in? [NOT_APPLICABLE, NOT_PROVIDED]
+                      }.sum
+
+    return NOT_APPLICABLE if value <= 0
+    value
+  end
+
+  def unspecified_percentage
+    return 0 if unspecified.in? [NOT_PROVIDED, NOT_APPLICABLE]
+    (unspecified.to_f / sampled_total) * 100
+  end
+
   def perform_transaction_percentage
     return @perform_transaction if @perform_transaction.in? [NOT_PROVIDED, NOT_APPLICABLE]
     (@perform_transaction.to_f / sampled_total) * 100
