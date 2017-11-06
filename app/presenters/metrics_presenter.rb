@@ -97,7 +97,7 @@ class MetricsPresenter
   end
 
   def visible_services_count
-    metric_groups.drop(1).sum { |m|
+    metric_groups.without(totals_metric_group_presenter).sum { |m|
       if m.entity.respond_to? :services_count
         m.entity.services_count
       else
