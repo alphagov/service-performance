@@ -12,7 +12,6 @@
     $(this).each(function (idx, element) {
       var metricItem = $(element).find('[data-metric-item-identifier="' + selectedMetricItem + '"]')
       var metricItemDescription = metricItem.data('metric-item-description')
-
       var metricGroup = $(element)
       var collapsedHeaderContainer = $('<div />', { 'class': 'm-metric-group-header' })
       var metricItemDescriptionContainer = $('<div />', { 'class': 'm-metric-item-description' })
