@@ -25,6 +25,6 @@ class TimePeriod
   end
 
   def end_month
-    YearMonth.new(starts_on.year, ends_on.month)
+    YearMonth.new(ends_on.year, ends_on.month)
   end
 end
