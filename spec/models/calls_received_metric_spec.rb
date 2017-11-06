@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CallsReceivedMetric, type: :model do
   let(:monthly_metrics) { FactoryGirl.build(:monthly_service_metrics, service: service) }
-  subject(:metric) { CallsReceivedMetric.new(monthly_metrics) }
+  subject(:metric) { CallsReceivedMetric.from_metrics(monthly_metrics) }
 
   pending '#completeness'
   pending '#sampled'
@@ -92,6 +92,25 @@ RSpec.describe CallsReceivedMetric, type: :model do
       it do
         expect(metric).to_not be_applicable
       end
+    end
+  end
+
+  describe 'addition' do
+    it 'combines the results of two TransactionsReceivedMetrics' do
+      month1 = FactoryGirl.build(:monthly_service_metrics, calls_received: 600, calls_received_get_information: 500, calls_received_chase_progress: 400, calls_received_challenge_decision: 300, calls_received_other: 200, calls_received_perform_transaction: 100)
+      month2 = FactoryGirl.build(:monthly_service_metrics, calls_received:  50, calls_received_get_information:  50, calls_received_chase_progress:  50, calls_received_challenge_decision:  50, calls_received_other:  50, calls_received_perform_transaction:  50)
+
+      metrics1 = CallsReceivedMetric.from_metrics(month1)
+      metrics2 = CallsReceivedMetric.from_metrics(month2)
+
+      result = metrics1 + metrics2
+
+      expect(result.total).to eq(650)
+      expect(result.get_information).to eq(550)
+      expect(result.chase_progress).to eq(450)
+      expect(result.challenge_a_decision).to eq(350)
+      expect(result.perform_transaction).to eq(150)
+      expect(result.other).to eq(250)
     end
   end
 end

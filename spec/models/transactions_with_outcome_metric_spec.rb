@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TransactionsWithOutcomeMetric, type: :model do
   let(:monthly_metrics) { FactoryGirl.build(:monthly_service_metrics, service: service) }
-  subject(:metric) { TransactionsWithOutcomeMetric.new(monthly_metrics) }
+  subject(:metric) { TransactionsWithOutcomeMetric.from_metrics(monthly_metrics) }
 
   pending '#completeness'
 
@@ -67,6 +67,21 @@ RSpec.describe TransactionsWithOutcomeMetric, type: :model do
       it do
         expect(metric).to_not be_applicable
       end
+    end
+  end
+
+  describe 'addition' do
+    it 'combines the results of two TransactionsReceivedMetrics' do
+      month1 = FactoryGirl.build(:monthly_service_metrics, transactions_with_outcome: 100, transactions_with_intended_outcome: 200)
+      month2 = FactoryGirl.build(:monthly_service_metrics, transactions_with_outcome:  50, transactions_with_intended_outcome:  50)
+
+      metrics1 = TransactionsWithOutcomeMetric.from_metrics(month1)
+      metrics2 = TransactionsWithOutcomeMetric.from_metrics(month2)
+
+      result = metrics1 + metrics2
+
+      expect(result.total).to eq(150)
+      expect(result.with_intended_outcome).to eq(250)
     end
   end
 end
