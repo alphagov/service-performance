@@ -84,13 +84,13 @@ RSpec.feature 'viewing metrics', type: :feature do
       visit government_metrics_path(group_by: Metrics::Group::Department)
 
       expect(metric_groups(:name, :calls_received_unspecified)).to eq([
-          ['Total for UK government', nil],
-          ['Department for Business, Energy & Industrial Strategy', nil],
+          ['Total for UK government', '995190'],
+          ['Department for Business, Energy & Industrial Strategy', '171'],
+          ["Department for Communities and Local Government", nil],
           ['Department for Education', nil],
-          ['Department for Environment Food & Rural Affairs', nil],
-          ['Department for Transport', nil],
-          ['Department of Health', nil],
-          ['HM Revenue & Customs', nil],
+          ['Department for Environment, Food & Rural Affairs', '213775'],
+          ['Department for Transport', '313749'],
+          ['Department for Work and Pensions', '467495'],
           ['Ministry of Justice', nil],
       ])
     end
