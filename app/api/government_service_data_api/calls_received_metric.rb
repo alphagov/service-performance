@@ -48,8 +48,6 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
   end
 
   def unspecified
-    return NOT_APPLICABLE if not_applicable? || not_provided?
-
     value = @total - [@get_information,
                       @chase_progress,
                       @challenge_a_decision,
