@@ -79,6 +79,23 @@ RSpec.feature 'viewing metrics', type: :feature do
     end
   end
 
+  context 'sometimes we have unspecified calls received', cassette: 'viewing-metrics-sorting-metrics' do
+    it 'sometimes has unspecified values, sometimes not' do
+      visit government_metrics_path(group_by: Metrics::Group::Department)
+
+      expect(metric_groups(:name, :calls_received_unspecified)).to eq([
+          ['Total for UK government', '995190'],
+          ['Department for Business, Energy & Industrial Strategy', '171'],
+          ["Department for Communities and Local Government", nil],
+          ['Department for Education', nil],
+          ['Department for Environment, Food & Rural Affairs', '213775'],
+          ['Department for Transport', '313749'],
+          ['Department for Work and Pensions', '467495'],
+          ['Ministry of Justice', nil],
+      ])
+    end
+  end
+
   private
 
   def metric_groups(*attrs)
@@ -103,6 +120,14 @@ RSpec.feature 'viewing metrics', type: :feature do
     def transactions_received_total
       begin
         element.find('.m-metric__transactions-received .m-metric-headline data', visible: false)[:value]
+      rescue
+        nil
+      end
+    end
+
+    def calls_received_unspecified
+      begin
+        element.find('li[data-metric-item-identifier="calls-received-unspecified"] .metric-value-count data')[:value]
       rescue
         nil
       end

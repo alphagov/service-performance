@@ -63,6 +63,7 @@ module Metrics
     CallsReceivedChaseProgress = MetricSortAttribute.new('calls-received-chase-progress', name: 'calls received (chase progress)', keypath: [:calls_received, :chase_progress], index: 12)
     CallsReceivedChallengeADecision = MetricSortAttribute.new('calls-received-challenge-a-decision', name: 'calls received (challenge a decision)', keypath: [:calls_received, :challenge_a_decision], index: 13)
     CallsReceivedOther = MetricSortAttribute.new('calls-received-other', name: 'calls received (other)', keypath: [:calls_received, :other], index: 14)
+    CallsReceivedUnspecified = MetricSortAttribute.new('calls-received-unspecified', name: 'calls received (unspecified)', keypath: [:calls_received, :unspecified], index: 15)
 
     def get_metric_sort_attribute(identifier)
       MetricSortAttribute.get(identifier) || Name
