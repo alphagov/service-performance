@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Metric, type: :model do
-
   class CustomMetric < Metric
     define do
       item :channel_a, from: ->(metric) { metric.channel_a }, applicable: ->(metric) { metric.channel_a_applicable }

@@ -4,14 +4,14 @@ RSpec.describe MonthlyServiceMetrics, type: :model do
   describe '.between' do
     it 'returns the metrics between the start and end months, inclusive' do
       service = FactoryGirl.create(:service)
-      metrics1 = FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 4))
-      metrics2 = FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 5))
-      metrics3 = FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 6))
-      metrics4 = FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 7))
+      FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 4))
+      metrics1 = FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 5))
+      metrics2 = FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 6))
+      FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 7))
 
       may = YearMonth.new(2017, 5)
       june = YearMonth.new(2017, 6)
-      expect(MonthlyServiceMetrics.between(may, june)).to match_array([metrics2, metrics3])
+      expect(MonthlyServiceMetrics.between(may, june)).to match_array([metrics1, metrics2])
     end
   end
 

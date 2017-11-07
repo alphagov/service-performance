@@ -17,13 +17,13 @@ class Metric
     end
   end
 
-  def self.define(&definition)
-    @definition = Definition.new(definition)
-    attr_reader *self.definition.items.map(&:name)
-  end
+  class << self
+    def define(&definition)
+      @definition = Definition.new(definition)
+      attr_reader(*self.definition.items.map(&:name))
+    end
 
-  def self.definition
-    @definition
+    attr_reader :definition
   end
 
   # Initializes a metric, taking values for each of the defined items.
@@ -58,11 +58,12 @@ class Metric
       value = item.from.(metrics)
 
       unless value
-        value = if item.applicable.(metrics)
-          NOT_PROVIDED
-        else
-          NOT_APPLICABLE
-        end
+        value =
+          if item.applicable.(metrics)
+            NOT_PROVIDED
+          else
+            NOT_APPLICABLE
+          end
       end
 
       memo[item.name] = value
@@ -105,7 +106,7 @@ class Metric
     self.class.new(items)
   end
 
-  private
+private
 
   # Returns the values of all of the items defined on this metric.
   #
