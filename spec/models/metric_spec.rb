@@ -8,21 +8,26 @@ RSpec.describe Metric, type: :model do
     end
   end
 
+  let(:channel_a_completeness) { instance_double(Completeness) }
+  let(:channel_b_completeness) { instance_double(Completeness) }
+
   describe '#initialize' do
-    it 'initializes the metric items' do
-      metric = CustomMetric.new(channel_a: 5, channel_b: 10)
+    it 'initializes the metric items & completeness objects' do
+      metric = CustomMetric.new(channel_a: 5, channel_a_completeness: channel_a_completeness, channel_b: 10, channel_b_completeness: channel_b_completeness)
       expect(metric.channel_a).to eq(5)
+      expect(metric.channel_a_completeness).to eq(channel_a_completeness)
       expect(metric.channel_b).to eq(10)
+      expect(metric.channel_b_completeness).to eq(channel_b_completeness)
     end
 
     it 'requires all metric items as keyword arguments' do
       expect {
         CustomMetric.new
-      }.to raise_error(ArgumentError, 'missing keywords: channel_a, channel_b')
+      }.to raise_error(ArgumentError, 'missing keywords: channel_a, channel_b, channel_a_completeness, channel_b_completeness')
 
       expect {
-        CustomMetric.new(channel_a: 0)
-      }.to raise_error(ArgumentError, 'missing keywords: channel_b')
+        CustomMetric.new(channel_a: 0, channel_a_completeness: channel_a_completeness)
+      }.to raise_error(ArgumentError, 'missing keywords: channel_b, channel_b_completeness')
     end
   end
 
@@ -51,6 +56,29 @@ RSpec.describe Metric, type: :model do
       metric = CustomMetric.from_metrics(metrics)
       expect(metric.channel_a).to eq(15)
       expect(metric.channel_b).to eq(Metric::NOT_PROVIDED)
+    end
+
+    describe 'completeness' do
+      it 'has completeness of 0/0 for a NOT_APPLICABLE value' do
+        metrics = double('metrics', channel_a: nil, channel_a_applicable: false, channel_b: 20)
+        metric = CustomMetric.from_metrics(metrics)
+        expect(metric.channel_a_completeness.actual).to eq(0)
+        expect(metric.channel_a_completeness.expected).to eq(0)
+      end
+
+      it 'has completeness of 0/1 for a NOT_PROVIDED value' do
+        metrics = double('metrics', channel_a: nil, channel_a_applicable: true, channel_b: 20)
+        metric = CustomMetric.from_metrics(metrics)
+        expect(metric.channel_a_completeness.actual).to eq(0)
+        expect(metric.channel_a_completeness.expected).to eq(1)
+      end
+
+      it 'has completeness of 1/1 for a value' do
+        metrics = double('metrics', channel_a: 10, channel_a_applicable: true, channel_b: 20)
+        metric = CustomMetric.from_metrics(metrics)
+        expect(metric.channel_a_completeness.actual).to eq(1)
+        expect(metric.channel_a_completeness.expected).to eq(1)
+      end
     end
   end
 
@@ -116,11 +144,25 @@ RSpec.describe Metric, type: :model do
       expect(result.channel_a).to eq(Metric::NOT_PROVIDED)
       expect(result.channel_b).to eq(Metric::NOT_PROVIDED)
     end
+
+    it 'sums the items completeness values' do
+      metrics1 = double('metrics', channel_a: 10, channel_a_applicable: true, channel_b: 40, channel_b_applicable: true)
+      metrics2 = double('metrics', channel_a: nil, channel_a_applicable: true, channel_b: nil, channel_b_applicable: false)
+
+      metric1 = CustomMetric.from_metrics(metrics1)
+      metric2 = CustomMetric.from_metrics(metrics2)
+
+      result = metric1 + metric2
+      expect(result.channel_a_completeness.actual).to eq(1)
+      expect(result.channel_a_completeness.expected).to eq(2)
+      expect(result.channel_b_completeness.actual).to eq(1)
+      expect(result.channel_b_completeness.expected).to eq(1)
+    end
   end
 
   describe '#read_attribute_for_serialization' do
     it do
-      metric = CustomMetric.new(channel_a: 5, channel_b: 10)
+      metric = CustomMetric.new(channel_a: 5, channel_a_completeness: channel_a_completeness, channel_b: 10, channel_b_completeness: channel_b_completeness)
       expect(metric).to respond_to(:read_attribute_for_serialization)
     end
   end

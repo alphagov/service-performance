@@ -21,8 +21,4 @@ class CallsReceivedMetric < Metric
   def sampled_total
     total
   end
-
-  def completeness
-    Completeness.new
-  end
 end

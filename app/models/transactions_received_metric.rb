@@ -10,8 +10,4 @@ class TransactionsReceivedMetric < Metric
   def total
     values.reduce(&method(:sum))
   end
-
-  def completeness
-    Completeness.new
-  end
 end

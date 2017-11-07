@@ -15,12 +15,22 @@ class Metric
     def item(name, from:, applicable:)
       @items << Item.new(name.to_sym, from, applicable)
     end
+
+    def item_attribute_names
+      items.map(&:name)
+    end
+
+    def item_completeness_attribute_names
+      items.map { |item| :"#{item.name}_completeness" }
+    end
   end
 
   class << self
     def define(&definition)
       @definition = Definition.new(definition)
-      attr_reader(*self.definition.items.map(&:name))
+
+      attr_reader(*self.definition.item_attribute_names)
+      attr_reader(*self.definition.item_completeness_attribute_names)
     end
 
     attr_reader :definition
@@ -33,7 +43,8 @@ class Metric
   #
   # It mimics Ruby's handling of keyword arguments.
   def initialize(items = {})
-    missing_arguments = self.class.definition.items.map(&:name).reject { |name| items.has_key?(name) }
+    required_attributes = self.class.definition.item_attribute_names + self.class.definition.item_completeness_attribute_names
+    missing_arguments = required_attributes.reject { |name| items.has_key?(name) }
     if missing_arguments.any?
       raise ArgumentError, "missing keywords: #{missing_arguments.join(', ')}"
     end
@@ -41,6 +52,9 @@ class Metric
     self.class.definition.items.each do |item|
       value = items.fetch(item.name)
       instance_variable_set("@#{item.name}", value)
+
+      completeness = items.fetch(:"#{item.name}_completeness")
+      instance_variable_set("@#{item.name}_completeness", completeness)
     end
   end
 
@@ -67,6 +81,17 @@ class Metric
       end
 
       memo[item.name] = value
+
+      completeness =
+        case value
+        when NOT_APPLICABLE
+          Completeness.new(actual: 0, expected: 0)
+        when NOT_PROVIDED
+          Completeness.new(actual: 0, expected: 1)
+        else
+          Completeness.new(actual: 1, expected: 1)
+        end
+      memo[:"#{item.name}_completeness"] = completeness
     end
 
     new(items)
@@ -101,9 +126,19 @@ class Metric
     items = self.class.definition.items.each.with_object({}) do |item, memo|
       value = sum(self.send(item.name), other.send(item.name))
       memo[item.name] = value
+
+      completeness_attribute_name = :"#{item.name}_completeness"
+      completeness = self.send(completeness_attribute_name) + other.send(completeness_attribute_name)
+      memo[completeness_attribute_name] = completeness
     end
 
     self.class.new(items)
+  end
+
+  def completeness
+    self.class.definition.items.each.with_object({}) do |item, memo|
+      memo[item.name] = self.send(:"#{item.name}_completeness")
+    end
   end
 
 private
