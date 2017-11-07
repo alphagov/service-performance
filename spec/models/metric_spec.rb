@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-require 'transactions_received_metric'
-
 RSpec.describe Metric, type: :model do
 
   class CustomMetric < Metric
