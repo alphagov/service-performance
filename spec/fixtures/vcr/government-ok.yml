@@ -16,29 +16,23 @@ http_interactions:
       code: 200
       message: 
     headers:
-      x-frame-options:
-      - SAMEORIGIN
-      x-xss-protection:
-      - 1; mode=block
-      x-content-type-options:
-      - nosniff
       content-type:
       - application/json; charset=utf-8
       etag:
-      - W/"8707143287988501f058572a4a858fbd"
+      - W/"1573ce8dc84be16039f307e17d32e910"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 59f7adec-a810-4309-8282-5b41a7349b91
+      - 95bfa66c-ad53-4173-baf6-a1e196930490
       x-runtime:
-      - '0.004882'
+      - '0.004845'
       date:
-      - Tue, 26 Sep 2017 13:38:40 GMT
+      - Mon, 06 Nov 2017 17:41:47 GMT
       connection:
       - close
     body:
       encoding: UTF-8
-      string: '{"type":"government","departments_count":7,"delivery_organisations_count":8,"services_count":31}'
+      string: '{"type":"government","departments_count":7,"delivery_organisations_count":15,"services_count":34}'
     http_version: 
-  recorded_at: Tue, 26 Sep 2017 13:38:40 GMT
+  recorded_at: Mon, 06 Nov 2017 17:41:47 GMT
 recorded_with: VCR 3.0.3

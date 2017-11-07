@@ -7,26 +7,26 @@ RSpec.feature 'viewing services', type: :feature do
     click_on 'Department for Transport'
     expect(page).to have_content('Service data for Department for Transport')
 
-    click_on 'Driver and Vehicle Licensing Agency'
-    expect(page).to have_content('Service data for Driver and Vehicle Licensing Agency')
+    click_on 'Highways England'
+    expect(page).to have_content('Service data for Highways England')
 
-    click_on 'Apply for a provisional driving license'
-    expect(page).to have_content('Information about Apply for a provisional driving license')
+    click_on 'Pay the Dartford Crossing charge (Dartcharge)'
+    expect(page).to have_content('Information about Pay the Dartford Crossing charge (Dartcharge)')
     expect(page).to have_content('Service data')
-    expect(page).to have_content('2m transactions received')
-    expect(page).to have_content('1.74m transactions processed')
+    expect(page).to have_content('5.75m transactions received')
+    expect(page).to have_content('5.75m transactions processed')
   end
 
   specify 'viewing a service with not-provided data', cassette: 'viewing-a-service' do
     visit government_metrics_path(group_by: Metrics::Group::Department)
 
-    click_on 'Department for Transport'
-    expect(page).to have_content('Service data for Department for Transport')
+    click_on 'Department for Communities and Local Government'
+    expect(page).to have_content('Service data for Department for Communities and Local Government')
 
-    click_on 'Driver and Vehicle Licensing Agency'
-    expect(page).to have_content('Service data for Driver and Vehicle Licensing Agency')
+    click_on 'Planning Inspectorate'
+    expect(page).to have_content('Service data for Planning Inspectorate')
 
-    click_on 'Tax your vehicle'
+    click_on 'National Infrastructure applications'
     expect(page).to have_content('Not applicable')
     expect(page).to have_content("doesn't receive calls")
   end
@@ -34,12 +34,12 @@ RSpec.feature 'viewing services', type: :feature do
   specify 'viewing a service with completeness info', cassette: 'viewing-a-service' do
     visit government_metrics_path(group_by: Metrics::Group::Department)
 
-    click_on 'Department for Transport'
-    click_on 'Driver and Vehicle Licensing Agency'
-    click_on 'Apply for a provisional driving license'
+    click_on 'Department for Environment, Food & Rural Affairs'
+    click_on 'Environment Agency'
+    click_on 'Flood Information Service'
 
-    expect(page).to have_content('8% of data points complete')
+    expect(page).to have_content('50% of data points complete')
     expect(page).to have_content('Based on incomplete data')
-    expect(page).to have_content('Data provided for 1 of 12 months', count: 4)
+    expect(page).to have_content('Data provided for 6 of 12 months', count: 4)
   end
 end
