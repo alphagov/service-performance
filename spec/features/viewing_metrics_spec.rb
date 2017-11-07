@@ -9,14 +9,14 @@ RSpec.feature 'viewing metrics', type: :feature do
         expect(page).to have_text('Service data for UK government')
 
         expect(metric_groups(:name)).to eq([
-          ['Total for UK government'],
-          ['Department for Business, Energy & Industrial Strategy'],
-          ['Department for Education'],
-          ['Department for Environment Food & Rural Affairs'],
-          ['Department for Transport'],
-          ['Department of Health'],
-          ['HM Revenue & Customs'],
-          ['Ministry of Justice'],
+          ["Total for UK government"],
+          ["Department for Business, Energy & Industrial Strategy"],
+          ["Department for Communities and Local Government"],
+          ["Department for Education"],
+          ["Department for Environment, Food & Rural Affairs"],
+          ["Department for Transport"],
+          ["Department for Work and Pensions"],
+          ["Ministry of Justice"]
         ])
 
         select 'transactions received', from: 'Sort by'
@@ -25,12 +25,14 @@ RSpec.feature 'viewing metrics', type: :feature do
         all('a', text: /\AOpen\z/).each(&:click) if javascript_enabled
 
         expect(metric_groups(:name, :transactions_received_total)).to eq([
-          ['Total for UK government', '746067381'],
-          ['Ministry of Justice', '593254687'],
-          ['Department for Transport', '118679511'],
-          ['Department of Health', '18132669'],
-          ['Department for Education', '13000475'],
-          ['Department for Environment Food & Rural Affairs', '3000039'],
+          ["Total for UK government", "26592298"],
+          ["Department for Environment, Food & Rural Affairs", "12537482"],
+          ["Department for Transport", "5747785"],
+          ["Department for Business, Energy & Industrial Strategy", "4436917"],
+          ["Department for Work and Pensions", "3709191"],
+          ["Department for Education", "91223"],
+          ["Ministry of Justice", "58140"],
+          ["Department for Communities and Local Government", "11560"],
         ])
 
         if javascript_enabled
@@ -43,12 +45,14 @@ RSpec.feature 'viewing metrics', type: :feature do
         all('a', text: /\AOpen\z/).each(&:click) if javascript_enabled
 
         expect(metric_groups(:name, :transactions_received_total)).to eq([
-          ['Department for Environment Food & Rural Affairs', '3000039'],
-          ['Department for Education', '13000475'],
-          ['Department of Health', '18132669'],
-          ['Department for Transport', '118679511'],
-          ['Ministry of Justice', '593254687'],
-          ['Total for UK government', '746067381'],
+          ["Department for Communities and Local Government", "11560"],
+          ["Ministry of Justice", "58140"],
+          ["Department for Education", "91223"],
+          ["Department for Work and Pensions", "3709191"],
+          ["Department for Business, Energy & Industrial Strategy", "4436917"],
+          ["Department for Transport", "5747785"],
+          ["Department for Environment, Food & Rural Affairs", "12537482"],
+          ["Total for UK government", "26592298"],
         ])
       end
     end
@@ -61,17 +65,17 @@ RSpec.feature 'viewing metrics', type: :feature do
       expect(page).to have_selector('.completeness', count: 8)
 
       select 'transactions received', from: 'Sort by'
-      expect(page).to have_selector('.m-metric-group[data-behaviour~="m-metric-group__collapsible"]', count: 6)
+      expect(page).to have_selector('.m-metric-group[data-behaviour~="m-metric-group__collapsible"]', count: 8)
     end
 
     it 'gov totals show how many services', cassette: 'viewing-metrics-collapsing-metric-groups', js: true do
       visit government_metrics_path(group_by: Metrics::Group::Department, order_by: "name")
-      expect(page).to have_content('based on 31 services', count: 1)
+      expect(page).to have_content('based on 34 services', count: 1)
     end
 
     it 'collapsed totals show how many services', cassette: 'viewing-metrics-collapsing-metric-groups', js: true do
       visit government_metrics_path(group_by: Metrics::Group::Department, order_by: "transactions-received")
-      expect(page).to have_content('based on 31 services', count: 1)
+      expect(page).to have_content('based on 34 services', count: 1)
     end
   end
 
