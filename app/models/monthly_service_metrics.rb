@@ -9,6 +9,7 @@ class MonthlyServiceMetrics < ApplicationRecord
 
   validates_uniqueness_of :month, scope: :service, strict: true
 
+  scope :published, -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }
 
   def self.between(start_month, end_month)

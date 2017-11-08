@@ -34,7 +34,7 @@ class Metrics
   attr_reader :group_by, :root, :time_period
 
   def metrics(entity: root)
-    metrics = entity.metrics.between(time_period.start_month, time_period.end_month) # .published
+    metrics = entity.metrics.between(time_period.start_month, time_period.end_month).published
 
     [
       metrics.map(&TransactionsReceivedMetric).reduce(:+),
