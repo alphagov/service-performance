@@ -40,11 +40,13 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
   end
 
   def not_provided?
+    return false if not_applicable?
+
     [
       @total, @get_information,
       @chase_progress, @challenge_a_decision, @other,
       @perform_transaction
-    ].all? { |item| item == NOT_PROVIDED }
+    ].all? { |item| item.in?([NOT_APPLICABLE, NOT_PROVIDED]) }
   end
 
   def unspecified

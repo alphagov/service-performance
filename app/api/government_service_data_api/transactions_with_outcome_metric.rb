@@ -24,7 +24,9 @@ class GovernmentServiceDataAPI::TransactionsWithOutcomeMetric
   end
 
   def not_provided?
-    [@count, @count_with_intended_outcome].all? { |item| item == NOT_PROVIDED }
+    return false if not_applicable?
+
+    [@count, @count_with_intended_outcome].all? { |item| item.in?([NOT_APPLICABLE, NOT_PROVIDED]) }
   end
 
   def with_intended_outcome_percentage
