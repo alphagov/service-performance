@@ -8,12 +8,6 @@ class CallsReceivedMetric < Metric
     item :other, from: ->(metrics) { metrics.calls_received_other }, applicable: ->(metrics) { metrics.service.calls_received_other_applicable? }
   end
 
-  def applicable?
-    # TODO:
-    # return false if !total || total.in?([Metric::NOT_APPLICABLE, Metric::NOT_PROVIDED])
-    super
-  end
-
   def sampled
     false
   end
