@@ -34,9 +34,11 @@ class GovernmentServiceDataAPI::TransactionsReceivedMetric
   end
 
   def not_provided?
+    return false if not_applicable?
+
     [
       @online, @phone, @paper, @face_to_face, @other
-    ].all? { |item| item == NOT_PROVIDED }
+    ].all? { |item| item.in?([NOT_APPLICABLE, NOT_PROVIDED]) }
   end
 
   def online_percentage

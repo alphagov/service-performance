@@ -30,7 +30,7 @@
         <%= item.value %>
         <%= item.percentage calls_received_metric.perform_transaction_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
-          <%= item.completeness calls_received_metric.completeness['perform-transaction'] %>
+          <%= item.completeness calls_received_metric.completeness['perform_transaction'] %>
         <% end %>
       </span>
     <% end %>
@@ -45,7 +45,7 @@
         <%= item.value %>
         <%= item.percentage calls_received_metric.get_information_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
-          <%= item.completeness calls_received_metric.completeness['get-information'] %>
+          <%= item.completeness calls_received_metric.completeness['get_information'] %>
         <% end %>
       </span>
     <% end %>
@@ -60,7 +60,7 @@
         <%= item.value %>
         <%= item.percentage calls_received_metric.chase_progress_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
-          <%= item.completeness calls_received_metric.completeness['chase-progress'] %>
+          <%= item.completeness calls_received_metric.completeness['chase_progress'] %>
         <% end %>
       </span>
     <% end %>
@@ -75,7 +75,7 @@
         <%= item.value %>
         <%= item.percentage calls_received_metric.challenge_a_decision_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
-          <%= item.completeness calls_received_metric.completeness['challenge-a-decision'] %>
+          <%= item.completeness calls_received_metric.completeness['challenge_a_decision'] %>
         <% end %>
       </span>
     <% end %>
