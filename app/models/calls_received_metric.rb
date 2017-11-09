@@ -1,12 +1,18 @@
-class CallsReceivedMetric < ApplicationRecord
-  belongs_to :department, primary_key: :natural_key, foreign_key: :department_code, optional: true
-  belongs_to :delivery_organisation, primary_key: :natural_key, foreign_key: :delivery_organisation_code, optional: true
-  belongs_to :service, primary_key: :natural_key, foreign_key: :service_code, optional: true
+class CallsReceivedMetric < Metric
+  define do
+    item :total, from: ->(metrics) { metrics.calls_received }, applicable: ->(metrics) { metrics.service.calls_received_applicable? }
+    item :get_information, from: ->(metrics) { metrics.calls_received_get_information }, applicable: ->(metrics) { metrics.service.calls_received_get_information_applicable? }
+    item :chase_progress, from: ->(metrics) { metrics.calls_received_chase_progress }, applicable: ->(metrics) { metrics.service.calls_received_chase_progress_applicable? }
+    item :challenge_a_decision, from: ->(metrics) { metrics.calls_received_challenge_decision }, applicable: ->(metrics) { metrics.service.calls_received_challenge_decision_applicable? }
+    item :perform_transaction, from: ->(metrics) { metrics.calls_received_perform_transaction }, applicable: ->(metrics) { metrics.service.calls_received_perform_transaction_applicable? }
+    item :other, from: ->(metrics) { metrics.calls_received_other }, applicable: ->(metrics) { metrics.service.calls_received_other_applicable? }
+  end
 
-  validates_presence_of :department, strict: true
-  validates_presence_of :service, strict: true
-  validates_presence_of :starts_on, strict: true
-  validates_presence_of :ends_on, strict: true
+  def sampled
+    false
+  end
 
-  validates_inclusion_of :sampled, in: [true, false], strict: true
+  def sampled_total
+    total
+  end
 end

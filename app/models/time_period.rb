@@ -15,8 +15,16 @@ class TimePeriod
   end
 
   def months
-    (@ends_on.year * 12 + @ends_on.month) - (@starts_on.year * 12 + @starts_on.month) + 1
+    start_month..end_month
   end
 
   attr_reader :starts_on, :ends_on
+
+  def start_month
+    YearMonth.new(starts_on.year, starts_on.month)
+  end
+
+  def end_month
+    YearMonth.new(ends_on.year, ends_on.month)
+  end
 end

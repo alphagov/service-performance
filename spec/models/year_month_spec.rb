@@ -31,4 +31,12 @@ RSpec.describe YearMonth, type: :model do
     month = YearMonth.new(2017, 9)
     expect(month.to_formatted_s).to eq('1 to 30 September 2017')
   end
+
+  specify '#next' do
+    month = YearMonth.new(2017, 9)
+    expect(month.next).to eq(YearMonth.new(2017, 10))
+
+    month = YearMonth.new(2017, 12)
+    expect(month.next).to eq(YearMonth.new(2018, 1))
+  end
 end

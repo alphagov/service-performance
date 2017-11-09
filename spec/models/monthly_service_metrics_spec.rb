@@ -1,6 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe MonthlyServiceMetrics, type: :model do
+  describe '.between' do
+    it 'returns the metrics between the start and end months, inclusive' do
+      service = FactoryGirl.create(:service)
+      FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 4))
+      metrics1 = FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 5))
+      metrics2 = FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 6))
+      FactoryGirl.create(:monthly_service_metrics, service: service, month: YearMonth.new(2017, 7))
+
+      may = YearMonth.new(2017, 5)
+      june = YearMonth.new(2017, 6)
+      expect(MonthlyServiceMetrics.between(may, june)).to match_array([metrics1, metrics2])
+    end
+  end
+
   describe '#publish_date' do
     it "returns nil if there's no month" do
       metrics = FactoryGirl.build(:monthly_service_metrics, month: nil)

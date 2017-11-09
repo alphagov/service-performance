@@ -23,6 +23,8 @@ class YearMonth
     end
   end
 
+  include Comparable
+
   def initialize(year, month)
     @year = year.to_i
     @month = month.to_i
@@ -31,9 +33,24 @@ class YearMonth
 
   attr_reader :year, :month, :date
 
-  def ==(other)
-    year == other.year && month == other.month
+  def <=>(other)
+    (year <=> other.year).nonzero? || month <=> other.month
   end
+
+  alias_method :eql?, :==
+
+  def hash
+    date.hash
+  end
+
+  def next
+    if month == 12
+      self.class.new(year + 1, 1)
+    else
+      self.class.new(year, month + 1)
+    end
+  end
+  alias_method :succ, :next
 
   def to_formatted_s(format = :long_day_month_year)
     if format == :long_day_month_year

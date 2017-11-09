@@ -34,11 +34,24 @@ class Metrics
   attr_reader :group_by, :root, :time_period
 
   def metrics(entity: root)
+    metrics = published_monthly_service_metrics(entity).each.with_object({}) do |metric, memo|
+      memo[metric.service] ||= time_period.months.each.with_object({}) do |month, months|
+        months[month] = MonthlyServiceMetrics::Null.new(metric.service, month)
+      end
+      memo[metric.service][metric.month] = metric
+    end
+
+    values = metrics.each.with_object([]) do |(_service, months), memo|
+      months.each do |_month, metric|
+        memo << metric
+      end
+    end
+
     [
-      AggregatedCallsReceivedMetric.new(entity, time_period),
-      AggregatedTransactionsReceivedMetric.new(entity, time_period),
-      AggregatedTransactionsWithOutcomeMetric.new(entity, time_period)
-    ].select(&:applicable?)
+      values.map(&TransactionsReceivedMetric).reduce(:+),
+      values.map(&TransactionsWithOutcomeMetric).reduce(:+),
+      values.map(&CallsReceivedMetric).reduce(:+),
+    ].compact.select(&:applicable?)
   end
 
   def metric_groups
@@ -46,6 +59,10 @@ class Metrics
       m = metrics(entity: entity)
       MetricGroup.new(entity, m)
     }
+  end
+
+  def published_monthly_service_metrics(entity = root)
+    entity.metrics.joins(:service).between(time_period.start_month, time_period.end_month).published
   end
 
 private

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe AggregatedTransactionsWithOutcomeMetricSerializer, type: :serializer do
-  let(:metric) { serializable_double(AggregatedTransactionsWithOutcomeMetric, total: 123, with_intended_outcome: 456, completeness: {}) }
-  subject(:serializer) { AggregatedTransactionsWithOutcomeMetricSerializer.new(metric) }
+RSpec.describe TransactionsWithOutcomeMetricSerializer, type: :serializer do
+  let(:metric) { serializable_double(TransactionsWithOutcomeMetric, total: 123, with_intended_outcome: 456, completeness: {}) }
+  subject(:serializer) { TransactionsWithOutcomeMetricSerializer.new(metric) }
 
   it 'serializes a aggregated transactions with outcome metric' do
     expect {

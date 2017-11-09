@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe AggregatedCallsReceivedMetricSerializer, type: :serializer do
-  let(:metric) { serializable_double(AggregatedCallsReceivedMetric, total: 1000, get_information: 456, chase_progress: 789, challenge_a_decision: 876, other: 543, sampled: false, sampled_total: 200, perform_transaction: 100, completeness: {}) }
-  subject(:serializer) { AggregatedCallsReceivedMetricSerializer.new(metric) }
+RSpec.describe CallsReceivedMetricSerializer, type: :serializer do
+  let(:metric) { serializable_double(CallsReceivedMetric, total: 1000, get_information: 456, chase_progress: 789, challenge_a_decision: 876, other: 543, sampled: false, sampled_total: 200, perform_transaction: 100, completeness: {}) }
+  subject(:serializer) { CallsReceivedMetricSerializer.new(metric) }
 
   it 'serializes a aggregated calls received metric' do
     expect {

@@ -13,6 +13,10 @@ class Government
     Service.all
   end
 
+  def metrics
+    MonthlyServiceMetrics.all
+  end
+
   def departments_count
     Department.count
   end
