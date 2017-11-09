@@ -69,12 +69,12 @@ as well as a link to its edit page.
         <th>Any</th>
         <th>Intended</th>
         <th>Total</th>
-        <th>to perform a transaction</th>
-        <th>to get information</th>
-        <th>to chase progress</th>
-        <th>to challenge a decision</th>
-        <th>other</th>
-        
+        <th>To perform a transaction</th>
+        <th>To get information</th>
+        <th>To chase progress</th>
+        <th>To challenge a decision</th>
+        <th>Other</th>
+        <th>Published?</th>
       </tr>
     </thead>
     <% page.resource.metrics.order('month DESC').each do |metric| %>
@@ -93,6 +93,7 @@ as well as a link to its edit page.
         <td><%= number_with_delimiter(metric.calls_received_challenge_decision) %></td>
         <td><%= number_with_delimiter(metric.calls_received_other) %></td>
         <td><%= number_with_delimiter(metric.calls_received_perform_transaction) %></td>
+        <td><%= metric.published %></td>
       </tr>
     <% end %>
   </table>

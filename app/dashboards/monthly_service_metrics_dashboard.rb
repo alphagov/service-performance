@@ -26,6 +26,7 @@ class MonthlyServiceMetricsDashboard < Administrate::BaseDashboard
     calls_received_challenge_decision: MetricField,
     calls_received_other: MetricField,
     calls_received_perform_transaction: MetricField,
+    published: Field::Boolean
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -38,6 +39,7 @@ class MonthlyServiceMetricsDashboard < Administrate::BaseDashboard
     delivery_organisation
     service
     month
+    published
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -58,5 +60,6 @@ class MonthlyServiceMetricsDashboard < Administrate::BaseDashboard
     calls_received_challenge_decision
     calls_received_other
     calls_received_perform_transaction
+    published
   ].freeze
 end
