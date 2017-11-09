@@ -37,14 +37,14 @@ class Metrics
     metrics = entity.metrics.joins(:service).between(time_period.start_month, time_period.end_month).published
 
     metrics = metrics.each.with_object({}) do |metric, memo|
-      memo[metric.service] ||= time_period.months.each.with_object({}) do |month, memo|
-        memo[month] = MonthlyServiceMetrics::Null.new(metric.service, month)
+      memo[metric.service] ||= time_period.months.each.with_object({}) do |month, months|
+        months[month] = MonthlyServiceMetrics::Null.new(metric.service, month)
       end
       memo[metric.service][metric.month] = metric
     end
 
-    values = metrics.each.with_object([]) do |(service, months), memo|
-      months.each do |month, metric|
+    values = metrics.each.with_object([]) do |(_service, months), memo|
+      months.each do |_month, metric|
         memo << metric
       end
     end
