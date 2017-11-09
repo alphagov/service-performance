@@ -28,6 +28,7 @@ class ServiceDashboard < Administrate::BaseDashboard
     calls_received_challenge_decision_applicable: ApplicableMetricField,
     calls_received_other_applicable: ApplicableMetricField,
     calls_received_perform_transaction_applicable: ApplicableMetricField,
+    published: Field::Boolean
   }.freeze
 
   COLLECTION_ATTRIBUTES = %i[
