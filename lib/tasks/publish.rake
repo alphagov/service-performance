@@ -4,9 +4,7 @@ namespace :publish do
     before = Date.today.beginning_of_month
 
     ActiveRecord::Base.transaction do
-      MonthlyServiceMetrics.unpublished.where("month < ?", [before]).find_each do |monthly_metrics|
-        Publisher.publish(monthly_metrics)
-      end
+      MonthlyServiceMetrics.unpublished.where("month < ?", [before]).update_all(published: true)
     end
   end
 end
