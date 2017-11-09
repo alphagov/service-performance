@@ -32,6 +32,7 @@ RSpec.feature 'viewing services', type: :feature do
   end
 
   specify 'viewing a service with completeness info', cassette: 'viewing-a-service' do
+    pending 'unification of gsd-view-data & gsd-api'
     visit government_metrics_path(group_by: Metrics::Group::Department)
 
     click_on 'Department for Environment, Food & Rural Affairs'
