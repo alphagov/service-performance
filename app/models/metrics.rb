@@ -34,9 +34,7 @@ class Metrics
   attr_reader :group_by, :root, :time_period
 
   def metrics(entity: root)
-    metrics = entity.metrics.joins(:service).between(time_period.start_month, time_period.end_month).published
-
-    metrics = metrics.each.with_object({}) do |metric, memo|
+    metrics = published_monthly_service_metrics(entity).each.with_object({}) do |metric, memo|
       memo[metric.service] ||= time_period.months.each.with_object({}) do |month, months|
         months[month] = MonthlyServiceMetrics::Null.new(metric.service, month)
       end
@@ -61,6 +59,10 @@ class Metrics
       m = metrics(entity: entity)
       MetricGroup.new(entity, m)
     }
+  end
+
+  def published_monthly_service_metrics(entity = root)
+    entity.metrics.joins(:service).between(time_period.start_month, time_period.end_month).published
   end
 
 private
