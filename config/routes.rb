@@ -21,16 +21,6 @@ Rails.application.routes.draw do
 
   scope :publish do
     get "/service-manual", to: "pages#service_manual"
-
-    namespace :admin do
-      resources :metrics, controller: 'monthly_service_metrics', only: [:index, :show]
-      resources :delivery_organisations
-      resources :departments
-      resources :services
-      resources :users
-
-      root to: "services#index"
-    end
   end
 
   namespace :publish, module: nil do
