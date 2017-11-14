@@ -10,56 +10,65 @@ ActiveRecord::Base.transaction do
   Department.create!(natural_key: 'D0006', name: 'Department for Education', website: 'http://example.com/department-for-education')
   Department.create!(natural_key: 'D0007', name: 'Department for Business, Energy & Industrial Strategy', website: 'http://example.com/department-for-business-energy-and-industrial-strategy')
 
-  # delivery organisations
-  DeliveryOrganisation.create!(department_code: 'D0001', natural_key: 'D0001', name: 'Department for Environment Food & Rural Affairs', website: 'http://example.com/department-for-environment-food-and-rural-affairs')
-  DeliveryOrganisation.create!(department_code: 'D0002', natural_key: 'D0002', name: 'Department for Transport', website: 'http://example.com/department-for-transport')
-  DeliveryOrganisation.create!(department_code: 'D0003', natural_key: 'D0003', name: 'Department of Health', website: 'http://example.com/department-of-health')
-  DeliveryOrganisation.create!(department_code: 'D0004', natural_key: 'D0004', name: 'HM Revenue & Customs', website: 'http://example.com/hm-revenue-and-customs')
-  DeliveryOrganisation.create!(department_code: 'D0005', natural_key: 'D0005', name: 'Ministry of Justice', website: 'http://example.com/ministry-of-justice')
-  DeliveryOrganisation.create!(department_code: 'D0006', natural_key: 'D0006', name: 'Department for Education', website: 'http://example.com/department-for-education')
-  DeliveryOrganisation.create!(department_code: 'D0007', natural_key: 'D0007', name: 'Department for Business, Energy & Industrial Strategy', website: 'http://example.com/department-for-business-energy-and-industrial-strategy')
+  def get_department(code)
+    Department.where(natural_key: code).first.id
+  end
 
-  DeliveryOrganisation.create!(department_code: 'D0001', natural_key: '01', name: 'Environment Agency', website: 'http://example.com/environment-agency')
-  DeliveryOrganisation.create!(department_code: 'D0003', natural_key: '02', name: 'NHS Blood and Transplant', website: 'http://example.com/nhs-blood-and-transplant')
-  DeliveryOrganisation.create!(department_code: 'D0002', natural_key: '03', name: 'Driver and Vehicle Licensing Agency', website: 'http://example.com/driver-and-vehicle-licensing-agency')
-  DeliveryOrganisation.create!(department_code: 'D0002', natural_key: '04', name: 'Driver and Vehicle Standards Agency', website: 'http://example.com/driver-and-vehicle-standards-agency')
-  DeliveryOrganisation.create!(department_code: 'D0005', natural_key: '06', name: 'HM Courts & Tribunals Service', website: 'http://example.com/hm-courts-and-tribunals-service')
-  DeliveryOrganisation.create!(department_code: 'D0003', natural_key: '09', name: 'NHS England', website: 'http://example.com/nhs-england')
-  DeliveryOrganisation.create!(department_code: 'D0006', natural_key: '12', name: 'Skills Funding Agency', website: 'http://example.com/skills-funding-agency')
-  DeliveryOrganisation.create!(department_code: 'D0006', natural_key: '13', name: 'Student Loans Company', website: 'http://example.com/student-loans-company')
+  # delivery organisations
+  DeliveryOrganisation.create!(department_id: get_department('D0001'), natural_key: 'D0001', name: 'Department for Environment Food & Rural Affairs', website: 'http://example.com/department-for-environment-food-and-rural-affairs')
+  DeliveryOrganisation.create!(department_id: get_department('D0002'), natural_key: 'D0002', name: 'Department for Transport', website: 'http://example.com/department-for-transport')
+  DeliveryOrganisation.create!(department_id: get_department('D0003'), natural_key: 'D0003', name: 'Department of Health', website: 'http://example.com/department-of-health')
+  DeliveryOrganisation.create!(department_id: get_department('D0004'), natural_key: 'D0004', name: 'HM Revenue & Customs', website: 'http://example.com/hm-revenue-and-customs')
+  DeliveryOrganisation.create!(department_id: get_department('D0005'), natural_key: 'D0005', name: 'Ministry of Justice', website: 'http://example.com/ministry-of-justice')
+  DeliveryOrganisation.create!(department_id: get_department('D0006'), natural_key: 'D0006', name: 'Department for Education', website: 'http://example.com/department-for-education')
+  DeliveryOrganisation.create!(department_id: get_department('D0007'), natural_key: 'D0007', name: 'Department for Business, Energy & Industrial Strategy', website: 'http://example.com/department-for-business-energy-and-industrial-strategy')
+
+  DeliveryOrganisation.create!(department_id: get_department('D0001'), natural_key: '01', name: 'Environment Agency', website: 'http://example.com/environment-agency')
+  DeliveryOrganisation.create!(department_id: get_department('D0003'), natural_key: '02', name: 'NHS Blood and Transplant', website: 'http://example.com/nhs-blood-and-transplant')
+  DeliveryOrganisation.create!(department_id: get_department('D0002'), natural_key: '03', name: 'Driver and Vehicle Licensing Agency', website: 'http://example.com/driver-and-vehicle-licensing-agency')
+  DeliveryOrganisation.create!(department_id: get_department('D0002'), natural_key: '04', name: 'Driver and Vehicle Standards Agency', website: 'http://example.com/driver-and-vehicle-standards-agency')
+  DeliveryOrganisation.create!(department_id: get_department('D0005'), natural_key: '06', name: 'HM Courts & Tribunals Service', website: 'http://example.com/hm-courts-and-tribunals-service')
+  DeliveryOrganisation.create!(department_id: get_department('D0003'), natural_key: '09', name: 'NHS England', website: 'http://example.com/nhs-england')
+  DeliveryOrganisation.create!(department_id: get_department('D0006'), natural_key: '12', name: 'Skills Funding Agency', website: 'http://example.com/skills-funding-agency')
+  DeliveryOrganisation.create!(department_id: get_department('D0006'), natural_key: '13', name: 'Student Loans Company', website: 'http://example.com/student-loans-company')
+
+  def get_delivery_org(code)
+    DeliveryOrganisation.where(natural_key: code).first.id
+  end
+
 
   # services
-  Service.create!(delivery_organisation_code: '01', natural_key: '01', name: 'Buy a fishing rod licence', hostname: 'buy-a-fishing-licence')
-  Service.create!(delivery_organisation_code: '03', natural_key: '02', name: 'Apply for a provisional driving license', hostname: 'apply-for-a-provisional-driving-license')
-  Service.create!(delivery_organisation_code: '02', natural_key: '03', name: 'Give blood', hostname: 'give-blood')
-  Service.create!(delivery_organisation_code: '12', natural_key: '04', name: 'Search and apply for apprenticeship vacancies in England', hostname: 'search-and-apply-for-apprenticeship-vacancies-in-england')
-  Service.create!(delivery_organisation_code: '12', natural_key: '05', name: 'Create a unique learner number', hostname: 'create-a-unique-learner-number')
-  Service.create!(delivery_organisation_code: '12', natural_key: '06', name: 'Post an apprenticeship vacancy', hostname: 'post-an-apprenticeship-vacancy')
-  Service.create!(delivery_organisation_code: '13', natural_key: '07', name: 'Apply for student finance', hostname: 'apply-for-student-finance')
-  Service.create!(delivery_organisation_code: '13', natural_key: '08', name: 'Repay student loan voluntarily', hostname: 'repay-student-loan-voluntarily')
-  Service.create!(delivery_organisation_code: '13', natural_key: '09', name: 'Apply for disabled student allowance', hostname: 'apply-for-disabled-student-allowance')
-  Service.create!(delivery_organisation_code: '13', natural_key: '10', name: 'Apply for part time study support', hostname: 'apply-for-part-time-study-support')
-  Service.create!(delivery_organisation_code: '04', natural_key: '11', name: 'Pay the Dartford Crossing Charge', hostname: 'pay-the-dartford-crossing-charge')
-  Service.create!(delivery_organisation_code: '03', natural_key: '12', name: 'Tax your vehicle', hostname: 'tax-your-vehicle')
-  Service.create!(delivery_organisation_code: '03', natural_key: '13', name: 'Make a change to a vehicle registration certificate', hostname: 'make-a-change-to-a-vehicle-registration-certificate')
-  Service.create!(delivery_organisation_code: '03', natural_key: '14', name: "Check someone's driving information", hostname: 'check-someones-driving-information')
-  Service.create!(delivery_organisation_code: '03', natural_key: '15', name: "Tell DVLA you've sold, transferred or bought a vehicle", hostname: 'tell-dvla-youve-sold-transferred-or-bought-a-vehicle')
-  Service.create!(delivery_organisation_code: '04', natural_key: '16', name: 'Book a driving theory test', hostname: 'book-a-driving-theory-test')
-  Service.create!(delivery_organisation_code: '04', natural_key: '17', name: 'Book a practical driving test', hostname: 'book-a-practical-driving-test')
-  Service.create!(delivery_organisation_code: '04', natural_key: '18', name: 'Change a practical driving test booking', hostname: 'change-a-practical-driving-test-booking')
-  Service.create!(delivery_organisation_code: 'D0004', natural_key: '19', name: 'State pension: existing claims', hostname: 'state-pension-existing-claims')
-  Service.create!(delivery_organisation_code: 'D0004', natural_key: '20', name: 'Disability allowance: existing claims', hostname: 'disability-allowance-existing-claims')
-  Service.create!(delivery_organisation_code: 'D0004', natural_key: '21', name: 'Education support allowance: existing claims', hostname: 'education-support-allowance-existing-claims')
-  Service.create!(delivery_organisation_code: 'D0004', natural_key: '22', name: 'Pension credit: existing claims', hostname: 'pension-credit-existing-claims')
-  Service.create!(delivery_organisation_code: 'D0004', natural_key: '23', name: 'Education support allowance: new claims', hostname: 'education-support-allowance-new-claims')
-  Service.create!(delivery_organisation_code: '02', natural_key: '24', name: 'Changes to organ donor register', hostname: 'changes-to-organ-donor-register')
-  Service.create!(delivery_organisation_code: '02', natural_key: '25', name: 'Register to donate organs', hostname: 'register-to-donate-organs')
-  Service.create!(delivery_organisation_code: '09', natural_key: '26', name: 'NHS e-referrals', hostname: 'nhs-e-referrals')
-  Service.create!(delivery_organisation_code: 'D0005', natural_key: '27', name: 'PAYE transactions', hostname: 'paye-transactions')
-  Service.create!(delivery_organisation_code: 'D0005', natural_key: '28', name: 'Customs transactions', hostname: 'customs-transactions')
-  Service.create!(delivery_organisation_code: 'D0005', natural_key: '29', name: 'VAT transactions', hostname: 'vat-transactions')
-  Service.create!(delivery_organisation_code: 'D0005', natural_key: '30', name: 'Register for and file your Self Assessment tax return', hostname: 'register-for-and-file-your-self-assessment-tax-return')
-  Service.create!(delivery_organisation_code: 'D0005', natural_key: '44', name: 'Stamp Duty Reserve Tax', hostname: 'stamp-duty-reserve-tax')
+  Service.create!(delivery_organisation_id: get_delivery_org('01'), natural_key: '01', name: 'Buy a fishing rod licence')
+  Service.create!(delivery_organisation_id: get_delivery_org('03'), natural_key: '02', name: 'Apply for a provisional driving license')
+  Service.create!(delivery_organisation_id: get_delivery_org('02'), natural_key: '03', name: 'Give blood')
+  Service.create!(delivery_organisation_id: get_delivery_org('12'), natural_key: '04', name: 'Search and apply for apprenticeship vacancies in England')
+  Service.create!(delivery_organisation_id: get_delivery_org('12'), natural_key: '05', name: 'Create a unique learner number')
+  Service.create!(delivery_organisation_id: get_delivery_org('12'), natural_key: '06', name: 'Post an apprenticeship vacancy')
+  Service.create!(delivery_organisation_id: get_delivery_org('13'), natural_key: '07', name: 'Apply for student finance')
+  Service.create!(delivery_organisation_id: get_delivery_org('13'), natural_key: '08', name: 'Repay student loan voluntarily')
+  Service.create!(delivery_organisation_id: get_delivery_org('13'), natural_key: '09', name: 'Apply for disabled student allowance')
+  Service.create!(delivery_organisation_id: get_delivery_org('13'), natural_key: '10', name: 'Apply for part time study support')
+  Service.create!(delivery_organisation_id: get_delivery_org('04'), natural_key: '11', name: 'Pay the Dartford Crossing Charge')
+  Service.create!(delivery_organisation_id: get_delivery_org('03'), natural_key: '12', name: 'Tax your vehicle')
+  Service.create!(delivery_organisation_id: get_delivery_org('03'), natural_key: '13', name: 'Make a change to a vehicle registration certificate')
+  Service.create!(delivery_organisation_id: get_delivery_org('03'), natural_key: '14', name: "Check someone's driving information")
+  Service.create!(delivery_organisation_id: get_delivery_org('03'), natural_key: '15', name: "Tell DVLA you've sold, transferred or bought a vehicle")
+  Service.create!(delivery_organisation_id: get_delivery_org('04'), natural_key: '16', name: 'Book a driving theory test')
+  Service.create!(delivery_organisation_id: get_delivery_org('04'), natural_key: '17', name: 'Book a practical driving test')
+  Service.create!(delivery_organisation_id: get_delivery_org('04'), natural_key: '18', name: 'Change a practical driving test booking')
+  Service.create!(delivery_organisation_id: get_delivery_org('D0004'), natural_key: '19', name: 'State pension: existing claims')
+  Service.create!(delivery_organisation_id: get_delivery_org('D0004'), natural_key: '20', name: 'Disability allowance: existing claims')
+  Service.create!(delivery_organisation_id: get_delivery_org('D0004'), natural_key: '21', name: 'Education support allowance: existing claims')
+  Service.create!(delivery_organisation_id: get_delivery_org('D0004'), natural_key: '22', name: 'Pension credit: existing claims')
+  Service.create!(delivery_organisation_id: get_delivery_org('D0004'), natural_key: '23', name: 'Education support allowance: new claims')
+  Service.create!(delivery_organisation_id: get_delivery_org('02'), natural_key: '24', name: 'Changes to organ donor register')
+  Service.create!(delivery_organisation_id: get_delivery_org('02'), natural_key: '25', name: 'Register to donate organs')
+  Service.create!(delivery_organisation_id: get_delivery_org('09'), natural_key: '26', name: 'NHS e-referrals')
+  Service.create!(delivery_organisation_id: get_delivery_org('D0005'), natural_key: '27', name: 'PAYE transactions')
+  Service.create!(delivery_organisation_id: get_delivery_org('D0005'), natural_key: '28', name: 'Customs transactions')
+  Service.create!(delivery_organisation_id: get_delivery_org('D0005'), natural_key: '29', name: 'VAT transactions')
+  Service.create!(delivery_organisation_id: get_delivery_org('D0005'), natural_key: '30', name: 'Register for and file your Self Assessment tax return')
+  Service.create!(delivery_organisation_id: get_delivery_org('D0005'), natural_key: '44', name: 'Stamp Duty Reserve Tax')
 
   [
     { service_code: '01', starts_on: '2017-05-01', ends_on: '2017-05-31', channel: 'online', quantity: 1000032 },
@@ -123,7 +132,7 @@ ActiveRecord::Base.transaction do
 
     TransactionsReceivedMetric.create!(
       department_code: service.department.natural_key,
-      delivery_organisation_code: service.delivery_organisation_code,
+      delivery_organisation_code: service.delivery_organisation.natural_key,
       service_code: service.natural_key,
       starts_on: transaction_received_metric[:starts_on],
       ends_on: Date.parse(transaction_received_metric[:ends_on]) + 1.day,
@@ -188,7 +197,7 @@ ActiveRecord::Base.transaction do
 
     TransactionsWithOutcomeMetric.create!(
       department_code: service.department.natural_key,
-      delivery_organisation_code: service.delivery_organisation_code,
+      delivery_organisation_code: service.delivery_organisation.natural_key,
       service_code: service.natural_key,
       starts_on: transaction_with_outcome_metric[:starts_on],
       ends_on: Date.parse(transaction_with_outcome_metric[:ends_on]) + 1.day,
@@ -207,7 +216,7 @@ ActiveRecord::Base.transaction do
 
     CallsReceivedMetric.create!(
       department_code: service.department.natural_key,
-      delivery_organisation_code: service.delivery_organisation_code,
+      delivery_organisation_code: service.delivery_organisation.natural_key,
       service_code: service.natural_key,
       starts_on: calls_received_metric[:starts_on],
       ends_on: Date.parse(calls_received_metric[:ends_on]) + 1.day,

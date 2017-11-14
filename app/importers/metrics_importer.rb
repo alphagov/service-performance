@@ -44,8 +44,7 @@ class MetricsImporter
     delivery_organisation = delivery_organisation(row.delivery_organisation_name)
 
     service.natural_key ||= SecureRandom.hex(2)
-    service.hostname = service.natural_key
-    service.delivery_organisation_code = delivery_organisation.natural_key
+    service.delivery_organisation_id = delivery_organisation.id
     service.start_page_url = row.service_url
     service.save!
 

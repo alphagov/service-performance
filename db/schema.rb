@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(version: 20171110112018) do
     t.string "natural_key", null: false
     t.string "name", null: false
     t.string "website", null: false
-    t.string "department_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "department_id"
     t.index ["natural_key"], name: "index_delivery_organisations_on_natural_key", unique: true
   end
 
@@ -103,10 +103,8 @@ ActiveRecord::Schema.define(version: 20171110112018) do
   create_table "services", id: :serial, force: :cascade do |t|
     t.string "natural_key", null: false
     t.string "name", null: false
-    t.string "hostname", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "delivery_organisation_code"
     t.text "purpose"
     t.text "how_it_works"
     t.text "typical_users"
@@ -128,6 +126,7 @@ ActiveRecord::Schema.define(version: 20171110112018) do
     t.boolean "calls_received_challenge_decision_applicable", default: true
     t.boolean "calls_received_other_applicable", default: true
     t.boolean "calls_received_perform_transaction_applicable", default: true
+    t.integer "delivery_organisation_id", null: false
     t.index ["natural_key"], name: "index_services_on_natural_key", unique: true
     t.index ["publish_token"], name: "index_services_on_publish_token", unique: true
   end
@@ -179,9 +178,9 @@ ActiveRecord::Schema.define(version: 20171110112018) do
   add_foreign_key "calls_received_metrics", "delivery_organisations", column: "delivery_organisation_code", primary_key: "natural_key"
   add_foreign_key "calls_received_metrics", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "calls_received_metrics", "services", column: "service_code", primary_key: "natural_key"
-  add_foreign_key "delivery_organisations", "departments", column: "department_code", primary_key: "natural_key"
+  add_foreign_key "delivery_organisations", "departments"
   add_foreign_key "monthly_service_metrics", "services"
-  add_foreign_key "services", "delivery_organisations", column: "delivery_organisation_code", primary_key: "natural_key"
+  add_foreign_key "services", "delivery_organisations"
   add_foreign_key "transactions_received_metrics", "delivery_organisations", column: "delivery_organisation_code", primary_key: "natural_key"
   add_foreign_key "transactions_received_metrics", "departments", column: "department_code", primary_key: "natural_key"
   add_foreign_key "transactions_received_metrics", "services", column: "service_code", primary_key: "natural_key"

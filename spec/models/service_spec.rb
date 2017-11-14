@@ -15,11 +15,6 @@ RSpec.describe Service, type: :model do
       service.name = ''
       expect(service).to_not be_valid
     end
-
-    it 'requires a hostname' do
-      service.hostname = ''
-      expect(service).to_not be_valid
-    end
   end
 
   describe '#services' do

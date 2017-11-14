@@ -78,7 +78,7 @@ class DepartmentsImporter
       delivery_organisation = DeliveryOrganisation.where(natural_key: organisation_id).first
 
       log = ->(message, args = nil) do
-        args ||= { key: delivery_organisation.natural_key, department_code: delivery_organisation.department_code }
+        args ||= { key: delivery_organisation.natural_key, department_code: delivery_organisation.department.natural_key }
         @output.puts message % args
       end
 
