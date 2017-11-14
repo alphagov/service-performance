@@ -1,6 +1,6 @@
 class DeliveryOrganisation < ApplicationRecord
-  belongs_to :department, primary_key: :natural_key, foreign_key: :department_code, optional: true
-  has_many :services, primary_key: :natural_key, foreign_key: :delivery_organisation_code
+  belongs_to :department, primary_key: :id, foreign_key: :department_id, optional: true
+  has_many :services, primary_key: :id, foreign_key: :delivery_organisation_id
 
   has_many :metrics, through: :services
 

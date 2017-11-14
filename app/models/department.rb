@@ -1,5 +1,5 @@
 class Department < ApplicationRecord
-  has_many :delivery_organisations, primary_key: :natural_key, foreign_key: :department_code
+  has_many :delivery_organisations, primary_key: :id, foreign_key: :department_id
   has_many :services, through: :delivery_organisations
 
   has_many :metrics, through: :services

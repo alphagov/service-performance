@@ -44,9 +44,7 @@ class OldMetricsImporter
     delivery_organisation = delivery_organisation(row.delivery_organisation_name)
 
     service.natural_key ||= SecureRandom.hex(2)
-    service.hostname = service.natural_key
-    service.delivery_organisation_code = delivery_organisation.natural_key
-    # service.department_code = delivery_organisation.department_code
+    service.delivery_organisation_id = delivery_organisation.id
     service.start_page_url = row.service_url
     service.save!
 
@@ -54,8 +52,8 @@ class OldMetricsImporter
       return if quantity == NOT_APPLICABLE
 
       klass.create!({
-        department_code: delivery_organisation.department_code,
-        delivery_organisation_code: delivery_organisation.natural_key,
+        department_id: delivery_organisation.department_id,
+        delivery_organisation_id: delivery_organisation.id,
         service_code: service.natural_key,
         starts_on: row.date.beginning_of_month,
         ends_on: row.date.end_of_month,
