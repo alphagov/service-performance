@@ -35,7 +35,7 @@ RSpec.describe MonthlyServiceMetrics, type: :model do
 
     it 'returns the first of the month, 2 months from the given month' do
       metrics = FactoryGirl.build(:monthly_service_metrics, month: YearMonth.new(2017, 11))
-      expect(metrics.next_metrics_due_date).to eq(Date.new(2017, 12, 1))
+      expect(metrics.next_metrics_due_date).to eq(Date.new(2018, 1, 1))
     end
   end
 end

@@ -38,7 +38,7 @@ class MonthlyServiceMetrics < ApplicationRecord
 
   def next_metrics_due_date
     if month
-      month.date + 1.month
+      month.date + 2.months
     end
   end
 

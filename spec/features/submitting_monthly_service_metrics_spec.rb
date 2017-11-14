@@ -59,7 +59,7 @@ RSpec.feature 'submitting monthly service metrics' do
 
     expect(page).to have_text('Upload successful')
     expect(page).to have_text('Thank you for providing your monthly data. It will be published on 1 November 2017.')
-    expect(page).to have_text('You will next be asked to provide data on 1 October.')
+    expect(page).to have_text('You will next be asked to provide data on 1 November.')
   end
 
   private
