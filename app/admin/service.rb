@@ -9,7 +9,7 @@ ActiveAdmin.register Service do
   end
 
   permit_params :id, :natural_key, :name, :hostname,
-                :created_at, :updated_at, :delivery_organisation_code,
+                :created_at, :updated_at, :delivery_organisation_id,
                 :purpose, :how_it_works, :typical_users, :frequency_used,
                 :duration_until_outcome, :start_page_url, :paper_form_url,
                 :publish_token, :online_transactions_applicable,
