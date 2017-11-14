@@ -26,9 +26,6 @@ gem 'link_header'
 # Publish Admin
 gem 'devise'
 gem 'activeadmin'
-gem 'cancan'
-gem 'draper'
-gem 'pundit'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
