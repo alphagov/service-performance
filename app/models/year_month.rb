@@ -8,7 +8,16 @@ class YearMonth
       value
     end
 
+    def admin_value(value)
+      if value.class == Hash
+        YearMonth.new(value[1], value[2])
+      else
+        value
+      end
+    end
+
     def serialize(value)
+      value = admin_value(value)
       value ? value.date : nil
     end
 
@@ -33,7 +42,16 @@ class YearMonth
 
   attr_reader :year, :month, :date
 
+  def admin_value(value)
+    if value.class == Hash
+      YearMonth.new(value[1], value[2])
+    else
+      value
+    end
+  end
+
   def <=>(other)
+    other = admin_value(other)
     (year <=> other.year).nonzero? || month <=> other.month
   end
 
@@ -51,6 +69,14 @@ class YearMonth
     end
   end
   alias_method :succ, :next
+
+  def day
+    date.day
+  end
+
+  def to_s
+    "#{date.strftime('%B')} #{date.year}"
+  end
 
   def to_formatted_s(format = :long_day_month_year)
     if format == :long_day_month_year

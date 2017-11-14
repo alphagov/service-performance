@@ -1,4 +1,6 @@
 ActiveRecord::Base.transaction do
+  AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
   # departments
   Department.create!(natural_key: 'D0001', name: 'Department for Environment Food & Rural Affairs', website: 'http://example.com/department-for-environment-food-and-rural-affairs')
   Department.create!(natural_key: 'D0002', name: 'Department for Transport', website: 'http://example.com/department-for-transport')
@@ -16,7 +18,7 @@ ActiveRecord::Base.transaction do
   DeliveryOrganisation.create!(department_code: 'D0005', natural_key: 'D0005', name: 'Ministry of Justice', website: 'http://example.com/ministry-of-justice')
   DeliveryOrganisation.create!(department_code: 'D0006', natural_key: 'D0006', name: 'Department for Education', website: 'http://example.com/department-for-education')
   DeliveryOrganisation.create!(department_code: 'D0007', natural_key: 'D0007', name: 'Department for Business, Energy & Industrial Strategy', website: 'http://example.com/department-for-business-energy-and-industrial-strategy')
-  
+
   DeliveryOrganisation.create!(department_code: 'D0001', natural_key: '01', name: 'Environment Agency', website: 'http://example.com/environment-agency')
   DeliveryOrganisation.create!(department_code: 'D0003', natural_key: '02', name: 'NHS Blood and Transplant', website: 'http://example.com/nhs-blood-and-transplant')
   DeliveryOrganisation.create!(department_code: 'D0002', natural_key: '03', name: 'Driver and Vehicle Licensing Agency', website: 'http://example.com/driver-and-vehicle-licensing-agency')
@@ -226,3 +228,4 @@ ActiveRecord::Base.transaction do
     duration_until_outcome: 'The average amount of time for each of the key user groups that it takes for a received transaction to end in an outcome.'
   )
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
+
   scope :v1 do
     scope 'data' do
       resource :government, only: [:show] do
@@ -21,6 +25,7 @@ Rails.application.routes.draw do
 
   scope :publish do
     get "/service-manual", to: "pages#service_manual"
+    ActiveAdmin.routes(self)
   end
 
   namespace :publish, module: nil do
