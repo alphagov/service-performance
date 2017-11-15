@@ -26,33 +26,69 @@ ActiveAdmin.register MonthlyServiceMetrics do
       row :published
     end
 
+    svc = monthly_service_metrics.service
+    def applicable_value(service, val)
+      appl = service.send("#{val}_applicable")
+      if !appl
+        "Not applicable"
+      else
+        monthly_service_metrics.send(val)
+      end
+    end
+
     columns do
       column do
         h2 "Transactions received"
         attributes_table do
-          row :online_transactions
-          row :phone_transactions
-          row :paper_transactions
-          row :face_to_face_transactions
-          row :other_transactions
+          row "Online" do
+            applicable_value(svc, :online_transactions)
+          end
+          row "Phone" do
+            applicable_value(svc, :phone_transactions)
+          end
+          row "Paper" do
+            applicable_value(svc, :paper_transactions)
+          end
+          row "Face to face" do
+            applicable_value(svc, :face_to_face_transactions)
+          end
+          row "Other" do
+            applicable_value(svc, :other_transactions)
+          end
         end
       end
       column do
         h2 "Transactions processed"
         attributes_table do
-          row :transactions_with_outcome
-          row :transactions_with_intended_outcome
+          row "Total" do
+            applicable_value(svc, :transactions_with_outcome)
+          end
+          row "With intended outcome" do
+            applicable_value(svc, :transactions_with_intended_outcome)
+          end
         end
       end
       column do
         h2 "Calls received"
         attributes_table do
-          row :calls_received
-          row :calls_received_perform_transaction
-          row :calls_received_get_information
-          row :calls_received_chase_progress
-          row :calls_received_challenge_decision
-          row :calls_received_other
+          row "Total" do
+            applicable_value(svc, :calls_received)
+          end
+          row "To perform a transaction" do
+            applicable_value(svc, :calls_received_perform_transaction)
+          end
+          row "To get information" do
+            applicable_value(svc, :calls_received_get_information)
+          end
+          row "To chase progress" do
+            applicable_value(svc, :calls_received_chase_progress)
+          end
+          row "To challenge a decision" do
+            applicable_value(svc, :calls_received_challenge_decision)
+          end
+          row "Other" do
+            applicable_value(svc, :calls_received_other)
+          end
         end
       end
     end
