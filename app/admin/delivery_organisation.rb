@@ -9,4 +9,19 @@ ActiveAdmin.register DeliveryOrganisation do
     column :department
     actions
   end
+
+  show do
+    attributes_table do
+      row :name
+      row :department
+      row :website
+      row :natural_key
+    end
+
+    panel "Services" do
+      delivery_organisation.services.each do |svc|
+        li link_to(svc.name, admin_service_path(svc))
+      end
+    end
+  end
 end
