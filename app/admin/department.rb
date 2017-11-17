@@ -27,7 +27,7 @@ ActiveAdmin.register Department do
   collection_action :sync, method: :post do
     DeliveryOrganisationsImporter.new.import
 
-    mapping_file = File.read(Rails.root.join("app", "assets", "config", "department_mapping.csv"))
+    mapping_file = File.read(Rails.root.join("config", "department_mapping.csv"))
     DepartmentsImporter.new.import(mapping_file)
 
     redirect_to collection_path, notice: "Departments imported successfully!"
