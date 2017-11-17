@@ -2,11 +2,12 @@ class Government
   alias :read_attribute_for_serialization :send
 
   def departments
-    Department.all
+    orgs = DeliveryOrganisation.joins(:services).distinct.pluck(:department_id)
+    Department.find(orgs)
   end
 
   def delivery_organisations
-    DeliveryOrganisation.all
+    DeliveryOrganisation.joins(:services).distinct.all
   end
 
   def services
@@ -18,11 +19,12 @@ class Government
   end
 
   def departments_count
-    Department.count
+    orgs = DeliveryOrganisation.joins(:services).distinct.pluck(:department_id)
+    Department.find(orgs).count
   end
 
   def delivery_organisations_count
-    DeliveryOrganisation.count
+    DeliveryOrganisation.joins(:services).distinct.count
   end
 
   def services_count

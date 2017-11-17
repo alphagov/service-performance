@@ -19,4 +19,17 @@ ActiveAdmin.register Department do
       end
     end
   end
+
+  action_item :view, only: :index do
+    link_to 'Synchronise Departments', sync_admin_departments_path, method: :post
+  end
+
+  collection_action :sync, method: :post do
+    DeliveryOrganisationsImporter.new.import
+
+    mapping_file = File.read(Rails.root.join("app", "assets", "config", "department_mapping.csv"))
+    DepartmentsImporter.new.import(mapping_file)
+
+    redirect_to collection_path, notice: "Departments imported successfully!"
+  end
 end
