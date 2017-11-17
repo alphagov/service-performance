@@ -5,6 +5,9 @@ ActiveAdmin.register Service do
     column :name
     column :delivery_organisation
     column :department
+    column "Owner" do |service|
+      service.owner.email if service.owner
+    end
     actions
   end
 
@@ -12,6 +15,9 @@ ActiveAdmin.register Service do
     attributes_table do
       row :name
       row :delivery_organisation
+      row "Owner" do |service|
+        service.owner.email if service.owner
+      end
       row :natural_key
       row :created_at
       row :updated_at
@@ -67,7 +73,7 @@ ActiveAdmin.register Service do
     end
   end
 
-  permit_params :id, :natural_key, :name,
+  permit_params :id, :natural_key, :name, :owner_id,
                 :created_at, :updated_at, :delivery_organisation_id,
                 :purpose, :how_it_works, :typical_users, :frequency_used,
                 :duration_until_outcome, :start_page_url, :paper_form_url,

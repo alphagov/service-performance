@@ -1,4 +1,5 @@
 class Service < ApplicationRecord
+  belongs_to :owner, primary_key: :id, foreign_key: :owner_id, class_name: "User", optional: true
   belongs_to :delivery_organisation, primary_key: :id, foreign_key: :delivery_organisation_id
   has_one :department, through: :delivery_organisation
 
