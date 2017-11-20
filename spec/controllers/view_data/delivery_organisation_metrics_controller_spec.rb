@@ -38,8 +38,8 @@ RSpec.describe ViewData::DeliveryOrganisationMetricsController, type: :controlle
       get :index, params: { delivery_organisation_id: '1923', group_by: Metrics::Group::Service }
 
       expect(page.breadcrumbs.map { |crumb| [crumb.name, crumb.url] }).to eq([
-        ['UK Government', government_metrics_path],
-        ['Department of Services', department_metrics_path(department_id: '001')],
+        ['UK Government', view_data_government_metrics_path],
+        ['Department of Services', view_data_department_metrics_path(department_id: '001')],
         ['Delivery Organisation of Services', nil],
       ])
     end

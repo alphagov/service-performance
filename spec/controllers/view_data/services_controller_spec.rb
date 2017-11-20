@@ -24,9 +24,9 @@ RSpec.describe ViewData::ServicesController, type: :controller do
       get :show, params: { id: '2' }
 
       expect(page.breadcrumbs.map { |crumb| [crumb.name, crumb.url] }).to eq([
-        ['UK Government', government_metrics_path],
-        ['Department of Services', department_metrics_path(department_id: '001')],
-        ['Delivery Organisation of Services', delivery_organisation_metrics_path(delivery_organisation_id: '003')],
+        ['UK Government', view_data_government_metrics_path],
+        ['Department of Services', view_data_department_metrics_path(department_id: '001')],
+        ['Delivery Organisation of Services', view_data_delivery_organisation_metrics_path(delivery_organisation_id: '003')],
         ['The Greatest Service in the World', nil],
       ])
     end
@@ -37,8 +37,8 @@ RSpec.describe ViewData::ServicesController, type: :controller do
       get :show, params: { id: '2' }
 
       expect(page.breadcrumbs.map { |crumb| [crumb.name, crumb.url] }).to eq([
-        ['UK Government', government_metrics_path],
-        ['Department of Services', department_metrics_path(department_id: '001')],
+        ['UK Government', view_data_government_metrics_path],
+        ['Department of Services', view_data_department_metrics_path(department_id: '001')],
         ['The Greatest Service in the World', nil],
       ])
     end

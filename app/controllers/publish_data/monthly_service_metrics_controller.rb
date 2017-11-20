@@ -16,9 +16,9 @@ module PublishData
         :calls_received_other).each { |_, value| value.gsub!(/\D/, '') }
 
       if @metrics.save
-        render :success
+        render 'publish_data/monthly_service_metrics/success'
       else
-        render :edit
+        render 'publish_data/monthly_service_metrics/edit'
       end
     end
 
@@ -33,7 +33,7 @@ module PublishData
       @metrics = MonthlyServiceMetrics.where(service: @service, month: month).first_or_initialize
 
       unless MonthlyServiceMetricsPublishToken.valid?(token: params[:publish_token], metrics: @metrics)
-        render 'invalid_publish_token', status: :unauthorized
+        render 'publish_data/monthly_service_metrics/invalid_publish_token', status: :unauthorized
         return
       end
     end

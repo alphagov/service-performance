@@ -37,7 +37,7 @@ RSpec.describe ViewData::DepartmentMetricsController, type: :controller do
       get :index, params: { department_id: 'D001', group_by: Metrics::Group::DeliveryOrganisation }
 
       expect(page.breadcrumbs.map { |crumb| [crumb.name, crumb.url] }).to eq([
-        ['UK Government', government_metrics_path],
+        ['UK Government', view_data_government_metrics_path],
         ['Department of Services', nil],
       ])
     end
