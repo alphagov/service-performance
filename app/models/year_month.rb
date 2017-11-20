@@ -8,16 +8,8 @@ class YearMonth
       value
     end
 
-    def admin_value(value)
-      if value.class == Hash
-        YearMonth.new(value[1], value[2])
-      else
-        value
-      end
-    end
-
     def serialize(value)
-      value = admin_value(value)
+      value = YearMonth.admin_value(value)
       value ? value.date : nil
     end
 
@@ -42,16 +34,17 @@ class YearMonth
 
   attr_reader :year, :month, :date
 
-  def admin_value(value)
-    if value.class == Hash
-      YearMonth.new(value[1], value[2])
+  def self.admin_value(value)
+    if value.class == String
+      d = Date.parse(value)
+      YearMonth.new(d.year, d.month)
     else
       value
     end
   end
 
   def <=>(other)
-    other = admin_value(other)
+    other = YearMonth.admin_value(other)
     (year <=> other.year).nonzero? || month <=> other.month
   end
 
