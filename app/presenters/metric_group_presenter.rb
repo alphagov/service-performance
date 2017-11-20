@@ -84,7 +84,7 @@ class MetricGroupPresenter
   end
 
   def has_sort_value?
-    !@sort_value.in? [:not_provided, :not_applicable]
+    !@sort_value.in? %i[not_provided not_applicable]
   end
 
   def collapsed?

@@ -54,8 +54,8 @@ class GovernmentServiceDataAPI::CallsReceivedMetric
                       @chase_progress,
                       @challenge_a_decision,
                       @other,
-                      @perform_transaction].select { |v|
-                        !v.in? [NOT_APPLICABLE, NOT_PROVIDED]
+                      @perform_transaction].reject { |v|
+                        v.in? [NOT_APPLICABLE, NOT_PROVIDED]
                       }.sum
 
     return NOT_APPLICABLE if value <= 0
