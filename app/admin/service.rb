@@ -75,8 +75,32 @@ ActiveAdmin.register Service do
 
   form do |f|
     f.object.natural_key ||= SecureRandom.hex(2)
-    f.object.publish_token ||= SecureRandom.hex(64)
-    inputs
+    f.inputs do
+      f.input :name
+      f.input :delivery_organisation
+      f.input :owner
+      f.input :natural_key
+      f.input :purpose
+      f.input :how_it_works
+      f.input :typical_users
+      f.input :frequency_used
+      f.input :duration_until_outcome
+      f.input :start_page_url
+      f.input :paper_form_url
+      f.input :online_transactions_applicable
+      f.input :phone_transactions_applicable
+      f.input :paper_transactions_applicable
+      f.input :face_to_face_transactions_applicable
+      f.input :other_transactions_applicable
+      f.input :transactions_with_outcome_applicable
+      f.input :transactions_with_intended_outcome_applicable
+      f.input :calls_received_applicable
+      f.input :calls_received_get_information_applicable
+      f.input :calls_received_chase_progress_applicable
+      f.input :calls_received_challenge_decision_applicable
+      f.input :calls_received_other_applicable
+      f.input :calls_received_perform_transaction_applicable
+    end
     actions
   end
 
@@ -84,7 +108,7 @@ ActiveAdmin.register Service do
                 :created_at, :updated_at, :delivery_organisation_id,
                 :purpose, :how_it_works, :typical_users, :frequency_used,
                 :duration_until_outcome, :start_page_url, :paper_form_url,
-                :publish_token, :online_transactions_applicable,
+                :online_transactions_applicable, :publish_token,
                 :phone_transactions_applicable, :paper_transactions_applicable,
                 :face_to_face_transactions_applicable, :other_transactions_applicable,
                 :transactions_with_outcome_applicable, :transactions_with_intended_outcome_applicable,
@@ -98,5 +122,5 @@ ActiveAdmin.register Service do
                 :transactions_with_intended_outcome_applicable, :calls_received_applicable,
                 :calls_received_get_information_applicable, :calls_received_chase_progress_applicable,
                 :calls_received_challenge_decision_applicable, :calls_received_other_applicable,
-                :calls_received_perform_transaction_applicable
+                :calls_received_perform_transaction_applicable, :publish_token
 end
