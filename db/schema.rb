@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115093509) do
+ActiveRecord::Schema.define(version: 20171117163006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20171115093509) do
     t.boolean "calls_received_other_applicable", default: true
     t.boolean "calls_received_perform_transaction_applicable", default: true
     t.integer "delivery_organisation_id", null: false
+    t.integer "owner_id"
     t.index ["natural_key"], name: "index_services_on_natural_key", unique: true
     t.index ["publish_token"], name: "index_services_on_publish_token", unique: true
   end
@@ -140,4 +141,5 @@ ActiveRecord::Schema.define(version: 20171115093509) do
   add_foreign_key "delivery_organisations", "departments"
   add_foreign_key "monthly_service_metrics", "services"
   add_foreign_key "services", "delivery_organisations"
+  add_foreign_key "services", "users", column: "owner_id"
 end
