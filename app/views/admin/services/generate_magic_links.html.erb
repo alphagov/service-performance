@@ -19,11 +19,11 @@
       <td><%= date.strftime("%B") %></td>
       <td><%= service.owner.email if service.owner %></td>
       <td>
-        <%= absolute_url(url_for publish_service_metrics_path(
+        <%= publish_service_metrics_url(
                                   service_id: service.id,
                                   year: date.year,
                                   month: date.month.to_s.rjust(2, '0'),
-                                  publish_token: token)) %>
+                                  publish_token: token)%>
       </td>
     </tr>
     <% end %>
