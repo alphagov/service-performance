@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MonthlyServiceMetricsController, type: :controller do
+RSpec.describe PublishData::MonthlyServiceMetricsController, type: :controller do
   shared_examples_for 'validating publish token' do
     context 'with an invalid publish token' do
       before do

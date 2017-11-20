@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PagesController, type: :controller do
+RSpec.describe ViewData::PagesController, type: :controller do
   describe 'GET show' do
     let(:page) { controller.send(:page) }
 

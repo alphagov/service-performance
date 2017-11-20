@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DepartmentMetricsController, type: :controller do
+RSpec.describe ViewData::DepartmentMetricsController, type: :controller do
   let(:client) { instance_double(GovernmentServiceDataAPI::Client) }
   let(:page) { controller.send(:page) }
 

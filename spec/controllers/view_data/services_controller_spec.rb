@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ServicesController, type: :controller do
+RSpec.describe ViewData::ServicesController, type: :controller do
   describe 'GET show' do
     let(:client) { instance_double(GovernmentServiceDataAPI::Client, service: service) }
 
