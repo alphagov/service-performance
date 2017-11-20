@@ -104,7 +104,7 @@ ActiveAdmin.register Service do
     end
     actions
   end
-  
+
   batch_action :generate_links_for do |ids|
     @page_title = "Service publishing links"
 
