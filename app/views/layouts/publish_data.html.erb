@@ -15,8 +15,6 @@
     <!--[if gte IE 9]><!--><%= stylesheet_link_tag 'govuk_template/source/assets/stylesheets/fonts', media: :all %><!--<![endif]-->
 
     <!--[if lt IE 9]><%= javascript_include_tag 'govuk_template/source/assets/javascripts/vendor/html5shiv-printshiv.js' %><![endif]-->
-
-    <%= javascript_include_tag :application, async: true %>
   </head>
 
   <body>
@@ -35,20 +33,6 @@
               <span class="phase-banner">Beta</span>
             </span>
           </span>
-        </div>
-
-        <div data-module="navigation">
-          <button type="button" class="header__navigation-toggle js-nav-toggle" aria-controls="navigation" aria-label="Show or hide top level navigation">Menu</button>
-
-          <nav id="navigation" class="header__navigation js-nav" aria-label="Top Level Navigation" aria-hidden="true">
-            <ul style="display:none;">
-              <li<% if publish_root_path == page.path %> class="active"<% end %>>
-                <a href="<%= publish_root_path %>">
-                  Publish data
-                </a>
-              </li>
-            </ul>
-          </nav>
         </div>
       </div>
     </header>

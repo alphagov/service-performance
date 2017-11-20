@@ -23,21 +23,19 @@ Rails.application.routes.draw do
     end
   end
 
-  scope :publish do
-    get "/service-manual", to: "publish-data/pages#service_manual"
-    ActiveAdmin.routes(self)
-  end
+  ActiveAdmin.routes(self)
 
-  namespace :publish, module: nil do
+  namespace :publish, path: 'publish-data', module: nil do
+    get "/service-manual", to: "publish_data/pages#service_manual"
+
     resources :services, only: [] do
       constraints year: /\d{4}/, month: /\d{2}/ do
-        get 'metrics/:year/:month(/:publish_token)', to: 'publish-data/monthly_service_metrics#edit', as: :metrics
-        patch 'metrics/:year/:month(/:publish_token)', to: 'publish-data/monthly_service_metrics#update'
+        get 'metrics/:year/:month(/:publish_token)', to: 'publish_data/monthly_service_metrics#edit', as: :metrics
+        patch 'metrics/:year/:month(/:publish_token)', to: 'publish_data/monthly_service_metrics#update'
       end
     end
 
     devise_for :users
-    root 'pages#homepage'
   end
 
   namespace :view_data, path: 'view-data', module: nil do
