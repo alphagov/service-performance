@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://gsd-api.dev/v1/data/government
+    uri: http://gsd-api.dev/api/v1/data/government
     body:
       encoding: US-ASCII
       string: ''
@@ -37,7 +37,7 @@ http_interactions:
   recorded_at: Mon, 06 Nov 2017 17:41:47 GMT
 - request:
     method: get
-    uri: http://gsd-api.dev/v1/data/government/metrics?group_by=department
+    uri: http://gsd-api.dev/api/v1/data/government/metrics?group_by=department
     body:
       encoding: US-ASCII
       string: ''

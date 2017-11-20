@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://gsd-api.dev/v1/data/delivery_organisations/03/metrics?group_by=delivery_organisation
+    uri: http://gsd-api.dev/api/v1/data/delivery_organisations/03/metrics?group_by=delivery_organisation
     body:
       encoding: US-ASCII
       string: ''
@@ -45,7 +45,7 @@ http_interactions:
   recorded_at: Tue, 26 Sep 2017 13:38:41 GMT
 - request:
     method: get
-    uri: http://gsd-api.dev/v1/data/delivery_organisations/03
+    uri: http://gsd-api.dev/api/v1/data/delivery_organisations/03
     body:
       encoding: US-ASCII
       string: ''
@@ -1549,7 +1549,7 @@ http_interactions:
   recorded_at: Mon, 06 Nov 2017 17:33:43 GMT
 - request:
     method: get
-    uri: http://gsd-api.dev/v1/data/delivery_organisations/D7
+    uri: http://gsd-api.dev/api/v1/data/delivery_organisations/D7
     body:
       encoding: US-ASCII
       string: ''
@@ -1586,7 +1586,7 @@ http_interactions:
   recorded_at: Mon, 06 Nov 2017 17:41:49 GMT
 - request:
     method: get
-    uri: http://gsd-api.dev/v1/data/delivery_organisations/D7/metrics?group_by=delivery_organisation
+    uri: http://gsd-api.dev/api/v1/data/delivery_organisations/D7/metrics?group_by=delivery_organisation
     body:
       encoding: US-ASCII
       string: ''

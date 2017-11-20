@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://gsd-api.dev/v1/data/services/19
+    uri: http://gsd-api.dev/api/v1/data/services/19
     body:
       encoding: US-ASCII
       string: ''

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://gsd-api.dev/v1/data/departments/D0002
+    uri: http://gsd-api.dev/api/v1/data/departments/D0002
     body:
       encoding: US-ASCII
       string: ''
@@ -1505,7 +1505,7 @@ http_interactions:
   recorded_at: Mon, 06 Nov 2017 16:31:59 GMT
 - request:
     method: get
-    uri: http://gsd-api.dev/v1/data/departments/D9
+    uri: http://gsd-api.dev/api/v1/data/departments/D9
     body:
       encoding: US-ASCII
       string: ''
