@@ -4,7 +4,7 @@ RSpec.feature 'viewing metrics', type: :feature do
   context 'sorting metrics' do
     with_conditional_javascript do
       it 'allows sorting of metric groups', cassette: 'viewing-metrics-sorting-metrics' do
-        visit government_metrics_path(group_by: Metrics::Group::Department)
+        visit view_data_government_metrics_path(group_by: Metrics::Group::Department)
 
         expect(page).to have_text('Service data for UK government')
 
@@ -58,7 +58,7 @@ RSpec.feature 'viewing metrics', type: :feature do
     end
 
     it 'collapses metric groups, when sorting by attributes (other than name)', cassette: 'viewing-metrics-collapsing-metric-groups', js: true do
-      visit government_metrics_path(group_by: Metrics::Group::Department, order_by: "name")
+      visit view_data_government_metrics_path(group_by: Metrics::Group::Department, order_by: "name")
 
       expect(page).to have_selector('.m-metric-group', count: 8)
       expect(page).to have_selector('.m-metric-group[data-behaviour~="m-metric-group__collapsible"]', count: 0)
@@ -69,19 +69,19 @@ RSpec.feature 'viewing metrics', type: :feature do
     end
 
     it 'gov totals show how many services', cassette: 'viewing-metrics-collapsing-metric-groups', js: true do
-      visit government_metrics_path(group_by: Metrics::Group::Department, order_by: "name")
+      visit view_data_government_metrics_path(group_by: Metrics::Group::Department, order_by: "name")
       expect(page).to have_content('based on 34 services', count: 1)
     end
 
     it 'collapsed totals show how many services', cassette: 'viewing-metrics-collapsing-metric-groups', js: true do
-      visit government_metrics_path(group_by: Metrics::Group::Department, order_by: "transactions-received")
+      visit view_data_government_metrics_path(group_by: Metrics::Group::Department, order_by: "transactions-received")
       expect(page).to have_content('based on 34 services', count: 1)
     end
   end
 
   context 'sometimes we have unspecified calls received', cassette: 'viewing-metrics-sorting-metrics' do
     it 'sometimes has unspecified values, sometimes not' do
-      visit government_metrics_path(group_by: Metrics::Group::Department)
+      visit view_data_government_metrics_path(group_by: Metrics::Group::Department)
 
       expect(metric_groups(:name, :calls_received_unspecified)).to eq([
           ['Total for UK government', '995190'],

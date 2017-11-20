@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'viewing services', type: :feature do
   specify 'viewing a service', cassette: 'viewing-a-service' do
-    visit government_metrics_path(group_by: Metrics::Group::Department)
+    visit view_data_government_metrics_path(group_by: Metrics::Group::Department)
 
     click_on 'Department for Transport'
     expect(page).to have_content('Service data for Department for Transport')
@@ -18,7 +18,7 @@ RSpec.feature 'viewing services', type: :feature do
   end
 
   specify 'viewing a service with not-provided data', cassette: 'viewing-a-service' do
-    visit government_metrics_path(group_by: Metrics::Group::Department)
+    visit view_data_government_metrics_path(group_by: Metrics::Group::Department)
 
     click_on 'Department for Communities and Local Government'
     expect(page).to have_content('Service data for Department for Communities and Local Government')
@@ -33,7 +33,7 @@ RSpec.feature 'viewing services', type: :feature do
 
   specify 'viewing a service with completeness info', cassette: 'viewing-a-service' do
     pending 'unification of gsd-view-data & gsd-api'
-    visit government_metrics_path(group_by: Metrics::Group::Department)
+    visit view_data_government_metrics_path(group_by: Metrics::Group::Department)
 
     click_on 'Department for Environment, Food & Rural Affairs'
     click_on 'Environment Agency'
