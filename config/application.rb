@@ -18,7 +18,6 @@ module GovernmentServiceData
     config.generators.system_tests = nil
 
     config.autoload_paths += [
-      config.root.join('app', 'controllers', 'metrics'),
       config.root.join('app', 'controllers', 'download'),
       config.root.join('app', 'importers'),
       config.root.join('app', 'models', 'metrics'),

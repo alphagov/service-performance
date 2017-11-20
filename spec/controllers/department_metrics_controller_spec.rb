@@ -30,7 +30,7 @@ RSpec.describe DepartmentMetricsController, type: :controller do
 
     it 'renders metrics index' do
       get :index, params: { department_id: 'D001', group_by: Metrics::Group::DeliveryOrganisation }
-      expect(controller).to have_rendered('metrics/index')
+      expect(controller).to have_rendered('view_data/metrics/index')
     end
 
     it 'sets the breadcrumbs' do

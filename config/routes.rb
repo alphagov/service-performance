@@ -4,35 +4,35 @@ Rails.application.routes.draw do
   namespace :api, module: nil do
     scope :v1 do
       scope 'data' do
-        resource :government, only: [:show] do
-          resources :metrics, only: [:index], controller: 'government_metrics', defaults: { format: 'json' }
+        resource :government, only: [:show], controller: 'api/governments' do
+          resources :metrics, only: [:index], controller: 'api/government_metrics', defaults: { format: 'json' }
         end
 
-        resources :departments, only: [:index, :show], controller: 'departments' do
-          resources :metrics, only: [:index], controller: 'department_metrics', defaults: { format: 'json' }
+        resources :departments, only: [:index, :show], controller: 'api/departments' do
+          resources :metrics, only: [:index], controller: 'api/department_metrics', defaults: { format: 'json' }
         end
 
-        resources :delivery_organisations, only: [:index, :show], controller: 'delivery_organisations' do
-          resources :metrics, only: [:index], controller: 'delivery_organisation_metrics', defaults: { format: 'json' }
+        resources :delivery_organisations, only: [:index, :show], controller: 'api/delivery_organisations' do
+          resources :metrics, only: [:index], controller: 'api/delivery_organisation_metrics', defaults: { format: 'json' }
         end
 
-        resources :services, only: [:index, :show], controller: 'services' do
-          resources :metrics, only: [:index], controller: 'service_metrics', defaults: { format: 'json' }
+        resources :services, only: [:index, :show], controller: 'api/services' do
+          resources :metrics, only: [:index], controller: 'api/service_metrics', defaults: { format: 'json' }
         end
       end
     end
   end
 
   scope :publish do
-    get "/service-manual", to: "pages#service_manual"
+    get "/service-manual", to: "publish-data/pages#service_manual"
     ActiveAdmin.routes(self)
   end
 
   namespace :publish, module: nil do
     resources :services, only: [] do
       constraints year: /\d{4}/, month: /\d{2}/ do
-        get 'metrics/:year/:month(/:publish_token)', to: 'monthly_service_metrics#edit', as: :metrics
-        patch 'metrics/:year/:month(/:publish_token)', to: 'monthly_service_metrics#update'
+        get 'metrics/:year/:month(/:publish_token)', to: 'publish-data/monthly_service_metrics#edit', as: :metrics
+        patch 'metrics/:year/:month(/:publish_token)', to: 'publish-data/monthly_service_metrics#update'
       end
     end
 
@@ -42,28 +42,28 @@ Rails.application.routes.draw do
 
   namespace :view_data, path: 'view-data', module: nil do
     root 'view_data/pages#homepage'
-    get "/how-to-use", to: "pages#how_to_use"
+    get "/how-to-use", to: "view_data/pages#how_to_use"
 
     scope 'performance-data' do
       scope :government do
-        get 'metrics/:group_by', to: 'government_metrics#index',
+        get 'metrics/:group_by', to: 'view_data/government_metrics#index',
           group_by: Regexp.union(Metrics::Group::Department, Metrics::Group::DeliveryOrganisation, Metrics::Group::Service),
           defaults: { group_by: Metrics::Group::Department },
           as: :government_metrics
       end
 
       resources :departments, only: [] do
-        get 'metrics/:group_by', to: 'department_metrics#index',
+        get 'metrics/:group_by', to: 'view_data/department_metrics#index',
           group_by: Regexp.union(Metrics::Group::DeliveryOrganisation, Metrics::Group::Service),
           defaults: { group_by: Metrics::Group::DeliveryOrganisation },
           as: :metrics
       end
 
       resources :delivery_organisations, only: [] do
-        get 'metrics/:group_by', to: 'delivery_organisation_metrics#index', group_by: Metrics::Group::Service, as: :metrics
+        get 'metrics/:group_by', to: 'view_data/delivery_organisation_metrics#index', group_by: Metrics::Group::Service, as: :metrics
       end
 
-      resources :services, only: [:show]
+      resources :services, only: [:show], controller: 'view_data/services'
     end
   end
 

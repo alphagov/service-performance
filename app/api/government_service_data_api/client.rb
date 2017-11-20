@@ -1,26 +1,26 @@
 class GovernmentServiceDataAPI::Client
   def government
-    response = connection.get "/v1/data/government"
+    response = connection.get "/api/v1/data/government"
     GovernmentServiceDataAPI::Government.build(response.body)
   end
 
   def department(id)
     id = URI.escape(id)
-    response = connection.get "/v1/data/departments/#{id}"
+    response = connection.get "/api/v1/data/departments/#{id}"
 
     GovernmentServiceDataAPI::Department.build(response.body)
   end
 
   def delivery_organisation(id)
     id = URI.escape(id)
-    response = connection.get "/v1/data/delivery_organisations/#{id}"
+    response = connection.get "/api/v1/data/delivery_organisations/#{id}"
 
     GovernmentServiceDataAPI::DeliveryOrganisation.build(response.body)
   end
 
   def service(id)
     id = URI.escape(id)
-    response = connection.get "/v1/data/services/#{id}"
+    response = connection.get "/api/v1/data/services/#{id}"
 
     department = GovernmentServiceDataAPI::Department.build(response.body['department'])
     delivery_organisation = GovernmentServiceDataAPI::DeliveryOrganisation.build(response.body['delivery_organisation'])
@@ -31,13 +31,13 @@ class GovernmentServiceDataAPI::Client
   def metrics(entity, group_by:)
     case entity
     when GovernmentServiceDataAPI::Government
-      path = "/v1/data/government/metrics"
+      path = "/api/v1/data/government/metrics"
     when GovernmentServiceDataAPI::Department
-      path = "/v1/data/departments/#{entity.key}/metrics"
+      path = "/api/v1/data/departments/#{entity.key}/metrics"
     when GovernmentServiceDataAPI::DeliveryOrganisation
-      path = "/v1/data/delivery_organisations/#{entity.key}/metrics"
+      path = "/api/v1/data/delivery_organisations/#{entity.key}/metrics"
     when GovernmentServiceDataAPI::Service
-      path = "/v1/data/services/#{entity.key}/metrics"
+      path = "/api/v1/data/services/#{entity.key}/metrics"
     end
 
     response = connection.get(path, group_by: group_by)

@@ -8,7 +8,7 @@
         <%= @metrics.organisation_name %>
       </h1>
 
-      <%= render 'metrics/time_period_selector' %>
+      <%= render 'view_data/metrics/time_period_selector' %>
     </div>
 
     <aside class="column-one-third download">
@@ -64,7 +64,7 @@
           <% @metrics.metric_groups.each do |metric_group|  %>
             <li class="m-metric-group<% if metric_group.totals? %> m-metric-group__totals<% end %><% if metric_group.collapsed? %> m-metric-group__collapsed<% else %> m-metric-group__expanded<% end %>" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsible<% end %>">
               <div data-metric-group-expanded>
-                <%= render "metrics/completeness", metric_group: metric_group %>
+                <%= render "view_data/metrics/completeness", metric_group: metric_group %>
                 <%= render metric_group.entity, metric_group: metric_group  %>
 
                 <div class="m-metrics">

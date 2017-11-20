@@ -44,13 +44,13 @@
 
           <nav id="navigation" class="header__navigation js-nav" aria-label="Top Level Navigation" aria-hidden="true">
             <ul>
-              <li<% if government_metrics_path(group_by: 'department') == page.path %> class="active"<% end %>>
-                <a href="<%= government_metrics_path(group_by: 'department') == page.path ? "#main" : government_metrics_path(group_by: 'department') %>">
+              <li<% if view_data_government_metrics_path(group_by: 'department') == page.path %> class="active"<% end %>>
+                <a href="<%= view_data_government_metrics_path(group_by: 'department') == page.path ? "#main" : view_data_government_metrics_path(group_by: 'department') %>">
                   View data
                 </a>
               </li>
-              <li<% if how_to_use_path == page.path %> class="active"<% end %>>
-                <a href="<%= how_to_use_path == page.path ? "#main" : how_to_use_path %>">
+              <li<% if view_data_how_to_use_path == page.path %> class="active"<% end %>>
+                <a href="<%= view_data_how_to_use_path == page.path ? "#main" : view_data_how_to_use_path %>">
                   How to use
                 </a>
               </li>
