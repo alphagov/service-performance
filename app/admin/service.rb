@@ -73,6 +73,13 @@ ActiveAdmin.register Service do
     end
   end
 
+  form do |f|
+    f.object.natural_key ||= SecureRandom.hex(2)
+    f.object.publish_token ||= SecureRandom.hex(64)
+    inputs
+    actions
+  end
+
   permit_params :id, :natural_key, :name, :owner_id,
                 :created_at, :updated_at, :delivery_organisation_id,
                 :purpose, :how_it_works, :typical_users, :frequency_used,
