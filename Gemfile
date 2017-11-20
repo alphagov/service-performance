@@ -18,7 +18,7 @@ gem 'sass-rails', '~> 5.0'
 # API
 gem 'active_model_serializers'
 
-# Register's API
+# Faraday
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'link_header'
@@ -54,3 +54,6 @@ group :test do
   gem 'vcr'
   gem 'webmock'
 end
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+

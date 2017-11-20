@@ -1,4 +1,4 @@
-class MonthlyServiceMetricsController < ApplicationController
+class MonthlyServiceMetricsController < PublishDataController
   before_action :load_service, only: %i(edit update)
   before_action :load_metrics, only: %i(edit update)
 

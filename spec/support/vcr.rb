@@ -15,4 +15,6 @@ RSpec.configure do |config|
   end
 
   config.around(:each, :cassette, &load_cassette)
+  config.around(:each, type: :api, &load_cassette)
+  config.around(:each, type: :feature, &load_cassette)
 end

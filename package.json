@@ -1,12 +1,12 @@
 {
-  "name": "cgsd-publish-data",
+  "name": "government-service-data",
   "version": "0.0.1",
-  "description": "Backend application for Cross-Government Service Data",
+  "description": "Application for Service Performance",
   "license": "MIT",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alphagov/cgsd-publish-data.git"
+    "url": "git+https://github.com/alphagov/gsd-api.git"
   },
   "scripts": {
     "test": "./node_modules/jest/bin/jest.js",

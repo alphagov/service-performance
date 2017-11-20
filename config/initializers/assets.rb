@@ -12,4 +12,5 @@ Rails.application.config.assets.precompile = [
   'govuk_template/source/assets/javascripts/vendor/html5shiv-printshiv.js',
   'govuk_template/source/assets/images/gov.uk_logotype_crown_invert_trans.png',
   'admin/admin.css',
+  'view_data.js'
 ]

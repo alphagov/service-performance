@@ -1,0 +1,82 @@
+<main id="content" role="main" class="metrics">
+  <%= breadcrumbs %>
+
+  <header class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-xlarge small-top-margin">
+        <span class="prefix">Service data for</span>
+        <%= @metrics.organisation_name %>
+      </h1>
+
+      <%= render 'metrics/time_period_selector' %>
+    </div>
+
+    <aside class="column-one-third download">
+      <div class="notice">
+        <i class="icon icon-file-download">
+          <span class="visuallyhidden">Download file</span>
+        </i>
+        <strong class="bold-small">
+          <a href="<%= download_link %>">Download data for this page (CSV)</a>
+        </strong>
+      </div>
+    </aside>
+  </header>
+
+  <div class="grid-row">
+    <div class="column-full">
+
+      <%= tabs(current_page: page) do |tabs| %>
+        <% tabs.link_to tab_name('Departments', count: @metrics.departments_count), url_for(request.params.merge(group_by: Metrics::Group::Department)) if @metrics.has_departments? %>
+        <% tabs.link_to tab_name('Delivery organisations', count: @metrics.delivery_organisations_count), url_for(request.params.merge(group_by: Metrics::Group::DeliveryOrganisation)) if @metrics.has_delivery_organisations? %>
+        <% tabs.link_to tab_name('Services', count: @metrics.services_count), url_for(request.params.merge(group_by: Metrics::Group::Service)) if @metrics.has_services? %>
+      <% end %>
+
+
+      <div class="o-filter-panel" data-behaviour="o-filter-panel">
+        <%= form_for @metrics, as: :filter, url: '', method: 'get', class: 'filter-row' do |f| %>
+          <div class="m-sort-filter">
+            <%= f.label :order_by, 'Sort by metric' %>
+            <%= f.select :order_by, Metrics::Items::MetricSortAttribute.all.map {|order| [order.name, order.identifier]}, {}, class: 'form-control' %>
+
+            <div class="m-sort-order">
+              <label><%= f.radio_button :order, Metrics::Order::Descending %> <span><%= @metrics.high_to_low_label %></span></label>
+              <label><%= f.radio_button :order, Metrics::Order::Ascending %> <span><%= @metrics.low_to_high_label %></span></label>
+            </div>
+
+            <button type="submit" class="a-apply-button">Apply</button>
+          </div>
+        <% end %>
+
+        <div class="m-search-filter hidden" data-behaviour="m-search-filter" role="search">
+          <label for="search-metrics">
+            Find <%= @metrics.group_by_screen_name %>
+          </label>
+          <input type="search" id="search-metrics" class="a-search-input" placeholder="Example: environment">
+          <p id="search-counter" class="a-search-counter" data-behaviour="a-search-counter" class="visuallyhidden" aria-live="polite" aria-atomic="true"></p>
+        </div>
+      </div>
+
+      <!--end of filter-->
+
+      <div class="o-metric-groups" data-behaviour="o-metric-groups" id="o-metric-groups">
+        <ul>
+          <% @metrics.metric_groups.each do |metric_group|  %>
+            <li class="m-metric-group<% if metric_group.totals? %> m-metric-group__totals<% end %><% if metric_group.collapsed? %> m-metric-group__collapsed<% else %> m-metric-group__expanded<% end %>" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsible<% end %>">
+              <div data-metric-group-expanded>
+                <%= render "metrics/completeness", metric_group: metric_group %>
+                <%= render metric_group.entity, metric_group: metric_group  %>
+
+                <div class="m-metrics">
+                  <%= render metric_group.metrics, metric_group: metric_group %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+
+        </ul>
+      </div>
+
+    </div><!-- end of .column-full -->
+  </div><!-- end of .grid-row -->
+</main>

@@ -1,0 +1,110 @@
+
+<div class="m-metric <% if calls_received_metric.sampled %>m-metric__sampled<% end %>">
+  <ul class="list">
+    <%= metric_item(Metrics::Items::CallsReceived, calls_received_metric.total, html: { class: 'm-metric-headline' }) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.total) %></strong> calls received
+      <% end %>
+
+      <span class="total">
+        <span class="bold-large"><%= metric_to_human(calls_received_metric.total) %></span>
+        <span class="data-item bold">calls received</span>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.incomplete calls_received_metric.completeness %>
+        <% end %>
+      </span><% if calls_received_metric.sampled %><span class="sampled"><!-- this is intentionally squashed to preseve layout -->
+          <span class="bold-large"><%= metric_to_human(calls_received_metric.sampled_total) %></span>
+          <span class="data-item bold">calls sample size</span>
+      <% end %>
+
+    </span>
+    <% end %>
+
+    <%= metric_item(Metrics::Items::CallsReceivedPerformTransaction, calls_received_metric.perform_transaction, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.perform_transaction) %></strong> calls received to perform a transaction (<%= metric_to_percentage(calls_received_metric.perform_transaction_percentage) %>)
+      <% end %>
+
+      <span class="metric-name">To perform a transaction</span>
+      <span class="metric-value">
+        <%= item.value %>
+        <%= item.percentage calls_received_metric.perform_transaction_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness calls_received_metric.completeness['perform_transaction'] %>
+        <% end %>
+      </span>
+    <% end %>
+
+    <%= metric_item(Metrics::Items::CallsReceivedGetInformation, calls_received_metric.get_information, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.get_information) %></strong> calls received to get information (<%= metric_to_percentage(calls_received_metric.get_information_percentage) %>)
+      <% end %>
+
+      <span class="metric-name">To get information</span>
+      <span class="metric-value">
+        <%= item.value %>
+        <%= item.percentage calls_received_metric.get_information_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness calls_received_metric.completeness['get_information'] %>
+        <% end %>
+      </span>
+    <% end %>
+
+    <%= metric_item(Metrics::Items::CallsReceivedChaseProgress, calls_received_metric.chase_progress, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.chase_progress) %></strong> calls received to chase progress (<%= metric_to_percentage(calls_received_metric.chase_progress_percentage) %>)
+      <% end %>
+
+      <span class="metric-name">To chase progress</span>
+      <span class="metric-value">
+        <%= item.value %>
+        <%= item.percentage calls_received_metric.chase_progress_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness calls_received_metric.completeness['chase_progress'] %>
+        <% end %>
+      </span>
+    <% end %>
+
+    <%= metric_item(Metrics::Items::CallsReceivedChallengeADecision, calls_received_metric.challenge_a_decision, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.challenge_a_decision) %></strong> calls received to challenge a decision (<%= metric_to_percentage(calls_received_metric.challenge_a_decision_percentage) %>)
+      <% end %>
+
+      <span class="metric-name">To challenge a decision</span>
+      <span class="metric-value">
+        <%= item.value %>
+        <%= item.percentage calls_received_metric.challenge_a_decision_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness calls_received_metric.completeness['challenge_a_decision'] %>
+        <% end %>
+      </span>
+    <% end %>
+
+    <%= metric_item(Metrics::Items::CallsReceivedOther, calls_received_metric.other, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.get_information) %></strong> other calls received (<%= metric_to_percentage(calls_received_metric.other_percentage) %>)
+      <% end %>
+
+      <span class="metric-name">Other</span>
+      <span class="metric-value">
+        <%= item.value %>
+        <%= item.percentage calls_received_metric.other_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness calls_received_metric.completeness['other'] %>
+        <% end %>
+      </span>
+    <% end %>
+
+    <%= metric_item(Metrics::Items::CallsReceivedUnspecified, calls_received_metric.unspecified, sampled: calls_received_metric.sampled) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(calls_received_metric.unspecified) %></strong> unspecified calls received (<%= metric_to_percentage(calls_received_metric.unspecified_percentage) %>)
+      <% end %>
+
+      <span class="metric-name">Unspecified</span>
+      <span class="metric-value">
+        <%= item.value %>
+        <%= item.percentage calls_received_metric.unspecified_percentage %>
+      </span>
+    <% end %>
+  </ul>
+</div>

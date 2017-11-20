@@ -8,8 +8,8 @@ module AuthenticatedController
   end
 
   class_methods do
-    def skip_authentication
-      skip_before_action :_authenticate_with_http_basic
+    def skip_authentication(opts = {})
+      skip_before_action :_authenticate_with_http_basic, opts
     end
   end
 
