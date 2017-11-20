@@ -1,0 +1,33 @@
+
+<h1>Magic links</h1>
+
+<% @service_data.each do |service, dates| %>
+<h2><%= service.name %></h2>
+<table class="index_table index"">
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>Year</th>
+      <th>Owner</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% dates.each do |date, token| %>
+    <tr>
+      <td><%= date.year %></td>
+      <td><%= date.strftime("%B") %></td>
+      <td><%= service.owner.email if service.owner %></td>
+      <td>
+        <%= absolute_url(url_for publish_service_metrics_path(
+                                  service_id: service.id,
+                                  year: date.year,
+                                  month: date.month.to_s.rjust(2, '0'),
+                                  publish_token: token)) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>
