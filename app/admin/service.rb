@@ -2,6 +2,7 @@ ActiveAdmin.register Service do
   includes :department, :delivery_organisation
 
   index do
+    selectable_column
     column :name
     column :delivery_organisation
     column :department
@@ -102,6 +103,23 @@ ActiveAdmin.register Service do
       f.input :calls_received_perform_transaction_applicable
     end
     actions
+  end
+  
+  batch_action :generate_links_for do |ids|
+    @page_title = "Service publishing links"
+
+    services = batch_action_collection.find(ids)
+
+    @service_data = services.each_with_object({}) do |service, services_hash|
+      dates = 4.times.each_with_object({}) do |count, hash|
+        date = (Date.today - 1.month) + count.months
+        month = YearMonth.new(date.year, date.month)
+        hash[date] = MonthlyServiceMetricsPublishToken.generate(service: service, month: month)
+      end
+      services_hash[service] = dates
+    end
+
+    render "generate_magic_links"
   end
 
   permit_params :id, :natural_key, :name, :owner_id,
