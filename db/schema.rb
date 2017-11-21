@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117163006) do
+ActiveRecord::Schema.define(version: 20171121104151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 20171117163006) do
     t.bigint "calls_received_other"
     t.bigint "calls_received_perform_transaction"
     t.boolean "published", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index "service_id, date_trunc('month'::text, (month)::timestamp without time zone)", name: "unique_monthly_service_metrics", unique: true
     t.index ["service_id"], name: "index_monthly_service_metrics_on_service_id"
   end
