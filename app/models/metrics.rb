@@ -84,6 +84,21 @@ class Metrics
     end
 
     attr_reader :entity, :metrics
+
+    # TODO: fix this hack
+    def transactions_received
+      metrics[0]
+    end
+
+    # TODO: fix this hack
+    def transactions_with_outcome
+      metrics[1]
+    end
+
+    # TODO: fix this hack
+    def calls_received
+      metrics[2]
+    end
   end
 
   def self.default_group_by
