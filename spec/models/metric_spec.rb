@@ -159,11 +159,4 @@ RSpec.describe Metric, type: :model do
       expect(result.channel_b_completeness.expected).to eq(1)
     end
   end
-
-  describe '#read_attribute_for_serialization' do
-    it do
-      metric = CustomMetric.new(channel_a: 5, channel_a_completeness: channel_a_completeness, channel_b: 10, channel_b_completeness: channel_b_completeness)
-      expect(metric).to respond_to(:read_attribute_for_serialization)
-    end
-  end
 end
