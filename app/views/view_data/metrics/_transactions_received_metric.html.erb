@@ -23,7 +23,7 @@
         <%= item.value %>
         <%= item.percentage transactions_received_metric.online_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
-          <%= item.completeness transactions_received_metric.completeness['online'] %>
+          <%= item.completeness transactions_received_metric.completeness[:online] %>
         <% end %>
       </span>
     <% end %>
@@ -38,7 +38,7 @@
         <%= item.value %>
         <%= item.percentage transactions_received_metric.phone_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
-          <%= item.completeness transactions_received_metric.completeness['phone'] %>
+          <%= item.completeness transactions_received_metric.completeness[:phone] %>
         <% end %>
       </span>
     <% end %>
@@ -53,7 +53,7 @@
         <%= item.value %>
         <%= item.percentage transactions_received_metric.paper_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
-          <%= item.completeness transactions_received_metric.completeness['paper'] %>
+          <%= item.completeness transactions_received_metric.completeness[:paper] %>
         <% end %>
       </span>
     <% end %>
@@ -68,7 +68,7 @@
         <%= item.value %>
         <%= item.percentage transactions_received_metric.face_to_face_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
-          <%= item.completeness transactions_received_metric.completeness['face_to_face'] %>
+          <%= item.completeness transactions_received_metric.completeness[:face_to_face] %>
         <% end %>
       </span>
     <% end %>
@@ -83,7 +83,7 @@
         <%= item.value %>
         <%= item.percentage transactions_received_metric.other_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
-          <%= item.completeness transactions_received_metric.completeness['other'] %>
+          <%= item.completeness transactions_received_metric.completeness[:other] %>
         <% end %>
       </span>
     <% end %>

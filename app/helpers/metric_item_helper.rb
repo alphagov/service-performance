@@ -52,23 +52,16 @@ module MetricItemHelper
     end
 
     def incomplete(completeness)
-      # TODO: implement this
-      return ''
-      return '' if !completeness
-      if completeness.values.any? { |item| item['actual'] != item['expected'] }
+      if completeness.values.any?(&:incomplete?)
         content_tag(:div, 'Based on incomplete data', class: 'metric-subheading-grey')
       end
     end
 
-    def completeness(scores)
-      return '' if !scores || @metric_value.in?([Metric::NOT_PROVIDED, Metric::NOT_APPLICABLE])
+    def completeness(completeness)
+      return '' if !completeness || @metric_value.in?([Metric::NOT_PROVIDED, Metric::NOT_APPLICABLE])
+      return '' if completeness.complete?
 
-      actual = scores['actual']
-      expected = scores['expected']
-
-      return '' if actual == expected
-
-      content = "Data provided for #{actual} of #{expected} months".html_safe
+      content = "Data provided for #{completeness.actual} of #{completeness.expected} months"
       content_tag(:div, content, class: 'metric-text-grey')
     end
 
