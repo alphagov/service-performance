@@ -82,7 +82,7 @@
 
     <%= metric_item(Metrics::Items::CallsReceivedOther, calls_received_metric.other, sampled: calls_received_metric.sampled) do |item| %>
       <% item.description do %>
-        <strong><%= metric_to_human(calls_received_metric.get_information) %></strong> other calls received (<%= metric_to_percentage(calls_received_metric.other_percentage) %>)
+        <strong><%= metric_to_human(calls_received_metric.other) %></strong> other calls received (<%= metric_to_percentage(calls_received_metric.other_percentage) %>)
       <% end %>
 
       <span class="metric-name">Other</span>
