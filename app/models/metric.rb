@@ -109,8 +109,6 @@ class Metric
     ->(metrics) { from_metrics(metrics) }
   end
 
-  alias :read_attribute_for_serialization :send
-
   def applicable?
     !values.all? { |value| value == NOT_APPLICABLE }
   end

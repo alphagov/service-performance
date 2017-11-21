@@ -1,5 +1,5 @@
 class Metrics
-  module Group
+  module GroupBy
     Government = 'government'.freeze
     Department = 'department'.freeze
     DeliveryOrganisation = 'delivery_organisation'.freeze
@@ -77,20 +77,11 @@ class Metrics
     Descending = 'desc'.freeze
   end
 
-  module GroupBy
-    GOVERNMENT = :government
-    DEPARTMENT = :department
-    DELIVERY_ORGANISATION = :delivery_organisation
-    SERVICE = :service
-  end
-
   class MetricGroup
     def initialize(entity, metrics)
       @entity = entity
       @metrics = metrics
     end
-
-    alias :read_attribute_for_serialization :send
 
     attr_reader :entity, :metrics
   end
@@ -101,14 +92,13 @@ class Metrics
 
   def initialize(root, group_by: nil, time_period:)
     group_by ||= self.class.default_group_by
-    raise ArgumentError, "unknown group_by: #{group_by}" unless self.class.valid_group_bys.include?(group_by)
+    raise ArgumentError, "unknown group_by: #{group_by.inspect}" unless self.class.valid_group_bys.include?(group_by)
 
     @root = root
     @group_by = group_by
     @time_period = time_period
   end
 
-  alias :read_attribute_for_serialization :send
   attr_reader :group_by, :root, :time_period
 
   def metrics(entity: root)
@@ -129,7 +119,7 @@ class Metrics
       values.map(&TransactionsReceivedMetric).reduce(:+),
       values.map(&TransactionsWithOutcomeMetric).reduce(:+),
       values.map(&CallsReceivedMetric).reduce(:+),
-    ].compact.select(&:applicable?)
+    ]
   end
 
   def metric_groups

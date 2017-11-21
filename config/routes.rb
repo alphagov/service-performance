@@ -45,20 +45,20 @@ Rails.application.routes.draw do
     scope 'performance-data' do
       scope :government do
         get 'metrics/:group_by', to: 'view_data/government_metrics#index',
-          group_by: Regexp.union(Metrics::Group::Department, Metrics::Group::DeliveryOrganisation, Metrics::Group::Service),
-          defaults: { group_by: Metrics::Group::Department },
+          group_by: Regexp.union(Metrics::GroupBy::Department, Metrics::GroupBy::DeliveryOrganisation, Metrics::GroupBy::Service),
+          defaults: { group_by: Metrics::GroupBy::Department },
           as: :government_metrics
       end
 
       resources :departments, only: [] do
         get 'metrics/:group_by', to: 'view_data/department_metrics#index',
-          group_by: Regexp.union(Metrics::Group::DeliveryOrganisation, Metrics::Group::Service),
-          defaults: { group_by: Metrics::Group::DeliveryOrganisation },
+          group_by: Regexp.union(Metrics::GroupBy::DeliveryOrganisation, Metrics::GroupBy::Service),
+          defaults: { group_by: Metrics::GroupBy::DeliveryOrganisation },
           as: :metrics
       end
 
       resources :delivery_organisations, only: [] do
-        get 'metrics/:group_by', to: 'view_data/delivery_organisation_metrics#index', group_by: Metrics::Group::Service, as: :metrics
+        get 'metrics/:group_by', to: 'view_data/delivery_organisation_metrics#index', group_by: Metrics::GroupBy::Service, as: :metrics
       end
 
       resources :services, only: [:show], controller: 'view_data/services'

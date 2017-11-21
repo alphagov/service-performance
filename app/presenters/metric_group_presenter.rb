@@ -7,13 +7,14 @@ class MetricGroupPresenter
 
   module MetricToPartialPath
     def to_partial_path
-      if self.not_provided?
-        'metrics/not_provided_' + self.class.name.demodulize.underscore
-      elsif self.not_applicable?
-        'metrics/not_applicable_' + self.class.name.demodulize.underscore
-      else
+      # TODO: implement this
+      # if self.not_provided?
+      #   'metrics/not_provided_' + self.class.name.demodulize.underscore
+      # elsif self.not_applicable?
+      #   'metrics/not_applicable_' + self.class.name.demodulize.underscore
+      # else
         'metrics/' + self.class.name.demodulize.underscore
-      end
+      # end
     end
   end
 
@@ -25,7 +26,7 @@ class MetricGroupPresenter
     end
 
     def entity
-      @entity ||= @metric_group.entity.extend(EntityToPartialPath)
+      @entity.extend(EntityToPartialPath)
     end
 
     def totals?
@@ -33,18 +34,19 @@ class MetricGroupPresenter
     end
   end
 
-  def initialize(metric_group, collapsed: false, sort_value: nil)
-    @metric_group = metric_group
+  def initialize(entity, metrics, collapsed: false, sort_value: nil)
+    @entity = entity
+    @metrics = metrics
     @collapsed = collapsed
     @sort_value = sort_value
   end
 
   def entity
-    @entity ||= @metric_group.entity.extend(EntityToPartialPath)
+    @entity.extend(EntityToPartialPath)
   end
 
   def metrics
-    @metrics ||= @metric_group.metrics.each { |metric| metric.extend(MetricToPartialPath) }
+    @metrics.each { |metric| metric.extend(MetricToPartialPath) }
   end
 
   delegate :name, to: :entity
@@ -53,6 +55,9 @@ class MetricGroupPresenter
   attr_reader :sort_value
 
   def completeness
+    # TODO: implement this
+    return nil
+    
     res = @metric_group.metrics.reduce([0, 0]) { |memo, hash|
       if hash.completeness && hash.completeness.size.positive?
         val = %w(actual expected).map { |k|

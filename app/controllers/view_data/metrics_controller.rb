@@ -2,10 +2,6 @@ module ViewData
   class MetricsController < ViewDataController
   private
 
-    def client
-      @client ||= GovernmentServiceDataAPI::Client.new
-    end
-
     def group_by
       params[:group_by]
     end

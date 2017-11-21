@@ -1,23 +1,23 @@
 class MetricsPresenter
-  def initialize(entity, client:, group_by:, order: nil, order_by: nil)
+  def initialize(entity, group_by:, order: nil, order_by: nil)
     @entity = entity
-    @client = client
 
     @group_by = group_by
     @order_by = order_by
     @selected_metric_sort_attribute = Metrics::Items.get_metric_sort_attribute(order_by)
     @order = order || Metrics::Order::Descending
+    @time_period = TimePeriod.default
   end
 
-  attr_reader :group_by, :order_by, :selected_metric_sort_attribute, :order
+  attr_reader :group_by, :order_by, :selected_metric_sort_attribute, :order, :time_period
 
   def group_by_screen_name
     case group_by
-    when Metrics::Group::Department
+    when Metrics::GroupBy::Department
       'department'
-    when Metrics::Group::DeliveryOrganisation
+    when Metrics::GroupBy::DeliveryOrganisation
       'delivery organisation'
-    when Metrics::Group::Service
+    when Metrics::GroupBy::Service
       'service'
     else
       'by name'
@@ -25,7 +25,7 @@ class MetricsPresenter
   end
 
   def show_completeness?
-    group_by == Metrics::Group::Service
+    group_by == Metrics::GroupBy::Service
   end
 
   def organisation_name
@@ -37,7 +37,7 @@ class MetricsPresenter
       metric_groups = data.metric_groups
                         .map { |metric_group|
                           v = @selected_metric_sort_attribute.value(metric_group)
-                          MetricGroupPresenter.new(metric_group, collapsed: collapsed?, sort_value: v)
+                          MetricGroupPresenter.new(metric_group.entity, metric_group.metrics, collapsed: collapsed?, sort_value: v)
                         }
                         .select(&:has_sort_value?)
                         .sort_by(&:sort_value)
@@ -118,13 +118,13 @@ class MetricsPresenter
 
 private
 
-  attr_reader :client, :entity
+  attr_reader :entity
 
   def data
-    @data ||= client.metrics(entity, group_by: group_by)
+    @data ||= GovernmentMetrics.new(entity, group_by: group_by, time_period: time_period)
   end
 
   def totals_metric_group_presenter
-    @totals_metric_group_presenter ||= MetricGroupPresenter::Totals.new(data.totals, collapsed: collapsed?)
+    @totals_metric_group_presenter ||= MetricGroupPresenter::Totals.new(entity, data.metrics, collapsed: collapsed?)
   end
 end

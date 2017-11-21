@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe MetricsPresenter do
   let(:entity) { double(:entity) }
   let(:client) { instance_double(GovernmentServiceDataAPI::Client) }
-  let(:group_by) { Metrics::Group::Department }
+  let(:group_by) { Metrics::GroupBy::Department }
   let(:order) { nil }
   let(:order_by) { nil }
   let(:presenter) { described_class.new(entity, client: client, group_by: group_by, order: order, order_by: order_by) }

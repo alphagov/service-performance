@@ -17,24 +17,24 @@ RSpec.describe ViewData::DepartmentMetricsController, type: :controller do
 
     it 'finds the department' do
       expect(client).to receive(:department).with('D001') { department }
-      get :index, params: { department_id: 'D001', group_by: Metrics::Group::DeliveryOrganisation }
+      get :index, params: { department_id: 'D001', group_by: Metrics::GroupBy::DeliveryOrganisation }
     end
 
     it 'assigns a DepartmentMetrics presenter to @metrics' do
       presenter = instance_double(DepartmentMetricsPresenter)
-      expect(DepartmentMetricsPresenter).to receive(:new).with(department, client: client, group_by: Metrics::Group::DeliveryOrganisation, order: 'asc', order_by: 'name') { presenter }
+      expect(DepartmentMetricsPresenter).to receive(:new).with(department, client: client, group_by: Metrics::GroupBy::DeliveryOrganisation, order: 'asc', order_by: 'name') { presenter }
 
-      get :index, params: { department_id: 'D001', group_by: Metrics::Group::DeliveryOrganisation, filter: { order: 'asc', order_by: 'name' } }
+      get :index, params: { department_id: 'D001', group_by: Metrics::GroupBy::DeliveryOrganisation, filter: { order: 'asc', order_by: 'name' } }
       expect(assigns[:metrics]).to eq(presenter)
     end
 
     it 'renders metrics index' do
-      get :index, params: { department_id: 'D001', group_by: Metrics::Group::DeliveryOrganisation }
+      get :index, params: { department_id: 'D001', group_by: Metrics::GroupBy::DeliveryOrganisation }
       expect(controller).to have_rendered('view_data/metrics/index')
     end
 
     it 'sets the breadcrumbs' do
-      get :index, params: { department_id: 'D001', group_by: Metrics::Group::DeliveryOrganisation }
+      get :index, params: { department_id: 'D001', group_by: Metrics::GroupBy::DeliveryOrganisation }
 
       expect(page.breadcrumbs.map { |crumb| [crumb.name, crumb.url] }).to eq([
         ['UK Government', view_data_government_metrics_path],

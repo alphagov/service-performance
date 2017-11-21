@@ -1,8 +1,6 @@
 module MetricItemHelper
-  include GovernmentServiceDataAPI::MetricStatus
-
   def metric_item(metric_item, metric_value, sampled: false, html: {})
-    return if metric_value == NOT_APPLICABLE
+    return if metric_value == Metric::NOT_APPLICABLE
 
     item = MetricItemContent.new(self, metric_value)
     content = capture { yield(item) } || ''
@@ -32,7 +30,6 @@ module MetricItemHelper
 
 
   class MetricItemContent < ActionView::Base
-    include GovernmentServiceDataAPI::MetricStatus
     include MetricFormatterHelper
 
     def initialize(helper, metric_value)
@@ -41,20 +38,22 @@ module MetricItemHelper
     end
 
     def value
-      return content_tag(:span, 'Not provided', class: 'metric-value-not-provided') if @metric_value == NOT_PROVIDED
+      return content_tag(:span, 'Not provided', class: 'metric-value-not-provided') if @metric_value == Metric::NOT_PROVIDED
 
       val = metric_to_human(@metric_value)
       content_tag(:span, val, class: 'metric-value-count')
     end
 
     def percentage(pct)
-      return '' if pct.in? [NOT_PROVIDED, NOT_APPLICABLE]
+      return '' if pct.in? [Metric::NOT_PROVIDED, Metric::NOT_APPLICABLE]
 
       percentage_string = metric_to_percentage(pct)
       content_tag(:span, "(#{percentage_string})", class: 'metric-value-percentage')
     end
 
     def incomplete(completeness)
+      # TODO: implement this
+      return ''
       return '' if !completeness
       if completeness.values.any? { |item| item['actual'] != item['expected'] }
         content_tag(:div, 'Based on incomplete data', class: 'metric-subheading-grey')
@@ -62,7 +61,7 @@ module MetricItemHelper
     end
 
     def completeness(scores)
-      return '' if !scores || @metric_value.in?([NOT_PROVIDED, NOT_APPLICABLE])
+      return '' if !scores || @metric_value.in?([Metric::NOT_PROVIDED, Metric::NOT_APPLICABLE])
 
       actual = scores['actual']
       expected = scores['expected']
@@ -74,7 +73,7 @@ module MetricItemHelper
     end
 
     def description(&content)
-      return @description if [NOT_PROVIDED, NOT_APPLICABLE].include? @metric_value
+      return @description if [Metric::NOT_PROVIDED, Metric::NOT_APPLICABLE].include? @metric_value
 
       if content
         @description = @helper.capture(&content)

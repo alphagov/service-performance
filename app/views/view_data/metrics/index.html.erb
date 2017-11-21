@@ -27,9 +27,9 @@
     <div class="column-full">
 
       <%= tabs(current_page: page) do |tabs| %>
-        <% tabs.link_to tab_name('Departments', count: @metrics.departments_count), url_for(request.params.merge(group_by: Metrics::Group::Department)) if @metrics.has_departments? %>
-        <% tabs.link_to tab_name('Delivery organisations', count: @metrics.delivery_organisations_count), url_for(request.params.merge(group_by: Metrics::Group::DeliveryOrganisation)) if @metrics.has_delivery_organisations? %>
-        <% tabs.link_to tab_name('Services', count: @metrics.services_count), url_for(request.params.merge(group_by: Metrics::Group::Service)) if @metrics.has_services? %>
+        <% tabs.link_to tab_name('Departments', count: @metrics.departments_count), url_for(request.params.merge(group_by: Metrics::GroupBy::Department)) if @metrics.has_departments? %>
+        <% tabs.link_to tab_name('Delivery organisations', count: @metrics.delivery_organisations_count), url_for(request.params.merge(group_by: Metrics::GroupBy::DeliveryOrganisation)) if @metrics.has_delivery_organisations? %>
+        <% tabs.link_to tab_name('Services', count: @metrics.services_count), url_for(request.params.merge(group_by: Metrics::GroupBy::Service)) if @metrics.has_services? %>
       <% end %>
 
 

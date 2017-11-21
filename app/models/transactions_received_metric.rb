@@ -10,4 +10,11 @@ class TransactionsReceivedMetric < Metric
   def total
     values.reduce(&method(:sum))
   end
+
+  # TODO: implement this
+  def online_percentage; Float::NAN; end
+  def phone_percentage; Float::NAN; end
+  def paper_percentage; Float::NAN; end
+  def face_to_face_percentage; Float::NAN; end
+  def other_percentage; Float::NAN; end
 end

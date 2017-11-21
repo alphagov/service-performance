@@ -15,4 +15,14 @@ class CallsReceivedMetric < Metric
   def sampled_total
     total
   end
+
+  # TODO: implement this
+  def perform_transaction_percentage; Float::NAN; end
+  def get_information_percentage; Float::NAN; end
+  def chase_progress_percentage; Float::NAN; end
+  def challenge_a_decision_percentage; Float::NAN; end
+  def other_percentage; Float::NAN; end
+
+  def unspecified; 0; end
+  def unspecified_percentage; Float::NAN; end
 end

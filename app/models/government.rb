@@ -1,5 +1,7 @@
 class Government
-  alias :read_attribute_for_serialization :send
+  def name
+    'UK government'
+  end
 
   def departments
     Department.all

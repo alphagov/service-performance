@@ -14,4 +14,8 @@ class Service < ApplicationRecord
   def services
     Service.where(id: self)
   end
+
+  def to_param
+    natural_key
+  end
 end
