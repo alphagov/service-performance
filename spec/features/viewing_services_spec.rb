@@ -1,7 +1,16 @@
 require 'rails_helper'
 
 RSpec.feature 'viewing services', type: :feature do
-  specify 'viewing a service', cassette: 'viewing-a-service' do
+  let(:time_period) { TimePeriod.default }
+
+  specify 'viewing a service' do
+    department = FactoryGirl.create(:department, name: 'Department for Transport')
+    delivery_organisation = FactoryGirl.create(:delivery_organisation, department: department, name: 'Highways England')
+    service = FactoryGirl.create(:service, delivery_organisation: delivery_organisation, name: 'Pay the Dartford Crossing charge (Dartcharge)')
+
+    FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: time_period.start_month, online_transactions: 4025000, transactions_with_outcome: 1437500)
+    FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: time_period.end_month, online_transactions: 1725000, transactions_with_outcome: 4312500)
+
     visit view_data_government_metrics_path(group_by: Metrics::GroupBy::Department)
 
     click_on 'Department for Transport'
@@ -17,7 +26,13 @@ RSpec.feature 'viewing services', type: :feature do
     expect(page).to have_content('5.75m transactions processed')
   end
 
-  specify 'viewing a service with not-provided data', cassette: 'viewing-a-service' do
+  specify 'viewing a service with not-provided data' do
+    department = FactoryGirl.create(:department, name: 'Department for Communities and Local Government')
+    delivery_organisation = FactoryGirl.create(:delivery_organisation, department: department, name: 'Planning Inspectorate')
+    service = FactoryGirl.create(:service, :calls_received_not_applicable, delivery_organisation: delivery_organisation, name: 'National Infrastructure applications')
+
+    FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: time_period.start_month)
+
     visit view_data_government_metrics_path(group_by: Metrics::GroupBy::Department)
 
     click_on 'Department for Communities and Local Government'
@@ -31,8 +46,17 @@ RSpec.feature 'viewing services', type: :feature do
     expect(page).to have_content("doesn't receive calls")
   end
 
-  specify 'viewing a service with completeness info', cassette: 'viewing-a-service' do
-    pending 'unification of gsd-view-data & gsd-api'
+  specify 'viewing a service with completeness info' do
+    department = FactoryGirl.create(:department, name: 'Department for Environment, Food & Rural Affairs')
+    delivery_organisation = FactoryGirl.create(:delivery_organisation, department: department, name: 'Environment Agency')
+    service = FactoryGirl.create(:service, :transactions_received_not_applicable, :calls_received_not_applicable, delivery_organisation: delivery_organisation, name: 'Flood Information Service')
+
+    month = time_period.start_month
+    6.times do
+      FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: month, transactions_with_outcome: 100, transactions_with_intended_outcome: 100)
+      month = month.succ
+    end
+
     visit view_data_government_metrics_path(group_by: Metrics::GroupBy::Department)
 
     click_on 'Department for Environment, Food & Rural Affairs'
@@ -41,6 +65,6 @@ RSpec.feature 'viewing services', type: :feature do
 
     expect(page).to have_content('50% of data points complete')
     expect(page).to have_content('Based on incomplete data')
-    expect(page).to have_content('Data provided for 6 of 12 months', count: 4)
+    expect(page).to have_content('Data provided for 6 of 12 months')
   end
 end
