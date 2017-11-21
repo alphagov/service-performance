@@ -1,28 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe ViewData::DepartmentMetricsController, type: :controller do
-  let(:client) { instance_double(GovernmentServiceDataAPI::Client) }
   let(:page) { controller.send(:page) }
 
-  before do
-    allow(controller).to receive(:client) { client }
-  end
-
   describe "GET index" do
-    let(:department) { instance_double(GovernmentServiceDataAPI::Department, name: 'Department of Services') }
+    let(:department) { instance_double(Department, name: 'Department of Services') }
 
     before do
-      allow(client).to receive(:department) { department }
+      allow(Department).to receive_message_chain(:where, :first!) { department }
     end
 
     it 'finds the department' do
-      expect(client).to receive(:department).with('D001') { department }
+      expect(Department).to receive(:where).with(natural_key: 'D001') { double(first!: department) }
       get :index, params: { department_id: 'D001', group_by: Metrics::GroupBy::DeliveryOrganisation }
     end
 
     it 'assigns a DepartmentMetrics presenter to @metrics' do
-      presenter = instance_double(DepartmentMetricsPresenter)
-      expect(DepartmentMetricsPresenter).to receive(:new).with(department, client: client, group_by: Metrics::GroupBy::DeliveryOrganisation, order: 'asc', order_by: 'name') { presenter }
+      presenter = instance_double(MetricsPresenter)
+      expect(MetricsPresenter).to receive(:new).with(department, group_by: Metrics::GroupBy::DeliveryOrganisation, order: 'asc', order_by: 'name') { presenter }
 
       get :index, params: { department_id: 'D001', group_by: Metrics::GroupBy::DeliveryOrganisation, filter: { order: 'asc', order_by: 'name' } }
       expect(assigns[:metrics]).to eq(presenter)

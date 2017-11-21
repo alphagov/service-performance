@@ -1,29 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe ViewData::DeliveryOrganisationMetricsController, type: :controller do
-  let(:client) { instance_double(GovernmentServiceDataAPI::Client) }
   let(:page) { controller.send(:page) }
 
-  before do
-    allow(controller).to receive(:client) { client }
-  end
-
   describe "GET index" do
-    let(:department) { instance_double(GovernmentServiceDataAPI::Department, key: '001', name: 'Department of Services') }
-    let(:delivery_organisation) { instance_double(GovernmentServiceDataAPI::DeliveryOrganisation, department: department, name: 'Delivery Organisation of Services') }
+    let(:department) { instance_double(Department, natural_key: '001', name: 'Department of Services', to_param: '001') }
+    let(:delivery_organisation) { instance_double(DeliveryOrganisation, department: department, name: 'Delivery Organisation of Services', to_param: '1923') }
 
     before do
-      allow(client).to receive(:delivery_organisation) { delivery_organisation }
+      allow(DeliveryOrganisation).to receive_message_chain(:where, :first!) { delivery_organisation }
     end
 
     it 'finds the delivery organisation' do
-      expect(client).to receive(:delivery_organisation).with('1923') { delivery_organisation }
+      expect(DeliveryOrganisation).to receive(:where).with(natural_key: '1923') { double(first!: delivery_organisation) }
       get :index, params: { delivery_organisation_id: '1923', group_by: Metrics::GroupBy::Service }
     end
 
     it 'assigns a DeliveryOrganisationMetrics presenter to @metrics' do
-      presenter = instance_double(DeliveryOrganisationMetricsPresenter)
-      expect(DeliveryOrganisationMetricsPresenter).to receive(:new).with(delivery_organisation, client: client, group_by: Metrics::GroupBy::Service, order: 'asc', order_by: 'name') { presenter }
+      presenter = instance_double(MetricsPresenter)
+      expect(MetricsPresenter).to receive(:new).with(delivery_organisation, group_by: Metrics::GroupBy::Service, order: 'asc', order_by: 'name') { presenter }
 
       get :index, params: { delivery_organisation_id: '1923', group_by: Metrics::GroupBy::Service, filter: { order: 'asc', order_by: 'name' } }
       expect(assigns[:metrics]).to eq(presenter)

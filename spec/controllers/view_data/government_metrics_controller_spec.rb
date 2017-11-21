@@ -1,24 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe ViewData::GovernmentMetricsController, type: :controller do
-  let(:client) { instance_double(GovernmentServiceDataAPI::Client) }
   let(:page) { controller.send(:page) }
-
-  before do
-    allow(controller).to receive(:client) { client }
-  end
 
   describe "GET index" do
     let(:government) { instance_double(Government) }
 
-    it 'finds government' do
-      expect(client).to receive(:government) { government }
-      get :index, params: { group_by: Metrics::GroupBy::Department }
+    before do
+      allow(Government).to receive(:new) { government }
     end
 
     it 'assigns a GovernmentMetrics presenter to @metrics' do
-      presenter = instance_double(GovernmentMetricsPresenter)
-      expect(GovernmentMetricsPresenter).to receive(:new).with(government, client: client, group_by: Metrics::GroupBy::Department, order: 'asc', order_by: 'name') { presenter }
+      presenter = instance_double(MetricsPresenter)
+      expect(MetricsPresenter).to receive(:new).with(government, group_by: Metrics::GroupBy::Department, order: 'asc', order_by: 'name') { presenter }
 
       get :index, params: { group_by: Metrics::GroupBy::Department, filter: { order: 'asc', order_by: 'name' } }
       expect(assigns[:metrics]).to eq(presenter)
