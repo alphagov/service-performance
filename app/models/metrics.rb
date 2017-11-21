@@ -125,8 +125,10 @@ class Metrics
   def metric_groups
     entities.map { |entity|
       m = metrics(entity: entity)
-      MetricGroup.new(entity, m)
-    }
+      if m.any?
+        MetricGroup.new(entity, m)
+      end
+    }.compact
   end
 
   def published_monthly_service_metrics(entity = root)
