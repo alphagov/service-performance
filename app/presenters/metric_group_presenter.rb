@@ -55,25 +55,12 @@ class MetricGroupPresenter
   attr_reader :sort_value
 
   def completeness
-    # TODO: implement this
-    return nil
-    
-    res = @metric_group.metrics.reduce([0, 0]) { |memo, hash|
-      if hash.completeness && hash.completeness.size.positive?
-        val = %w(actual expected).map { |k|
-          hash.completeness.values.map { |m| m[k] }.reduce(:+)
-        }
+    completeness = @metrics.flat_map { |metric| metric.completeness.values }.reduce(:+)
 
-        [memo, val].transpose.map { |x| x.reduce(:+) }
-      else
-        memo
-      end
-    }
+    percentage = (completeness.actual.to_f / completeness.expected.to_f) * 100
+    percentage = 0 if percentage.nan?
 
-    v = (res[0].to_f / res[1].to_f) * 100
-    v = 0 if v.nan?
-
-    helper.number_to_percentage(v, precision: 0)
+    helper.number_to_percentage(percentage, precision: 0)
   end
 
   def delivery_organisations_count
