@@ -5,6 +5,12 @@ RSpec.describe Metric, type: :model do
     define do
       item :channel_a, from: ->(metric) { metric.channel_a }, applicable: ->(metric) { metric.channel_a_applicable }
       item :channel_b, from: ->(metric) { metric.channel_b }, applicable: ->(metric) { metric.channel_b_applicable }
+
+      percentage_of :total
+    end
+
+    def total
+      1000
     end
   end
 
@@ -184,6 +190,30 @@ RSpec.describe Metric, type: :model do
       expect(result.channel_a_completeness.expected).to eq(2)
       expect(result.channel_b_completeness.actual).to eq(1)
       expect(result.channel_b_completeness.expected).to eq(1)
+    end
+  end
+
+  describe 'percentages' do
+    it 'defines a percentage accessor for each metric item' do
+      metrics = double('metrics', channel_a: 400, channel_a_applicable: true, channel_b: 600, channel_b_applicable: true)
+      metric = CustomMetric.from_metrics(metrics)
+
+      expect(metric.channel_a_percentage).to eq(40.0)
+      expect(metric.channel_b_percentage).to eq(60.0)
+    end
+
+    it 'returns NOT_APPLICABLE if the value is not applicable' do
+      metrics = double('metrics', channel_a: nil, channel_a_applicable: false, channel_b: 600, channel_b_applicable: true)
+      metric = CustomMetric.from_metrics(metrics)
+
+      expect(metric.channel_a_percentage).to eq(Metric::NOT_APPLICABLE)
+    end
+
+    it 'returns NOT_PROVIDED if the value is not provided' do
+      metrics = double('metrics', channel_a: nil, channel_a_applicable: true, channel_b: 600, channel_b_applicable: true)
+      metric = CustomMetric.from_metrics(metrics)
+
+      expect(metric.channel_a_percentage).to eq(Metric::NOT_PROVIDED)
     end
   end
 end

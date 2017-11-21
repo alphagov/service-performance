@@ -6,6 +6,8 @@ class CallsReceivedMetric < Metric
     item :challenge_a_decision, from: ->(metrics) { metrics.calls_received_challenge_decision }, applicable: ->(metrics) { metrics.service.calls_received_challenge_decision_applicable? }
     item :perform_transaction, from: ->(metrics) { metrics.calls_received_perform_transaction }, applicable: ->(metrics) { metrics.service.calls_received_perform_transaction_applicable? }
     item :other, from: ->(metrics) { metrics.calls_received_other }, applicable: ->(metrics) { metrics.service.calls_received_other_applicable? }
+
+    percentage_of :total
   end
 
   def sampled
@@ -17,12 +19,6 @@ class CallsReceivedMetric < Metric
   end
 
   # TODO: implement this
-  def perform_transaction_percentage; Float::NAN; end
-  def get_information_percentage; Float::NAN; end
-  def chase_progress_percentage; Float::NAN; end
-  def challenge_a_decision_percentage; Float::NAN; end
-  def other_percentage; Float::NAN; end
-
   def unspecified; 0; end
   def unspecified_percentage; Float::NAN; end
 end

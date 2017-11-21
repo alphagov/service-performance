@@ -10,10 +10,18 @@ class Metric
       instance_eval(&definition)
     end
 
-    attr_reader :items
+    attr_reader :items, :denominator_method
 
     def item(name, from:, applicable:)
       @items << Item.new(name.to_sym, from, applicable)
+    end
+
+    def percentage_of(denominator_method)
+      @denominator_method = denominator_method
+    end
+
+    def denominator_method?
+      @denominator_method ? true : false
     end
 
     def item_attribute_names
@@ -55,6 +63,19 @@ class Metric
 
       completeness = items.fetch(:"#{item.name}_completeness")
       instance_variable_set("@#{item.name}_completeness", completeness)
+    end
+
+    if self.class.definition.denominator_method?
+      self.class.definition.items.each do |item|
+        self.class.send(:define_method, "#{item.name}_percentage") do
+          numerator = send(item.name)
+          return numerator if numerator.in?([NOT_APPLICABLE, NOT_PROVIDED])
+
+          denominator = send(self.class.definition.denominator_method)
+
+          (numerator.to_f / denominator.to_f) * 100
+        end
+      end
     end
   end
 
