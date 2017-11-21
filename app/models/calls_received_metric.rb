@@ -18,7 +18,22 @@ class CallsReceivedMetric < Metric
     total
   end
 
-  # TODO: implement this
-  def unspecified; 0; end
-  def unspecified_percentage; Float::NAN; end
+  def unspecified
+    subtotal = [get_information, chase_progress, challenge_a_decision, perform_transaction, other].select { |value|
+      !value.in?([NOT_APPLICABLE, NOT_PROVIDED])
+    }.sum
+
+    difference = total - subtotal
+    if difference > 0
+      difference
+    else
+      NOT_APPLICABLE
+    end
+  end
+
+  def unspecified_percentage
+    return NOT_APPLICABLE if unspecified == NOT_APPLICABLE
+
+    (unspecified.to_f / send(self.class.definition.denominator_method)) * 100
+  end
 end
