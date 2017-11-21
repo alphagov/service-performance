@@ -11,10 +11,6 @@ class Service < ApplicationRecord
     self.publish_token ||= SecureRandom.hex(64)
   end
 
-  def services
-    Service.where(id: self)
-  end
-
   def to_param
     natural_key
   end

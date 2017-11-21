@@ -73,15 +73,15 @@ class MetricsPresenter
   end
 
   def has_departments?
-    true
+    entity.respond_to?(:departments)
   end
 
   def has_delivery_organisations?
-    true
+    entity.respond_to?(:delivery_organisations)
   end
 
   def has_services?
-    true
+    entity.respond_to?(:services)
   end
 
   def departments_count

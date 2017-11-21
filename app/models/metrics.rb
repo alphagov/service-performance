@@ -119,7 +119,7 @@ class Metrics
       values.map(&TransactionsReceivedMetric).reduce(:+),
       values.map(&TransactionsWithOutcomeMetric).reduce(:+),
       values.map(&CallsReceivedMetric).reduce(:+),
-    ]
+    ].compact
   end
 
   def metric_groups
