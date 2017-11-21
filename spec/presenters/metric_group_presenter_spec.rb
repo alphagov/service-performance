@@ -4,8 +4,7 @@ RSpec.describe MetricGroupPresenter, type: :presenter do
   let(:entity) { double('entity') }
   let(:metric) { double('metric') }
   let(:metrics) { [metric] }
-  let(:metric_group) { instance_double(GovernmentServiceDataAPI::MetricGroup, entity: entity, metrics: metrics) }
-  subject(:presenter) { described_class.new(metric_group) }
+  subject(:presenter) { described_class.new(entity, metrics) }
 
   describe MetricGroupPresenter::Totals do
     describe '#entity' do
@@ -70,7 +69,7 @@ RSpec.describe MetricGroupPresenter, type: :presenter do
     end
 
     it "can be set to collapsed" do
-      presenter = MetricGroupPresenter.new(metric_group, collapsed: true)
+      presenter = MetricGroupPresenter.new(entity, metrics, collapsed: true)
       expect(presenter).to be_collapsed
     end
   end
