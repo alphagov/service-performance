@@ -121,7 +121,20 @@ private
   attr_reader :entity
 
   def data
-    @data ||= GovernmentMetrics.new(entity, group_by: group_by, time_period: time_period)
+    @data ||= begin
+      klass = case entity
+      when Government
+        GovernmentMetrics
+      when Department
+        DepartmentMetrics
+      when DeliveryOrganisation
+        DeliveryOrganisationMetrics
+      when Service
+        ServiceMetrics
+      end
+
+      klass.new(entity, group_by: group_by, time_period: time_period)
+    end
   end
 
   def totals_metric_group_presenter

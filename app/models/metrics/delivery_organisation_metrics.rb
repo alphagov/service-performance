@@ -1,13 +1,13 @@
 class DeliveryOrganisationMetrics < Metrics
   def self.valid_group_bys
-    [GroupBy::DELIVERY_ORGANISATION, GroupBy::SERVICE]
+    [GroupBy::DeliveryOrganisation, GroupBy::Service]
   end
 
   def entities
     case group_by
-    when GroupBy::DELIVERY_ORGANISATION
+    when GroupBy::DeliveryOrganisation
       [root]
-    when GroupBy::SERVICE
+    when GroupBy::Service
       root.services
     end
   end
