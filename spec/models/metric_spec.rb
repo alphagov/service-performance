@@ -82,17 +82,44 @@ RSpec.describe Metric, type: :model do
     end
   end
 
-  describe '#applicable?' do
+  describe '#not_applicable?' do
     it 'returns false if any of the items is applicable' do
       metrics = double('metrics', channel_a: nil, channel_a_applicable: true, channel_b: nil, channel_b_applicable: false)
       metric = CustomMetric.from_metrics(metrics)
-      expect(metric).to be_applicable
+      expect(metric).to_not be_not_applicable
     end
 
-    it 'returns false if all of the items are not applicable' do
+    it 'returns true if all of the items are not applicable' do
       metrics = double('metrics', channel_a: nil, channel_a_applicable: false, channel_b: nil, channel_b_applicable: false)
       metric = CustomMetric.from_metrics(metrics)
-      expect(metric).to_not be_applicable
+      expect(metric).to be_not_applicable
+    end
+  end
+
+  describe '#not_provided?' do
+    it 'returns false if the metric is not applicable' do
+      metrics = double('metrics', channel_a: nil, channel_a_applicable: false, channel_b: nil, channel_b_applicable: false)
+      metric = CustomMetric.from_metrics(metrics)
+      expect(metric).to be_not_applicable
+      expect(metric).to_not be_not_provided
+    end
+
+    it 'returns false if any metric is provided' do
+      metrics = double('metrics', channel_a: 10, channel_a_applicable: true, channel_b: nil, channel_b_applicable: true)
+      metric = CustomMetric.from_metrics(metrics)
+      expect(metric).to_not be_not_provided
+    end
+
+    it 'returns true if all of the values are not provided' do
+      metrics = double('metrics', channel_a: nil, channel_a_applicable: true, channel_b: nil, channel_b_applicable: true)
+      metric = CustomMetric.from_metrics(metrics)
+      expect(metric).to be_not_provided
+    end
+
+    it 'returns true if all of the values are either not provided OR not applicable' do
+      metrics = double('metrics', channel_a: nil, channel_a_applicable: true, channel_b: nil, channel_b_applicable: false)
+      metric = CustomMetric.from_metrics(metrics)
+      expect(metric).to be_not_provided
     end
   end
 

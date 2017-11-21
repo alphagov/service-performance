@@ -109,8 +109,14 @@ class Metric
     ->(metrics) { from_metrics(metrics) }
   end
 
-  def applicable?
-    !values.all? { |value| value == NOT_APPLICABLE }
+  def not_applicable?
+    values.all? { |value| value == NOT_APPLICABLE }
+  end
+
+  def not_provided?
+    return false if not_applicable?
+
+    values.all? { |value| value.in?([NOT_APPLICABLE, NOT_PROVIDED]) }
   end
 
   # Adds two metics together.
