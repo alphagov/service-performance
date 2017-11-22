@@ -1,6 +1,10 @@
 ActiveAdmin.register DeliveryOrganisation do
   includes :department
 
+  controller do
+    defaults finder: :find_by_natural_key
+  end
+
   permit_params :natural_key, :name, :website, :department_id
 
   index do
