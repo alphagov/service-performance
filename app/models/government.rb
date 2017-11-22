@@ -1,5 +1,7 @@
 class Government
-  alias :read_attribute_for_serialization :send
+  def name
+    'UK government'
+  end
 
   def departments
     orgs = DeliveryOrganisation.joins(:services).distinct.pluck(:department_id)

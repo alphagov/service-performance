@@ -7,4 +7,16 @@ class Department < ApplicationRecord
   validates_presence_of :natural_key, strict: true
   validates_presence_of :name, strict: true
   validates_presence_of :website, strict: true
+
+  def to_param
+    natural_key
+  end
+
+  def delivery_organisations_count
+    delivery_organisations.count
+  end
+
+  def services_count
+    services.count
+  end
 end

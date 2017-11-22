@@ -5,6 +5,8 @@ class TransactionsReceivedMetric < Metric
     item :paper, from: ->(metrics) { metrics.paper_transactions }, applicable: ->(metrics) { metrics.service.paper_transactions_applicable? }
     item :face_to_face, from: ->(metrics) { metrics.face_to_face_transactions }, applicable: ->(metrics) { metrics.service.face_to_face_transactions_applicable? }
     item :other, from: ->(metrics) { metrics.other_transactions }, applicable: ->(metrics) { metrics.service.other_transactions_applicable? }
+
+    percentage_of :total
   end
 
   def total

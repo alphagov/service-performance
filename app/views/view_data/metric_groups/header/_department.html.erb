@@ -1,0 +1,3 @@
+<div class="m-metric-group-header">
+  <h2 class="bold-medium"><%= link_to metric_group.name, view_data_department_metrics_path(metric_group.entity, group_by: Metrics::GroupBy::DeliveryOrganisation) %></h2> oversees <%= pluralize_link(metric_group.delivery_organisations_count, 'delivery organisation', 'delivery organisations', view_data_department_metrics_path(metric_group.entity, group_by: Metrics::GroupBy::DeliveryOrganisation)) %> and <%= pluralize_link(metric_group.services_count, 'service', 'services', view_data_department_metrics_path(metric_group.entity, group_by: Metrics::GroupBy::Service)) %>
+</div>

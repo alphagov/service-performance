@@ -19,4 +19,20 @@ RSpec.describe Completeness, type: :model do
       expect(result.expected).to eq(2)
     end
   end
+
+  specify '#complete?' do
+    completeness = Completeness.new(actual: 10, expected: 10)
+    expect(completeness).to be_complete
+
+    completeness = Completeness.new(actual: 6, expected: 10)
+    expect(completeness).to_not be_complete
+  end
+
+  specify '#incomplete?' do
+    completeness = Completeness.new(actual: 10, expected: 10)
+    expect(completeness).to_not be_incomplete
+
+    completeness = Completeness.new(actual: 6, expected: 10)
+    expect(completeness).to be_incomplete
+  end
 end

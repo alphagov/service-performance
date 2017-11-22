@@ -350,6 +350,7 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   timecop
+  tzinfo-data
   vcr
   web-console (>= 3.3.0)
   webmock

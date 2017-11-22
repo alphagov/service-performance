@@ -21,15 +21,12 @@ RSpec.describe Metrics, type: :model do
 
       calls_received_metric = instance_double(CallsReceivedMetric)
       expect(CallsReceivedMetric).to receive(:from_metrics).with(monthly_service_metrics) { calls_received_metric }
-      expect(calls_received_metric).to receive(:applicable?) { true }
 
       transactions_received_metric = instance_double(TransactionsReceivedMetric)
       expect(TransactionsReceivedMetric).to receive(:from_metrics).with(monthly_service_metrics) { transactions_received_metric }
-      expect(transactions_received_metric).to receive(:applicable?) { true }
 
       transactions_with_outcome_metric = instance_double(TransactionsWithOutcomeMetric)
       expect(TransactionsWithOutcomeMetric).to receive(:from_metrics).with(monthly_service_metrics) { transactions_with_outcome_metric }
-      expect(transactions_with_outcome_metric).to receive(:applicable?) { true }
 
       expect(metrics.metrics).to match_array([calls_received_metric, transactions_received_metric, transactions_with_outcome_metric])
     end

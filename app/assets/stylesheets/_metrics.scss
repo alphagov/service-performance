@@ -1,0 +1,135 @@
+main {
+  h1.heading-xlarge {
+    margin: 0.625em 0 0 0;
+  }
+
+  h1.small-top-margin {
+    margin: $gutter-half 0 0 0;
+  }
+
+  h1 .prefix {
+    display: block;
+    color: #7A7A7A;
+    font-size: 24px;
+    font-weight: normal;
+  }
+
+  aside.download {
+    margin-bottom: 20px;
+  }
+
+  .o-metric-groups {
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.notice .icon {
+  position: absolute;
+  left: 0;
+}
+
+.icon-file-download {
+  background-image: url(image-path('icon-file-download-2x.png'));
+  background-size: 100%;
+  width: 24px;
+  height: 31px;
+}
+
+.notice strong {
+  margin-left: -25px;
+}
+
+.m-metric ul li {
+  border-bottom: 1px solid #BFC1C3;
+  padding: 5px 0;
+
+  .row {
+    display: flex;
+  }
+}
+
+.m-metric .sampled .metric-value, .m-metric .m-metric-headline .sampled {
+  color: #7A7A7A;
+}
+
+.m-metric-group__totals {
+  .m-metric .sampled .metric-value, .m-metric .m-metric-headline .sampled {
+    color: #000000;
+  }
+}
+
+.m-metric {
+  margin-bottom: $gutter;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .metric-name {
+    display: inline-block;
+  }
+
+  .metric-name, .metric-value {
+    vertical-align: top;
+    width: 50%;
+  }
+
+  .total {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+  }
+
+  .m-metric-headline .sampled {
+    display: inline-block;
+  }
+
+  .metric-value-count {
+    font-weight: bold;
+  }
+}
+
+.m-metric__sampled {
+  .m-metric-headline {
+    .total, .sampled {
+      display: inline-block;
+      width: 50%;
+    }
+
+    .total {
+      padding-right: 2px;
+    }
+
+    .sampled {
+      padding-left: 2px;
+      vertical-align: top;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .m-metrics {
+    display: flex;
+    align-items: flex-start;
+    font-size: 16px;
+  }
+
+  .m-metric {
+    flex: 1 1;
+    margin-right: 30px;
+
+    &:last-child {
+      margin-right: 0;
+    };
+  }
+
+  aside.download {
+    margin-top: 48px;
+  }
+}
+
+
+

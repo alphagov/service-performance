@@ -6,7 +6,7 @@ require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
-require "rails/test_unit/railtie"
+require "sprockets/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -18,7 +18,6 @@ module GovernmentServiceData
     config.generators.system_tests = nil
 
     config.autoload_paths += [
-      config.root.join('app', 'controllers', 'metrics'),
       config.root.join('app', 'controllers', 'download'),
       config.root.join('app', 'importers'),
       config.root.join('app', 'models', 'metrics'),

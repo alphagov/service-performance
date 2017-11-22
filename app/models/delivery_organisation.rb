@@ -8,4 +8,12 @@ class DeliveryOrganisation < ApplicationRecord
   validates_uniqueness_of :natural_key
   validates_presence_of :name
   validates_presence_of :website
+
+  def to_param
+    natural_key
+  end
+
+  def services_count
+    services.count
+  end
 end
