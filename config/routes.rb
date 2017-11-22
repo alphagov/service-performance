@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  namespace :publish, path: 'publish-data', module: nil do
+  namespace :publish, path: 'publish', module: nil do
     get "/service-manual", to: "publish_data/pages#service_manual"
 
     resources :services, only: [] do
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     devise_for :users
   end
 
-  namespace :view_data, path: 'view-data', module: nil do
+  namespace :view_data, path: nil, module: nil do
     root 'view_data/pages#homepage'
     get "/how-to-use", to: "view_data/pages#how_to_use"
 
