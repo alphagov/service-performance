@@ -26,7 +26,7 @@ RSpec.describe PublishData::MonthlyServiceMetricsController, type: :controller d
 
     before do
       allow(MonthlyServiceMetrics).to receive_message_chain(:where, :first_or_initialize) { metrics }
-      allow(Service).to receive(:find).with(service.id) { service }
+      allow(Service).to receive_message_chain(:where, :first!) { service }
     end
 
     it_behaves_like 'validating publish token'
@@ -55,7 +55,7 @@ RSpec.describe PublishData::MonthlyServiceMetricsController, type: :controller d
 
     before do
       allow(MonthlyServiceMetrics).to receive_message_chain(:where, :first_or_initialize) { metrics }
-      allow(Service).to receive(:find).with(service.id) { service }
+      allow(Service).to receive_message_chain(:where, :first!) { service }
     end
 
     it_behaves_like 'validating publish token'

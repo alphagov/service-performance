@@ -25,7 +25,7 @@ module PublishData
   private
 
     def load_service
-      @service ||= Service.find(params[:service_id])
+      @service ||= Service.where('id = :id OR natural_key = :id', id: params[:service_id]).first!
     end
 
     def load_metrics
