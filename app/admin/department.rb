@@ -1,6 +1,10 @@
 ActiveAdmin.register Department do
   permit_params :natural_key, :name, :website
 
+  controller do
+    defaults finder: :find_by_natural_key
+  end
+
   index do
     column :natural_key
     column :name
