@@ -37,7 +37,7 @@ class MetricsPresenter
       metric_groups = data.metric_groups
                         .map { |metric_group|
                           v = @selected_metric_sort_attribute.value(metric_group)
-                          MetricGroupPresenter.new(metric_group.entity, metric_group.metrics, collapsed: collapsed?, sort_value: v)
+                          MetricGroupPresenter.new(metric_group, collapsed: collapsed?, sort_value: v)
                         }
                         .select(&:has_sort_value?)
                         .sort_by(&:sort_value)
@@ -138,6 +138,9 @@ private
   end
 
   def totals_metric_group_presenter
-    @totals_metric_group_presenter ||= MetricGroupPresenter::Totals.new(entity, data.metrics, collapsed: collapsed?)
+    @totals_metric_group_presenter ||= begin
+      metric_group = Metrics::MetricGroup.new(entity, data.metrics)
+      MetricGroupPresenter::Totals.new(metric_group, collapsed: collapsed?)
+    end
   end
 end

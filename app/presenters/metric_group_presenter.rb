@@ -33,9 +33,9 @@ class MetricGroupPresenter
     end
   end
 
-  def initialize(entity, metrics, collapsed: false, sort_value: nil)
-    @entity = entity
-    @metrics = metrics
+  def initialize(metric_group, collapsed: false, sort_value: nil)
+    @entity = metric_group.entity
+    @metrics = metric_group.metrics
     @collapsed = collapsed
     @sort_value = sort_value
   end
