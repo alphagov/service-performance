@@ -37,7 +37,6 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
   it 'includes calls received metric, for each child entry' do
     metric_doubles = children.each.with_object([]) do |child, memo|
       aggregate = instance_double(CallsReceivedMetric)
-      allow(aggregate).to receive(:applicable?) { true }
 
       double = instance_double(CallsReceivedMetric, :+ => aggregate)
       allow(CallsReceivedMetric).to receive(:from_metrics).with(child_monthly_service_metrics[child]) { double }
@@ -47,27 +46,11 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
 
     metrics = subject.metric_groups.flat_map(&:metrics)
     expect(metrics).to include(*metric_doubles)
-  end
-
-  it 'does not include calls received metric, for each child entry where not applicable' do
-    metric_doubles = children.each.with_object([]) do |child, memo|
-      aggregate = instance_double(CallsReceivedMetric)
-      allow(aggregate).to receive(:applicable?) { false }
-
-      double = instance_double(CallsReceivedMetric, :+ => aggregate)
-      allow(CallsReceivedMetric).to receive(:from_metrics).with(child_monthly_service_metrics[child]) { double }
-
-      memo << aggregate
-    end
-
-    metrics = subject.metric_groups.flat_map(&:metrics)
-    expect(metrics).not_to include(*metric_doubles)
   end
 
   it 'includes transactions received metric, for each child entity' do
     metric_doubles = children.each.with_object([]) do |child, memo|
       aggregate = instance_double(TransactionsReceivedMetric)
-      allow(aggregate).to receive(:applicable?) { true }
 
       double = instance_double(TransactionsReceivedMetric, :+ => aggregate)
       allow(TransactionsReceivedMetric).to receive(:from_metrics).with(child_monthly_service_metrics[child]) { double }
@@ -77,27 +60,11 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
 
     metrics = subject.metric_groups.flat_map(&:metrics)
     expect(metrics).to include(*metric_doubles)
-  end
-
-  it 'does not include transactions received metric, for each child entity when not applicable' do
-    metric_doubles = children.each.with_object([]) do |child, memo|
-      aggregate = instance_double(TransactionsReceivedMetric)
-      allow(aggregate).to receive(:applicable?) { false }
-
-      double = instance_double(TransactionsReceivedMetric, :+ => aggregate)
-      allow(TransactionsReceivedMetric).to receive(:from_metrics).with(child_monthly_service_metrics[child]) { double }
-
-      memo << aggregate
-    end
-
-    metrics = subject.metric_groups.flat_map(&:metrics)
-    expect(metrics).not_to include(*metric_doubles)
   end
 
   it 'includes transactions with outcome metric, for each child entity' do
     metric_doubles = children.each.with_object([]) do |child, memo|
       aggregate = instance_double(TransactionsWithOutcomeMetric)
-      allow(aggregate).to receive(:applicable?) { true }
 
       double = instance_double(TransactionsWithOutcomeMetric, :+ => aggregate)
       allow(TransactionsWithOutcomeMetric).to receive(:from_metrics).with(child_monthly_service_metrics[child]) { double }
@@ -107,20 +74,5 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
 
     metrics = subject.metric_groups.flat_map(&:metrics)
     expect(metrics).to include(*metric_doubles)
-  end
-
-  it 'does not include transactions received metric, for each child entity when not applicable' do
-    metric_doubles = children.each.with_object([]) do |child, memo|
-      aggregate = instance_double(TransactionsWithOutcomeMetric)
-      allow(aggregate).to receive(:applicable?) { false }
-
-      double = instance_double(TransactionsWithOutcomeMetric, :+ => aggregate)
-      allow(TransactionsWithOutcomeMetric).to receive(:from_metrics).with(child_monthly_service_metrics[child]) { double }
-
-      memo << aggregate
-    end
-
-    metrics = subject.metric_groups.flat_map(&:metrics)
-    expect(metrics).not_to include(*metric_doubles)
   end
 end

@@ -17,13 +17,6 @@ RSpec.describe Service, type: :model do
     end
   end
 
-  describe '#services' do
-    it 'returns a scope, which returns itself' do
-      service = FactoryGirl.create(:service)
-      expect(service.services.to_a).to eq([service])
-    end
-  end
-
   it 'generates a publish token, when created' do
     service = FactoryGirl.build(:service)
     expect {

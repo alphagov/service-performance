@@ -1,6 +1,10 @@
 ActiveAdmin.register Service do
   includes :department, :delivery_organisation
 
+  controller do
+    defaults finder: :find_by_natural_key
+  end
+
   index do
     selectable_column
     column :name

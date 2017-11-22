@@ -1,0 +1,5 @@
+<% service_count = @metrics.visible_services_count %>
+<div class="m-metric-group-header">
+  <h2 class="total-heading bold-medium" subheading='based on <%= service_count %> <%= "service".pluralize(service_count) %>' >Total for <%= metric_group.name %></h2>
+  <span class="total-subheading">based on <%= service_count %> <%= "service".pluralize(service_count) %></span>
+</div>

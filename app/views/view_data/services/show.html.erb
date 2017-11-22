@@ -1,0 +1,87 @@
+<main id="content" role="main">
+
+  <%= breadcrumbs %>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-xlarge small-top-margin">
+        <span class="prefix">Information about</span>
+        <%= @service.name %>
+      </h1>
+
+      <dl class="metadata">
+        <dt>Data provider:</dt>
+        <dd><%= @service.department.name %></dd>
+        <dt>Collection method:</dt>
+        <dd>Manual upload via spreadsheet</dd>
+        <dt>Last updated:</dt>
+        <dd>30 June 2017</dd>
+      </dl>
+    </div>
+
+    <aside class="column-one-third download">
+      <i class="icon icon-file-download">
+        <span class="visuallyhidden">Download file</span>
+      </i>
+      <strong class="xbold-small">
+        <a href="<%= download_link %>">Download data for this page (CSV)</a>
+      </strong>
+    </aside>
+  </header>
+
+  </div>
+
+  <div class="grid-row">
+
+    <div class="column-two-thirds service-context">
+
+      <h2 class="bold-medium">What is the purpose of the service?</h2>
+      <%= @service.purpose.html_safe if @service.purpose%>
+
+      <h2 class="bold-medium">How does the service work?</h2>
+      <%= @service.how_it_works.html_safe if @service.how_it_works%>
+
+      <h2 class="bold-medium">Who are the typical users of the service?</h2>
+      <%= @service.typical_users.html_safe if @service.typical_users %>
+
+      <h2 class="bold-medium">How frequently is the service used?</h2>
+      <%= @service.frequency_used.html_safe if @service.frequency_used %>
+
+      <h2 class="bold-medium">How long does it take a transaction to end in an outcome?</h2>
+      <%= @service.duration_until_outcome.html_safe if @service.duration_until_outcome %>
+
+    </div>
+
+    <div class="column-one-third">
+      <h2 class="bold-medium">Visit the service</h2>
+      <p>See how it appears to users:</p>
+        <ul class="list">
+          <% if @service.start_page_url.present? %>
+            <li><%= link_to 'Start page', @service.start_page_url %></li>
+          <% end %>
+
+          <% if @service.paper_form_url.present? %>
+            <li><%= link_to 'Paper form', @service.paper_form_url %></li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="column-full">
+      <h2 class="heading-large">Service data</h2>
+
+      <div class='m-metric-group'>
+        <div>
+          <div class='completeness service-context-completeness'>
+            <%= @metrics.metric_groups.last.completeness %> of data points complete
+          </div>
+
+          <div class="m-metrics">
+            <%= render @metrics.metric_groups.last.metrics, metric_group: @metrics.metric_groups.last%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

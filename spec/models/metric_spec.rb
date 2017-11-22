@@ -5,6 +5,12 @@ RSpec.describe Metric, type: :model do
     define do
       item :channel_a, from: ->(metric) { metric.channel_a }, applicable: ->(metric) { metric.channel_a_applicable }
       item :channel_b, from: ->(metric) { metric.channel_b }, applicable: ->(metric) { metric.channel_b_applicable }
+
+      percentage_of :total
+    end
+
+    def total
+      1000
     end
   end
 
@@ -82,17 +88,44 @@ RSpec.describe Metric, type: :model do
     end
   end
 
-  describe '#applicable?' do
+  describe '#not_applicable?' do
     it 'returns false if any of the items is applicable' do
       metrics = double('metrics', channel_a: nil, channel_a_applicable: true, channel_b: nil, channel_b_applicable: false)
       metric = CustomMetric.from_metrics(metrics)
-      expect(metric).to be_applicable
+      expect(metric).to_not be_not_applicable
     end
 
-    it 'returns false if all of the items are not applicable' do
+    it 'returns true if all of the items are not applicable' do
       metrics = double('metrics', channel_a: nil, channel_a_applicable: false, channel_b: nil, channel_b_applicable: false)
       metric = CustomMetric.from_metrics(metrics)
-      expect(metric).to_not be_applicable
+      expect(metric).to be_not_applicable
+    end
+  end
+
+  describe '#not_provided?' do
+    it 'returns false if the metric is not applicable' do
+      metrics = double('metrics', channel_a: nil, channel_a_applicable: false, channel_b: nil, channel_b_applicable: false)
+      metric = CustomMetric.from_metrics(metrics)
+      expect(metric).to be_not_applicable
+      expect(metric).to_not be_not_provided
+    end
+
+    it 'returns false if any metric is provided' do
+      metrics = double('metrics', channel_a: 10, channel_a_applicable: true, channel_b: nil, channel_b_applicable: true)
+      metric = CustomMetric.from_metrics(metrics)
+      expect(metric).to_not be_not_provided
+    end
+
+    it 'returns true if all of the values are not provided' do
+      metrics = double('metrics', channel_a: nil, channel_a_applicable: true, channel_b: nil, channel_b_applicable: true)
+      metric = CustomMetric.from_metrics(metrics)
+      expect(metric).to be_not_provided
+    end
+
+    it 'returns true if all of the values are either not provided OR not applicable' do
+      metrics = double('metrics', channel_a: nil, channel_a_applicable: true, channel_b: nil, channel_b_applicable: false)
+      metric = CustomMetric.from_metrics(metrics)
+      expect(metric).to be_not_provided
     end
   end
 
@@ -160,10 +193,27 @@ RSpec.describe Metric, type: :model do
     end
   end
 
-  describe '#read_attribute_for_serialization' do
-    it do
-      metric = CustomMetric.new(channel_a: 5, channel_a_completeness: channel_a_completeness, channel_b: 10, channel_b_completeness: channel_b_completeness)
-      expect(metric).to respond_to(:read_attribute_for_serialization)
+  describe 'percentages' do
+    it 'defines a percentage accessor for each metric item' do
+      metrics = double('metrics', channel_a: 400, channel_a_applicable: true, channel_b: 600, channel_b_applicable: true)
+      metric = CustomMetric.from_metrics(metrics)
+
+      expect(metric.channel_a_percentage).to eq(40.0)
+      expect(metric.channel_b_percentage).to eq(60.0)
+    end
+
+    it 'returns NOT_APPLICABLE if the value is not applicable' do
+      metrics = double('metrics', channel_a: nil, channel_a_applicable: false, channel_b: 600, channel_b_applicable: true)
+      metric = CustomMetric.from_metrics(metrics)
+
+      expect(metric.channel_a_percentage).to eq(Metric::NOT_APPLICABLE)
+    end
+
+    it 'returns NOT_PROVIDED if the value is not provided' do
+      metrics = double('metrics', channel_a: nil, channel_a_applicable: true, channel_b: 600, channel_b_applicable: true)
+      metric = CustomMetric.from_metrics(metrics)
+
+      expect(metric.channel_a_percentage).to eq(Metric::NOT_PROVIDED)
     end
   end
 end

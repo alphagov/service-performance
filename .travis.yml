@@ -13,13 +13,17 @@ env:
 before_script:
   - bundle config build.nokogiri --use-system-libraries
   - bundle install
+  - npm install
+  - cp .env.example .env
   - cp config/database.yml.travis config/database.yml
   - bundle exec rails db:test:prepare
 script:
   - bundle audit
   - bundle exec govuk-lint-ruby app lib spec
   - brakeman
-  - bundle exec rspec
+  - xvfb-run -a bundle exec rspec
+  - npm run lint
+  - ./script/run-npm-test
 deploy:
   provider: cloudfoundry
   username: ${PAAS_USERNAME}
