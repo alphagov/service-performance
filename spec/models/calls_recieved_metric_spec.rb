@@ -4,9 +4,8 @@ RSpec.describe CallsReceivedMetric, type: :model do
   let(:service) {
     instance_double(Service,
       calls_received_challenge_decision_applicable?: true,
-      calls_received_perform_transaction_applicable?: false, 
-      calls_received_other_applicable?: true
-    )
+      calls_received_perform_transaction_applicable?: false,
+      calls_received_other_applicable?: true)
   }
 
   let(:metrics) {
@@ -14,8 +13,7 @@ RSpec.describe CallsReceivedMetric, type: :model do
       service: service,
       calls_received_challenge_decision: nil, # not provided
       calls_received_perform_transaction: nil, # not applicable
-      calls_received_other: nil, # not provided
-    )
+      calls_received_other: nil) # not provided
   }
 
   describe '#unspecified' do

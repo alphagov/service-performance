@@ -123,15 +123,15 @@ private
   def data
     @data ||= begin
       klass = case entity
-      when Government
-        GovernmentMetrics
-      when Department
-        DepartmentMetrics
-      when DeliveryOrganisation
-        DeliveryOrganisationMetrics
-      when Service
-        ServiceMetrics
-      end
+              when Government
+                GovernmentMetrics
+              when Department
+                DepartmentMetrics
+              when DeliveryOrganisation
+                DeliveryOrganisationMetrics
+              when Service
+                ServiceMetrics
+              end
 
       klass.new(entity, group_by: group_by, time_period: time_period)
     end

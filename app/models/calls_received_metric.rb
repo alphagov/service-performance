@@ -21,12 +21,12 @@ class CallsReceivedMetric < Metric
   def unspecified
     return NOT_APPLICABLE if total.in?([NOT_APPLICABLE, NOT_PROVIDED])
 
-    subtotal = [get_information, chase_progress, challenge_a_decision, perform_transaction, other].select { |value|
-      !value.in?([NOT_APPLICABLE, NOT_PROVIDED])
+    subtotal = [get_information, chase_progress, challenge_a_decision, perform_transaction, other].reject { |value|
+      value.in?([NOT_APPLICABLE, NOT_PROVIDED])
     }.sum
 
     difference = total - subtotal
-    if difference > 0
+    if difference.positive?
       difference
     else
       NOT_APPLICABLE
