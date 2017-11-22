@@ -1,6 +1,6 @@
 # Service Performance
 
-This is the application for viewing, publishing, and administrating Service Performance data.
+This is the application for interacting with Service Performance data. It also contains the publishing workflow for collecting metrics from Services, and an admin interface to coordinate data collection.
 
 ## Setup
 
