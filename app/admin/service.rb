@@ -13,6 +13,7 @@ ActiveAdmin.register Service do
   end
 
   show do
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
     attributes_table do
       row :name
       row :delivery_organisation
@@ -26,19 +27,19 @@ ActiveAdmin.register Service do
 
     attributes_table title: "Contextual information" do
       row "Purpose" do
-        service.purpose.html_safe
+        markdown.render(service.purpose).html_safe
       end
       row "How it works" do
-        service.how_it_works.html_safe
+        markdown.render(service.how_it_works).html_safe
       end
       row "Typical users" do
-        service.typical_users.html_safe
+        markdown.render(service.typical_users).html_safe
       end
       row "How frequently used" do
-        service.frequency_used.html_safe
+        markdown.render(service.frequency_used).html_safe
       end
       row "Length of time before complete" do
-        service.duration_until_outcome.html_safe
+        markdown.render(service.duration_until_outcome).html_safe
       end
       row :start_page_url
       row :paper_form_url
@@ -81,11 +82,11 @@ ActiveAdmin.register Service do
       f.input :delivery_organisation
       f.input :owner
       f.input :natural_key
-      f.input :purpose
-      f.input :how_it_works
-      f.input :typical_users
-      f.input :frequency_used
-      f.input :duration_until_outcome
+      f.input :purpose, as: :pagedown_text
+      f.input :how_it_works, as: :pagedown_text
+      f.input :typical_users, as: :pagedown_text
+      f.input :frequency_used, as: :pagedown_text
+      f.input :duration_until_outcome, as: :pagedown_text
       f.input :start_page_url
       f.input :paper_form_url
       f.input :online_transactions_applicable
