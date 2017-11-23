@@ -16,9 +16,7 @@
         <i class="icon icon-file-download">
           <span class="visuallyhidden">Download file</span>
         </i>
-        <strong class="bold-small">
-          <a href="<%= download_link %>">Download data for this page (CSV)</a>
-        </strong>
+        <strong class="bold-small"><%= link_to 'Download data for this page (CSV)', url_for(request.params.merge(format: :csv)) %></strong>
       </div>
     </aside>
   </header>

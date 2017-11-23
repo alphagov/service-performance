@@ -1,28 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  namespace :api, module: nil do
-    scope :v1 do
-      scope 'data' do
-        resource :government, only: [:show], controller: 'api/governments' do
-          resources :metrics, only: [:index], controller: 'api/government_metrics', defaults: { format: 'json' }
-        end
-
-        resources :departments, only: [:index, :show], controller: 'api/departments' do
-          resources :metrics, only: [:index], controller: 'api/department_metrics', defaults: { format: 'json' }
-        end
-
-        resources :delivery_organisations, only: [:index, :show], controller: 'api/delivery_organisations' do
-          resources :metrics, only: [:index], controller: 'api/delivery_organisation_metrics', defaults: { format: 'json' }
-        end
-
-        resources :services, only: [:index, :show], controller: 'api/services' do
-          resources :metrics, only: [:index], controller: 'api/service_metrics', defaults: { format: 'json' }
-        end
-      end
-    end
-  end
-
   ActiveAdmin.routes(self)
 
   namespace :publish, path: 'publish', module: nil do

@@ -15,6 +15,11 @@ module ViewData
       end
 
       page.breadcrumbs << Page::Crumb.new(@service.name)
+
+      respond_to do |format|
+        format.html
+        format.csv { render csv: MetricsCSVExporter.new(@metrics.published_monthly_service_metrics) }
+      end
     end
   end
 end
