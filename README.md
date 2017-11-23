@@ -39,7 +39,6 @@ To start the server.
 1. You can check out [`Pow`](http://pow.cx/) for a really easy no-config server solution.
 2. You can do the more conventional `rails -s` command. If you're already running another app on port 3000 (the API, for example), then pass in a new port number with `rails -s --port 3000`
 
-Create a `.env` file by copying [`.env.example`](https://github.com/alphagov/gsd-view-data/blob/master/.env.example) and then make sure `API_URL` is pointing at the same place where the API is running and you should be good to go. 😎👍
 
 You can test the server is up and running by visiting [http://127.0.0.1:3000/view-data](http://127.0.0.1:3000/v1/view-data) or [http://gsd-api.dev/view-data](http://gsd-api.dev/view-data) if you are using [`Pow`](http://pow.cx/).
 
