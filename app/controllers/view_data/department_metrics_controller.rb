@@ -7,7 +7,10 @@ module ViewData
       page.breadcrumbs << Page::Crumb.new('UK Government', view_data_government_metrics_path)
       page.breadcrumbs << Page::Crumb.new(department.name)
 
-      render 'view_data/metrics/index'
+      respond_to do |format|
+        format.html { render 'view_data/metrics/index' }
+        format.csv { render csv: MetricsCSVExporter.new(@metrics.published_monthly_service_metrics) }
+      end
     end
   end
 end

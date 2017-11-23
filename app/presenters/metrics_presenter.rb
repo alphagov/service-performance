@@ -9,6 +9,8 @@ class MetricsPresenter
     @time_period = TimePeriod.default
   end
 
+  delegate :published_monthly_service_metrics, to: :data
+
   attr_reader :group_by, :order_by, :selected_metric_sort_attribute, :order, :time_period
 
   def group_by_screen_name

@@ -8,7 +8,10 @@ module ViewData
       page.breadcrumbs << Page::Crumb.new(delivery_organisation.department.name, view_data_department_metrics_path(department_id: delivery_organisation.department))
       page.breadcrumbs << Page::Crumb.new(delivery_organisation.name)
 
-      render 'view_data/metrics/index'
+      respond_to do |format|
+        format.html { render 'view_data/metrics/index' }
+        format.csv { render csv: MetricsCSVExporter.new(@metrics.published_monthly_service_metrics) }
+      end
     end
   end
 end
