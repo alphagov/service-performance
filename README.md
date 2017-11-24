@@ -2,14 +2,13 @@
 
 This is the application for interacting with Service Performance data. It contains:
 
-* the application frontend for viewing metrics
-* the publishing workflow for collecting metrics from Services
-* an admin interface to coordinate data collection.
-
+- the application frontend for viewing metrics
+- the publishing workflow for collecting metrics from Services
+- an admin interface to coordinate data collection.
 
 ## Setup
 
-First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/gsd-api/blob/master/.ruby-version) installed, which is currently `2.4.1`. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
+First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/gsd-api/blob/master/.ruby-version) installed, which is currently `2.4.2`. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
 
 ```
 brew install rbenv
@@ -18,7 +17,7 @@ brew install rbenv
 If you have rbenv installed, you can run
 
 ```
-rbenv install 2.4.1
+rbenv install 2.4.2
 ```
 
 Next, you'll need [`Bundler`](http://bundler.io/) in order to install all the dependencies you'll need to run the app.
@@ -33,19 +32,16 @@ After bundle has been installed, install the dependencies for this application w
 ```
 bundle
 ```
+
 Once you have all the dependencies, you need to configure the database you will be using.  Copy config/database.yml.example to config/database.yml to use the suggested database name. Once you have done this you should run
 
 ```
 bin/rails db:create db:migrate db:seed
 ```
 
-To start the server.
+To start the server use the conventional `rails -s` command. If you're already running another app on port 3000, then pass in a new port number with `rails -s --port 3000`
 
-1. You can check out [`Pow`](http://pow.cx/) for a really easy no-config server solution.
-2. You can do the more conventional `rails -s` command. If you're already running another app on port 3000 (the API, for example), then pass in a new port number with `rails -s --port 3000`
-
-
-You can test the server is up and running by visiting [http://127.0.0.1:3000/view-data](http://127.0.0.1:3000/v1/view-data) or [http://gsd-api.dev/view-data](http://gsd-api.dev/view-data) if you are using [`Pow`](http://pow.cx/).
+You can test the server is up and running by visiting [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
 
 ## Tests
 
@@ -62,7 +58,9 @@ bin/rails spec
 The migrations aren't automatically run by CI on deployment. To run all pending
 migrations use the following:
 
-    cf run-task gsd-api "cd app && bundle exec rake db:migrate" --name migrate
+```
+cf run-task service-performance "cd app && bundle exec rake db:migrate" --name migrate
+```
 
 ### Staging
 
@@ -114,6 +112,8 @@ Running `./script/run-npm-test` will run any javascript test files it finds acro
 
 The `capybara-webkit` gem relies on `qt v5.5`. To install the gem:
 
-    brew install qt@5.5
-    export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
-    bundle install
+```
+brew install qt@5.5
+export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
+bundle install
+```
