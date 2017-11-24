@@ -1,5 +1,5 @@
 ---
 applications:
-  - name: gsd-api
-    memory: 512M
+  - name: service-performance
+    memory: 1G
     buildpack: ruby_buildpack
