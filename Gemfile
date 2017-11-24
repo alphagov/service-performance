@@ -27,6 +27,8 @@ gem 'link_header'
 gem 'devise'
 gem 'activeadmin'
 gem 'activeadmin_addons'
+gem 'activeadmin_pagedown'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

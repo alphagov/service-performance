@@ -46,6 +46,8 @@ GEM
       require_all
       select2-rails (~> 4.0)
       xdan-datetimepicker-rails (~> 2.5.1)
+    activeadmin_pagedown (0.0.2)
+      activeadmin (>= 0.5.0)
     activejob (5.1.4)
       activesupport (= 5.1.4)
       globalid (>= 0.3.6)
@@ -233,6 +235,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    redcarpet (3.4.0)
     require_all (1.4.0)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
@@ -324,6 +327,7 @@ DEPENDENCIES
   active_model_serializers
   activeadmin
   activeadmin_addons
+  activeadmin_pagedown
   brakeman
   bundler-audit
   byebug
@@ -344,6 +348,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.4)
   rails-controller-testing
+  redcarpet
   rspec-rails
   sass-rails (~> 5.0)
   spring
