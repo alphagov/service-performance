@@ -1,5 +1,5 @@
 ---
 applications:
-  - name: service-performance
+  - name: service-performance-staging
     memory: 1G
     buildpack: ruby_buildpack
