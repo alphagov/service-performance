@@ -6,7 +6,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alphagov/gsd-api.git"
+    "url": "git+https://github.com/alphagov/service-performance.git"
   },
   "scripts": {
     "test": "./node_modules/jest/bin/jest.js",

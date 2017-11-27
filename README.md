@@ -8,7 +8,7 @@ This is the application for interacting with Service Performance data. It contai
 
 ## Setup
 
-First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/gsd-api/blob/master/.ruby-version) installed, which is currently `2.4.2`. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
+First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/service-performance/blob/master/.ruby-version) installed, which is currently `2.4.2`. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
 
 ```
 brew install rbenv
