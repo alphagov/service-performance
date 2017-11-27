@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :transactions_with_outcome_metric do
+  factory :transactions_processed_metric do
     department
     service
 

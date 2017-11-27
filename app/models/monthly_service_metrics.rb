@@ -8,7 +8,7 @@ class MonthlyServiceMetrics < ApplicationRecord
     attr_reader :service, :month
 
     attr_reader :online_transactions, :phone_transactions, :paper_transactions, :face_to_face_transactions, :other_transactions
-    attr_reader :transactions_with_outcome, :transactions_with_intended_outcome
+    attr_reader :transactions_processed, :transactions_processed_with_intended_outcome
     attr_reader :calls_received, :calls_received_get_information, :calls_received_chase_progress, :calls_received_challenge_decision, :calls_received_other, :calls_received_perform_transaction
   end
 

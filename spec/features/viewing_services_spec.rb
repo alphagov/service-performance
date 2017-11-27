@@ -8,8 +8,8 @@ RSpec.feature 'viewing services', type: :feature do
     delivery_organisation = FactoryGirl.create(:delivery_organisation, department: department, name: 'Highways England')
     service = FactoryGirl.create(:service, delivery_organisation: delivery_organisation, name: 'Pay the Dartford Crossing charge (Dartcharge)')
 
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: time_period.start_month, online_transactions: 4025000, transactions_with_outcome: 1437500)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: time_period.end_month, online_transactions: 1725000, transactions_with_outcome: 4312500)
+    FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: time_period.start_month, online_transactions: 4025000, transactions_processed: 1437500)
+    FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: time_period.end_month, online_transactions: 1725000, transactions_processed: 4312500)
 
     visit view_data_government_metrics_path(group_by: Metrics::GroupBy::Department)
 
@@ -53,7 +53,7 @@ RSpec.feature 'viewing services', type: :feature do
 
     month = time_period.start_month
     6.times do
-      FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: month, transactions_with_outcome: 100, transactions_with_intended_outcome: 100)
+      FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: month, transactions_processed: 100, transactions_processed_with_intended_outcome: 100)
       month = month.succ
     end
 

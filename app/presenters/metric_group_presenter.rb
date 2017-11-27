@@ -49,7 +49,7 @@ class MetricGroupPresenter
   end
 
   delegate :name, to: :entity
-  delegate :transactions_received, :transactions_with_outcome, :calls_received, to: :@metric_group
+  delegate :transactions_received, :transactions_processed, :calls_received, to: :@metric_group
 
   attr_reader :sort_value
 

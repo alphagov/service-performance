@@ -4,8 +4,8 @@ ActiveAdmin.register MonthlyServiceMetrics do
   permit_params :id, :service_id, :month,
                 :online_transactions, :phone_transactions,
                 :paper_transactions, :face_to_face_transactions,
-                :other_transactions, :transactions_with_outcome,
-                :transactions_with_intended_outcome, :calls_received,
+                :other_transactions, :transactions_processed,
+                :transactions_processed_with_intended_outcome, :calls_received,
                 :calls_received_perform_transaction, :calls_received_get_information,
                 :calls_received_chase_progress, :calls_received_challenge_decision,
                 :calls_received_other, :published
@@ -61,10 +61,10 @@ ActiveAdmin.register MonthlyServiceMetrics do
         h2 "Transactions processed"
         attributes_table do
           row "Total" do
-            applicable_value(svc, :transactions_with_outcome)
+            applicable_value(svc, :transactions_processed)
           end
           row "With intended outcome" do
-            applicable_value(svc, :transactions_with_intended_outcome)
+            applicable_value(svc, :transactions_processed_with_intended_outcome)
           end
         end
       end
@@ -109,7 +109,7 @@ ActiveAdmin.register MonthlyServiceMetrics do
       end
       column do
         panel "Transactions processed" do
-          inputs :transactions_with_outcome, :transactions_with_intended_outcome
+          inputs :transactions_processed, :transactions_processed_with_intended_outcome
         end
       end
       column do

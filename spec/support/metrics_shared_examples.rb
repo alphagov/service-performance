@@ -26,7 +26,7 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
 
     allow(CallsReceivedMetric).to receive(:from_metrics) { obj }
     allow(TransactionsReceivedMetric).to receive(:from_metrics) { obj }
-    allow(TransactionsWithOutcomeMetric).to receive(:from_metrics) { obj }
+    allow(TransactionsProcessedMetric).to receive(:from_metrics) { obj }
   end
 
   it 'returns a metric group for each child entity' do
@@ -64,10 +64,10 @@ RSpec.shared_examples_for 'uses the correct child entites, depending on the grou
 
   it 'includes transactions with outcome metric, for each child entity' do
     metric_doubles = children.each.with_object([]) do |child, memo|
-      aggregate = instance_double(TransactionsWithOutcomeMetric)
+      aggregate = instance_double(TransactionsProcessedMetric)
 
-      double = instance_double(TransactionsWithOutcomeMetric, :+ => aggregate)
-      allow(TransactionsWithOutcomeMetric).to receive(:from_metrics).with(child_monthly_service_metrics[child]) { double }
+      double = instance_double(TransactionsProcessedMetric, :+ => aggregate)
+      allow(TransactionsProcessedMetric).to receive(:from_metrics).with(child_monthly_service_metrics[child]) { double }
 
       memo << aggregate
     end
