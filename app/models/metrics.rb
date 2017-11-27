@@ -51,10 +51,10 @@ class Metrics
     TransactionsReceivedFaceToFace = MetricSortAttribute.new('transactions-received-face-to-face', name: 'transactions received (face to face)', keypath: %i[transactions_received face_to_face], index: 5)
     TransactionsReceivedOther = MetricSortAttribute.new('transactions-received-other', name: 'transactions received (other)', keypath: %i[transactions_received other], index: 6)
 
-    TransactionsEndingInOutcome = MetricSortAttribute.new('transactions-ending-in-outcome', name: 'transactions processed', keypath: %i[transactions_with_outcome count], index: 7)
+    TransactionsEndingInOutcome = MetricSortAttribute.new('transactions-ending-in-outcome', name: 'transactions processed', keypath: %i[transactions_with_outcome total], index: 7)
     TransactionsEndingInOutcomeWithIntendedOutcome = MetricSortAttribute.new('transactions-ending-in-outcome-with-intended-outcome',
       name: "transactions ending in the user's intended outcome",
-      keypath: %i[transactions_with_outcome count_with_intended_outcome],
+      keypath: %i[transactions_with_outcome with_intended_outcome],
       index: 8)
 
     CallsReceived = MetricSortAttribute.new('calls-received', name: 'calls received', keypath: %i[calls_received total], index: 9)
