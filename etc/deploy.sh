@@ -21,6 +21,7 @@ cf install-plugin -f blue-green-deploy -r CF-Community
 
 cf set-env service-performance-$PAAS_SPACE SECRET_KEY_BASE $SECRET_KEY_BASE
 cf set-env service-performance-$PAAS_SPACE TAG_MANAGER_ID $TAG_MANAGER_ID
+cf set-env service-performance-$PAAS_SPACE-new SECRET_KEY_BASE $SECRET_KEY_BASE
 
 cf blue-green-deploy service-performance-$PAAS_SPACE
 cf map-route service-performance-staging  cloudapps.digital  --hostname gsd-api
