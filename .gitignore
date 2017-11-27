@@ -14,4 +14,4 @@
 !/tmp/.keep
 /spec/examples.txt
 /yarn-error.log
-
+/vendor/bundle
