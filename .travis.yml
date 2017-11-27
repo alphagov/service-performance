@@ -1,6 +1,6 @@
 dist: trusty
 sudo: true
-language: generic
+language: ruby
 services:
   - postgresql
 cache:
@@ -17,9 +17,9 @@ before_script:
   - cp config/database.yml.travis config/database.yml
   - bundle exec rails db:test:prepare
 script:
-  - bundle audit
+  - bundle exec bundle-audit
   - bundle exec govuk-lint-ruby app lib spec
-  - brakeman
+  - bundle exec brakeman
   - xvfb-run -a bundle exec rspec
   - npm run lint
   - ./script/run-npm-test
