@@ -23,7 +23,6 @@ script:
   - xvfb-run -a bundle exec rspec
   - npm run lint
   - ./script/run-npm-test
-  - chmod -R 700 *
 deploy:
   provider: cloudfoundry
   username: ${PAAS_USERNAME}
