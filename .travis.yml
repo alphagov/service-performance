@@ -9,7 +9,11 @@ env:
   global:
     - PAAS_USERNAME=gsd-deploy@digital.cabinet-office.gov.uk
     # PAAS_PASSWORD
-    - secure: KOgddT+pu8ItC9IWMnxcB1b2tJRmIJ2/MOygQcYwXJiXjCPsUrZ6g6HdtXjqzrRoqtyIDkY41L6iZvHQ8p2epm+FRm1YAoZS265ZW0Cw1W2Dd5Jfy0nghebaZ6AODl35zBnViYt+1MJrHhfRBwW0iIQgMk3nuz8rRNZaUKkyM4lm54wsZs+8f/A1MQpCsKC/0Qt1TfTmpJVe3MIPRRWy+DRHDmItNEIFBSSeNOhcg2rioO8g9H7n/Rx193JvHlOODEViO1yOumXYkvfWHh77ycD7APNrDovdzqxL9HoP6XzyWxLLIY7K9rifPGNZXfN0xgX0wpWSecCshM+eelfvGNiHD8/S//HT23alYk437hyNa0VJHmfLvGD27P1IIR8/ASKx9x6lX7SOKIzMQUWAh7VGlEYIGNLy1T+MzoS4OPUl54PgUNpGuklVbWf9YrOW7SL/HAZRqMMFAsR13xsWkVfZgyPJaPIxeuW8E4lLJszjposWMoMdiGK/Yw516gkE2B3SBmHPGhp9abf1QcND6/nzRESplooN+dDpqbiZ3+JBiyes80uI+J7PdQyAQoYrvaDvEdt77binwggTNjxL7s2RUSM63IwtorARsLupbHs7ui9Jn4NjT3U+CQAXIv+xOK6EoiO5aHmBLEzz44Tf3Fo54bmfJCSrlFwfsMSsIQw=
+    - secure: "L76crGnZezOJ0FT8bA40u2cm1RNX7yIDFCLgs1TInP6BHnopTTxr2tu1PClGfyTJyCpsTy+IaQVnXIBAFVXczsJBxji/VhfTkYgVqMc7lLrYlqH8BeBtRLYiOs1T4lzQlGwavgC8pCSZXAC72wgI+ybIHN78pzBvdu/wbbSr5zvcRdkRFwazKRYPWk9/7K9e7aH3LjKGKbBaWXIgDG+HJBeEzqkGIuyquKOrHhZ5JQelbuTjwTQB2CPHcgTyBCFO1Dnemi8GJQSzKlTU1zP0Rqo3N4KKXD+8vzuRS4HfekycFKc4kzlNSbvvyTPWt3JoEPtlUWJl1lgLpwnIuHq90xGHoEilRFthbjU6HBANn2LiUDBo18gfJ8/jhRBjULW8jf7SGgElln2DZczRY9G/7Pmn1Gq5+1LLZBbRPPC/aCb1rpo3Bnb2kwoTSOLGMyUFz6FxjoYx+eYNQZWSlMNrBPH0D1vZhn6swGfd7U/k6Nv5veSZPWlyWJSVFQiQGW6A/Hxf3Q1b5iEPtMbGJAyaa69pf3wSxyXYvXxtyF+CWIEg/7E3mod8NVUlbl9bkVPPhK0iQv9UcDFj8YSUT7gijz/2OzHFhZoZs7b+lQQi3Xt5cOpEw+DOfXwyW7kFNdfH7BdvkIpHjBrYKUkHOnDFA6kjtu6vnKc1cApWER+ivMw="
+    # SECRET_KEY_BASE
+    - secure: "VV/CDd99ipZngIhLVY0NiXyrSKGBBwUZdpii/doU8PN1t7o75sOG05zTQmPsqjjXi31EH8g23Q0Fd++0iDO+pmSvjEdqjSS4aJnkYv0Z1Yt9yFtBPdmIQyZ8psfxbDUHCev5z5S0l0IJnPkWaxMAyakeEHk27OqLun/bSOT4hqfcuWh66U5DBydojZBYG2p23u6I6FbRN9fIIly8xpXiFJ1ubmbwiwLGPPmf6D73mxlGFpzeKsnoEp2MwY/kLfaj/01yy0jMz0a0FSR+TVYKrLK64N/vn3jRxWCyQ4cmpfVNPYhorBwwxXrkI6GwV3gUu2pSCbkRmvJbrnrFcb0jWWrKBw4WgmB01w2h3YZggwFTONPo++91ixpHWvF5L5X1nskykjIXMTePBVl0vyiOy/ZcTQKN5SWEoELDUTrx+2nZnxN2bSMMbIpmNikOa2My1S0xRxQ7hVi1tA4cAtmZlzbnrxXbP3dznz2Uh6x8h99KFaYyzNsHeHWmOWbAFtOujhaRxX+Pm6PUaXp3v506e8THiBxnCyDAttYXgrMUhCogqfK4i6S0fxupNb/4zo9hdFYrtEzJQdCnUa9veOE7V9gfQhboiHSn+N4vb3mZQTd0iz11X9/ts+5wfP8wCuEzyNlhH9SlV5omzMlZVNqZiJnpQ6EP3+r+3tE3zGKSBZY="
+    # TAG_MANAGER_ID
+    - secure: "UfdufMyLB3ZqJGWWUNZsQ6RoUBVbLH5HKp8l4h3pqJ10ihUrNZ+9OESM/w9wr9ZxSAo7BNdTkuLnF5wa2fLSJNuznNxU7gPHjgoCKgByo9bNfVRL//EfaAaXprswPK45YIIhZ4Roi/yKurOOg3Eo5XzPIOqEOk3DvH3Bk5pU2z7muPBp8Z3VzsTqjKDmZwSIj6HgbWNObAzymZs2/fbqjE2wXSCt5eWbYXW7ulP8WX7+PZndqj6z2LT+pZjeIkdTaFQe3MJD+LsPudqHsFnx1fv/ZG2/AGvW4WIggmaGgzNmdGQPQIM+cV+Vi1dAQyF10r7RGWYKnpoJjtYV9xkIJukJ2Zp+U7YK0/wXWYG5zBdDUBuiekgamPwg60UrUwlgbmyk6tTRczA/RhI/4N3jBLNNbyGcEzlFkTPghbLb5MYKepO0fkRNdjuMuMLsVgFoCau3Pm2+uK4nslV7x7W0C7aAZ+jkvLtDsikE5X44b8L6tAE0hZTO6Gc2ONZTaF7fioehtVYc7iwS+a6vVHtyCeQ/8Fa0ntNyTzzASz8JEHkx5cZMpGJ8BQz7y4G87hDSi3eF6SRtqf6PDOI06q/2U4tvwYPLAvLR9Qh7IZmkmHDLYqYBKjzSsfnD9MLECh7G3gIbM/fBkKEiMvtY0DpSgKGftZoxTrshbWt5V+eK8z8="
 before_script:
   - bundle config build.nokogiri --use-system-libraries
   - bundle install
@@ -24,11 +28,8 @@ script:
   - npm run lint
   - ./script/run-npm-test
 deploy:
-  provider: cloudfoundry
-  username: ${PAAS_USERNAME}
-  password: ${PAAS_PASSWORD}
-  api: https://api.cloud.service.gov.uk
-  organization: government-service-data
-  space: staging
-  on:
-    branch: staging
+  - provider: script
+    script: SECRET_KEY_BASE=$SECRET_KEY_BASE TAG_MANAGER_ID=$TAG_MANAGER_ID etc/deploy.sh staging
+    skip_cleanup: true
+    on:
+      branch: deploy
