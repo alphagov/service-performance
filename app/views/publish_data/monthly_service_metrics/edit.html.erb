@@ -9,8 +9,8 @@
 
       <p>
        Complete all fields for which your service collects data. Any fields you don't complete will appear as 'not provided' when published.</p>
-        
-      <p>Your data will be published on <%= @metrics.publish_date.to_formatted_s(:long_day_month_year) %>. 
+
+      <p>Your data will be published on <%= @metrics.publish_date.to_formatted_s(:long_day_month_year) %>.
       </p>
 
       <%= form_for(@metrics, as: :metrics, url: publish_service_metrics_path(publish_token: params[:publish_token]), method: :patch, builder: FormHelper::MonthlyServiceMetricsFormBuilder) do |f| %>
@@ -23,11 +23,11 @@
         <% end %>
 
         <%= f.fieldset 'Number of transactions processed' do %>
-          <%= f.metric :transactions_with_outcome, applicable: @metrics.service.transactions_with_outcome_applicable %>
+          <%= f.metric :transactions_processed, applicable: @metrics.service.transactions_processed_applicable %>
         <% end %>
 
         <%= f.fieldset 'Number of transactions ending in the user’s intended outcome' do %>
-          <%= f.metric :transactions_with_intended_outcome, applicable: @metrics.service.transactions_with_intended_outcome_applicable %>
+          <%= f.metric :transactions_processed_with_intended_outcome, applicable: @metrics.service.transactions_processed_with_intended_outcome_applicable %>
         <% end %>
 
         <%= f.fieldset 'Total number of phone calls received' do %>

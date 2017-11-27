@@ -62,8 +62,8 @@ ActiveAdmin.register Service do
       end
       column do
         attributes_table title: "Transactions processed" do
-          row :transactions_with_outcome_applicable
-          row :transactions_with_intended_outcome_applicable
+          row :transactions_processed_applicable
+          row :transactions_processed_with_intended_outcome_applicable
         end
       end
       column do
@@ -98,8 +98,8 @@ ActiveAdmin.register Service do
       f.input :paper_transactions_applicable
       f.input :face_to_face_transactions_applicable
       f.input :other_transactions_applicable
-      f.input :transactions_with_outcome_applicable
-      f.input :transactions_with_intended_outcome_applicable
+      f.input :transactions_processed_applicable
+      f.input :transactions_processed_with_intended_outcome_applicable
       f.input :calls_received_applicable
       f.input :calls_received_get_information_applicable
       f.input :calls_received_chase_progress_applicable
@@ -134,15 +134,15 @@ ActiveAdmin.register Service do
                 :online_transactions_applicable, :publish_token,
                 :phone_transactions_applicable, :paper_transactions_applicable,
                 :face_to_face_transactions_applicable, :other_transactions_applicable,
-                :transactions_with_outcome_applicable, :transactions_with_intended_outcome_applicable,
+                :transactions_processed_applicable, :transactions_processed_with_intended_outcome_applicable,
                 :calls_received_applicable, :calls_received_get_information_applicable,
                 :calls_received_chase_progress_applicable, :calls_received_challenge_decision_applicable,
                 :calls_received_other_applicable, :calls_received_perform_transaction_applicable
 
   remove_filter :online_transactions_applicable, :phone_transactions_applicable,
                 :paper_transactions_applicable,  :face_to_face_transactions_applicable,
-                :other_transactions_applicable,  :transactions_with_outcome_applicable,
-                :transactions_with_intended_outcome_applicable, :calls_received_applicable,
+                :other_transactions_applicable,  :transactions_processed_applicable,
+                :transactions_processed_with_intended_outcome_applicable, :calls_received_applicable,
                 :calls_received_get_information_applicable, :calls_received_chase_progress_applicable,
                 :calls_received_challenge_decision_applicable, :calls_received_other_applicable,
                 :calls_received_perform_transaction_applicable, :publish_token

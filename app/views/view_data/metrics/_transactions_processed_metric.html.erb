@@ -1,0 +1,32 @@
+<div class="m-metric m-metric__transactions-with-outcome">
+  <ul class="list">
+    <%= metric_item(Metrics::Items::TransactionsEndingInOutcome, transactions_processed_metric.total, html: { class: 'm-metric-headline' }) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(transactions_processed_metric.total) %></strong> transactions processed
+      <% end %>
+
+      <span class="total">
+        <span class="data-item bold-large"><%= metric_to_human(transactions_processed_metric.total) %></span>
+        <span class="data-item bold">transactions processed</span>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.incomplete transactions_processed_metric.completeness %>
+        <% end %>
+      </span>
+    <% end %>
+
+    <%= metric_item(Metrics::Items::TransactionsEndingInOutcomeWithIntendedOutcome, transactions_processed_metric.with_intended_outcome) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(transactions_processed_metric.with_intended_outcome) %></strong> transactions with intended outcome (<%= metric_to_percentage(transactions_processed_metric.with_intended_outcome_percentage) %>)
+      <% end %>
+
+      <span class="metric-name">Ending in the user&apos;s intended outcome</span>
+      <span class="metric-value">
+        <%= item.value %>
+        <%= item.percentage transactions_processed_metric.with_intended_outcome_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness transactions_processed_metric.completeness[:with_intended_outcome] %>
+        <% end %>
+      </span>
+    <% end %>
+  </ul>
+</div>

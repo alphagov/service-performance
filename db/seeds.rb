@@ -195,7 +195,7 @@ ActiveRecord::Base.transaction do
   ].each do |transaction_with_outcome_metric|
     service = Service.where(natural_key: transaction_with_outcome_metric[:service_code]).first!
 
-    TransactionsWithOutcomeMetric.create!(
+    TransactionsProcessedMetric.create!(
       department_code: service.department.natural_key,
       delivery_organisation_code: service.delivery_organisation.natural_key,
       service_code: service.natural_key,
