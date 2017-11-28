@@ -6,3 +6,4 @@ applications:
     services:
       - cgsd-pg-service
       - logit-ssl-drain-sp
+      - service-performance-staging-credentials
