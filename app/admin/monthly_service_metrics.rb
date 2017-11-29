@@ -92,6 +92,21 @@ ActiveAdmin.register MonthlyServiceMetrics do
         end
       end
     end
+
+    panel "Versions" do
+      table_for PaperTrail::Version.where(item_type: "MonthlyServiceMetrics").order('id desc') do
+        column "Event", :event
+        column("Modified at") { |v| v.created_at.to_s :long }
+        column("Modified by") { |v|
+          if v.whodunnit.in? ["Unknown user", nil]
+            "Unknown user"
+          else
+            link_to AdminUser.find(v.whodunnit).email, [:admin, AdminUser.find(v.whodunnit)]
+          end
+        }
+        column("Data") { |v| simple_format(v.object.to_s) if v.object }
+      end
+    end
   end
 
   form do |_|

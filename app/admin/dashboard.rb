@@ -44,5 +44,21 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
+
+    h2 "Recent audit items"
+    section "" do
+      table_for PaperTrail::Version.order('id desc').limit(20) do
+        column"Item", :item
+        column("Type") { |v| v.item_type.underscore.humanize }
+        column("Modified at") { |v| v.created_at.to_s :long }
+        column("Admin") { |v|
+          if v.whodunnit.in? ["Unknown user", nil]
+            "Unknown user"
+          else
+            link_to AdminUser.find(v.whodunnit).email, [:admin, AdminUser.find(v.whodunnit)]
+          end
+        }
+      end
+    end
   end
 end
