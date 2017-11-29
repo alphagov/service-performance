@@ -9,11 +9,15 @@ class DeliveryOrganisation < ApplicationRecord
   validates_presence_of :name
   validates_presence_of :website
 
+  def self.with_services
+    self.joins(:metrics).where(monthly_service_metrics: { published: true }).distinct
+  end
+
   def to_param
     natural_key
   end
 
   def services_count
-    services.count
+    services.with_published_metrics.count
   end
 end
