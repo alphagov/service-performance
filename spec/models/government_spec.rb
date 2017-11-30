@@ -28,19 +28,33 @@ RSpec.describe Government, type: :model do
       do1 = FactoryGirl.create(:delivery_organisation, name: "do test 1", department: d1)
       do2 = FactoryGirl.create(:delivery_organisation, name: "do test 2", department: d1)
 
-      FactoryGirl.create(:service, name: "service test 1", delivery_organisation: do1)
-      FactoryGirl.create(:service, name: "service test 2", delivery_organisation: do2)
+      s1 = FactoryGirl.create(:service, name: "service test 1", delivery_organisation: do1)
+      s2 = FactoryGirl.create(:service, name: "service test 2", delivery_organisation: do2)
 
+      FactoryGirl.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s1, published: true)
+      FactoryGirl.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s2, published: true)
 
       expect(government.delivery_organisations_count).to eq(2)
     end
   end
 
   describe '#services_count' do
-    it 'returns the total number of services' do
-      FactoryGirl.create_list(:service, 1)
+    it 'returns the total number of services who have published data correctly' do
+      s = FactoryGirl.create(:service)
+      FactoryGirl.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s, published: true)
 
       expect(government.services_count).to eq(1)
+    end
+    it 'returns the total number of services who have data, but not published, correctly' do
+      s = FactoryGirl.create(:service)
+      FactoryGirl.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s)
+
+      expect(government.services_count).to eq(0)
+    end
+    it 'returns the total number of services who have no data correctly' do
+      FactoryGirl.create(:service)
+
+      expect(government.services_count).to eq(0)
     end
   end
 end

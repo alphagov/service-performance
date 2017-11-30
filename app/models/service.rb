@@ -12,6 +12,10 @@ class Service < ApplicationRecord
     self.publish_token ||= SecureRandom.hex(64)
   end
 
+  def self.with_published_metrics
+    self.joins(:metrics).where(monthly_service_metrics: { published: true }).distinct
+  end
+
   def to_param
     natural_key
   end

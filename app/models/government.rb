@@ -4,16 +4,15 @@ class Government
   end
 
   def departments
-    orgs = DeliveryOrganisation.joins(:services).distinct.pluck(:department_id)
-    Department.find(orgs)
+    Department.with_delivery_organisations
   end
 
   def delivery_organisations
-    DeliveryOrganisation.joins(:services).distinct.all
+    DeliveryOrganisation.with_services
   end
 
   def services
-    Service.all
+    Service.with_published_metrics
   end
 
   def metrics
@@ -21,15 +20,14 @@ class Government
   end
 
   def departments_count
-    orgs = DeliveryOrganisation.joins(:services).distinct.pluck(:department_id)
-    Department.find(orgs).count
+    Department.with_delivery_organisations.count
   end
 
   def delivery_organisations_count
-    DeliveryOrganisation.joins(:services).distinct.count
+    DeliveryOrganisation.with_services.count
   end
 
   def services_count
-    Service.count
+    Service.with_published_metrics.count
   end
 end
