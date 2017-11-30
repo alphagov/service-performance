@@ -32,6 +32,12 @@ class MonthlyServiceMetrics < ApplicationRecord
     where('month >= :start AND month <= :end', start: serializer.serialize(start_month), end: serializer.serialize(end_month))
   end
 
+  def missing_data?
+    service.required_metrics.any? { |m|
+      send(m) == nil
+    }
+  end
+
   def publish_date
     if month
       month.date + 2.months

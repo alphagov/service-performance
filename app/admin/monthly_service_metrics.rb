@@ -16,6 +16,7 @@ ActiveAdmin.register MonthlyServiceMetrics do
     column :month, sortable: :month
     column :delivery_organisation
     column :published
+    column :missing_data?
     actions
   end
 
