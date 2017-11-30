@@ -97,7 +97,8 @@ ActiveAdmin.register MonthlyServiceMetrics do
     end
 
     panel "Versions" do
-      table_for PaperTrail::Version.where(item_type: "MonthlyServiceMetrics").order('id desc') do
+      table_for PaperTrail::Version.where(item_type: "MonthlyServiceMetrics",
+                                          item_id: monthly_service_metrics.id).order('id desc') do
         column "Event", :event
         column("Modified at") { |v| v.created_at.to_s :long }
         column("Modified by") { |v|

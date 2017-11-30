@@ -79,7 +79,7 @@ ActiveAdmin.register Service do
     end
 
     panel "Versions" do
-      table_for PaperTrail::Version.where(item_type: "Service").order('id desc') do
+      table_for PaperTrail::Version.where(item_type: "Service", item_id: service.id).order('id desc') do
         column "Event", :event
         column("Modified at") { |v| v.created_at.to_s :long }
         column("Modified by") { |v|
