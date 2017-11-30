@@ -104,7 +104,20 @@ ActiveAdmin.register MonthlyServiceMetrics do
             link_to AdminUser.find(v.whodunnit).email, [:admin, AdminUser.find(v.whodunnit)]
           end
         }
-        column("Data") { |v| simple_format(v.object.to_s) if v.object }
+        column("Changes") { |v|
+          return '' if !v.changeset
+
+          changes = v.changeset
+          data = changes.inject([]) do |memo, (k, val)|
+            if k == "updated_at"
+              memo << ""
+            else
+              change_from, change_to = val
+              memo << "Field '#{k}' changed\n from '#{change_from}'\nto '#{change_to}'\n\n"
+            end
+          end
+          simple_format(data.join)
+        }
       end
     end
   end
