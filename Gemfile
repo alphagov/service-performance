@@ -29,6 +29,7 @@ gem 'activeadmin'
 gem 'activeadmin_addons'
 gem 'activeadmin_pagedown'
 gem 'redcarpet'
+gem 'paper_trail'
 
 # Logging
 gem 'lograge'

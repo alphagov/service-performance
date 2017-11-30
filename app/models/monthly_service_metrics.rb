@@ -1,4 +1,6 @@
 class MonthlyServiceMetrics < ApplicationRecord
+  has_paper_trail
+
   class Null
     def initialize(service, month)
       @service = service
