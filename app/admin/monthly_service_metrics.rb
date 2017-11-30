@@ -30,9 +30,9 @@ ActiveAdmin.register MonthlyServiceMetrics do
     def applicable_value(service, val)
       appl = service.send("#{val}_applicable")
       if !appl
-        "Not applicable"
+        status_tag("Not applicable", class: 'warn')
       else
-        monthly_service_metrics.send(val)
+        monthly_service_metrics.send(val) || status_tag("Not provided", class: 'error')
       end
     end
 
