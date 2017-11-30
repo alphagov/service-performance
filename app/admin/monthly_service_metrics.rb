@@ -16,7 +16,9 @@ ActiveAdmin.register MonthlyServiceMetrics do
     column :month, sortable: :month
     column :delivery_organisation
     column :published
-    column :missing_data?
+    column "Missing data" do |m|
+      status_tag("Missing", class: "error") if m.missing_data?
+    end
     actions
   end
 
