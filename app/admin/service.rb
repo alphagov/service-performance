@@ -144,8 +144,8 @@ ActiveAdmin.register Service do
     services = batch_action_collection.find(ids)
 
     @service_data = services.each_with_object({}) do |service, services_hash|
-      dates = 4.times.each_with_object({}) do |count, hash|
-        date = (Date.today - 1.month) + count.months
+      dates = 5.times.each_with_object({}) do |count, hash|
+        date = (Date.today - 2.month) + count.months
         month = YearMonth.new(date.year, date.month)
         hash[date] = MonthlyServiceMetricsPublishToken.generate(service: service, month: month)
       end
