@@ -72,6 +72,7 @@ class Metric
           return numerator if numerator.in?([NOT_APPLICABLE, NOT_PROVIDED])
 
           denominator = send(self.class.definition.denominator_method)
+          return denominator if denominator.in?([NOT_APPLICABLE, NOT_PROVIDED])
 
           (numerator.to_f / denominator.to_f) * 100
         end
