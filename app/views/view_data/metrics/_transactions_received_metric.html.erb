@@ -5,6 +5,8 @@
         <strong><%= metric_to_human(transactions_received_metric.total) %></strong> transactions received
       <% end %>
 
+      <% item.display_guidance = !@metrics.preview? %>
+
       <span class="total">
         <span class="data-item bold-large"><%= metric_to_human(transactions_received_metric.total) %></span>
         <span class="data-item bold">transactions received</span>

@@ -37,7 +37,8 @@
   font-weight: 700;
 }
 
-.not-applicable {
+.not-applicable,
+.not-provided {
    font-size: 36px;
    margin-top: 0;
    margin-bottom: 0;
@@ -46,13 +47,14 @@
    font-weight: 700;
  }
 
- span.not-applicable-message {
-   font-size: 16px;
-   font-weight: 700;
-   color: #6F777B;
-   margin-top: 0;
-   line-height: 1;
- }
+span.not-applicable-message,
+span.not-provided-message {
+  font-size: 16px;
+  font-weight: 700;
+  color: #6F777B;
+  margin-top: 0;
+  line-height: 1;
+}
 
 .m-metric-group__collapsible {
   padding-top: 17px !important;
@@ -140,4 +142,13 @@
 
 .m-time-period-selector {
   margin-bottom: $gutter;
+}
+
+.m-metric-group__preview {
+  .metric-value-not-provided,
+  .not-provided,
+  .not-provided-message {
+    color: rgb(177, 13, 29);
+    font-weight: bold;
+  }
 }

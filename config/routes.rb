@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :services, only: [] do
       constraints year: /\d{4}/, month: /\d{2}/ do
         get 'metrics/:year/:month(/:publish_token)', to: 'publish_data/monthly_service_metrics#edit', as: :metrics
+        get 'metrics/:year/:month(/:publish_token)/preview', to: 'publish_data/monthly_service_metrics#preview', as: :preview_metrics
         patch 'metrics/:year/:month(/:publish_token)', to: 'publish_data/monthly_service_metrics#update'
       end
     end

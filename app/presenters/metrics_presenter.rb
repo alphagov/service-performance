@@ -1,12 +1,12 @@
 class MetricsPresenter
-  def initialize(entity, group_by:, order: nil, order_by: nil)
+  def initialize(entity, group_by:, order: nil, order_by: nil, time_period: nil)
     @entity = entity
 
     @group_by = group_by
     @order_by = order_by
     @selected_metric_sort_attribute = Metrics::Items.get_metric_sort_attribute(order_by)
     @order = order || Metrics::Order::Descending
-    @time_period = TimePeriod.default
+    @time_period = time_period || TimePeriod.default
   end
 
   delegate :published_monthly_service_metrics, to: :data
@@ -116,6 +116,10 @@ class MetricsPresenter
 
   def collapsed?
     @selected_metric_sort_attribute != Metrics::Items::Name
+  end
+
+  def preview?
+    false
   end
 
 private
