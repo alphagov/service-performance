@@ -6,6 +6,8 @@
         <strong><%= metric_to_human(calls_received_metric.total) %></strong> calls received
       <% end %>
 
+      <% item.display_guidance = !@metrics.preview? %>
+
       <span class="total">
         <span class="bold-large"><%= metric_to_human(calls_received_metric.total) %></span>
         <span class="data-item bold">calls received</span>
