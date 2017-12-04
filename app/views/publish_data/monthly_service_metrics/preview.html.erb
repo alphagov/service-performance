@@ -1,0 +1,47 @@
+<div class="preview-banner">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="bold-medium">
+        This is a preview
+      </h1>
+      <p>
+        You can share the URL of this page with your colleagues. The most recent month's data is not yet published — it will go live on <%= @monthly_service_metrics.publish_date.to_formatted_s(:long_day_month_year) %>.
+      </p>  
+      <p>
+        <a href="monitor"><%= link_to 'Go back', publish_service_metrics_path(publish_token: params[:publish_token]) %></a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<main id="content" role="main">
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-xlarge small-top-margin">
+        <span class="prefix">Information about</span>
+        <%= @service.name %>
+      </h1>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="column-full">
+      <%= render 'view_data/metrics/time_period_selector' %>
+
+      <div class='m-metric-group m-metric-group__preview'>
+        <div>
+          <div class='completeness service-context-completeness'>
+            <%= @presenter.metric_groups.last.completeness %> of data points complete
+          </div>
+
+          <div class="m-metrics">
+            <% @presenter.metric_groups.last.metrics.each do |metric| %>
+              <%= render partial: "/view_data/#{metric.to_partial_path}", object: metric, locals: { metric_group: @presenter.metric_groups.last } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

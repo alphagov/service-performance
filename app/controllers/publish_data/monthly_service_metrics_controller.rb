@@ -1,7 +1,7 @@
 module PublishData
   class MonthlyServiceMetricsController < PublishDataController
-    before_action :load_service, only: %i(edit update)
-    before_action :load_metrics, only: %i(edit update)
+    before_action :load_service, only: %i(edit update preview)
+    before_action :load_metrics, only: %i(edit update preview)
 
     skip_authentication
 
@@ -20,6 +20,57 @@ module PublishData
       else
         render 'publish_data/monthly_service_metrics/edit'
       end
+    end
+
+    class PreviewMetrics < Metrics
+      class TimePeriod
+        def initialize(month)
+          @month = month
+        end
+
+        def months
+          [@month]
+        end
+
+        def starts_on
+          @month.starts_on
+        end
+
+        def ends_on
+          @month.ends_on
+        end
+      end
+
+      def initialize(monthly_service_metrics)
+        @monthly_service_metrics = monthly_service_metrics
+        @time_period = PreviewMetrics::TimePeriod.new(@monthly_service_metrics.month)
+      end
+
+      def entities
+        [service]
+      end
+
+      def published_monthly_service_metrics(_ = nil)
+        [@monthly_service_metrics]
+      end
+
+      attr_reader :time_period
+
+      def service
+        @monthly_service_metrics.service
+      end
+    end
+
+    def preview
+      @monthly_service_metrics = monthly_service_metrics = @metrics
+      @presenter = MetricsPresenter.new(@service, group_by: Metrics::GroupBy::Service)
+
+      @data = data = PreviewMetrics.new(monthly_service_metrics)
+      @presenter.send(:define_singleton_method, :data) do
+        data
+      end
+
+      @metrics = @presenter
     end
 
   private

@@ -67,6 +67,14 @@ class YearMonth
     date.day
   end
 
+  def starts_on
+    date
+  end
+
+  def ends_on
+    date.end_of_month
+  end
+
   def to_s
     "#{date.strftime('%B')} #{date.year}"
   end
