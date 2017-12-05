@@ -6,7 +6,7 @@
 #
 # The CSV file (on stdin) should have the following headings:
 #
-#    name,purpose,how_it_works,typical_users,frequency_used,duration_until_outcome,start_page_url
+#    name,purpose,how_it_works,typical_users,start_page_url
 #
 # Usage:
 #
