@@ -33,22 +33,16 @@
 
     <div class="column-two-thirds service-context">
 
-      <h2 class="bold-medium">What is the purpose of the service?</h2>
+      <h2 class="bold-medium">Purpose of the service</h2>
       <%= render_markdown(@service.purpose) %>
 
-      <h2 class="bold-medium">How does the service work?</h2>
+      <h2 class="bold-medium">How it works</h2>
       <%= render_markdown(@service.how_it_works) %>
 
-      <h2 class="bold-medium">Who are the typical users of the service?</h2>
+      <h2 class="bold-medium">Users</h2>
       <%= render_markdown(@service.typical_users) %>
 
-      <h2 class="bold-medium">How frequently is the service used?</h2>
-      <%= render_markdown(@service.frequency_used) %>
-
-      <h2 class="bold-medium">How long does it take a transaction to end in an outcome?</h2>
-      <%= render_markdown(@service.duration_until_outcome) %>
-
-    </div>
+         </div>
 
     <div class="column-one-third">
       <h2 class="bold-medium">Visit the service</h2>
