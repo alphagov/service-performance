@@ -1,5 +1,5 @@
 ActiveAdmin.register Department do
-  permit_params :natural_key, :name, :website
+  permit_params :natural_key, :name, :website, :acronym
 
   controller do
     defaults finder: :find_by_natural_key
@@ -8,12 +8,14 @@ ActiveAdmin.register Department do
   index do
     column :natural_key
     column :name
+    column :acronym
     actions
   end
 
   show do
     attributes_table do
       row :name
+      row :acronym
       row :website
       row :natural_key
     end

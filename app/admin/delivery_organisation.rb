@@ -5,11 +5,12 @@ ActiveAdmin.register DeliveryOrganisation do
     defaults finder: :find_by_natural_key
   end
 
-  permit_params :natural_key, :name, :website, :department_id
+  permit_params :natural_key, :name, :website, :department_id, :acronym
 
   index do
     column :natural_key
     column :name
+    column :acronym
     column :department
     actions
   end
@@ -17,6 +18,7 @@ ActiveAdmin.register DeliveryOrganisation do
   show do
     attributes_table do
       row :name
+      row :acronym
       row :department
       row :website
       row :natural_key

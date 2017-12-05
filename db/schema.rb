@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205134815) do
+ActiveRecord::Schema.define(version: 20171205160414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20171205134815) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "department_id"
+    t.string "acronym"
     t.index ["natural_key"], name: "index_delivery_organisations_on_natural_key", unique: true
   end
 
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 20171205134815) do
     t.string "website", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "acronym"
     t.index ["natural_key"], name: "index_departments_on_natural_key", unique: true
   end
 
