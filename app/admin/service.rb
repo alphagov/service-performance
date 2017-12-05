@@ -11,7 +11,7 @@ ActiveAdmin.register Service do
     column :delivery_organisation
     column :department
     column "Missing context" do |s|
-      status_tag("Missing", class: "error") if [s.purpose, s.how_it_works, s.typical_users, s.start_page_url].include?('')
+      status_tag("Missing", class: "error") if [s.purpose, s.how_it_works, s.typical_users, s.start_page_url].any?(&:blank?)
     end
     actions
   end
