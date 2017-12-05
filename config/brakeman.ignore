@@ -3,25 +3,6 @@
     {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 2,
-      "fingerprint": "1f7db5e1fb05b5c5bbc06afd4efbcc8fd58aa87475a1a4d249de08cfd41f59e6",
-      "check_name": "CrossSiteScripting",
-      "message": "Unescaped parameter value",
-      "file": "app/views/view_data/services/show.html.erb",
-      "line": 48,
-      "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
-      "code": "\"service\".where(:natural_key => params[:id]).first!.frequency_used",
-      "render_path": [{"type":"controller","class":"ViewData::ServicesController","method":"show","line":18,"file":"app/controllers/view_data/services_controller.rb"}],
-      "location": {
-        "type": "template",
-        "template": "view_data/services/show"
-      },
-      "user_input": "params[:id]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "Cross-Site Scripting",
-      "warning_code": 2,
       "fingerprint": "391df96ef67e8178ebf2a1e2a4b714e65370f0f9a12dab5792bab8f5498b5ba8",
       "check_name": "CrossSiteScripting",
       "message": "Unescaped parameter value",
@@ -48,25 +29,6 @@
       "line": 45,
       "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
       "code": "\"service\".where(:natural_key => params[:id]).first!.typical_users",
-      "render_path": [{"type":"controller","class":"ViewData::ServicesController","method":"show","line":18,"file":"app/controllers/view_data/services_controller.rb"}],
-      "location": {
-        "type": "template",
-        "template": "view_data/services/show"
-      },
-      "user_input": "params[:id]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "Cross-Site Scripting",
-      "warning_code": 2,
-      "fingerprint": "5282d2e1800f482652248b11526bcd936d6b8a977ee71d10db8c20031878efaf",
-      "check_name": "CrossSiteScripting",
-      "message": "Unescaped parameter value",
-      "file": "app/views/view_data/services/show.html.erb",
-      "line": 51,
-      "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
-      "code": "\"service\".where(:natural_key => params[:id]).first!.duration_until_outcome",
       "render_path": [{"type":"controller","class":"ViewData::ServicesController","method":"show","line":18,"file":"app/controllers/view_data/services_controller.rb"}],
       "location": {
         "type": "template",

@@ -39,12 +39,6 @@ ActiveAdmin.register Service do
       row "Typical users" do
         markdown.render(service.typical_users).html_safe
       end
-      row "How frequently used" do
-        markdown.render(service.frequency_used).html_safe
-      end
-      row "Length of time before complete" do
-        markdown.render(service.duration_until_outcome).html_safe
-      end
       row :start_page_url
       row :paper_form_url
       row :publish_token
@@ -117,8 +111,6 @@ ActiveAdmin.register Service do
       f.input :purpose, as: :pagedown_text
       f.input :how_it_works, as: :pagedown_text
       f.input :typical_users, as: :pagedown_text
-      f.input :frequency_used, as: :pagedown_text
-      f.input :duration_until_outcome, as: :pagedown_text
       f.input :start_page_url
       f.input :paper_form_url
       f.input :online_transactions_applicable
@@ -157,8 +149,8 @@ ActiveAdmin.register Service do
 
   permit_params :id, :natural_key, :name, :owner_id,
                 :created_at, :updated_at, :delivery_organisation_id,
-                :purpose, :how_it_works, :typical_users, :frequency_used,
-                :duration_until_outcome, :start_page_url, :paper_form_url,
+                :purpose, :how_it_works, :typical_users,
+                :start_page_url, :paper_form_url,
                 :online_transactions_applicable, :publish_token,
                 :phone_transactions_applicable, :paper_transactions_applicable,
                 :face_to_face_transactions_applicable, :other_transactions_applicable,
