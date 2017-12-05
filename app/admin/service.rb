@@ -10,8 +10,8 @@ ActiveAdmin.register Service do
     column :name
     column :delivery_organisation
     column :department
-    column "Owner" do |service|
-      service.owner.email if service.owner
+    column "Missing context" do |s|
+      status_tag("Missing", class: "error") if [s.purpose, s.how_it_works, s.typical_users, s.start_page_url].include?('')
     end
     actions
   end
