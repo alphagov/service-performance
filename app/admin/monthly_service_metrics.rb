@@ -154,6 +154,36 @@ ActiveAdmin.register MonthlyServiceMetrics do
     actions
   end
 
+  csv do
+    column :id
+    column "Service" do |m|
+      m.service.name
+    end
+    column "Department" do |m|
+      m.service.delivery_organisation.department.name
+    end
+    column "Agency" do |m|
+      m.service.delivery_organisation.name
+    end
+    column :month
+    column :online_transactions
+    column :phone_transactions
+    column :paper_transactions
+    column :face_to_face_transactions
+    column :other_transactions
+    column :transactions_processed
+    column :transactions_processed_with_intended_outcome
+    column :calls_received
+    column :calls_received_perform_transaction
+    column :calls_received_get_information
+    column :calls_received_chase_progress
+    column :calls_received_challenge_decision
+    column :calls_received_other
+    column :published
+    column :created_at
+    column :updated_at
+  end
+
   batch_action :publish do |ids|
     batch_action_collection.find(ids).each do |metric|
       metric.published = true
