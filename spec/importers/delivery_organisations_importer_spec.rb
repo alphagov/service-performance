@@ -5,6 +5,7 @@ RSpec.describe DeliveryOrganisationsImporter, type: :importer do
 
   describe '#import' do
     let(:output) { StringIO.new }
+    let(:acronyms) { StringIO.new }
 
     let(:organisation) { instance_double(GovernmentOrganisationRegister::Organisation, retired?: false) }
     let(:organisations) { instance_double(GovernmentOrganisationRegister::Organisations) }
@@ -19,7 +20,7 @@ RSpec.describe DeliveryOrganisationsImporter, type: :importer do
         allow(organisation).to receive_messages(key: 'D1234', name: 'Org', website: 'http://example.com')
 
         expect {
-          importer.import(output)
+          importer.import(acronyms, output)
         }.to change(DeliveryOrganisation, :count).by(1)
 
         delivery_organisation = DeliveryOrganisation.last
@@ -37,7 +38,7 @@ RSpec.describe DeliveryOrganisationsImporter, type: :importer do
         allow(organisation).to receive_messages(key: 'D7890', name: 'Org', retired?: true)
 
         expect {
-          importer.import(output)
+          importer.import(acronyms, output)
         }.to_not change(DeliveryOrganisation, :count)
 
         output.rewind
@@ -51,7 +52,7 @@ RSpec.describe DeliveryOrganisationsImporter, type: :importer do
         allow(organisation).to receive_messages(key: 'D5678', name: 'New Org', website: 'http://example.org')
 
         expect {
-          importer.import(output)
+          importer.import(acronyms, output)
         }.to_not change(DeliveryOrganisation, :count)
 
         output.rewind
@@ -65,7 +66,7 @@ RSpec.describe DeliveryOrganisationsImporter, type: :importer do
         allow(organisation).to receive_messages(key: 'D5678', name: 'Org', website: 'http://example.com')
 
         expect {
-          importer.import(output)
+          importer.import(acronyms, output)
         }.to_not change(DeliveryOrganisation, :count)
 
         output.rewind
