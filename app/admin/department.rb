@@ -31,10 +31,11 @@ ActiveAdmin.register Department do
   end
 
   collection_action :sync, method: :post do
-    DeliveryOrganisationsImporter.new.import
+    dept_acronym_file = File.read(Rails.root.join("config", "department_acronyms.csv"))
+    DeliveryOrganisationsImporter.new.import(dept_acronym_file)
 
-    mapping_file = File.read(Rails.root.join("config", "department_mapping.csv"))
-    DepartmentsImporter.new.import(mapping_file)
+    dept_mapping_file = File.read(Rails.root.join("config", "department_mapping.csv"))
+    DepartmentsImporter.new.import(dept_mapping_file, dept_acronym_file)
 
     redirect_to collection_path, notice: "Departments imported successfully!"
   end

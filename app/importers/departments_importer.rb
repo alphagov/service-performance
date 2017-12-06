@@ -26,14 +26,22 @@ class DepartmentsImporter
     new.import
   end
 
-  def import(input = ARGF, output = $stderr)
+  def import(department_mapping = ARGF, acronym_mapping = nil, output = $stderr)
     @output = output
+    @acronyms = {}
 
     ActiveRecord::Base.transaction do
       department_ids = Set.new
       department_ids_by_organisation = {}
 
-      csv = CSV.new(input, headers: true)
+      if !acronym_mapping.blank?
+        csv = CSV.new(acronym_mapping, headers: true)
+        csv.each do |row|
+          @acronyms[row['code']] = row['acronym']
+        end
+      end
+
+      csv = CSV.new(department_mapping, headers: true)
       csv.each do |row|
         organisation_id = row['Organisation ID']
         department_id = row['Department ID']
@@ -55,6 +63,7 @@ class DepartmentsImporter
       department = Department.where(natural_key: department_id).first_or_initialize
       department.name = delivery_organisation.name
       department.website = delivery_organisation.website
+      department.acronym = @acronyms[department_id]
 
       log = ->(message) do
         @output.puts message % { key: department.natural_key, name: department.name }

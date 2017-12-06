@@ -5,6 +5,7 @@ RSpec.describe DepartmentsImporter do
 
   describe '#import' do
     let(:output) { StringIO.new }
+    let(:acronyms) { StringIO.new }
 
     describe 'new department id' do
       it 'copies the delivery organisation to a department' do
@@ -14,7 +15,7 @@ RSpec.describe DepartmentsImporter do
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
 
         expect {
-          importer.import(input, output)
+          importer.import(input, acronyms, output)
         }.to change(Department, :count).by(1)
 
         output.rewind
@@ -30,7 +31,7 @@ RSpec.describe DepartmentsImporter do
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
 
-        importer.import(input, output)
+        importer.import(input, acronyms, output)
 
         department.reload
         expect(department.name).to eq('Org 2')
@@ -49,7 +50,7 @@ RSpec.describe DepartmentsImporter do
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
 
-        importer.import(input, output)
+        importer.import(input, acronyms, output)
 
         output.rewind
         expect(output.each_line.to_a.first).to eq("ignoring department, no changes: key=D1, name=Org\n")
@@ -64,7 +65,7 @@ RSpec.describe DepartmentsImporter do
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
 
-        importer.import(input, output)
+        importer.import(input, acronyms, output)
 
         delivery_organisation.reload
         expect(delivery_organisation.department).to eq(department)
@@ -79,7 +80,7 @@ RSpec.describe DepartmentsImporter do
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
 
-        importer.import(input, output)
+        importer.import(input, acronyms, output)
 
         output.rewind
         expect(output.each_line.to_a.last).to eq("unknown delivery organisation: key=D1000\n")
