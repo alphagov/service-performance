@@ -1,0 +1,59 @@
+<main id="content" role="main">
+
+  <%= breadcrumbs %>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-xlarge small-top-margin">
+        <span class="prefix">Detailed data for</span>
+        <%= @delivery_organisation.name %>
+      </h1>
+    </div>
+
+    <aside class="column-one-third download">
+      <div class="notice">
+        <i class="icon icon-file-download">
+          <span class="visuallyhidden">Download file</span>
+        </i>
+        <strong class="xbold-small"><%= link_to 'Download data for this page (CSV)', url_for(request.params.merge(format: :csv)) %></strong>
+      </div>
+    </aside>
+  </div>
+
+  <div class="grid-row">
+
+    <div class="column-two-thirds department-context">
+
+      <h1 class="heading-medium">Data about this delivery organisation</h1>
+
+      <p class="lede">
+        Showing data for the year from  <%= time_tag @metrics.time_period.starts_on, @metrics.time_period.starts_on.to_formatted_s(:abbreviated_day_month_year) %> to <%= time_tag @metrics.time_period.ends_on, @metrics.time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>
+      </p>
+
+      <p class="lede">
+        Data is aggregated from <a href="<%= view_data_delivery_organisation_metrics_path delivery_organisation_id: @delivery_organisation.natural_key,group_by: Metrics::GroupBy::Service %>"><%= pluralize(@delivery_organisation.services_count, 'service')%></a></a>
+      </p>
+
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="grid-row">
+    <div class="column-full">
+      <h1 class="heading-medium">Delivery organisation data</h1>
+
+      <div class='m-metric-group'>
+        <div>
+          <div class='completeness service-context-completeness'>
+            <%= @metrics.metric_groups.last.completeness %> of data points complete
+          </div>
+
+          <div class="m-metrics">
+            <%= render @metrics.metric_groups.last.metrics, metric_group: @metrics.metric_groups.last%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
