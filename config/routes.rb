@@ -41,6 +41,8 @@ Rails.application.routes.draw do
       end
 
       resources :services, only: [:show], controller: 'view_data/services'
+      resources :departments, only: [:show], controller: 'view_data/departments'
+      resources :delivery_organisations, only: [:show], controller: 'view_data/delivery_organisations'
     end
   end
 

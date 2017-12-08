@@ -20,11 +20,14 @@
     </div>
 
     <aside class="column-one-third download">
-      <i class="icon icon-file-download">
-        <span class="visuallyhidden">Download file</span>
-      </i>
-      <strong class="xbold-small"><%= link_to 'Download data for this page (CSV)', url_for(request.params.merge(format: :csv)) %></strong>
+      <div class="notice">
+        <i class="icon icon-file-download">
+          <span class="visuallyhidden">Download file</span>
+        </i>
+        <strong class="xbold-small"><%= link_to 'Download data for this page (CSV)', url_for(request.params.merge(format: :csv)) %></strong>
+      </div>
     </aside>
+
   </header>
 
   </div>
