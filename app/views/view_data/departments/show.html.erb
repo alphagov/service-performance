@@ -35,21 +35,46 @@
 
   <hr/>
 
+  <% trxn = @metrics.metric_groups[0].metrics[0] %>
+
   <div class="grid-row">
     <div class="column-full">
-      <h1 class="heading-medium">Department data</h1>
-
-      <div class='m-metric-group'>
-        <div>
-          <div class='completeness service-context-completeness'>
-            <%= @metrics.metric_groups.last.completeness %> of data points complete
-          </div>
-
-          <div class="m-metrics">
-            <%= render @metrics.metric_groups.last.metrics, metric_group: @metrics.metric_groups.last%>
-          </div>
-        </div>
+      <div class="column-two-thirds">
+        <h2 class="heading-medium">Transactions received</h2>
+        <p>These numbers tell you how much the service was used, and which channels were used the most.</p>
       </div>
     </div>
+    <div class="column-full chart-container">
+      <div class="column-one-third">
+        <div class="data">
+          <span class="data-item bold-xxlarge"><%= metric_to_human(trxn.total) %></span>
+          <span class="data-item bold-xsmall">transactions received</span>
+          <span class="data-item mt-5">September 2016 to August 2017</span>
+        </div>
+      </div>
+      <div class="column-two-thirds">
+          <div id="trxn_tx_chart" class="chart" data-metrics="2753,3684,4596,1632,,,459,483,806,433,649,732"></div>
+      </div>
+    </div>
+
+    <div class="column-full chart-container">
+      <div class="column-one-third">
+        <div class="data">
+          <span class="data-item bold-xxlarge"><%= metric_to_human(trxn.online) %></span>
+          <span class="data-item bold-xsmall">online transactions received</span>
+          <span class="data-item mt-5">September 2016 to August 2017</span>
+        </div>
+      </div>
+      <div class="column-two-thirds">
+          <div id="trxn_tx_online_chart" class="chart" data-metrics="0,0,0,0,100,0,0,0,0,0,0,0"></div>
+      </div>
+    </div>
+
   </div>
+
+  <hr/>
+
+
+  <hr/>
+
 </main>

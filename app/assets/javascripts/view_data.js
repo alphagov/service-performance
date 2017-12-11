@@ -3,6 +3,9 @@
 // = require collapsed_metric_group
 // = require metric_guidance
 // = require search
+// = require d3.min
+// = require c3.min
+// = require charts
 
 ;(function (global) {
   /* Both of these are in the `search.js` file */
