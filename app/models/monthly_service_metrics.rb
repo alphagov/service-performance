@@ -50,7 +50,15 @@ class MonthlyServiceMetrics < ApplicationRecord
     end
   end
 
-  def transactions_received
-    [online_transactions, phone_transactions, paper_transactions, face_to_face_transactions, other_transactions].compact.sum
+  def transactions_received_metric
+    @transactions_received_metric ||= TransactionsReceivedMetric.from_metrics(self)
+  end
+
+  def transactions_processed_metric
+    @transactions_processed_metric ||= TransactionsProcessedMetric.from_metrics(self)
+  end
+
+  def calls_received_metric
+    @calls_received_metric ||= CallsReceivedMetric.from_metrics(self)
   end
 end
