@@ -63,8 +63,8 @@ RSpec.feature 'viewing services', type: :feature do
     click_on 'Environment Agency'
     click_on 'Flood Information Service'
 
-    expect(page).to have_content('50% of data points complete')
-    expect(page).to have_content('Based on incomplete data')
+    expect(page).to have_content('100% of data points complete')
+    expect(page).to_not have_content('Based on incomplete data')
     expect(page).to have_content('Data provided for 6 of 12 months')
   end
 end

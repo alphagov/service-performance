@@ -54,9 +54,9 @@ module MetricItemHelper
 
     def completeness(completeness)
       return '' if !completeness || @metric_value.in?([Metric::NOT_PROVIDED, Metric::NOT_APPLICABLE])
-      return '' if completeness.complete?
+      return '' if completeness.months_complete?
 
-      content = "Data provided for #{completeness.actual} of #{completeness.expected} months"
+      content = "Data provided for #{completeness.actual} of #{completeness.months_expected} months"
       content_tag(:div, content, class: 'metric-text-grey')
     end
 

@@ -107,11 +107,13 @@ class Metric
       completeness =
         case value
         when NOT_APPLICABLE
-          Completeness.new(actual: 0, expected: 0)
+          Completeness.new(actual: 0, expected: 0, months_expected: 0)
         when NOT_PROVIDED
-          Completeness.new(actual: 0, expected: 1)
+          expected = 1
+          expected = 0 if metrics.class == MonthlyServiceMetrics::Null
+          Completeness.new(actual: 0, expected: expected, months_expected: 1)
         else
-          Completeness.new(actual: 1, expected: 1)
+          Completeness.new(actual: 1, expected: 1, months_expected: 1)
         end
       memo[:"#{item.name}_completeness"] = completeness
     end
