@@ -119,18 +119,6 @@ class Metric
     new(items)
   end
 
-  # Returns a proc which instantiates a Metric subclass from a
-  # MonthlyServiceMetric.
-  #
-  #     class CustomMetric < Metric
-  #       ...
-  #     end
-  #
-  #.    metrics.map(&CustomMetric)
-  def self.to_proc
-    ->(metrics) { from_metrics(metrics) }
-  end
-
   def not_applicable?
     values.all? { |value| value == NOT_APPLICABLE }
   end
