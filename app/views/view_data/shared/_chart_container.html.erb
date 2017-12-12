@@ -1,0 +1,25 @@
+<% if metric != :not_applicable %>
+  <div class="column-full chart-container">
+    <div class="column-one-third">
+      <div class="data">
+        <% if metric == :not_provided %>
+          <span class="data-item bold-large">
+          Not provided
+          </span>
+        <% else %>
+          <span class="data-item bold-xxlarge">
+            <%= metric_to_human(metric) %>
+          </span>
+        <% end %>
+        <span class="data-item bold-medium"><%= label %></span>
+      </div>
+    </div>
+    <div class="column-two-thirds">
+        <% if metric == :not_provided %>
+          <div id="chart_<%= tag %>" class="chart" data-metrics="0,0,0,0,0,0,0,0,0,0,0,0"></div>
+        <% else %>
+          <div id="chart_<%= tag %>" class="chart" data-metrics="2753,3684,4596,1632,,,459,483,806,433,649,732"></div>
+        <% end %>
+    </div>
+  </div>
+<% end %>

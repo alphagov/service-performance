@@ -1,0 +1,67 @@
+<% if metric_group.applicable? %>
+
+<hr/>
+
+<div class="grid-row">
+    <div class="chart-description column-full">
+      <div class="column-two-thirds">
+        <h3 class="heading-large">Phone calls received</h3>
+
+        <p>These numbers tell you how much call centres were used, and why.</p>
+        <p>If the total number of calls is higher than the number of transactions, that’s an indication that effort is high compared to output.</p>
+        <p>If the proportion of users calling to chase progress is high, this might mean that services aren’t processing transactions as quickly as they should. A high proportion of calls to get more information could indicate that information available online is incomplete or unclear.</p>
+
+      </div>
+    </div>
+
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "calls-total",
+            metric: metric_group.total,
+            label: "phone calls received"
+          }
+    %>
+
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "calls-perform-transaction",
+            metric: metric_group.perform_transaction,
+            label: "phone calls to perform a transaction"
+          }
+    %>
+
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "calls-information",
+            metric: metric_group.get_information,
+            label: "phone calls to get information"
+          }
+    %>
+
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "calls-chase",
+            metric: metric_group.chase_progress,
+            label: "phone calls to chase progress"
+          }
+    %>
+
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "calls-challenge",
+            metric: metric_group.challenge_a_decision,
+            label: "phone calls to challenge a decision"
+          }
+    %>
+
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "calls-other",
+            metric: metric_group.other,
+            label: "other phone calls received"
+          }
+    %>
+
+
+</div>
+<% end %>

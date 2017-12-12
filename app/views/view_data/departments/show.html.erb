@@ -33,48 +33,24 @@
     </div>
   </div>
 
-  <hr/>
-
   <% trxn = @metrics.metric_groups[0].metrics[0] %>
+  <%= render partial: "view_data/shared/#{trxn.class.name.demodulize.underscore}_chart",
+        locals: { metric_group: trxn } %>
 
-  <div class="grid-row">
-    <div class="column-full">
-      <div class="column-two-thirds">
-        <h2 class="heading-medium">Transactions received</h2>
-        <p>These numbers tell you how much the service was used, and which channels were used the most.</p>
-      </div>
-    </div>
-    <div class="column-full chart-container">
-      <div class="column-one-third">
-        <div class="data">
-          <span class="data-item bold-xxlarge"><%= metric_to_human(trxn.total) %></span>
-          <span class="data-item bold-xsmall">transactions received</span>
-          <span class="data-item mt-5">September 2016 to August 2017</span>
-        </div>
-      </div>
-      <div class="column-two-thirds">
-          <div id="trxn_tx_chart" class="chart" data-metrics="2753,3684,4596,1632,,,459,483,806,433,649,732"></div>
-      </div>
-    </div>
+  <% trxn_processed = @metrics.metric_groups[0].metrics[1] %>
+  <%= render partial: "view_data/shared/#{trxn_processed.class.name.demodulize.underscore}_chart",
+        locals: { metric_group: trxn_processed } %>
 
-    <div class="column-full chart-container">
-      <div class="column-one-third">
-        <div class="data">
-          <span class="data-item bold-xxlarge"><%= metric_to_human(trxn.online) %></span>
-          <span class="data-item bold-xsmall">online transactions received</span>
-          <span class="data-item mt-5">September 2016 to August 2017</span>
-        </div>
-      </div>
-      <div class="column-two-thirds">
-          <div id="trxn_tx_online_chart" class="chart" data-metrics="0,0,0,0,100,0,0,0,0,0,0,0"></div>
-      </div>
-    </div>
-
-  </div>
-
-  <hr/>
+  <% trxn_calls = @metrics.metric_groups[0].metrics[2] %>
+  <%= render partial: "view_data/shared/#{trxn_calls.class.name.demodulize.underscore}_chart",
+        locals: { metric_group: trxn_calls } %>
 
 
-  <hr/>
+  <a href="#">
+    <svg class="app-c-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17">
+      <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+    </svg>
+    Back to top
+  </a>
 
 </main>

@@ -1,0 +1,49 @@
+<% if metric_group.applicable? %>
+
+<hr/>
+
+<div class="grid-row">
+    <div class="chart-description column-full">
+      <div class="column-two-thirds">
+        <h3 class="heading-large">Transactions received</h3>
+        <p>These numbers tell you how much the service was used, and which channels were used the most.</p>
+      </div>
+    </div>
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "total",
+            metric: metric_group.total,
+            label: "transactions received"
+          }
+    %>
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "online",
+            metric: metric_group.online,
+            label: "online transactions received"
+          }
+    %>
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "paper",
+            metric: metric_group.paper,
+            label: "paper transactions received"
+          }
+    %>
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "face_to_face",
+            metric: metric_group.face_to_face,
+            label: "face to face transactions received"
+          }
+    %>
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "other",
+            metric: metric_group.other,
+            label: "other transactions received"
+          }
+    %>
+</div>
+
+<% end %>

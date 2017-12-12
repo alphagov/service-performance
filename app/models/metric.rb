@@ -131,6 +131,10 @@ class Metric
     ->(metrics) { from_metrics(metrics) }
   end
 
+  def applicable?
+    !not_applicable?
+  end
+
   def not_applicable?
     values.all? { |value| value == NOT_APPLICABLE }
   end

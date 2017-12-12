@@ -1,0 +1,28 @@
+<% if metric_group.applicable? %>
+
+<hr/>
+
+<div class="grid-row">
+    <div class="chart-description column-full">
+      <div class="column-two-thirds">
+        <h3 class="heading-large">Transactions processed</h3>
+        <p>These numbers tell you how many transactions were processed by services, and how well these transactions met users' needs..</p>
+      </div>
+    </div>
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "processed-total",
+            metric: metric_group.total,
+            label: "transactions processed"
+          }
+    %>
+    <%= render partial: "view_data/shared/chart_container",
+          locals: {
+            tag: "processed-online",
+            metric: metric_group.with_intended_outcome,
+            label: "transactions processed with intended outcome"
+          }
+    %>
+
+</div>
+<% end %>
