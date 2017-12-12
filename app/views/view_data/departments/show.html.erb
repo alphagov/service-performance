@@ -24,7 +24,7 @@
     <div class="column-two-thirds department-context">
       <h1 class="heading-medium">Data about this organisation</h1>
       <p class="lede">
-        Showing data for the year from  <%= time_tag @metrics.time_period.starts_on, @metrics.time_period.starts_on.to_formatted_s(:abbreviated_day_month_year) %> to <%= time_tag @metrics.time_period.ends_on, @metrics.time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>
+        Showing data for the year from  <%= time_tag @metrics.time_period.starts_on, @metrics.time_period.starts_on.to_formatted_s(:abbreviated_day_month_year), id: 'start_date' %> to <%= time_tag @metrics.time_period.ends_on, @metrics.time_period.ends_on.to_formatted_s(:abbreviated_day_month_year), id: 'end_date' %>
       </p>
 
       <p class="lede">
