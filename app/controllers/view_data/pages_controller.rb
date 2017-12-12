@@ -5,5 +5,11 @@ module ViewData
     end
 
     def how_to_use; end
+
+    def transactions_processed_help; end
+
+    def transactions_received_help; end
+
+    def calls_received_help; end
   end
 end

@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   namespace :view_data, path: nil, module: nil do
     root 'view_data/pages#homepage'
     get "/how-to-use", to: "view_data/pages#how_to_use"
+    get "/help/transactions-received", to: "view_data/pages#transactions_received_help"
+    get "/help/transactions-processed", to: "view_data/pages#transactions_processed_help"
+    get "/help/calls-received", to: "view_data/pages#calls_received_help"
 
     scope 'performance-data' do
       scope :government do
