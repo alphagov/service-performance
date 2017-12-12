@@ -27,7 +27,7 @@
       <h1 class="heading-medium">Data about this delivery organisation</h1>
 
       <p class="lede">
-        Showing data for the year from  <%= time_tag @metrics.time_period.starts_on, @metrics.time_period.starts_on.to_formatted_s(:abbreviated_day_month_year) %> to <%= time_tag @metrics.time_period.ends_on, @metrics.time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>
+        Showing data for the year from  <%= time_tag @metrics.time_period.starts_on, @metrics.time_period.starts_on.to_formatted_s(:abbreviated_day_month_year), id: 'start_date' %> to <%= time_tag @metrics.time_period.ends_on, @metrics.time_period.ends_on.to_formatted_s(:abbreviated_day_month_year), id: 'end_date' %>
       </p>
 
       <p class="lede">
@@ -37,23 +37,22 @@
     </div>
   </div>
 
-  <hr/>
 
-  <div class="grid-row">
-    <div class="column-full">
-      <h1 class="heading-medium">Delivery organisation data</h1>
+  <%= render partial: "view_data/shared/transactions_received_metric_chart",
+        locals: { metric_group: @metrics.metric_groups[0].metrics[0] } %>
 
-      <div class='m-metric-group'>
-        <div>
-          <div class='completeness service-context-completeness'>
-            <%= @metrics.metric_groups.last.completeness %> of data points complete
-          </div>
+  <%= render partial: "view_data/shared/transactions_processed_metric_chart",
+        locals: { metric_group: @metrics.metric_groups[0].metrics[1] } %>
 
-          <div class="m-metrics">
-            <%= render @metrics.metric_groups.last.metrics, metric_group: @metrics.metric_groups.last%>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render partial: "view_data/shared/calls_received_metric_chart",
+        locals: { metric_group: @metrics.metric_groups[0].metrics[2] } %>
+
+
+  <a href="#">
+    <svg class="app-c-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17">
+      <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+    </svg>
+    Back to top
+  </a>
+
 </main>

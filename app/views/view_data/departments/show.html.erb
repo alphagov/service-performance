@@ -33,18 +33,14 @@
     </div>
   </div>
 
-  <% trxn = @metrics.metric_groups[0].metrics[0] %>
-  <%= render partial: "view_data/shared/#{trxn.class.name.demodulize.underscore}_chart",
-        locals: { metric_group: trxn } %>
+  <%= render partial: "view_data/shared/transactions_received_metric_chart",
+        locals: { metric_group: @metrics.metric_groups[0].metrics[0] } %>
 
-  <% trxn_processed = @metrics.metric_groups[0].metrics[1] %>
-  <%= render partial: "view_data/shared/#{trxn_processed.class.name.demodulize.underscore}_chart",
-        locals: { metric_group: trxn_processed } %>
+  <%= render partial: "view_data/shared/transactions_processed_metric_chart",
+        locals: { metric_group: @metrics.metric_groups[0].metrics[1] } %>
 
-  <% trxn_calls = @metrics.metric_groups[0].metrics[2] %>
-  <%= render partial: "view_data/shared/#{trxn_calls.class.name.demodulize.underscore}_chart",
-        locals: { metric_group: trxn_calls } %>
-
+  <%= render partial: "view_data/shared/calls_received_metric_chart",
+        locals: { metric_group: @metrics.metric_groups[0].metrics[2] } %>
 
   <a href="#">
     <svg class="app-c-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17">
