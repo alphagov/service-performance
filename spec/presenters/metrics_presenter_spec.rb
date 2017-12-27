@@ -46,7 +46,7 @@ RSpec.describe MetricsPresenter do
     let(:totals_metric_presenter) { instance_double(MetricGroupPresenter, "totals metric presenter") }
 
     let(:metric_group) { instance_double(Metrics::MetricGroup) }
-    let(:data) { double('Metrics', metrics: [], metric_groups: [metric_group]) }
+    let(:data) { double('Metrics', totals_metric_group: double('totals metric group'), metric_groups: [metric_group]) }
 
     before do
       allow(presenter).to receive(:data) { data }
@@ -110,7 +110,7 @@ RSpec.describe MetricsPresenter do
 
     describe 'totals metrics group presenter' do
       let(:metric_groups) {
-        dbl = instance_double(Metrics::MetricGroup, transactions_received: double(total: 100))
+        dbl = instance_double(Metrics::MetricGroup, transactions_received_metric: double(total: 100))
         allow(dbl).to receive(:entity) { double(name: "test") }
         [dbl]
       }

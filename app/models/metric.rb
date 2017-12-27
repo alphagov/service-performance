@@ -119,18 +119,6 @@ class Metric
     new(items)
   end
 
-  # Returns a proc which instantiates a Metric subclass from a
-  # MonthlyServiceMetric.
-  #
-  #     class CustomMetric < Metric
-  #       ...
-  #     end
-  #
-  #.    metrics.map(&CustomMetric)
-  def self.to_proc
-    ->(metrics) { from_metrics(metrics) }
-  end
-
   def not_applicable?
     values.all? { |value| value == NOT_APPLICABLE }
   end
@@ -180,16 +168,14 @@ private
   #
   # See: #+
   def sum(a, b)
-    values = Set[a, b]
-    case values
-    when Set[Metric::NOT_APPLICABLE, Metric::NOT_APPLICABLE]
+    if a == Metric::NOT_APPLICABLE && b == Metric::NOT_APPLICABLE
       Metric::NOT_APPLICABLE
-    when Set[Metric::NOT_PROVIDED, Metric::NOT_PROVIDED]
+    elsif a == Metric::NOT_PROVIDED && b == Metric::NOT_PROVIDED
       Metric::NOT_PROVIDED
-    when Set[Metric::NOT_APPLICABLE, Metric::NOT_PROVIDED]
+    elsif (a == Metric::NOT_APPLICABLE && b == Metric::NOT_PROVIDED) || (a == Metric::NOT_PROVIDED && b == Metric::NOT_APPLICABLE)
       Metric::NOT_PROVIDED
     else
-      values.reject { |value| value.in?([Metric::NOT_APPLICABLE, Metric::NOT_PROVIDED]) }.reduce(:+)
+      [a, b].reject { |value| value.in?([Metric::NOT_APPLICABLE, Metric::NOT_PROVIDED]) }.reduce(:+)
     end
   end
 end

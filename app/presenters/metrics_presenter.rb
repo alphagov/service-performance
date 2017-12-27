@@ -127,25 +127,12 @@ private
   attr_reader :entity
 
   def data
-    @data ||= begin
-      klass = case entity
-              when Government
-                GovernmentMetrics
-              when Department
-                DepartmentMetrics
-              when DeliveryOrganisation
-                DeliveryOrganisationMetrics
-              when Service
-                ServiceMetrics
-              end
-
-      klass.new(entity, group_by: group_by, time_period: time_period)
-    end
+    @data ||= Metrics.new(entity, group_by: group_by, time_period: time_period)
   end
 
   def totals_metric_group_presenter
     @totals_metric_group_presenter ||= begin
-      metric_group = Metrics::MetricGroup.new(entity, data.metrics)
+      metric_group = data.totals_metric_group
       MetricGroupPresenter::Totals.new(metric_group, collapsed: collapsed?)
     end
   end

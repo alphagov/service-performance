@@ -8,10 +8,6 @@ class PreviewMetrics < Metrics
     super(@monthly_service_metrics.service, group_by: nil, time_period: time_period)
   end
 
-  def entities
-    [service]
-  end
-
   def published_monthly_service_metrics(_ = nil)
     [@monthly_service_metrics]
   end

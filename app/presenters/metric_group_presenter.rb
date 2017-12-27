@@ -34,8 +34,8 @@ class MetricGroupPresenter
   end
 
   def initialize(metric_group, collapsed: false, sort_value: nil)
+    @metric_group = metric_group
     @entity = metric_group.entity
-    @metrics = metric_group.metrics
     @collapsed = collapsed
     @sort_value = sort_value
   end
@@ -44,17 +44,16 @@ class MetricGroupPresenter
     @entity.extend(EntityToPartialPath)
   end
 
-  def metrics
-    @metrics.each { |metric| metric.extend(MetricToPartialPath) }
-  end
-
   delegate :name, to: :entity
-  delegate :transactions_received, :transactions_processed, :calls_received, to: :@metric_group
 
   attr_reader :sort_value
 
+  def metrics
+    @metrics ||= [transactions_received_metric, transactions_processed_metric, calls_received_metric].each { |metric| metric.extend(MetricToPartialPath) }
+  end
+
   def completeness
-    completeness = @metrics.flat_map { |metric| metric.completeness.values }.reduce(:+)
+    completeness = metrics.flat_map { |metric| metric.completeness.values }.reduce(:+)
 
     percentage = (completeness.actual.to_f / completeness.expected.to_f) * 100
     percentage = 0 if percentage.nan?
@@ -85,6 +84,10 @@ class MetricGroupPresenter
   def totals?
     false
   end
+
+private
+
+  delegate :transactions_received_metric, :transactions_processed_metric, :calls_received_metric, to: :@metric_group
 
   def helper
     h = @helper ||= Class.new do

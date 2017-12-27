@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe MetricGroupPresenter, type: :presenter do
   let(:entity) { double('entity') }
-  let(:metric) { double('metric') }
-  let(:metrics) { [metric] }
-  let(:metric_group) { instance_double(Metrics::MetricGroup, entity: entity, metrics: metrics) }
+  let(:transactions_received_metric) { double('transactions received metric') }
+  let(:metric_group) { instance_double(Metrics::MetricGroup, entity: entity, transactions_received_metric: transactions_received_metric, transactions_processed_metric: double('transactions processed metric'), calls_received_metric: double('calls received metric')) }
   subject(:presenter) { described_class.new(metric_group) }
 
   describe MetricGroupPresenter::Totals do
@@ -28,9 +27,9 @@ RSpec.describe MetricGroupPresenter, type: :presenter do
 
   describe '#metrics' do
     it 'extends metrics with a partial path to display the metric' do
-      allow(metric).to receive_message_chain(:class, :name) { 'FakeMetric' }
-      allow(metric).to receive(:not_provided?) { false }
-      allow(metric).to receive(:not_applicable?) { false }
+      allow(transactions_received_metric).to receive_message_chain(:class, :name) { 'FakeMetric' }
+      allow(transactions_received_metric).to receive(:not_provided?) { false }
+      allow(transactions_received_metric).to receive(:not_applicable?) { false }
       expect(presenter.metrics.first.to_partial_path).to eq('metrics/fake_metric')
     end
   end

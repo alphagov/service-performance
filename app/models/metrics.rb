@@ -44,26 +44,26 @@ class Metrics
 
     Name = MetricSortAttribute.new('name', name: 'name', keypath: %i[entity name], index: 0)
 
-    TransactionsReceived = MetricSortAttribute.new('transactions-received', name: 'transactions received', keypath: %i[transactions_received total], index: 1)
-    TransactionsReceivedOnline = MetricSortAttribute.new('transactions-received-online', name: 'transactions received (online)', keypath: %i[transactions_received online], index: 2)
-    TransactionsReceivedPhone = MetricSortAttribute.new('transactions-received-phone', name: 'transactions received (phone)', keypath: %i[transactions_received phone], index: 3)
-    TransactionsReceivedPaper = MetricSortAttribute.new('transactions-received-paper', name: 'transactions received (paper)', keypath: %i[transactions_received paper], index: 4)
-    TransactionsReceivedFaceToFace = MetricSortAttribute.new('transactions-received-face-to-face', name: 'transactions received (face to face)', keypath: %i[transactions_received face_to_face], index: 5)
-    TransactionsReceivedOther = MetricSortAttribute.new('transactions-received-other', name: 'transactions received (other)', keypath: %i[transactions_received other], index: 6)
+    TransactionsReceived = MetricSortAttribute.new('transactions-received', name: 'transactions received', keypath: %i[transactions_received_metric total], index: 1)
+    TransactionsReceivedOnline = MetricSortAttribute.new('transactions-received-online', name: 'transactions received (online)', keypath: %i[transactions_received_metric online], index: 2)
+    TransactionsReceivedPhone = MetricSortAttribute.new('transactions-received-phone', name: 'transactions received (phone)', keypath: %i[transactions_received_metric phone], index: 3)
+    TransactionsReceivedPaper = MetricSortAttribute.new('transactions-received-paper', name: 'transactions received (paper)', keypath: %i[transactions_received_metric paper], index: 4)
+    TransactionsReceivedFaceToFace = MetricSortAttribute.new('transactions-received-face-to-face', name: 'transactions received (face to face)', keypath: %i[transactions_received_metric face_to_face], index: 5)
+    TransactionsReceivedOther = MetricSortAttribute.new('transactions-received-other', name: 'transactions received (other)', keypath: %i[transactions_received_metric other], index: 6)
 
-    TransactionsEndingInOutcome = MetricSortAttribute.new('transactions-ending-in-outcome', name: 'transactions processed', keypath: %i[transactions_processed total], index: 7)
+    TransactionsEndingInOutcome = MetricSortAttribute.new('transactions-ending-in-outcome', name: 'transactions processed', keypath: %i[transactions_processed_metric total], index: 7)
     TransactionsEndingInOutcomeWithIntendedOutcome = MetricSortAttribute.new('transactions-ending-in-outcome-with-intended-outcome',
       name: "transactions ending in the user's intended outcome",
-      keypath: %i[transactions_processed with_intended_outcome],
+      keypath: %i[transactions_processed_metric with_intended_outcome],
       index: 8)
 
-    CallsReceived = MetricSortAttribute.new('calls-received', name: 'calls received', keypath: %i[calls_received total], index: 9)
-    CallsReceivedPerformTransaction = MetricSortAttribute.new('calls-received-perform-transaction', name: 'calls received (perform transaction)', keypath: %i[calls_received perform_transaction], index: 10)
-    CallsReceivedGetInformation = MetricSortAttribute.new('calls-received-get-information', name: 'calls received (get information)', keypath: %i[calls_received get_information], index: 11)
-    CallsReceivedChaseProgress = MetricSortAttribute.new('calls-received-chase-progress', name: 'calls received (chase progress)', keypath: %i[calls_received chase_progress], index: 12)
-    CallsReceivedChallengeADecision = MetricSortAttribute.new('calls-received-challenge-a-decision', name: 'calls received (challenge a decision)', keypath: %i[calls_received challenge_a_decision], index: 13)
-    CallsReceivedOther = MetricSortAttribute.new('calls-received-other', name: 'calls received (other)', keypath: %i[calls_received other], index: 14)
-    CallsReceivedUnspecified = MetricSortAttribute.new('calls-received-unspecified', name: 'calls received (unspecified)', keypath: %i[calls_received unspecified], index: 15)
+    CallsReceived = MetricSortAttribute.new('calls-received', name: 'calls received', keypath: %i[calls_received_metric total], index: 9)
+    CallsReceivedPerformTransaction = MetricSortAttribute.new('calls-received-perform-transaction', name: 'calls received (perform transaction)', keypath: %i[calls_received_metric perform_transaction], index: 10)
+    CallsReceivedGetInformation = MetricSortAttribute.new('calls-received-get-information', name: 'calls received (get information)', keypath: %i[calls_received_metric get_information], index: 11)
+    CallsReceivedChaseProgress = MetricSortAttribute.new('calls-received-chase-progress', name: 'calls received (chase progress)', keypath: %i[calls_received_metric chase_progress], index: 12)
+    CallsReceivedChallengeADecision = MetricSortAttribute.new('calls-received-challenge-a-decision', name: 'calls received (challenge a decision)', keypath: %i[calls_received_metric challenge_a_decision], index: 13)
+    CallsReceivedOther = MetricSortAttribute.new('calls-received-other', name: 'calls received (other)', keypath: %i[calls_received_metric other], index: 14)
+    CallsReceivedUnspecified = MetricSortAttribute.new('calls-received-unspecified', name: 'calls received (unspecified)', keypath: %i[calls_received_metric unspecified], index: 15)
 
     def get_metric_sort_attribute(identifier)
       MetricSortAttribute.get(identifier) || Name
@@ -78,37 +78,33 @@ class Metrics
   end
 
   class MetricGroup
-    def initialize(entity, metrics)
+    def initialize(entity, metrics_by_month)
       @entity = entity
-      @metrics = metrics
+      @metrics_by_month = metrics_by_month
     end
 
-    attr_reader :entity, :metrics
+    attr_reader :entity, :metrics_by_month
 
-    # TODO: fix this hack
-    def transactions_received
-      metrics[0]
+    def transactions_received_metric
+      metrics.map(&:transactions_received_metric).reduce(:+)
     end
 
-    # TODO: fix this hack
-    def transactions_processed
-      metrics[1]
+    def transactions_processed_metric
+      metrics.map(&:transactions_processed_metric).reduce(:+)
     end
 
-    # TODO: fix this hack
-    def calls_received
-      metrics[2]
+    def calls_received_metric
+      metrics.map(&:calls_received_metric).reduce(:+)
+    end
+
+  private
+
+    def metrics
+      metrics_by_month.values.flatten
     end
   end
 
-  def self.default_group_by
-    self.valid_group_bys.first
-  end
-
-  def initialize(root, group_by: nil, time_period:)
-    group_by ||= self.class.default_group_by
-    raise ArgumentError, "unknown group_by: #{group_by.inspect}" unless self.class.valid_group_bys.include?(group_by)
-
+  def initialize(root, group_by:, time_period:)
     @root = root
     @group_by = group_by
     @time_period = time_period
@@ -116,38 +112,57 @@ class Metrics
 
   attr_reader :group_by, :root, :time_period
 
-  def metrics(entity: root)
-    metrics = published_monthly_service_metrics(entity).each.with_object({}) do |metric, memo|
-      memo[metric.service] ||= time_period.months.each.with_object({}) do |month, months|
-        months[month] = MonthlyServiceMetrics::Null.new(metric.service, month)
-      end
-      memo[metric.service][metric.month] = metric
-    end
-
-    values = metrics.each.with_object([]) do |(_service, months), memo|
-      months.each do |_month, metric|
-        memo << metric
+  def totals_metric_group
+    totalled_metrics_by_month = metric_groups.each.with_object({}) do |metric_group, memo|
+      metric_group.metrics_by_month.each do |month, metric|
+        memo[month] ||= []
+        memo[month] << metric
       end
     end
 
-    [
-      values.map(&TransactionsReceivedMetric).reduce(:+),
-      values.map(&TransactionsProcessedMetric).reduce(:+),
-      values.map(&CallsReceivedMetric).reduce(:+),
-    ].compact
+    MetricGroup.new(root, totalled_metrics_by_month)
   end
 
   def metric_groups
-    entities.map { |entity|
-      m = metrics(entity: entity)
-      if m.any?
-        MetricGroup.new(entity, m)
-      end
-    }.compact
+    metrics_by_selected_grouping.map do |(entity, metrics_by_month)|
+      MetricGroup.new(entity, metrics_by_month)
+    end
   end
 
-  def published_monthly_service_metrics(entity = root)
-    entity.metrics.joins(:service).between(time_period.start_month, time_period.end_month).published
+  def published_monthly_service_metrics
+    @published_monthly_service_metrics = root.metrics.preload(:service).between(time_period.start_month, time_period.end_month).published
+  end
+
+  def metrics_by_selected_grouping
+    # populate metrics for services, in month's where they don't have published metrics, with null MonthlyServiceMetrics.
+    metrics_by_service = published_monthly_service_metrics.group_by(&:service).each.with_object({}) do |(service, metrics), memo|
+      memo[service] = time_period.months.each.with_object(metrics.index_by(&:month)) do |month, metrics_by_month|
+        metrics_by_month[month] ||= MonthlyServiceMetrics::Null.new(service, month)
+      end
+    end
+
+    # define a proc, which we can use to determine which group a given service's metrics should be in
+    grouper = case group_by
+              when GroupBy::Department
+                ->(service) { service.department }
+              when GroupBy::DeliveryOrganisation
+                ->(service) { service.delivery_organisation }
+              when GroupBy::Service
+                ->(service) { service }
+              else
+                raise RuntimeError
+              end
+
+    # group the service metrics by the selected grouping
+    metrics_by_service.each.with_object({}) do |(service, metrics_by_month), memo|
+      key = grouper.(service)
+      memo[key] ||= {}
+
+      metrics_by_month.each do |month, metric|
+        memo[key][month] ||= []
+        memo[key][month] << metric
+      end
+    end
   end
 
 private
