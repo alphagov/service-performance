@@ -1,5 +1,5 @@
 class MetricsPresenter
-  def initialize(entity, group_by:, order: nil, order_by: nil, time_period: nil)
+  def initialize(entity, group_by:, order: nil, order_by: nil, time_period: nil, search_term: nil)
     @entity = entity
 
     @group_by = group_by
@@ -7,6 +7,7 @@ class MetricsPresenter
     @selected_metric_sort_attribute = Metrics::Items.get_metric_sort_attribute(order_by)
     @order = order || Metrics::Order::Descending
     @time_period = time_period || TimePeriod.default
+    @search_term = search_term if search_term != ''
   end
 
   delegate :published_monthly_service_metrics, to: :data
@@ -139,7 +140,7 @@ private
                 ServiceMetrics
               end
 
-      klass.new(entity, group_by: group_by, time_period: time_period)
+      klass.new(entity, group_by: group_by, time_period: time_period, search_term: @search_term)
     end
   end
 

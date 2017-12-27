@@ -1,4 +1,6 @@
 class DeliveryOrganisation < ApplicationRecord
+  include PgSearch
+
   belongs_to :department, primary_key: :id, foreign_key: :department_id, optional: true
   has_many :services, primary_key: :id, foreign_key: :delivery_organisation_id
 
@@ -8,6 +10,8 @@ class DeliveryOrganisation < ApplicationRecord
   validates_uniqueness_of :natural_key
   validates_presence_of :name
   validates_presence_of :website
+
+  pg_search_scope :search, against: %i(name acronym)
 
   def self.with_services
     self.joins(:metrics).where(monthly_service_metrics: { published: true }).distinct

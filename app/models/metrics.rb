@@ -105,13 +105,14 @@ class Metrics
     self.valid_group_bys.first
   end
 
-  def initialize(root, group_by: nil, time_period:)
+  def initialize(root, group_by: nil, time_period: nil, search_term: nil)
     group_by ||= self.class.default_group_by
     raise ArgumentError, "unknown group_by: #{group_by.inspect}" unless self.class.valid_group_bys.include?(group_by)
 
     @root = root
     @group_by = group_by
     @time_period = time_period
+    @search_term = search_term
   end
 
   attr_reader :group_by, :root, :time_period

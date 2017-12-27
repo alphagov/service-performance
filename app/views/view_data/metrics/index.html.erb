@@ -27,7 +27,7 @@
       <%= tabs(current_page: page) do |tabs| %>
         <% tabs.link_to tab_name('Departments', count: @metrics.departments_count), url_for(request.params.merge(group_by: Metrics::GroupBy::Department)) if @metrics.has_departments? %>
         <% tabs.link_to tab_name('Delivery organisations', count: @metrics.delivery_organisations_count), url_for(request.params.merge(group_by: Metrics::GroupBy::DeliveryOrganisation)) if @metrics.has_delivery_organisations? %>
-        <% tabs.link_to tab_name('Services', count: @metrics.services_count), url_for(request.params.merge(group_by: Metrics::GroupBy::Service)) if @metrics.has_services? %>
+        <% tabs.link_to tab_name('Services', count: @metrics.visible_services_count), url_for(request.params.merge(group_by: Metrics::GroupBy::Service)) if @metrics.has_services? %>
       <% end %>
 
 
@@ -46,12 +46,13 @@
           </div>
         <% end %>
 
-        <div class="m-search-filter hidden" data-behaviour="m-search-filter" role="search">
-          <label for="search-metrics">
-            Find <%= @metrics.group_by_screen_name %>
-          </label>
-          <input type="search" id="search-metrics" class="a-search-input" placeholder="Example: environment">
-          <p id="search-counter" class="a-search-counter" data-behaviour="a-search-counter" class="visuallyhidden" aria-live="polite" aria-atomic="true"></p>
+        <div class="m-search-filter" data-behaviour="m-search-filter" role="search">
+          <form  method="get">
+            <label for="search-metrics">
+              Find <%= @metrics.group_by_screen_name %>
+            </label>
+            <input type="search" id="q" name="q" class="a-search-input" placeholder="Example: environment" value="<%= @query %>">
+          </form>
         </div>
       </div>
 
