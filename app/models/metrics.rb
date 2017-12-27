@@ -81,9 +81,13 @@ class Metrics
     def initialize(entity, metrics_by_month)
       @entity = entity
       @metrics_by_month = metrics_by_month
+      @service = nil
+      if entity.class == Service
+        @service = entity
+      end
     end
 
-    attr_reader :entity, :metrics_by_month
+    attr_reader :entity, :metrics_by_month, :service
 
     def transactions_received_metric
       metrics.map(&:transactions_received_metric).reduce(:+)
@@ -106,7 +110,7 @@ class Metrics
 
   def initialize(root, group_by:, time_period:)
     @root = root
-    @group_by = group_by
+    @group_by = group_by || GroupBy::Service
     @time_period = time_period
   end
 

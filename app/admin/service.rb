@@ -27,6 +27,12 @@ ActiveAdmin.register Service do
       row :natural_key
       row :created_at
       row :updated_at
+      row "Label for other field" do |service|
+        service.other_name || ""
+      end
+      row "Label for other calls field" do |service|
+        service.calls_other_name || ""
+      end
     end
 
     attributes_table title: "Contextual information" do
@@ -108,6 +114,8 @@ ActiveAdmin.register Service do
       f.input :delivery_organisation
       f.input :owner
       f.input :natural_key
+      f.input :other_name, as: :string, label: "Other transactions label"
+      f.input :calls_other_name, as: :string, label: "Other calls label"
       f.input :purpose, as: :pagedown_text
       f.input :how_it_works, as: :pagedown_text
       f.input :typical_users, as: :pagedown_text
@@ -157,7 +165,8 @@ ActiveAdmin.register Service do
                 :transactions_processed_applicable, :transactions_processed_with_intended_outcome_applicable,
                 :calls_received_applicable, :calls_received_get_information_applicable,
                 :calls_received_chase_progress_applicable, :calls_received_challenge_decision_applicable,
-                :calls_received_other_applicable, :calls_received_perform_transaction_applicable
+                :calls_received_other_applicable, :calls_received_perform_transaction_applicable,
+                :other_name, :calls_other_name
 
   remove_filter :online_transactions_applicable, :phone_transactions_applicable,
                 :paper_transactions_applicable,  :face_to_face_transactions_applicable,

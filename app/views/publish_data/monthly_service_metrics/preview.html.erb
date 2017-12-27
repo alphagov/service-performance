@@ -6,7 +6,7 @@
       </h1>
       <p>
         You can share the URL of this page with your colleagues. The most recent month's data is not yet published — it will go live on <%= @monthly_service_metrics.publish_date.to_formatted_s(:long_day_month_year) %>.
-      </p>  
+      </p>
       <p>
         <a href="monitor"><%= link_to 'Go back', publish_service_metrics_path(publish_token: params[:publish_token]) %></a>
       </p>

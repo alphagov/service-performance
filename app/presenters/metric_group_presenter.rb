@@ -24,6 +24,10 @@ class MetricGroupPresenter
       end
     end
 
+    def service
+      nil
+    end
+
     def entity
       @entity.extend(EntityToPartialPath)
     end
@@ -38,6 +42,10 @@ class MetricGroupPresenter
     @entity = metric_group.entity
     @collapsed = collapsed
     @sort_value = sort_value
+    @service = nil
+    if @entity.class == Service
+      @service = @entity
+    end
   end
 
   def entity
@@ -46,7 +54,7 @@ class MetricGroupPresenter
 
   delegate :name, to: :entity
 
-  attr_reader :sort_value
+  attr_reader :sort_value, :service
 
   def metrics
     @metrics ||= [transactions_received_metric, transactions_processed_metric, calls_received_metric].each { |metric| metric.extend(MetricToPartialPath) }
