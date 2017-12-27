@@ -8,6 +8,7 @@ class DeliveryOrganisationMetrics < Metrics
     when GroupBy::DeliveryOrganisation
       [root]
     when GroupBy::Service
+      return Service.search(@search_term).where(delivery_organisation: root) if @search_term
       root.services
     end
   end

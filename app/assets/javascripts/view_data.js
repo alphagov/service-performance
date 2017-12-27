@@ -11,9 +11,9 @@
 
   $(document).ready(function () {
     global.SearchResultsContainer.init()
-    global.SearchFilter.init(
-      global.SearchResultsContainer.filter,
-      global.SearchResultsContainer.getResultsLength()
-    )
+    //global.SearchFilter.init(
+    //  global.SearchResultsContainer.filter,
+    //  global.SearchResultsContainer.getResultsLength()
+    //)
   })
 })(window)

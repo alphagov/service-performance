@@ -3,7 +3,7 @@ module ViewData
     def show
       @service = Service.where(natural_key: params[:id]).first!
 
-      @metrics = MetricsPresenter.new(@service, group_by: Metrics::GroupBy::Service)
+      @metrics = MetricsPresenter.new(@service, group_by: Metrics::GroupBy::Service, search_term: params[:q])
 
       page.title = @service.name
 
