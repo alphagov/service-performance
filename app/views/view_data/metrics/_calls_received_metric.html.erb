@@ -87,7 +87,13 @@
         <strong><%= metric_to_human(calls_received_metric.other) %></strong> other calls received (<%= metric_to_percentage(calls_received_metric.other_percentage) %>)
       <% end %>
 
-      <span class="metric-name">Other</span>
+      <span class="metric-name"><%=
+        if metric_group.service && !metric_group.service.calls_other_name.blank?
+          metric_group.service.calls_other_name.capitalize
+        else
+          "Other"
+        end %>
+      </span>
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage calls_received_metric.other_percentage %>

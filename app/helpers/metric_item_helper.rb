@@ -1,7 +1,6 @@
 module MetricItemHelper
   def metric_item(metric_item, metric_value, sampled: false, html: {})
     return if metric_value == Metric::NOT_APPLICABLE
-
     item = MetricItemContent.new(self, metric_value)
     content = capture { yield(item) } || ''
 

@@ -13,7 +13,17 @@ module PublishData
         :other_transactions, :transactions_processed, :transactions_processed_with_intended_outcome,
         :calls_received, :calls_received_perform_transaction, :calls_received_get_information,
         :calls_received_chase_progress, :calls_received_challenge_decision,
-        :calls_received_other).each { |_, value| value.gsub!(/\D/, '') }
+        :calls_received_other).each { |_key, value| value.gsub!(/\D/, '') }
+
+      begin
+        svc = @monthly_service_metrics.service
+        svc.attributes = params.require(:services).permit(:other_name, :calls_other_name).each { |_, value| value }
+        svc.save
+      rescue => _e
+        # It's possible that the :services fields are not set as they are not relevant
+        # so we will allow them to fail here.
+        logger.info("Metrics provided with no detail for other labels")
+      end
 
       if @monthly_service_metrics.save
         render 'publish_data/monthly_service_metrics/success'
