@@ -5,7 +5,7 @@ set -e
 if [ -z "$1" ]; then
     echo "Missing PAAS space argument"
     echo "  deploy.sh staging|production"
-    exit 1
+    exit 2
 fi
 
 PAAS_SPACE=$1
