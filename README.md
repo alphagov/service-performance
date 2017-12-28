@@ -53,15 +53,6 @@ bin/rails spec
 
 ## Deployment
 
-### Running Migrations
-
-The migrations aren't automatically run by CI on deployment. To run all pending
-migrations use the following:
-
-```
-cf run-task service-performance "cd app && bundle exec rake db:migrate" --name migrate
-```
-
 ### Staging
 
 Deployments are initiated by merging master into staging, and then pushing the staging branch.
@@ -98,7 +89,7 @@ npm run lint
 
 Running `npm run lint` will lint the javascript files it finds in the `app/assets/javascripts/*` directory. It gives you some scary-looking npm error trace, but also plain-english messages about what's gone wrong.
 
-#### unit tests
+#### Unit tests
 
 We're using [Jest](https://facebook.github.io/jest/) for JavaScript unit tests.
 
