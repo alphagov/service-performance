@@ -43,13 +43,6 @@ To start the server use the conventional `rails -s` command. If you're already r
 
 You can test the server is up and running by visiting [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
 
-## Tests
-
-To run tests, you should run
-
-```
-bin/rails spec
-```
 
 ## Deployment
 
@@ -57,7 +50,18 @@ bin/rails spec
 
 Deployments are initiated by merging master into staging, and then pushing the staging branch.
 
+### Production
+
+Production deployments are not yet configured.
+
+
 ## Tests
+
+To run tests, you should run
+
+```
+bin/rails spec
+```
 
 ### Frontend test setup
 
@@ -79,7 +83,7 @@ npm install
 
 ### Frontend tests
 
-#### linting
+#### Linting
 
 At [GDS](https://github.com/alphagov/styleguides/blob/master/js.md#linting), we use [`standardjs`](https://standardjs.com/).
 
