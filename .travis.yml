@@ -23,9 +23,10 @@ script:
   - xvfb-run -a bundle exec rspec
   - npm run lint
   - ./script/run-npm-test
+  - chmod u+x etc/deploy.sh
 deploy:
   - provider: script
-    script: "./etc/deploy.sh staging"
+    script: "etc/deploy.sh staging"
     skip_cleanup: true
     on:
       branch: deploy
