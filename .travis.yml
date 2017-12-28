@@ -31,4 +31,4 @@ deploy:
     script: "./etc/deploy.sh staging"
     skip_cleanup: true
     on:
-      branch: deploy
+      branch: staging
