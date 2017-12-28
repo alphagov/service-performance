@@ -1,7 +1,7 @@
 dist: trusty
 sudo: false
 language: ruby
-group: deprecated-2017Q2
+group: deprecated-2017Q4
 services:
   - postgresql
 cache:
