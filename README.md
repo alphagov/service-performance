@@ -65,9 +65,9 @@ bin/rails spec
 
 ### Frontend test setup
 
-Make sure you have [`npm`](https://www.npmjs.com/get-npm) installed, as well as a relatively recent version of [`node`](https://nodejs.org/en/).
+Make sure you have [`npm`](https://www.npmjs.com/get-npm) installed, as well as a recent version of [`node`](https://nodejs.org/en/).
 
-[`nvm`](https://github.com/creationix/nvm) is a pretty good way of installing different `node` versions. Follow [the installation instructions from the `nvm` repository](https://github.com/creationix/nvm#installation) and afterwards install all the node versions you could ever want. Installing a node version is as easy as
+[`nvm`](https://github.com/creationix/nvm) is a pretty good way of installing different `node` versions. Follow [the installation instructions from the `nvm` repository](https://github.com/creationix/nvm#installation). Installing a node version is as easy as
 
 ```
 nvm install 6.11.0
