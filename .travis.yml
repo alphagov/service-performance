@@ -1,5 +1,5 @@
 dist: trusty
-sudo: false
+sudo: true
 language: ruby
 group: deprecated-2017Q4
 services:
@@ -27,7 +27,7 @@ script:
   - chmod u+x etc/deploy.sh
 deploy:
   - provider: script
-    script: "etc/deploy.sh staging"
+    script: "./etc/deploy.sh staging"
     skip_cleanup: true
     on:
       branch: deploy
