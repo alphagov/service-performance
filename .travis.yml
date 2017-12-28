@@ -32,4 +32,4 @@ deploy:
     script: SECRET_KEY_BASE=$SECRET_KEY_BASE TAG_MANAGER_ID=$TAG_MANAGER_ID etc/deploy.sh staging
     skip_cleanup: true
     on:
-      branch: staging
+      branch: deploy
