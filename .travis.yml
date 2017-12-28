@@ -1,6 +1,7 @@
 dist: trusty
-sudo: false
+sudo: true
 language: ruby
+group: deprecated-2017Q4
 services:
   - postgresql
 cache:
@@ -23,12 +24,11 @@ script:
   - xvfb-run -a bundle exec rspec
   - npm run lint
   - ./script/run-npm-test
+  - chmod u+x etc/deploy.sh
+  - ls -al etc/
 deploy:
-  provider: cloudfoundry
-  username: ${PAAS_USERNAME}
-  password: ${PAAS_PASSWORD}
-  api: https://api.cloud.service.gov.uk
-  organization: government-service-data
-  space: staging
-  on:
-    branch: staging
+  - provider: script
+    script: "./etc/deploy.sh staging"
+    skip_cleanup: true
+    on:
+      branch: staging

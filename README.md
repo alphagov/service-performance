@@ -50,36 +50,30 @@ If you are already running another app on port 3000, then pass in a new port num
 
 You can test the server is running by visiting [http://127.0.0.1:3000/](http://127.0.0.1:3000/) in a web browser.
 
-## Tests
-
-To run tests, you should run:
-
-```
-bin/rails spec
-```
 
 ## Deployment
-
-### Running Migrations
-
-Migrations are not run automatically by CI on deployment. To manually run all pending
-migrations, you must run:
-
-```
-cf run-task service-performance "cd app && bundle exec rake db:migrate" --name migrate
-```
 
 ### Staging
 
 Deployments are initiated by merging `master` into `staging`, and then by pushing the `staging` branch.
 
+### Production
+
+Production deployments are not yet configured.
+
 ## Tests
+
+To run tests, you should run
+
+```
+bin/rails spec
+```
 
 ### Frontend test setup
 
 Make sure you have [`npm`](https://www.npmjs.com/get-npm) installed, as well as a recent version of [`node`](https://nodejs.org/en/).
 
-You can use to install and manage different versions of `node` using [`nvm`](https://github.com/creationix/nvm#installation). 
+You can install and manage different versions of `node` using [`nvm`](https://github.com/creationix/nvm#installation). 
 
 To install a version of `node` using `nvm`, you should only need to run (for example):
 
@@ -97,7 +91,7 @@ npm install
 
 ### Frontend tests
 
-#### linting
+#### Linting
 
 [GDS](https://github.com/alphagov/styleguides/blob/master/js.md#linting) uses [`standardjs`](https://standardjs.com/):
 
@@ -107,7 +101,7 @@ npm run lint
 
 This command will lint the JavaScript files it finds in the `app/assets/javascripts/*` directory. It will return npm error traces and plain-English error messages. 
 
-#### unit tests
+#### Unit tests
 
 GDS uses [Jest](https://facebook.github.io/jest/) for JavaScript unit tests:
 
