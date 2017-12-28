@@ -25,7 +25,7 @@ script:
   - ./script/run-npm-test
 deploy:
   - provider: script
-    script: ./etc/deploy.sh staging
+    script: . ./etc/deploy.sh staging
     skip_cleanup: true
     on:
       branch: deploy
