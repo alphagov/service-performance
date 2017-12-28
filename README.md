@@ -4,56 +4,62 @@ This is the application for interacting with Service Performance data. It contai
 
 - the application frontend for viewing metrics
 - the publishing workflow for collecting metrics from Services
-- an admin interface to coordinate data collection.
+- an admin interface to coordinate data collection
 
 ## Setup
 
-First you need the Ruby version defined in [`.ruby-version`](https://github.com/alphagov/service-performance/blob/master/.ruby-version) installed. It's easy to switch Ruby versions on demand with [`rbenv`](http://rbenv.org/), which you can do using [`Homebrew`](https://brew.sh/).
+You must install the version of Ruby defined in [`.ruby-version`](https://github.com/alphagov/service-performance/blob/master/.ruby-version). 
+
+You can easily switch between Ruby versions with [`rbenv`](http://rbenv.org/), which you can install using [`Homebrew`](https://brew.sh/):
 
 ```
 brew install rbenv
 ```
 
-If you have rbenv installed, you can run
+For example, if you have installed `rbenv`, you can run:
 
 ```
 rbenv install 2.4.2
 ```
 
-Next, you'll need [`Bundler`](http://bundler.io/) in order to install all the dependencies you'll need to run the app.
+You will also need [`Bundler`](http://bundler.io/) in order to install all the application's dependencies.
 
 ```
 gem install bundler
 ```
 
-Installing Bundler means that you have it for the current version of Ruby. If you ever switch Ruby versions, you'll need to re-install Bundler.
-After bundle has been installed, install the dependencies for this application with
+You should note that each time you install Bundler, you will have it available for your current version of Ruby. If you ever switch Ruby versions, you will need to reinstall Bundler.
+
+After installing Bundler, you can install the dependencies for the application with:
 
 ```
 bundle
 ```
 
-Once you have all the dependencies, you need to configure the database you will be using.  Copy config/database.yml.example to config/database.yml to use the suggested database name. Once you have done this you should run
+You then need to configure the database you will be using.  
+
+Copy `config/database.yml.example` to `config/database.yml` to use the example database name, then run:
 
 ```
 bin/rails db:create db:migrate db:seed
 ```
 
-To start the server use the conventional `rails -s` command. If you're already running another app on port 3000, then pass in a new port number with `rails -s --port 3000`
+To start the server, use the conventional `rails -s` command. 
 
-You can test the server is up and running by visiting [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
+If you are already running another app on port 3000, then pass in a new port number with `rails -s --port <NEW NUMBER>`
+
+You can test the server is running by visiting [http://127.0.0.1:3000/](http://127.0.0.1:3000/) in a web browser.
 
 
 ## Deployment
 
 ### Staging
 
-Deployments are initiated by merging master into staging, and then pushing the staging branch.
+Deployments are initiated by merging `master` into `staging`, and then by pushing the `staging` branch.
 
 ### Production
 
 Production deployments are not yet configured.
-
 
 ## Tests
 
@@ -67,15 +73,17 @@ bin/rails spec
 
 Make sure you have [`npm`](https://www.npmjs.com/get-npm) installed, as well as a recent version of [`node`](https://nodejs.org/en/).
 
-[`nvm`](https://github.com/creationix/nvm) is a pretty good way of installing different `node` versions. Follow [the installation instructions from the `nvm` repository](https://github.com/creationix/nvm#installation). Installing a node version is as easy as
+You can install and manage different versions of `node` using [`nvm`](https://github.com/creationix/nvm#installation). 
+
+To install a version of `node` using `nvm`, you should only need to run (for example):
 
 ```
 nvm install 6.11.0
 ```
 
-There's [an `.nvmrc` file](https://github.com/creationix/nvm#nvmrc) in the root directory of this repository that `nvm` will recognise when you call certain commands (like `nvm use`) without arguments.
+There is [an `.nvmrc` file](https://github.com/creationix/nvm#nvmrc) in the root directory of this repository that `nvm` will recognise when you call certain commands (such as `nvm use`) without arguments.
 
-To install the frontend dependencies, run
+To install the frontend dependencies, run:
 
 ```
 npm install
@@ -85,23 +93,23 @@ npm install
 
 #### Linting
 
-At [GDS](https://github.com/alphagov/styleguides/blob/master/js.md#linting), we use [`standardjs`](https://standardjs.com/).
+[GDS](https://github.com/alphagov/styleguides/blob/master/js.md#linting) uses [`standardjs`](https://standardjs.com/):
 
 ```
 npm run lint
 ```
 
-Running `npm run lint` will lint the javascript files it finds in the `app/assets/javascripts/*` directory. It gives you some scary-looking npm error trace, but also plain-english messages about what's gone wrong.
+This command will lint the JavaScript files it finds in the `app/assets/javascripts/*` directory. It will return npm error traces and plain-English error messages. 
 
 #### Unit tests
 
-We're using [Jest](https://facebook.github.io/jest/) for JavaScript unit tests.
+GDS uses [Jest](https://facebook.github.io/jest/) for JavaScript unit tests:
 
 ```
 ./script/run-npm-test
 ```
 
-Running `./script/run-npm-test` will run any javascript test files it finds across the whole codebase.
+This command will run any JavaScript test files it finds across the whole codebase.
 
 ### Installing capybara-webkit
 
