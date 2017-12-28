@@ -1,4 +1,6 @@
 class MonthlyServiceMetrics < ApplicationRecord
+  has_paper_trail
+
   class Null
     def initialize(service, month)
       @service = service
@@ -8,8 +10,20 @@ class MonthlyServiceMetrics < ApplicationRecord
     attr_reader :service, :month
 
     attr_reader :online_transactions, :phone_transactions, :paper_transactions, :face_to_face_transactions, :other_transactions
-    attr_reader :transactions_with_outcome, :transactions_with_intended_outcome
+    attr_reader :transactions_processed, :transactions_processed_with_intended_outcome
     attr_reader :calls_received, :calls_received_get_information, :calls_received_chase_progress, :calls_received_challenge_decision, :calls_received_other, :calls_received_perform_transaction
+
+    def transactions_received_metric
+      @transactions_received_metric ||= TransactionsReceivedMetric.from_metrics(self)
+    end
+
+    def transactions_processed_metric
+      @transactions_processed_metric ||= TransactionsProcessedMetric.from_metrics(self)
+    end
+
+    def calls_received_metric
+      @calls_received_metric ||= CallsReceivedMetric.from_metrics(self)
+    end
   end
 
   self.table_name = 'monthly_service_metrics'
@@ -30,6 +44,12 @@ class MonthlyServiceMetrics < ApplicationRecord
     where('month >= :start AND month <= :end', start: serializer.serialize(start_month), end: serializer.serialize(end_month))
   end
 
+  def missing_data?
+    service.required_metrics.any? { |m|
+      send(m) == nil
+    }
+  end
+
   def publish_date
     if month
       month.date + 2.months
@@ -42,7 +62,15 @@ class MonthlyServiceMetrics < ApplicationRecord
     end
   end
 
-  def transactions_received
-    [online_transactions, phone_transactions, paper_transactions, face_to_face_transactions, other_transactions].compact.sum
+  def transactions_received_metric
+    @transactions_received_metric ||= TransactionsReceivedMetric.from_metrics(self)
+  end
+
+  def transactions_processed_metric
+    @transactions_processed_metric ||= TransactionsProcessedMetric.from_metrics(self)
+  end
+
+  def calls_received_metric
+    @calls_received_metric ||= CallsReceivedMetric.from_metrics(self)
   end
 end

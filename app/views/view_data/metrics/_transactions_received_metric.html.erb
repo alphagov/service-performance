@@ -5,6 +5,8 @@
         <strong><%= metric_to_human(transactions_received_metric.total) %></strong> transactions received
       <% end %>
 
+      <% item.display_guidance = !@metrics.preview? %>
+
       <span class="total">
         <span class="data-item bold-large"><%= metric_to_human(transactions_received_metric.total) %></span>
         <span class="data-item bold">transactions received</span>
@@ -78,7 +80,14 @@
         <strong><%= metric_to_human(transactions_received_metric.other) %></strong> other transactions (<%= metric_to_percentage(transactions_received_metric.other_percentage) %>)
       <% end %>
 
-      <span class="metric-name">Other</span>
+      <span class="metric-name"><%=
+        if metric_group.service && !metric_group.service.other_name.blank?
+          metric_group.service.other_name.capitalize
+        else
+          "Other"
+        end
+        %>
+      </span>
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage transactions_received_metric.other_percentage %>

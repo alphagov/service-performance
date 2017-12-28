@@ -45,13 +45,24 @@ RSpec.describe PublishData::MonthlyServiceMetricsController, type: :controller d
 
   describe 'PATCH update' do
     def dispatch
-      patch :update, params: { service_id: service.id, year: '2017', month: '06', publish_token: publish_token, metrics: metrics_params }
+      patch :update, params: {
+        service_id: service.id, year: '2017', month: '06', publish_token: publish_token, metrics: metrics_params,
+        services: { 'other_name' => 'Other', 'calls_other_name' => 'Other' }
+      }
     end
 
     let(:publish_token) { 'PuBlIsHtOkEn' }
     let(:metrics_params) { { 'online_transactions' => '1000' } }
-    let(:metrics) { instance_double(MonthlyServiceMetrics, :service= => nil, :month= => nil, :attributes= => nil) }
     let(:service) { instance_double(Service, id: '01') }
+    let(:metrics) {
+      s = instance_double(Service, id: '01')
+      allow(s).to receive(:attributes=) {}
+      allow(s).to receive(:save) { true }
+
+      m = instance_double(MonthlyServiceMetrics, :service= => s, :month= => nil, :attributes= => nil)
+      allow(m).to receive(:service) { s }
+      m
+    }
 
     before do
       allow(MonthlyServiceMetrics).to receive_message_chain(:where, :first_or_initialize) { metrics }

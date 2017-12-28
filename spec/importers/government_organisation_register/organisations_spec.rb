@@ -8,11 +8,11 @@ RSpec.describe GovernmentOrganisationRegister::Organisations do
     end
 
     expect(organisations).to eq([
+      ["OT488", "NHS Resolution"],
       ["D5", "Department for Digital, Culture, Media and Sport"],
       ["DA1020", "Scottish Government"],
       ["PB1218", "Regulator of Social Housing"],
-      ["EO1216", "Education and Skills Funding Agency"],
-      ["OT1215", "Judicial Office"],
+      ["EO1216", "Education and Skills Funding Agency"]
     ])
   end
 end

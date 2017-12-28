@@ -1,5 +1,5 @@
 ActiveAdmin.register Department do
-  permit_params :natural_key, :name, :website
+  permit_params :natural_key, :name, :website, :acronym
 
   controller do
     defaults finder: :find_by_natural_key
@@ -8,12 +8,14 @@ ActiveAdmin.register Department do
   index do
     column :natural_key
     column :name
+    column :acronym
     actions
   end
 
   show do
     attributes_table do
       row :name
+      row :acronym
       row :website
       row :natural_key
     end
@@ -29,10 +31,11 @@ ActiveAdmin.register Department do
   end
 
   collection_action :sync, method: :post do
-    DeliveryOrganisationsImporter.new.import
+    dept_acronym_file = File.read(Rails.root.join("config", "department_acronyms.csv"))
+    DeliveryOrganisationsImporter.new.import(dept_acronym_file)
 
-    mapping_file = File.read(Rails.root.join("config", "department_mapping.csv"))
-    DepartmentsImporter.new.import(mapping_file)
+    dept_mapping_file = File.read(Rails.root.join("config", "department_mapping.csv"))
+    DepartmentsImporter.new.import(dept_mapping_file, dept_acronym_file)
 
     redirect_to collection_path, notice: "Departments imported successfully!"
   end

@@ -4,8 +4,8 @@ ActiveAdmin.register MonthlyServiceMetrics do
   permit_params :id, :service_id, :month,
                 :online_transactions, :phone_transactions,
                 :paper_transactions, :face_to_face_transactions,
-                :other_transactions, :transactions_with_outcome,
-                :transactions_with_intended_outcome, :calls_received,
+                :other_transactions, :transactions_processed,
+                :transactions_processed_with_intended_outcome, :calls_received,
                 :calls_received_perform_transaction, :calls_received_get_information,
                 :calls_received_chase_progress, :calls_received_challenge_decision,
                 :calls_received_other, :published
@@ -16,6 +16,9 @@ ActiveAdmin.register MonthlyServiceMetrics do
     column :month, sortable: :month
     column :delivery_organisation
     column :published
+    column "Missing data" do |m|
+      status_tag("Missing", class: "error") if m.missing_data?
+    end
     actions
   end
 
@@ -30,9 +33,9 @@ ActiveAdmin.register MonthlyServiceMetrics do
     def applicable_value(service, val)
       appl = service.send("#{val}_applicable")
       if !appl
-        "Not applicable"
+        status_tag("Not applicable", class: 'warn')
       else
-        monthly_service_metrics.send(val)
+        monthly_service_metrics.send(val) || status_tag("Not provided", class: 'error')
       end
     end
 
@@ -61,10 +64,10 @@ ActiveAdmin.register MonthlyServiceMetrics do
         h2 "Transactions processed"
         attributes_table do
           row "Total" do
-            applicable_value(svc, :transactions_with_outcome)
+            applicable_value(svc, :transactions_processed)
           end
           row "With intended outcome" do
-            applicable_value(svc, :transactions_with_intended_outcome)
+            applicable_value(svc, :transactions_processed_with_intended_outcome)
           end
         end
       end
@@ -92,6 +95,35 @@ ActiveAdmin.register MonthlyServiceMetrics do
         end
       end
     end
+
+    panel "Versions" do
+      table_for PaperTrail::Version.where(item_type: "MonthlyServiceMetrics",
+                                          item_id: monthly_service_metrics.id).order('id desc') do
+        column "Event", :event
+        column("Modified at") { |v| v.created_at.to_s :long }
+        column("Modified by") { |v|
+          if v.whodunnit.in? ["Unknown user", nil]
+            "Unknown user"
+          else
+            link_to AdminUser.find(v.whodunnit).email, [:admin, AdminUser.find(v.whodunnit)]
+          end
+        }
+        column("Changes") { |v|
+          return '' if !v.changeset
+
+          changes = v.changeset
+          data = changes.inject([]) do |memo, (k, val)|
+            if k == "updated_at"
+              memo << ""
+            else
+              change_from, change_to = val
+              memo << "Field '#{k}' changed\n from '#{change_from}'\nto '#{change_to}'\n\n"
+            end
+          end
+          simple_format(data.join)
+        }
+      end
+    end
   end
 
   form do |_|
@@ -109,7 +141,7 @@ ActiveAdmin.register MonthlyServiceMetrics do
       end
       column do
         panel "Transactions processed" do
-          inputs :transactions_with_outcome, :transactions_with_intended_outcome
+          inputs :transactions_processed, :transactions_processed_with_intended_outcome
         end
       end
       column do
@@ -120,6 +152,36 @@ ActiveAdmin.register MonthlyServiceMetrics do
       end
     end
     actions
+  end
+
+  csv do
+    column :id
+    column "Service" do |m|
+      m.service.name
+    end
+    column "Department" do |m|
+      m.service.delivery_organisation.department.name
+    end
+    column "Agency" do |m|
+      m.service.delivery_organisation.name
+    end
+    column :month
+    column :online_transactions
+    column :phone_transactions
+    column :paper_transactions
+    column :face_to_face_transactions
+    column :other_transactions
+    column :transactions_processed
+    column :transactions_processed_with_intended_outcome
+    column :calls_received
+    column :calls_received_perform_transaction
+    column :calls_received_get_information
+    column :calls_received_chase_progress
+    column :calls_received_challenge_decision
+    column :calls_received_other
+    column :published
+    column :created_at
+    column :updated_at
   end
 
   batch_action :publish do |ids|

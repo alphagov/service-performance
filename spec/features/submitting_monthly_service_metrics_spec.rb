@@ -15,7 +15,7 @@ RSpec.feature 'submitting monthly service metrics' do
       fill_in 'Phone', with: '17,000'
       fill_in 'Paper', with: '16,000'
       fill_in 'Face-to-face', with: '15,000'
-      fill_in 'Other', with: '14,000'
+      fill_in 'Transactions received through this channel', with: '14,000'
     end
 
     within_fieldset('Number of transactions processed') do
@@ -35,7 +35,7 @@ RSpec.feature 'submitting monthly service metrics' do
       fill_in 'to get information', with: '10,000'
       fill_in 'to chase progress', with: '9,000'
       fill_in 'to challenge a decision', with: '8,000'
-      fill_in 'Other', with: '7,000'
+      fill_in 'Number of telephone calls for this reason', with: '7,000'
     end
 
     click_button 'Submit'
@@ -48,8 +48,8 @@ RSpec.feature 'submitting monthly service metrics' do
     expect(metrics.paper_transactions).to eq(16000)
     expect(metrics.face_to_face_transactions).to eq(15000)
     expect(metrics.other_transactions).to eq(14000)
-    expect(metrics.transactions_with_outcome).to eq(13000)
-    expect(metrics.transactions_with_intended_outcome).to eq(12000)
+    expect(metrics.transactions_processed).to eq(13000)
+    expect(metrics.transactions_processed_with_intended_outcome).to eq(12000)
     expect(metrics.calls_received).to eq(11000)
     expect(metrics.calls_received_perform_transaction).to eq(6000)
     expect(metrics.calls_received_get_information).to eq(10000)

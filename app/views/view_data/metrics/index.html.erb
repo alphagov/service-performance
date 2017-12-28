@@ -8,7 +8,7 @@
         <%= @metrics.organisation_name %>
       </h1>
 
-      <%= render 'view_data/metrics/time_period_selector' %>
+      <%= render 'view_data/metrics/time_period_selector', time_period: @metrics.time_period %>
     </div>
 
     <aside class="column-one-third download">

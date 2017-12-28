@@ -195,7 +195,7 @@ ActiveRecord::Base.transaction do
   ].each do |transaction_with_outcome_metric|
     service = Service.where(natural_key: transaction_with_outcome_metric[:service_code]).first!
 
-    TransactionsWithOutcomeMetric.create!(
+    TransactionsProcessedMetric.create!(
       department_code: service.department.natural_key,
       delivery_organisation_code: service.delivery_organisation.natural_key,
       service_code: service.natural_key,
@@ -233,8 +233,6 @@ ActiveRecord::Base.transaction do
     purpose: 'Why the service was built, its policy objectives and the user need it meets.',
     how_it_works: 'The processes and back-office operations that allow the service to operate.',
     typical_users: 'Each of the service’s key user groups with their respective demographic, geographic distribution and other relevant details.',
-    frequency_used: 'On average, how often each of the key user groups uses the service.',
-    duration_until_outcome: 'The average amount of time for each of the key user groups that it takes for a received transaction to end in an outcome.'
   )
 end
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

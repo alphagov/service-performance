@@ -4,9 +4,10 @@
       Upload successful
     </h1>
 
-    <p>Thank you for providing your monthly data. It will be published on <%= @metrics.publish_date.to_formatted_s(:long_day_month_year) %>.</p>
+    <p>Thank you for providing your monthly data. It will be published on <%= @monthly_service_metrics.publish_date.to_formatted_s(:long_day_month_year) %>.</p>
 
-    <p>You will next be asked to provide data on <%= @metrics.next_metrics_due_date.to_formatted_s(:long_day_month) %>.</p>
+    <p><%= link_to 'Preview this month&apos;s data'.html_safe, publish_service_preview_metrics_path(publish_token: params[:publish_token]) %></p>
 
+    <p>You will next be asked to provide data on <%= @monthly_service_metrics.next_metrics_due_date.to_formatted_s(:long_day_month) %>.</p>
   </div>
 </main>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121104151) do
+ActiveRecord::Schema.define(version: 20171227101246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20171121104151) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "department_id"
+    t.string "acronym"
     t.index ["natural_key"], name: "index_delivery_organisations_on_natural_key", unique: true
   end
 
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 20171121104151) do
     t.string "website", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "acronym"
     t.index ["natural_key"], name: "index_departments_on_natural_key", unique: true
   end
 
@@ -73,8 +75,8 @@ ActiveRecord::Schema.define(version: 20171121104151) do
     t.bigint "paper_transactions"
     t.bigint "face_to_face_transactions"
     t.bigint "other_transactions"
-    t.bigint "transactions_with_outcome"
-    t.bigint "transactions_with_intended_outcome"
+    t.bigint "transactions_processed"
+    t.bigint "transactions_processed_with_intended_outcome"
     t.bigint "calls_received"
     t.bigint "calls_received_get_information"
     t.bigint "calls_received_chase_progress"
@@ -96,8 +98,6 @@ ActiveRecord::Schema.define(version: 20171121104151) do
     t.text "purpose"
     t.text "how_it_works"
     t.text "typical_users"
-    t.text "frequency_used"
-    t.text "duration_until_outcome"
     t.string "start_page_url"
     t.string "paper_form_url"
     t.string "publish_token"
@@ -106,8 +106,8 @@ ActiveRecord::Schema.define(version: 20171121104151) do
     t.boolean "paper_transactions_applicable", default: true
     t.boolean "face_to_face_transactions_applicable", default: true
     t.boolean "other_transactions_applicable", default: true
-    t.boolean "transactions_with_outcome_applicable", default: true
-    t.boolean "transactions_with_intended_outcome_applicable", default: true
+    t.boolean "transactions_processed_applicable", default: true
+    t.boolean "transactions_processed_with_intended_outcome_applicable", default: true
     t.boolean "calls_received_applicable", default: true
     t.boolean "calls_received_get_information_applicable", default: true
     t.boolean "calls_received_chase_progress_applicable", default: true
@@ -116,6 +116,8 @@ ActiveRecord::Schema.define(version: 20171121104151) do
     t.boolean "calls_received_perform_transaction_applicable", default: true
     t.integer "delivery_organisation_id", null: false
     t.integer "owner_id"
+    t.text "calls_other_name"
+    t.text "other_name"
     t.index ["natural_key"], name: "index_services_on_natural_key", unique: true
     t.index ["publish_token"], name: "index_services_on_publish_token", unique: true
   end
@@ -138,6 +140,17 @@ ActiveRecord::Schema.define(version: 20171121104151) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.datetime "created_at"
+    t.text "object_changes"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
   add_foreign_key "delivery_organisations", "departments"

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :services, only: [] do
       constraints year: /\d{4}/, month: /\d{2}/ do
         get 'metrics/:year/:month(/:publish_token)', to: 'publish_data/monthly_service_metrics#edit', as: :metrics
+        get 'metrics/:year/:month(/:publish_token)/preview', to: 'publish_data/monthly_service_metrics#preview', as: :preview_metrics
         patch 'metrics/:year/:month(/:publish_token)', to: 'publish_data/monthly_service_metrics#update'
       end
     end
@@ -19,6 +20,9 @@ Rails.application.routes.draw do
   namespace :view_data, path: nil, module: nil do
     root 'view_data/pages#homepage'
     get "/how-to-use", to: "view_data/pages#how_to_use"
+    get "/help/transactions-received", to: "view_data/pages#transactions_received_help"
+    get "/help/transactions-processed", to: "view_data/pages#transactions_processed_help"
+    get "/help/calls-received", to: "view_data/pages#calls_received_help"
 
     scope 'performance-data' do
       scope :government do
@@ -40,6 +44,8 @@ Rails.application.routes.draw do
       end
 
       resources :services, only: [:show], controller: 'view_data/services'
+      resources :departments, only: [:show], controller: 'view_data/departments'
+      resources :delivery_organisations, only: [:show], controller: 'view_data/delivery_organisations'
     end
   end
 

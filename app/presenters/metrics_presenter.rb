@@ -1,12 +1,12 @@
 class MetricsPresenter
-  def initialize(entity, group_by:, order: nil, order_by: nil)
+  def initialize(entity, group_by:, order: nil, order_by: nil, time_period: nil)
     @entity = entity
 
     @group_by = group_by
     @order_by = order_by
     @selected_metric_sort_attribute = Metrics::Items.get_metric_sort_attribute(order_by)
     @order = order || Metrics::Order::Descending
-    @time_period = TimePeriod.default
+    @time_period = time_period || TimePeriod.default
   end
 
   delegate :published_monthly_service_metrics, to: :data
@@ -118,30 +118,21 @@ class MetricsPresenter
     @selected_metric_sort_attribute != Metrics::Items::Name
   end
 
+  def preview?
+    false
+  end
+
 private
 
   attr_reader :entity
 
   def data
-    @data ||= begin
-      klass = case entity
-              when Government
-                GovernmentMetrics
-              when Department
-                DepartmentMetrics
-              when DeliveryOrganisation
-                DeliveryOrganisationMetrics
-              when Service
-                ServiceMetrics
-              end
-
-      klass.new(entity, group_by: group_by, time_period: time_period)
-    end
+    @data ||= Metrics.new(entity, group_by: group_by, time_period: time_period)
   end
 
   def totals_metric_group_presenter
     @totals_metric_group_presenter ||= begin
-      metric_group = Metrics::MetricGroup.new(entity, data.metrics)
+      metric_group = data.totals_metric_group
       MetricGroupPresenter::Totals.new(metric_group, collapsed: collapsed?)
     end
   end

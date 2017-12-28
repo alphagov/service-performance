@@ -8,15 +8,19 @@ class Department < ApplicationRecord
   validates_presence_of :name, strict: true
   validates_presence_of :website, strict: true
 
+  def self.with_delivery_organisations
+    self.joins(:services).distinct
+  end
+
   def to_param
     natural_key
   end
 
   def delivery_organisations_count
-    delivery_organisations.count
+    delivery_organisations.with_services.count
   end
 
   def services_count
-    services.count
+    services.with_published_metrics.count
   end
 end
