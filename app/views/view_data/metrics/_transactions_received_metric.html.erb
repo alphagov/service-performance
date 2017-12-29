@@ -5,11 +5,22 @@
         <strong><%= metric_to_human(transactions_received_metric.total) %></strong> transactions received
       <% end %>
 
-      <% item.display_guidance = !@metrics.preview? %>
-
       <span class="total">
-        <span class="data-item bold-large"><%= metric_to_human(transactions_received_metric.total) %></span>
-        <span class="data-item bold">transactions received</span>
+        <% item.display_guidance = !@metrics.preview? %>
+        <span class="metric-name bold">
+          <a id="guidance-transactions-received" href="#" data-behaviour="a-metric-guidance-toggle">Transactions received</a>
+        </span>
+
+        <span class="metric-sparkline">
+          <%=
+            draw_sparkline(metric_group.sorted_metrics_by_month[:total_transactions])
+          %>
+        </span>
+
+        <span class="metric-value bold-small">
+          <%= metric_to_human(transactions_received_metric.total) %>
+        </span>
+
         <% if @metrics.show_completeness? && !metric_group.totals? %>
           <%= item.incomplete transactions_received_metric.completeness %>
         <% end %>
@@ -21,6 +32,12 @@
         <strong><%= metric_to_human(transactions_received_metric.online) %></strong> online transactions (<%= metric_to_percentage(transactions_received_metric.online_percentage) %>)
       <% end %>
       <span class="metric-name">Online</span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:online_transactions])
+        %>
+      </span>
+
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage transactions_received_metric.online_percentage %>
@@ -36,7 +53,13 @@
       <% end %>
 
       <span class="metric-name">Phone</span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:phone_transactions])
+        %>
+      </span>
       <span class="metric-value">
+
         <%= item.value %>
         <%= item.percentage transactions_received_metric.phone_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
@@ -51,6 +74,11 @@
       <% end %>
 
       <span class="metric-name">Paper</span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:paper_transactions])
+        %>
+      </span>
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage transactions_received_metric.paper_percentage %>
@@ -66,6 +94,11 @@
       <% end %>
 
       <span class="metric-name">Face to Face</span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:face_to_face_transactions])
+        %>
+      </span>
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage transactions_received_metric.face_to_face_percentage %>
@@ -86,6 +119,11 @@
         else
           "Other"
         end
+        %>
+      </span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:other_transactions])
         %>
       </span>
       <span class="metric-value">

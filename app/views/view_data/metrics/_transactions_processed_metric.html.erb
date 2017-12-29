@@ -5,11 +5,22 @@
         <strong><%= metric_to_human(transactions_processed_metric.total) %></strong> transactions processed
       <% end %>
 
-      <% item.display_guidance = !@metrics.preview? %>
-
       <span class="total">
-        <span class="data-item bold-large"><%= metric_to_human(transactions_processed_metric.total) %></span>
-        <span class="data-item bold">transactions processed</span>
+        <% item.display_guidance = !@metrics.preview? %>
+        <span class="metric-name bold">
+          <a id="guidance-transactions-processed" href="#" data-behaviour="a-metric-guidance-toggle">Transactions processed</a>
+        </span>
+
+        <span class="metric-sparkline">
+          <%=
+            draw_sparkline(metric_group.sorted_metrics_by_month[:transactions_processed])
+          %>
+        </span>
+
+        <span class="metric-value bold-small">
+          <%= metric_to_human(transactions_processed_metric.total) %>
+        </span>
+
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
           <%= item.incomplete transactions_processed_metric.completeness %>
         <% end %>
@@ -22,6 +33,11 @@
       <% end %>
 
       <span class="metric-name">Ending in the user&apos;s intended outcome</span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:transactions_processed_with_intended_outcome])
+        %>
+      </span>
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage transactions_processed_metric.with_intended_outcome_percentage %>
