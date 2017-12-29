@@ -51,12 +51,13 @@ module SparklineHelper
         @xpoints.zip(@values).map { |x, y|
           y = 0 if y.nan?
 
-          yval = [@height - y - 3.0, 3.0].max.round(2)
+          yval = [@height - y - 2.0, 2.0].max.round(2)
           "#{x},#{yval}"
         }.join(' ')
       end
 
       def scale(numbers)
+        numbers.map(&:to_f)
         source_delta = @max - @min
         numbers.map { |i|
           ((@target_delta * (i - @min)) / source_delta)

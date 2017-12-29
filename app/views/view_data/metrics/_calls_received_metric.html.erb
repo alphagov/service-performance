@@ -1,5 +1,5 @@
 
-<div class="m-metric <% if calls_received_metric.sampled %>m-metric__sampled<% end %>">
+<div class="m-metric m-metric-right <% if calls_received_metric.sampled %>m-metric__sampled<% end %>">
   <ul class="list">
     <%= metric_item(Metrics::Items::CallsReceived, calls_received_metric.total, html: { class: 'm-metric-headline' }) do |item| %>
       <% item.description do %>
