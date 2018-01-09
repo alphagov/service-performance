@@ -8,7 +8,13 @@ This is the application for interacting with Service Performance data. It contai
 
 ## Setup
 
-You must install the version of Ruby defined in [`.ruby-version`](https://github.com/alphagov/service-performance/blob/master/.ruby-version). 
+Use the `recursive` flag when cloning this repository. This will include the necessary sub-modules:
+
+```
+git clone --recursive git@github.com:alphagov/service-performance.git
+```
+
+You must install the version of Ruby defined in [`.ruby-version`](https://github.com/alphagov/service-performance/blob/master/.ruby-version).
 
 You can easily switch between Ruby versions with [`rbenv`](http://rbenv.org/), which you can install using [`Homebrew`](https://brew.sh/):
 
@@ -30,21 +36,28 @@ gem install bundler
 
 You should note that each time you install Bundler, you will have it available for your current version of Ruby. If you ever switch Ruby versions, you will need to reinstall Bundler.
 
-After installing Bundler, you can install the dependencies for the application with:
+Bundling the gems will fail unless `qt` is installed.
+
+The `capybara-webkit` gem relies on `qt v5.5`. To install `qt`:
 
 ```
-bundle
+brew install qt@5.5
+export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
 ```
 
-You then need to configure the database you will be using.  
+After installing Bundler and `qt`, you can install the dependencies for the application with:
 
-Copy `config/database.yml.example` to `config/database.yml` to use the example database name, then run:
+```
+bundle install
+```
+
+You then need to configure the database you will be using.
 
 ```
 bin/rails db:create db:migrate db:seed
 ```
 
-To start the server, use the conventional `rails -s` command. 
+To start the server, use the conventional `rails -s` command.
 
 If you are already running another app on port 3000, then pass in a new port number with `rails -s --port <NEW NUMBER>`
 
@@ -73,7 +86,7 @@ bin/rails spec
 
 Make sure you have [`npm`](https://www.npmjs.com/get-npm) installed, as well as a recent version of [`node`](https://nodejs.org/en/).
 
-You can install and manage different versions of `node` using [`nvm`](https://github.com/creationix/nvm#installation). 
+You can install and manage different versions of `node` using [`nvm`](https://github.com/creationix/nvm#installation).
 
 To install a version of `node` using `nvm`, you should only need to run (for example):
 
@@ -99,7 +112,7 @@ npm install
 npm run lint
 ```
 
-This command will lint the JavaScript files it finds in the `app/assets/javascripts/*` directory. It will return npm error traces and plain-English error messages. 
+This command will lint the JavaScript files it finds in the `app/assets/javascripts/*` directory. It will return npm error traces and plain-English error messages.
 
 #### Unit tests
 
@@ -110,13 +123,3 @@ GDS uses [Jest](https://facebook.github.io/jest/) for JavaScript unit tests:
 ```
 
 This command will run any JavaScript test files it finds across the whole codebase.
-
-### Installing capybara-webkit
-
-The `capybara-webkit` gem relies on `qt v5.5`. To install the gem:
-
-```
-brew install qt@5.5
-export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
-bundle install
-```
