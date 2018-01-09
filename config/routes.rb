@@ -24,6 +24,10 @@ Rails.application.routes.draw do
     get "/help/transactions-processed", to: "view_data/pages#transactions_processed_help"
     get "/help/calls-received", to: "view_data/pages#calls_received_help"
 
+    get "/help/cookies", to: "view_data/pages#cookies"
+    get "/help/terms-conditions", to: "view_data/pages#terms"
+    get "/help/privacy-policy", to: "view_data/pages#privacy"
+
     scope 'performance-data' do
       scope :government do
         get 'metrics/:group_by', to: 'view_data/government_metrics#index',
