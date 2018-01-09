@@ -108,10 +108,11 @@ class Metrics
     end
   end
 
-  def initialize(root, group_by:, time_period:)
+  def initialize(root, group_by: nil, time_period: nil, search_term: nil)
     @root = root
     @group_by = group_by || GroupBy::Service
     @time_period = time_period
+    @search_term = search_term
   end
 
   attr_reader :group_by, :root, :time_period

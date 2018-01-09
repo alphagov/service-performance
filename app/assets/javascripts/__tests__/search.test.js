@@ -10,7 +10,7 @@ require('../search')
 describe('On the search page', function () {
   var $ = window.jQuery
   var searchFilterHTML =
-    '<div class="m-search-filter hidden" data-behaviour="m-search-filter" role="search">' +
+    '<div class="m-search-filter" data-behaviour="m-search-filter" role="search">' +
       '<label for="search-metrics">Find department</label>' +
       '<input type="search" id="search-metrics" class="a-search-input" placeholder="Example: environment">' +
       '<p id="search-counter" class="a-search-counter" data-behaviour="a-search-counter" class="visuallyhidden" aria-live="assertive" aria-atomic="true"></p>' +

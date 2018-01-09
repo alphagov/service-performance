@@ -1,4 +1,6 @@
 class Department < ApplicationRecord
+  include PgSearch
+
   has_many :delivery_organisations, primary_key: :id, foreign_key: :department_id
   has_many :services, through: :delivery_organisations
 
@@ -7,6 +9,8 @@ class Department < ApplicationRecord
   validates_presence_of :natural_key, strict: true
   validates_presence_of :name, strict: true
   validates_presence_of :website, strict: true
+
+  pg_search_scope :search, against: %i(name acronym)
 
   def self.with_delivery_organisations
     self.joins(:services).distinct
