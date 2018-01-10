@@ -12,7 +12,7 @@ RSpec.describe ViewData::GovernmentMetricsController, type: :controller do
 
     it 'assigns a GovernmentMetrics presenter to @metrics' do
       presenter = instance_double(MetricsPresenter)
-      expect(MetricsPresenter).to receive(:new).with(government, group_by: Metrics::GroupBy::Department, order: 'asc', order_by: 'name') { presenter }
+      expect(MetricsPresenter).to receive(:new).with(government, group_by: Metrics::GroupBy::Department, order: 'asc', order_by: 'name', search_term: nil) { presenter }
 
       get :index, params: { group_by: Metrics::GroupBy::Department, filter: { order: 'asc', order_by: 'name' } }
       expect(assigns[:metrics]).to eq(presenter)

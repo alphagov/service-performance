@@ -17,6 +17,10 @@ class Service < ApplicationRecord
     self.publish_token ||= SecureRandom.hex(64)
   end
 
+  def metrics_search(_search_term, _group_by)
+    MonthlyServiceMetrics.where(service: self)
+  end
+
   def self.with_published_metrics
     self.joins(:metrics).where(monthly_service_metrics: { published: true }).distinct
   end

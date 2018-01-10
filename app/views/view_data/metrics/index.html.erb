@@ -46,12 +46,18 @@
           </div>
         <% end %>
 
-        <div class="m-search-filter" data-behaviour="m-search-filter" role="search">
+        <div id="search-form" class="m-search-filter" data-behaviour="m-search-filter" role="search">
            <form  method="get">
              <label for="search-metrics">
                Find <%= @metrics.group_by_screen_name %>
              </label>
+
              <input type="search" id="q" name="q" class="a-search-input" placeholder="Example: environment" value="<%= @query %>">
+              <% if !@query.blank? %>
+                <a class="font-xsmall" href="javascript:void(0)"
+                   onclick="f = document.getElementById('q'); f.value=''; f.form.submit();">Reset</a>
+              <% end %>
+            </form>
           </form>
         </div>
       </div>
@@ -60,19 +66,22 @@
 
       <div class="o-metric-groups" data-behaviour="o-metric-groups" id="o-metric-groups">
         <ul>
-          <% @metrics.metric_groups.each do |metric_group|  %>
-            <li class="m-metric-group<% if metric_group.totals? %> m-metric-group__totals<% end %><% if metric_group.collapsed? %> m-metric-group__collapsed<% else %> m-metric-group__expanded<% end %>" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsible<% end %>">
-              <div data-metric-group-expanded>
-                <%= render "view_data/metrics/completeness", metric_group: metric_group %>
-                <%= render metric_group.entity, metric_group: metric_group  %>
+          <% if @metrics.metric_groups.length > 1  %>
+            <% @metrics.metric_groups.each do |metric_group|  %>
+              <li class="m-metric-group<% if metric_group.totals? %> m-metric-group__totals<% end %><% if metric_group.collapsed? %> m-metric-group__collapsed<% else %> m-metric-group__expanded<% end %>" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsible<% end %>">
+                <div data-metric-group-expanded>
+                  <%= render "view_data/metrics/completeness", metric_group: metric_group %>
+                  <%= render metric_group.entity, metric_group: metric_group  %>
 
-                <div class="m-metrics">
-                  <%= render metric_group.metrics, metric_group: metric_group %>
+                  <div class="m-metrics">
+                    <%= render metric_group.metrics, metric_group: metric_group %>
+                  </div>
                 </div>
-              </div>
-            </li>
+              </li>
+            <% end %>
+          <% else %>
+            <p>Nothing found for '<%= @query %>'</p>
           <% end %>
-
         </ul>
       </div>
 
