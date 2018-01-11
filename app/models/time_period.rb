@@ -34,10 +34,14 @@ class TimePeriod
     (@ends_on.year * 12 + @ends_on.month) - (@starts_on.year * 12 + @starts_on.month) + 1
   end
 
-  # Retrieve the time period for that precedes the current time
-  # period.
+  # Retrieve the time period that precedes the current period.
+  # This time period should match the month range so if current period is
+  # Jan-Mar 2017 the previous period is Jan-Mar 2016. If current period is
+  # Oct 2016 - Feb 2017 then the previous period is Oct 2015 - Feb 2016.
   def previous_period
-    d = duration
-    TimePeriod.new(@starts_on.dup.advance(months: -d), @ends_on.dup.advance(months: -d))
+    TimePeriod.new(
+      @starts_on.dup.advance(months: -12),
+      @ends_on.dup.advance(months: -12)
+    )
   end
 end
