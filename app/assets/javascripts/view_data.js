@@ -6,10 +6,6 @@
 
 ;(function (global) {
   /* Both of these are in the `search.js` file */
-
   var $ = global.jQuery
-
-  $(document).ready(function () {
-  })
-
+  $(document).ready(function () {})
 })(window)
