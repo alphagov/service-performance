@@ -27,4 +27,20 @@ class TimePeriod
   def end_month
     YearMonth.new(ends_on.year, ends_on.month)
   end
+
+  # Obtain the number of months that this date range covers.
+  def months_covered
+    (@ends_on.year * 12 + @ends_on.month) - (@starts_on.year * 12 + @starts_on.month) + 1
+  end
+
+  # Retrieve the time period that precedes the current period.
+  # This time period should match the month range so if current period is
+  # Jan-Mar 2017 the previous period is Jan-Mar 2016. If current period is
+  # Oct 2016 - Feb 2017 then the previous period is Oct 2015 - Feb 2016.
+  def previous_period
+    TimePeriod.new(
+      @starts_on.dup.advance(months: -12),
+      @ends_on.dup.advance(months: -12)
+    )
+  end
 end
