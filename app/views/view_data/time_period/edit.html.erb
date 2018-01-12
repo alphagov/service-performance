@@ -3,8 +3,29 @@
     <div class="column-two-thirds">
       <h1 class="heading-large">What time period do you want to view?</h1>
       <p>
-        You are currently viewing the 
+        You are currently viewing the <%= @time_period.months_covered %> months from
+        <%= time_tag @time_period.starts_on, @time_period.starts_on.to_formatted_s(:abbreviated_day_month_year) %>
+        to
+        <%= time_tag @time_period.ends_on, @time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>
       </p>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <form class="form">
+        <p>
+          Data will be compared with the previous corresponding time period.
+          For example, if you choose to view January to December 2016, it
+          will be compared with January to December 2015.
+        </p>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Change dates">
+        </div>
+      </form>
+
     </div>
   </div>
 </main>
