@@ -28,9 +28,8 @@ class TimePeriod
     YearMonth.new(ends_on.year, ends_on.month)
   end
 
-  # Obtain the duration between the start and end of the time period
-  # in months. This is the number of months covered by the range.
-  def duration
+  # Obtain the number of months that this date range covers.
+  def months_covered
     (@ends_on.year * 12 + @ends_on.month) - (@starts_on.year * 12 + @starts_on.month) + 1
   end
 

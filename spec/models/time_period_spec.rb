@@ -34,7 +34,7 @@ RSpec.describe TimePeriod, type: :model do
   describe '#duration' do
     it 'correctly returns the duration for a valid time period' do
       period = TimePeriod.new(Date.new(2017, 10, 1), Date.new(2017, 11, 30))
-      expect(period.duration).to eq(2)
+      expect(period.months_covered).to eq(2)
     end
   end
 
@@ -42,7 +42,7 @@ RSpec.describe TimePeriod, type: :model do
     it 'can return the previous period for short periods' do
       period = TimePeriod.new(Date.new(2017, 1, 1), Date.new(2017, 3, 30))
       new_period = period.previous_period
-      expect(new_period.duration).to eq(period.duration)
+      expect(new_period.months_covered).to eq(period.months_covered)
       expect(new_period.starts_on.month).to eq(1)
       expect(new_period.starts_on.year).to eq(period.starts_on.year - 1)
       expect(new_period.ends_on.month).to eq(3)
@@ -52,7 +52,7 @@ RSpec.describe TimePeriod, type: :model do
     it 'can return the previous period for periods that wrap across a year' do
       period = TimePeriod.new(Date.new(2016, 10, 1), Date.new(2017, 3, 30))
       new_period = period.previous_period
-      expect(new_period.duration).to eq(period.duration)
+      expect(new_period.months_covered).to eq(period.months_covered)
       expect(new_period.starts_on.month).to eq(10)
       expect(new_period.starts_on.year).to eq(period.starts_on.year - 1)
       expect(new_period.ends_on.month).to eq(3)
