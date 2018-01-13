@@ -1,8 +1,10 @@
 module ViewData
   class GovernmentMetricsController < MetricsController
     def index
+      @query = params[:q]
+
       government = Government.new
-      @metrics = MetricsPresenter.new(government, group_by: group_by, order_by: order_by, order: order)
+      @metrics = MetricsPresenter.new(government, group_by: group_by, order_by: order_by, order: order, search_term: @query)
 
       page.breadcrumbs << Page::Crumb.new('UK Government')
 

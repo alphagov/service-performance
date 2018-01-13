@@ -108,10 +108,11 @@ class Metrics
     end
   end
 
-  def initialize(root, group_by:, time_period:)
+  def initialize(root, group_by: nil, time_period: nil, search_term: nil)
     @root = root
     @group_by = group_by || GroupBy::Service
     @time_period = time_period
+    @search_term = search_term
   end
 
   attr_reader :group_by, :root, :time_period
@@ -134,7 +135,7 @@ class Metrics
   end
 
   def published_monthly_service_metrics
-    @published_monthly_service_metrics = root.metrics.preload(:service).between(time_period.start_month, time_period.end_month).published
+    @published_monthly_service_metrics = root.metrics_search(@search_term, @group_by).preload(:service).between(time_period.start_month, time_period.end_month).published
   end
 
   def metrics_by_selected_grouping

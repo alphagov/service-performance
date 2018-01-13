@@ -6,14 +6,6 @@
 
 ;(function (global) {
   /* Both of these are in the `search.js` file */
-
   var $ = global.jQuery
-
-  $(document).ready(function () {
-    global.SearchResultsContainer.init()
-    global.SearchFilter.init(
-      global.SearchResultsContainer.filter,
-      global.SearchResultsContainer.getResultsLength()
-    )
-  })
+  $(document).ready(function () {})
 })(window)
