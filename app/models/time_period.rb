@@ -63,4 +63,9 @@ class TimePeriod
       @ends_on.dup.advance(months: -12)
     )
   end
+
+  # Defines equality as the start and end dates being the same
+  def ==(o)
+    o.class == self.class && o.starts_on == @starts_on && o.ends_on == @ends_on
+  end
 end

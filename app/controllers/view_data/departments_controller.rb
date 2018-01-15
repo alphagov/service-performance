@@ -3,7 +3,7 @@ module ViewData
     def show
       @department = Department.where(natural_key: params[:id]).first!
 
-      @metrics = MetricsPresenter.new(@department, group_by: Metrics::GroupBy::Department)
+      @metrics = MetricsPresenter.new(@department, group_by: Metrics::GroupBy::Department, time_period: time_period)
 
       page.title = @department.name
 
