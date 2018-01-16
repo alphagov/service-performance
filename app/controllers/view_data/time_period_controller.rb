@@ -8,6 +8,8 @@ module ViewData
     def update
       @time_period = TimePeriod.default
       @referer = previous_url
+      time_period_settings = TimePeriodSettings.new(params)
+      @errors = time_period_settings.errors
       success = true
       if success
         #TODO where do we want to go if success? Permit params
