@@ -18,8 +18,8 @@ class TimePeriod
   # Converts the provided string into a TimePeriod, but requires
   # that the string was generated with self.serialise
   def self.deserialise(input)
-    starts, ends = input.split
     begin
+      starts, ends = input.split
       TimePeriod.new(
         Date.parse(starts),
         Date.parse(ends)
