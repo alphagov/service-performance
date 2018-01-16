@@ -36,17 +36,18 @@
       </fieldset>
 
 
-    <div class="form-group">
-      <p class="form-block">or</p>
-    </div>
+      <div class="form-group">
+        <p class="form-block">or</p>
+      </div>
 
-        <div class="form-group">
-          <div class="multiple-choice">
-          <%= radio_button_tag :range, 'custom' %>
-          <%= label :range, 'Custom date range' %>
-          </div>
+      <div class="form-group">
+        <div class="multiple-choice">
+        <%= radio_button_tag :range, 'custom' %>
+        <%= label :range, 'Custom date range' %>
         </div>
+      </div>
 
+      <div id="range" style="display:none;">
         <div class="form-group">
           <legend>
             <span>Start date</span>
@@ -79,19 +80,19 @@
           <%= text_field_tag :end_date_year, nil,
                 class: 'form-control', type: 'number'
           %>
+
+          <p class="form-block">
+            Data will be compared with the previous corresponding time period.
+            For example, if you choose to view January to December 2016, it
+            will be compared with January to December 2015.
+          </p>
         </div>
+      </div>
 
-
-        <p class="form-block">
-          Data will be compared with the previous corresponding time period.
-          For example, if you choose to view January to December 2016, it
-          will be compared with January to December 2015.
-        </p>
-
-        <div class="form-group">
-          <input type="submit" class="button" value="Change dates">
-        </div>
-      <% end %>
+      <div class="form-group">
+        <input type="submit" class="button" value="Change dates">
+      </div>
+    <% end %>
 
     </div>
   </div>
