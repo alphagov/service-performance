@@ -48,7 +48,7 @@ Rails.application.routes.draw do
       end
 
       get 'time-period', to: 'view_data/time_period#edit'
-      patch 'time-period', to: 'view_data/time_period#update'
+      post 'time-period', to: 'view_data/time_period#update'
 
       resources :services, only: [:show], controller: 'view_data/services'
       resources :departments, only: [:show], controller: 'view_data/departments'
