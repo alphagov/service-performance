@@ -15,7 +15,7 @@ RSpec.feature 'submitting time period data' do
   specify 'submitting time data via a referer' do
     create_metrics
     visit view_data_government_metrics_path(group_by: Metrics::GroupBy::Service)
-    click_link('Data for time period')
+    click_link('Change time period')
 
     expect(page).to have_text('What time period do you want to view?')
 
