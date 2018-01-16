@@ -4,6 +4,6 @@ class ViewDataController < ApplicationController
 private
 
   def time_period
-    session[:time_period] || TimePeriod.default
+    TimePeriod.deserialise(session[:time_period]) || TimePeriod.default
   end
 end
