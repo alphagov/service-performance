@@ -1,21 +1,88 @@
 <main id="content" role="main">
   <div class="grid-row">
     <div class="column-two-thirds">
+
+      <a class="link-back" href="<%= @referer %>">Back</a>
+
       <h1 class="heading-large">What time period do you want to view?</h1>
-      <p>
-        You are currently viewing the <%= @time_period.months_covered %> months from
-        <%= time_tag @time_period.starts_on, @time_period.starts_on.to_formatted_s(:abbreviated_day_month_year) %>
-        to
-        <%= time_tag @time_period.ends_on, @time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>
-      </p>
-    </div>
-  </div>
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-      <form class="form">
+      <%= form_tag view_data_time_period_path, method: :post, class: "form" do %>
+      <%= hidden_field_tag 'next', @referer %>
+      <fieldset>
+        <legend class="visuallyhidden">
+           <h1 class="heading-medium">Change time period you want to view data for</h1>
+        </legend>
         <p>
+          You are currently viewing the <%= @time_period.months_covered %> months from
+          <%= time_tag @time_period.starts_on, @time_period.starts_on.to_formatted_s(:abbreviated_day_month_year) %>
+          to
+          <%= time_tag @time_period.ends_on, @time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>
+        </p>
+
+        <div class="form-group">
+          <div class="multiple-choice">
+            <%= radio_button_tag :range, '12' %>
+            <%= label :range, 'Last 12 Months' %>
+          </div>
+          <div class="multiple-choice">
+            <%= radio_button_tag :range, '24' %>
+            <%= label :range, 'Last 24 Months' %>
+          </div>
+          <div class="multiple-choice">
+            <%= radio_button_tag :range, '36' %>
+            <%= label :range, 'Last 36 Months' %>
+          </div>
+        </div>
+      </fieldset>
+
+
+    <div class="form-group">
+      <p class="form-block">or</p>
+    </div>
+
+        <div class="form-group">
+          <div class="multiple-choice">
+          <%= radio_button_tag :range, 'custom' %>
+          <%= label :range, 'Custom date range' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <legend>
+            <span>Start date</span>
+            <span class="form-hint">For example, 3 2016</span>
+          </legend>
+
+          <%= label :start_date_month, 'Month', class: 'form-label' %>
+          <%= text_field_tag :start_date_month, nil,
+                class: 'form-control', type: 'number' %>
+
+          <%= label :start_date_year, 'Year', class: 'form-label' %>
+          <%= text_field_tag :start_date_year, nil,
+                class: 'form-control', type: 'number'
+          %>
+        </div>
+
+        <div class="form-group">
+          <legend>
+            <span>End date</span>
+            <span class="form-hint
+            ">For example, 3 2016</span>
+          </legend>
+
+          <%= label :end_date_month, 'Month', class: 'form-label'  %>
+          <%= text_field_tag :end_date_month, nil,
+                class: 'form-control', type: 'number'
+          %>
+
+          <%= label :end_date_year, 'Year', class: 'form-label'  %>
+          <%= text_field_tag :end_date_year, nil,
+                class: 'form-control', type: 'number'
+          %>
+        </div>
+
+
+        <p class="form-block">
           Data will be compared with the previous corresponding time period.
           For example, if you choose to view January to December 2016, it
           will be compared with January to December 2015.
@@ -24,7 +91,7 @@
         <div class="form-group">
           <input type="submit" class="button" value="Change dates">
         </div>
-      </form>
+      <% end %>
 
     </div>
   </div>
