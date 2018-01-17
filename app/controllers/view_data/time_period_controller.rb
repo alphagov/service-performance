@@ -3,14 +3,19 @@ module ViewData
     def edit
       @referer = previous_url
       @time_period = TimePeriod.default
+
+      # TODO: Set the attributes in settings to the currently chosen time-period
+      @settings = TimePeriodSettings.new({})
     end
 
     def update
+      attrs = params.permit(:next, :start_date_month, :start_date_year, :end_date_month, :end_date_year)
+
       @time_period = TimePeriod.default
       @referer = previous_url
-      time_period_settings = TimePeriodSettings.new(params)
-      @errors = time_period_settings.errors
-      success = true
+      @settings = TimePeriodSettings.new(attrs)
+
+      success = false
       if success
         #TODO where do we want to go if success? Permit params
         redirect_to @referer

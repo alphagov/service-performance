@@ -4,11 +4,12 @@
 
       <a class="link-back" href="<%= @referer %>">Back</a>
 
-      <% if @errors.any? %>
+<%= @settings.valid? %>
+
         <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
 
           <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
-            <%= @errors %>
+
           </h2>
 
           <p>
@@ -20,7 +21,7 @@
           </ul>
 
         </div>
-      <% end %>
+
 
       <h1 class="heading-large">What time period do you want to view?</h1>
 
