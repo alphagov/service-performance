@@ -3,10 +3,7 @@ module ViewData
     def edit
       @referer = previous_url
       @time_period = TimePeriod.default
-
       # TODO: Set the attributes in settings to the currently chosen time-period
-      @settings = TimePeriodSettings.new({})
-      @errors = @settings.errors
     end
 
     def update
@@ -17,12 +14,10 @@ module ViewData
       @settings = TimePeriodSettings.new(attrs)
       @errors = @settings.errors
 
-      success = false
-      if success
-        #TODO where do we want to go if success? Permit params
+      if @settings.valid?
         redirect_to @referer
       else
-        render 'view_data/time_period/edit', referer: @referer
+        render 'view_data/time_period/edit', referer: @referer, settings: @settings, errors: @errors
       end
     end
 

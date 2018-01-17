@@ -2,21 +2,20 @@
   <div class="grid-row">
     <div class="column-two-thirds">
       <a class="link-back" href="<%= @referer %>">Back</a>
-      <% if @settings.invalid? %>
-        <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
-          <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
-             Please fix the following errors:
-          </h2>
-          <ul class="error-summary-list">
-            <% if @errors.any? %>
-              <% @errors.each do |field, errors| %>
-                  <li><a href=<%= "#" + field.to_s %>><%= field.to_s.humanize %>: <%= [*errors].join('')  %></a></li>
+        <% if @settings && @settings.invalid? %>
+          <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+            <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
+               Please fix the following errors:
+            </h2>
+            <ul class="error-summary-list">
+              <% if @errors.any? %>
+                <% @errors.each do |field, errors| %>
+                    <li><a href=<%= "#" + field.to_s %>><%= field.to_s.humanize %>: <%= [*errors].join('')  %></a></li>
+                  <% end %>
                 <% end %>
-              <% end %>
-          </ul>
-        </div>
-      <% end %>
-
+            </ul>
+          </div>
+        <% end %>
 
       <h1 class="heading-large">What time period do you want to view?</h1>
 
@@ -35,7 +34,7 @@
 
         <div class="form-group">
           <div class="multiple-choice">
-            <%= radio_button_tag :range, '12' %>
+            <%= radio_button_tag :range, '12'%>
             <%= label :range, 'Last 12 Months' %>
           </div>
           <div class="multiple-choice">
