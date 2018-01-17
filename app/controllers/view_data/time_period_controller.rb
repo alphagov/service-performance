@@ -6,14 +6,16 @@ module ViewData
 
       # TODO: Set the attributes in settings to the currently chosen time-period
       @settings = TimePeriodSettings.new({})
+      @errors = @settings.errors
     end
 
     def update
-      attrs = params.permit(:next, :start_date_month, :start_date_year, :end_date_month, :end_date_year)
+      attrs = params.permit(:next, :range, :start_date_month, :start_date_year, :end_date_month, :end_date_year)
 
       @time_period = TimePeriod.default
       @referer = previous_url
       @settings = TimePeriodSettings.new(attrs)
+      @errors = @settings.errors
 
       success = false
       if success
