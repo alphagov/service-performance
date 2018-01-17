@@ -9,6 +9,26 @@ class TimePeriod
     new(starts_on, ends_on)
   end
 
+  # Convert the object into a string that contains all of the
+  # information
+  def self.serialise(period)
+    "#{period.starts_on} #{period.ends_on}"
+  end
+
+  # Converts the provided string into a TimePeriod, but requires
+  # that the string was generated with self.serialise
+  def self.deserialise(input)
+    begin
+      starts, ends = input.split
+      TimePeriod.new(
+        Date.parse(starts),
+        Date.parse(ends)
+      )
+    rescue
+      nil
+    end
+  end
+
   def initialize(starts_on, ends_on)
     @starts_on = starts_on
     @ends_on = ends_on
@@ -42,5 +62,10 @@ class TimePeriod
       @starts_on.dup.advance(months: -12),
       @ends_on.dup.advance(months: -12)
     )
+  end
+
+  # Defines equality as the start and end dates being the same
+  def ==(o)
+    o.class == self.class && o.starts_on == @starts_on && o.ends_on == @ends_on
   end
 end

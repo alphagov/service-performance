@@ -38,6 +38,39 @@ RSpec.describe TimePeriod, type: :model do
     end
   end
 
+  describe '#serialise' do
+    it 'can serialise objects' do
+      period = TimePeriod.new(Date.new(2017, 1, 1), Date.new(2017, 3, 30))
+      serialised = TimePeriod.serialise(period)
+      expect(serialised).to eq("2017-01-01 2017-03-30")
+    end
+  end
+
+  describe '#deserialise' do
+    it 'can deserialise objects' do
+      period = TimePeriod.new(Date.new(2017, 1, 1), Date.new(2017, 3, 30))
+      new_period = TimePeriod.deserialise("2017-01-01 2017-03-30")
+      expect(period.starts_on).to eq(new_period.starts_on)
+      expect(period.ends_on).to eq(new_period.ends_on)
+    end
+
+    it 'can ignore bad input data when deserialising' do
+      period = TimePeriod.deserialise("Not dates")
+      expect(period).to be_nil
+    end
+  end
+
+  describe 'serialisation roundtrip' do
+    it 'can serialise and deserialise objects' do
+      period = TimePeriod.new(Date.new(2017, 1, 1), Date.new(2017, 3, 30))
+      serialised = TimePeriod.serialise(period)
+      new_period = TimePeriod.deserialise(serialised)
+      expect(period.starts_on).to eq(new_period.starts_on)
+      expect(period.ends_on).to eq(new_period.ends_on)
+    end
+  end
+
+
   describe '#previous_period' do
     it 'can return the previous period for short periods' do
       period = TimePeriod.new(Date.new(2017, 1, 1), Date.new(2017, 3, 30))

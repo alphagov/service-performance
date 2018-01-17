@@ -18,7 +18,7 @@ RSpec.describe ViewData::DeliveryOrganisationMetricsController, type: :controlle
 
     it 'assigns a DeliveryOrganisationMetrics presenter to @metrics' do
       presenter = instance_double(MetricsPresenter)
-      expect(MetricsPresenter).to receive(:new).with(delivery_organisation, group_by: Metrics::GroupBy::Service, order: 'asc', order_by: 'name') { presenter }
+      expect(MetricsPresenter).to receive(:new).with(delivery_organisation, group_by: Metrics::GroupBy::Service, order: 'asc', order_by: 'name', time_period: TimePeriod.default) { presenter }
 
       get :index, params: { delivery_organisation_id: '1923', group_by: Metrics::GroupBy::Service, filter: { order: 'asc', order_by: 'name' } }
       expect(assigns[:metrics]).to eq(presenter)
