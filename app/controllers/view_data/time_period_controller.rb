@@ -3,6 +3,9 @@ module ViewData
     def edit
       @referer = previous_url
       @time_period = TimePeriod.default
+
+      #settings starts off being invalid so will display an error to begin with
+      # @settings = TimePeriodSettings.new({})
       # TODO: Set the attributes in settings to the currently chosen time-period
     end
 
