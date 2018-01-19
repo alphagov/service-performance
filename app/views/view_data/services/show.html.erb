@@ -5,7 +5,7 @@
   <div class="grid-row">
     <div class="column-two-thirds">
       <h1 class="heading-xlarge small-top-margin">
-        <span class="prefix">Information about</span>
+        <span class="prefix">Performance data about</span>
         <%= @service.name %>
       </h1>
 
@@ -15,7 +15,10 @@
         <dt>Collection method:</dt>
         <dd>Manual upload via spreadsheet</dd>
         <dt>Last updated:</dt>
-        <dd>30 June 2017</dd>
+        <dd>
+          <!-- TODO: This should be the most recent metric date -->
+          <%= @service.updated_at.strftime("%d %B %Y") %>
+        </dd>
       </dl>
     </div>
 
@@ -35,20 +38,23 @@
   <div class="grid-row">
 
     <div class="column-two-thirds service-context">
+      <h1 class="heading-large">
+        Information about the service
+      </h1>
 
-      <h2 class="bold-medium">Purpose of the service</h2>
+      <h2 class="heading-medium">Purpose of the service</h2>
       <%= render_markdown(@service.purpose) %>
 
-      <h2 class="bold-medium">How it works</h2>
+      <h2 class="heading-medium">How it works</h2>
       <%= render_markdown(@service.how_it_works) %>
 
-      <h2 class="bold-medium">Users</h2>
+      <h2 class="heading-medium">Users</h2>
       <%= render_markdown(@service.typical_users) %>
 
          </div>
 
     <div class="column-one-third">
-      <h2 class="bold-medium">Visit the service</h2>
+      <h2 class="heading-medium">Visit the service</h2>
       <p>See how it appears to users:</p>
         <ul class="list">
           <% if @service.start_page_url.present? %>
@@ -57,6 +63,7 @@
 
           <% if @service.paper_form_url.present? %>
             <li><%= link_to 'Paper form', @service.paper_form_url %></li>
+            <!-- <li>This service is delivered by <%= link_to %></li> --> 
           <% end %>
         </ul>
     </div>
@@ -64,7 +71,12 @@
 
   <div class="grid-row">
     <div class="column-full">
-      <h2 class="heading-large">Service data</h2>
+      <h1 class="heading-large">
+        Data about the service
+      </h1>
+      <ul class="list list-bullet">
+        <li><%= render 'view_data/metrics/time_period_selector', time_period: @metrics.time_period %></li>
+      </ul>
 
       <div class='m-metric-group'>
         <div>
