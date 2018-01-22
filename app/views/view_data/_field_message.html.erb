@@ -1,4 +1,4 @@
-<% if field_error?(settings, field) %>
+<% if field_error?(settings, [field]) %>
   <span class="error-message">
     <% settings.errors.messages.each do |k, v| %>
       <%= "#{k.to_s.humanize}: #{v.join("\n")}" if k == field %>

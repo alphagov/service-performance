@@ -8,8 +8,8 @@
                Please fix the following errors:
             </h2>
             <ul class="error-summary-list">
-              <% if @errors.any? %>
-                <% @errors.each do |field, errors| %>
+              <% if @settings.errors.any? %>
+                <% @settings.errors.each do |field, errors| %>
                     <li><a href=<%= "#" + field.to_s %>><%= field.to_s.humanize %>: <%= [*errors].join('')  %></a></li>
                   <% end %>
                 <% end %>
@@ -32,8 +32,8 @@
             <%= time_tag @time_period.ends_on, @time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>
           </p>
 
-          <div class="form-group <%= 'form-group-error' if field_error?(@settings, :range)%>">
-            <% if field_error?(@settings, :range) %>
+          <div class="form-group <%= 'form-group-error' if field_error?(@settings, [:range])%>">
+            <% if field_error?(@settings, [:range]) %>
               <%= render partial: 'field_message', locals: {settings: @settings, field: :range } %>
              <% end %>
             <div class="multiple-choice">
@@ -63,36 +63,32 @@
           </div>
         </div>
 
-        <div id="range" style="display:none;">
-          <div class="form-group <%= 'form-group-error' if field_error?(@settings, :start_date_month) %>">
+        <div id="range" style="<%= 'display:none;' if !field_error?(@settings, [:start_date_month, :start_date_year, :end_date_month, :end_date_year]) %>">
+          <div class="form-group <%= 'form-group-error' if field_error?(@settings, [:start_date_month, :start_date_year]) %>">
             <legend>
               <span>Start date</span>
               <span class="form-hint">For example, 3 2016</span>
             </legend>
             <%= render partial: 'field_message', locals: {settings: @settings, field: :start_date_month } %>
             <%= label :start_date_month, 'Month', class: 'form-label' %>
-            <%= text_field_tag :start_date_month, nil, class: field_error?(@settings, :start_date_month) ? 'form-control-error' : 'form-control', type: 'number'%>
+            <%= text_field_tag :start_date_month, @settings.start_date_month, class: field_error?(@settings, [:start_date_month]) ? 'form-control-error' : 'form-control', type: 'number'%>
             <%= render partial: 'field_message', locals: {settings: @settings, field: :start_date_year } %>
-            <%= label :start_date_month, 'Year', class: 'form-label' %>
-            <%= text_field_tag :start_date_year, nil, class: field_error?(@settings, :start_date_month) ? 'form-control-error' : 'form-control', type: 'number'%>
+            <%= label :start_date_year, 'Year', class: 'form-label' %>
+            <%= text_field_tag :start_date_year, @settings.start_date_year, class: field_error?(@settings, [:start_date_year]) ? 'form-control-error' : 'form-control', type: 'number'%>
           </div>
 
-          <div class="form-group">
+          <div class="form-group <%= 'form-group-error' if field_error?(@settings, [:end_date_month, :end_date_year]) %>">
             <legend>
               <span>End date</span>
               <span class="form-hint
               ">For example, 3 2016</span>
             </legend>
-
-            <%= label :end_date_month, 'Month', class: 'form-label'  %>
-            <%= text_field_tag :end_date_month, nil,
-                  class: 'form-control', type: 'number'
-            %>
-
-            <%= label :end_date_year, 'Year', class: 'form-label'  %>
-            <%= text_field_tag :end_date_year, nil,
-                  class: 'form-control', type: 'number'
-            %>
+            <%= render partial: 'field_message', locals: {settings: @settings, field: :end_date_month } %>
+            <%= label :end_date_month, 'Month', class: 'form-label' %>
+            <%= text_field_tag :end_date_month, @settings.end_date_month, class: field_error?(@settings, [:end_date_month]) ? 'form-control-error' : 'form-control', type: 'number'%>
+            <%= render partial: 'field_message', locals: {settings: @settings, field: :end_date_year } %>
+            <%= label :end_date_year, 'Year', class: 'form-label' %>
+            <%= text_field_tag :end_date_year, @settings.end_date_year, class: field_error?(@settings, [:end_date_year]) ? 'form-control-error' : 'form-control', type: 'number'%>
 
             <p class="form-block">
               Data will be compared with the previous corresponding time period.

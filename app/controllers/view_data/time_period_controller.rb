@@ -1,12 +1,21 @@
 module ViewData
   class TimePeriodController < ViewDataController
     def edit
-      @referer = previous_url
       @time_period = TimePeriod.default
+      @referer = previous_url
+      @settings = TimePeriodSettings.new({ "range": 12 })
+    end
 
-      #settings starts off being invalid so will display an error to begin with
-      # @settings = TimePeriodSettings.new({})
-      # TODO: Set the attributes in settings to the currently chosen time-period
+    def persist_time_period_data(settings)
+      tp = case settings.range
+           when "custom"
+
+           else
+             TimePeriod.from_number_previous_months(settings.range.to_i)
+           else
+             TimePeriod.default
+           end
+      session[:time_period] ||= tp.serialize
     end
 
     def update
@@ -15,12 +24,15 @@ module ViewData
       @time_period = TimePeriod.default
       @referer = previous_url
       @settings = TimePeriodSettings.new(attrs)
-      @errors = @settings.errors
 
       if @settings.valid?
+        # TODO: Convert settings to time period, call serialize and store
+        # in the session....
+        persist_time_period_data(@settings)
+
         redirect_to @referer
       else
-        render 'view_data/time_period/edit', referer: @referer, settings: @settings, errors: @errors
+        render 'view_data/time_period/edit', referer: @referer, settings: @settings, errors: @settings.errors
       end
     end
 
