@@ -3,19 +3,7 @@ module ViewData
     def edit
       @time_period = TimePeriod.default
       @referer = previous_url
-      @settings = TimePeriodSettings.new({ "range": 12 })
-    end
-
-    def persist_time_period_data(settings)
-      tp = case settings.range
-           when "custom"
-
-           else
-             TimePeriod.from_number_previous_months(settings.range.to_i)
-           else
-             TimePeriod.default
-           end
-      session[:time_period] ||= tp.serialize
+      @settings = TimePeriodSettings.new("range": 12)
     end
 
     def update
@@ -26,14 +14,27 @@ module ViewData
       @settings = TimePeriodSettings.new(attrs)
 
       if @settings.valid?
-        # TODO: Convert settings to time period, call serialize and store
-        # in the session....
         persist_time_period_data(@settings)
-
         redirect_to @referer
       else
         render 'view_data/time_period/edit', referer: @referer, settings: @settings, errors: @settings.errors
       end
+    end
+
+  private
+
+    def persist_time_period_data(settings)
+      range = settings.range
+      if range == "custom"
+        start_date = Date.new(settings.start_date_year.to_i, settings.start_date_month.to_i)
+        end_date = Date.new(settings.end_date_year.to_i, settings.end_date_month.to_i)
+        tp = TimePeriod.new(start_date, end_date)
+      elsif [12, 24, 36].include?(range.to_i)
+        tp = TimePeriod.from_number_previous_months(range.to_i)
+      else
+        tp = TimePeriod.default
+      end
+      session[:time_period_range] = ActiveSupport::JSON.encode(tp)
     end
 
     def previous_url
