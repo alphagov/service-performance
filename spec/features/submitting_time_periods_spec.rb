@@ -135,7 +135,7 @@ RSpec.feature 'submitting time period data' do
 
     click_button 'Change dates'
 
-    expect(page).to have_content('Must be after 1900')
+    expect(page).to have_content('must be after 1900')
   end
 
   specify 'with an end date that is before a start date' do
@@ -151,7 +151,7 @@ RSpec.feature 'submitting time period data' do
 
     click_button 'Change dates'
 
-    expect(page).to have_content("End date can't be before start date")
+    expect(page).to have_content("end date can't be before start date")
   end
 
   specify 'with an end date in the future' do
@@ -170,7 +170,7 @@ RSpec.feature 'submitting time period data' do
 
     click_button 'Change dates'
 
-    expect(page).to have_content("End date can't be in the future")
+    expect(page).to have_content("end date can't be in the future")
     Timecop.return
   end
 
@@ -187,9 +187,9 @@ RSpec.feature 'submitting time period data' do
 
     click_button 'Change dates'
 
-    expect(page).to have_content("Start date month: Can't be blank")
-    expect(page).to have_content("End date year: Can't be blank")
-    expect(page).not_to have_content("Range: Can't be blank")
+    expect(page).to have_content("Start date month can't be blank")
+    expect(page).to have_content("End date year can't be blank")
+    expect(page).not_to have_content("Range can't be blank")
   end
 
   specify "when Custom date range isn't selected, a set range option must be submitted" do

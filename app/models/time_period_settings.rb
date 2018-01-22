@@ -48,11 +48,11 @@ class TimePeriodSettings
     end
 
     if end_date > DateTime.now
-      errors.add(:end_date_year, "End date can't be in the future")
+      errors.add(:end_date_year, "end date can't be in the future")
     end
 
-    if start_date > end_date
-      errors.add(:end_date_year, "End date can't be before start date")
+    if end_date < start_date
+      errors.add(:end_date_year, "end date can't be before start date")
     end
   end
 
