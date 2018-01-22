@@ -14,25 +14,25 @@ class TimePeriodSettings
   def validate_months
     valid_range = /^(0?[1-9]|1[012])$/
     unless start_date_month.match?(valid_range)
-      errors.add(:start_date_month, "Must be between 1 - 12")
+      errors.add(:start_date_month, "must be between 1 - 12")
     end
 
     unless end_date_month.match?(valid_range)
-      errors.add(:end_date_month, "Must be between 1 - 12")
+      errors.add(:end_date_month, "must be between 1 - 12")
     end
   end
 
   def validate_years
     unless start_date_year.match?(/^\d{4}$/)
-      errors.add(:start_date_year, "Invalid year format. Must be: YYYY")
+      errors.add(:start_date_year, "format should be YYYY")
     end
 
     unless end_date_year.match?(/^\d{4}$/)
-      errors.add(:end_date_year, "Invalid year format. Must be: YYYY")
+      errors.add(:end_date_year, "format should be YYYY")
     end
 
     unless start_date_year.match?(/^(19|20)\d{2}$/)
-      errors.add(:start_date_year, "Must be after 1900")
+      errors.add(:start_date_year, "must be after 1900")
     end
   end
 

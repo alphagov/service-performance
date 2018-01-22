@@ -10,7 +10,7 @@
             <ul class="error-summary-list">
               <% if @settings.errors.any? %>
                 <% @settings.errors.each do |field, errors| %>
-                    <li><a href=<%= "#" + field.to_s %>><%= field.to_s.humanize %>: <%= [*errors].join('')  %></a></li>
+                    <li><a href=<%= "#" + field.to_s %>><%= field.to_s.humanize %> <%= [*errors].join('') %></a></li>
                   <% end %>
                 <% end %>
             </ul>

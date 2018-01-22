@@ -72,7 +72,7 @@ RSpec.feature 'submitting time period data' do
 
     click_button 'Change dates'
 
-    expect(page).to have_content('Must be between 1 - 12')
+    expect(page).to have_content('must be between 1 - 12')
   end
 
   specify 'with a 0 spaced month value' do
@@ -85,7 +85,7 @@ RSpec.feature 'submitting time period data' do
 
     click_button 'Change dates'
 
-    expect(page).not_to have_content('Must be between 1 - 12')
+    expect(page).not_to have_content('must be between 1 - 12')
   end
 
   specify 'with a month value that is not 0 spaced' do
@@ -98,7 +98,7 @@ RSpec.feature 'submitting time period data' do
 
     click_button 'Change dates'
 
-    expect(page).not_to have_content('Must be between 1 - 12')
+    expect(page).not_to have_content('must be between 1 - 12')
   end
 
   specify 'with a month value between 10-12' do
@@ -111,7 +111,7 @@ RSpec.feature 'submitting time period data' do
 
     click_button 'Change dates'
 
-    expect(page).not_to have_content('Must be between 1 - 12')
+    expect(page).not_to have_content('must be between 1 - 12')
   end
 
   specify 'with a year value greater than 4 digits' do
@@ -123,7 +123,7 @@ RSpec.feature 'submitting time period data' do
 
     click_button 'Change dates'
 
-    expect(page).to have_content(' Invalid year format. Must be: YYYY')
+    expect(page).to have_content('format should be YYYY')
   end
 
   specify 'year value that is before 1900' do
@@ -187,9 +187,9 @@ RSpec.feature 'submitting time period data' do
 
     click_button 'Change dates'
 
-    expect(page).to have_content("Start date month: can't be blank")
-    expect(page).to have_content("End date year: can't be blank")
-    expect(page).not_to have_content("Range: can't be blank")
+    expect(page).to have_content("Start date month: Can't be blank")
+    expect(page).to have_content("End date year: Can't be blank")
+    expect(page).not_to have_content("Range: Can't be blank")
   end
 
   specify "when Custom date range isn't selected, a set range option must be submitted" do
