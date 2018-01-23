@@ -1,7 +1,7 @@
 module ViewData
   class TimePeriodController < ViewDataController
     def edit
-      @time_period = TimePeriod.default
+      @time_period = time_period
       @referer = previous_url
       @settings = TimePeriodSettings.new("range": 12)
     end
@@ -22,6 +22,20 @@ module ViewData
     end
 
   private
+
+    def persist_time_period_data(settings)
+      range = settings.range
+      if range == "custom"
+        start_date = Date.new(settings.start_date_year.to_i, settings.start_date_month.to_i).beginning_of_month
+        end_date = Date.new(settings.end_date_year.to_i, settings.end_date_month.to_i).end_of_month
+        tp = TimePeriod.new(start_date, end_date)
+      elsif [12, 24, 36].include?(range.to_i)
+        tp = TimePeriod.pre_defined_range(range.to_i)
+      else
+        tp = TimePeriod.default
+      end
+      session[:time_period_range] = TimePeriod.serialise(tp)
+    end
 
     def previous_url
       path = params[:next] || request.referer

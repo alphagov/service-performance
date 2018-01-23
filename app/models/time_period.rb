@@ -3,9 +3,19 @@ class TimePeriod
   DEFAULT_TIME_PERIOD_LAG = 2.months
 
   def self.default
-    ends_on = (Date.today - DEFAULT_TIME_PERIOD_LAG).end_of_month
-    starts_on = (ends_on - DEFAULT_TIME_PERIOD_DURATION + 1.day)
+    from_number_previous_months(DEFAULT_TIME_PERIOD_DURATION)
+  end
 
+  def self.from_number_previous_months(months)
+    ends_on = (Date.today - DEFAULT_TIME_PERIOD_LAG).end_of_month
+    starts_on = (ends_on - months + 1.day)
+
+    new(starts_on, ends_on)
+  end
+
+  def self.pre_defined_range(range)
+    starts_on = Date.today.beginning_of_month - range.to_i.month
+    ends_on = Date.today.end_of_month
     new(starts_on, ends_on)
   end
 
