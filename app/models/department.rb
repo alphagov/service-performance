@@ -9,8 +9,8 @@ class Department < ApplicationRecord
   validates_presence_of :website, strict: true
 
   def self.with_delivery_organisations
-    # Only delivery organisations that have at least 1
-    # service with published data.
+    # Only return departments where at least one of its services
+    # contains a published metric.
     self.joins(:services).merge(Service.with_published_metrics).distinct
   end
 
