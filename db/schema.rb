@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171227101246) do
+ActiveRecord::Schema.define(version: 20180123133950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 20171227101246) do
     t.integer "owner_id"
     t.text "calls_other_name"
     t.text "other_name"
+    t.boolean "sampled_calls", default: false, null: false
     t.index ["natural_key"], name: "index_services_on_natural_key", unique: true
     t.index ["publish_token"], name: "index_services_on_publish_token", unique: true
   end

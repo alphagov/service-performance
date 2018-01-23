@@ -22,7 +22,7 @@ class MonthlyServiceMetrics < ApplicationRecord
     end
 
     def calls_received_metric
-      @calls_received_metric ||= CallsReceivedMetric.from_metrics(self)
+      @calls_received_metric ||= CallsReceivedMetric.from_metrics(self, with_samples: true)
     end
   end
 
@@ -71,6 +71,6 @@ class MonthlyServiceMetrics < ApplicationRecord
   end
 
   def calls_received_metric
-    @calls_received_metric ||= CallsReceivedMetric.from_metrics(self)
+    @calls_received_metric ||= CallsReceivedMetric.from_metrics(self, with_samples: true)
   end
 end
