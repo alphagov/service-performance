@@ -13,6 +13,12 @@ class TimePeriod
     new(starts_on, ends_on)
   end
 
+  def self.pre_defined_range(range)
+    starts_on = Date.today
+    ends_on = Date.today - range.to_i.month
+    new(starts_on, ends_on)
+  end
+
   def initialize(starts_on, ends_on)
     @starts_on = starts_on
     @ends_on = ends_on

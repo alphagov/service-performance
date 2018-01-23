@@ -17,7 +17,7 @@ module ViewData
         persist_time_period_data(@settings)
         redirect_to @referer
       else
-        render 'view_data/time_period/edit', referer: @referer, settings: @settings, errors: @settings.errors
+        render 'view_data/time_period/edit', referer: @referer, settings: @settings
       end
     end
 
@@ -30,7 +30,7 @@ module ViewData
         end_date = Date.new(settings.end_date_year.to_i, settings.end_date_month.to_i)
         tp = TimePeriod.new(start_date, end_date)
       elsif [12, 24, 36].include?(range.to_i)
-        tp = TimePeriod.from_number_previous_months(range.to_i)
+        tp = TimePeriod.pre_defined_range(range.to_i)
       else
         tp = TimePeriod.default
       end
