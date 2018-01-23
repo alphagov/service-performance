@@ -1,0 +1,9 @@
+<% if field_error?(settings, [field]) %>
+  <ul class="error-message">
+    <% settings.errors.messages.each do |k, v| %>
+      <% v.each do |value| %>
+        <li><%= "#{k.to_s.humanize} #{value}" if k == field %><li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
