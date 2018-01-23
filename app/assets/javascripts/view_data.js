@@ -16,12 +16,12 @@
       global.SearchResultsContainer.getResultsLength()
     )
 
-    $('input[type=radio]').click(function(){
-      if ($('#range_custom').is(':checked')){
-        $('#range').toggle();
+    $('input[type=radio]').click(function () {
+      if ($('#range_custom').is(':checked')) {
+        $('#range').toggle()
       } else {
-        $('#range').hide();
+        $('#range').hide()
       }
-    });
+    })
   })
 })(window)
