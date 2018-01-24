@@ -48,8 +48,9 @@ class TimePeriodSettings
     end
 
     # We can't choose a time period before we have any data
-    if start_date < TimePeriod.earliest_data_date.starts_on
-      errors.add(:start_date_month, "start date cannot be before #{first_data_date}")
+    first_data_date = TimePeriod.earliest_data_date.starts_on
+    if start_date < first_data_date
+      errors.add(:start_date_month, "start date cannot be before #{first_data_date.to_formatted_s(:month_and_year)}")
     end
 
     if end_date > DateTime.now
