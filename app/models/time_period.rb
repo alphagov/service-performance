@@ -1,12 +1,24 @@
 class TimePeriod
-  DEFAULT_TIME_PERIOD_DURATION = 12.months
-  DEFAULT_TIME_PERIOD_LAG = 2.months
+  DEFAULT_TIME_PERIOD_DURATION = 12
+  DEFAULT_TIME_PERIOD_LAG = 2
 
   def self.default
-    ends_on = (Date.today - DEFAULT_TIME_PERIOD_LAG).end_of_month
-    starts_on = (ends_on - DEFAULT_TIME_PERIOD_DURATION + 1.day)
+    from_number_previous_months(DEFAULT_TIME_PERIOD_DURATION)
+  end
+
+  def self.from_number_previous_months(months)
+    ends_on = most_recent_data
+    starts_on = (ends_on - months.months + 1.day)
 
     new(starts_on, ends_on)
+  end
+
+  def self.earliest_data_date
+    MonthlyServiceMetrics.order("month asc").first.month
+  end
+
+  def self.most_recent_data
+    (Date.today - DEFAULT_TIME_PERIOD_LAG.months).end_of_month
   end
 
   # Convert the object into a string that contains all of the

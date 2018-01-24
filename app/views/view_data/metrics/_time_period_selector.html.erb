@@ -1,3 +1,5 @@
 <div class="m-time-period-selector">
-  Data for time period from <%= time_tag time_period.starts_on, time_period.starts_on.to_formatted_s(:abbreviated_day_month_year) %> to <%= time_tag time_period.ends_on, time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>
+  Showing data for time period from <%= time_tag time_period.starts_on, time_period.starts_on.to_formatted_s(:abbreviated_day_month_year) %> to <%= time_tag time_period.ends_on, time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>.
+  <br/>
+  <%= link_to "Change time period", view_data_time_period_path %>
 </div>

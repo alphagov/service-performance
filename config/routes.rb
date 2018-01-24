@@ -47,6 +47,9 @@ Rails.application.routes.draw do
         get 'metrics/:group_by', to: 'view_data/delivery_organisation_metrics#index', group_by: Metrics::GroupBy::Service, as: :metrics
       end
 
+      get 'time-period', to: 'view_data/time_period#edit'
+      post 'time-period', to: 'view_data/time_period#update'
+
       resources :services, only: [:show], controller: 'view_data/services'
       resources :departments, only: [:show], controller: 'view_data/departments'
       resources :delivery_organisations, only: [:show], controller: 'view_data/delivery_organisations'

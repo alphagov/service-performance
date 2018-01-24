@@ -4,7 +4,11 @@
     <%= tag_manager_js -%>
     <meta charset="utf-8">
 
-    <title><%= page.title %></title>
+    <% if @settings && @settings.invalid? %>
+      <title><%= "Error: " + page.title %></title>
+    <% else %>
+      <title><%= page.title %></title>
+    <% end %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
