@@ -187,8 +187,8 @@ RSpec.feature 'submitting time period data' do
 
     click_button 'Change dates'
 
-    expect(page).to have_content("Start date month can't be blank")
-    expect(page).to have_content("End date year can't be blank")
-    expect(page).not_to have_content("Range can't be blank")
+    expect(page).to have_content("Start date month: can't be blank")
+    expect(page).to have_content("End date year: can't be blank")
+    expect(page).not_to have_content("Range: can't be blank")
   end
 end
