@@ -37,7 +37,7 @@
               <%= render partial: 'field_message', locals: {settings: @settings, field: :range } %>
              <% end %>
             <div class="multiple-choice">
-              <%= radio_button_tag :range, '12'%>
+              <%= radio_button_tag :range, '12', true %>
               <%= label :range, 'Last 12 Months' %>
             </div>
             <div class="multiple-choice">
