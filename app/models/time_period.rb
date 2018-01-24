@@ -13,6 +13,10 @@ class TimePeriod
     new(starts_on, ends_on)
   end
 
+  def self.earliest_data_date
+    MonthlyServiceMetrics.order("month asc").first.month
+  end
+
   def self.most_recent_data
     (Date.today - DEFAULT_TIME_PERIOD_LAG.months).end_of_month
   end

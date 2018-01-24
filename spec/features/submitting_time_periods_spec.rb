@@ -4,6 +4,9 @@ RSpec.feature 'submitting time period data' do
   before(:all) do
     Capybara.ignore_hidden_elements = false
   end
+  before(:each) do
+    create_metrics
+  end
   after(:all) do
     Capybara.ignore_hidden_elements = true
   end
@@ -13,7 +16,7 @@ RSpec.feature 'submitting time period data' do
   let(:delivery_organisation) { FactoryGirl.create(:delivery_organisation, department: department, name: 'Environment Agency') }
   let(:service) { FactoryGirl.create(:service, :transactions_received_not_applicable, :calls_received_not_applicable, delivery_organisation: delivery_organisation, name: 'Flood Information Service') }
   let(:create_metrics) {
-    month = time_period.start_month
+    month = YearMonth.new(2017, 1)
     6.times do
       FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: month, transactions_processed: 100, transactions_processed_with_intended_outcome: 100)
       month = month.succ
@@ -21,7 +24,6 @@ RSpec.feature 'submitting time period data' do
   }
 
   specify 'via a referer' do
-    create_metrics
     visit view_data_government_metrics_path(group_by: Metrics::GroupBy::Service)
     click_link('Change time period')
 
@@ -35,8 +37,6 @@ RSpec.feature 'submitting time period data' do
   end
 
   specify 'via no referer' do
-    create_metrics
-
     visit view_data_time_period_path
     expect(page).to have_text('What time period do you want to view?')
 
@@ -47,8 +47,6 @@ RSpec.feature 'submitting time period data' do
   end
 
   specify 'with an invalid path' do
-    create_metrics
-
     referer = 'http://example.com/malicious'
     Capybara.current_session.driver.header 'Referer', referer
 
