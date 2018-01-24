@@ -7,10 +7,14 @@ class TimePeriod
   end
 
   def self.from_number_previous_months(months)
-    ends_on = (Date.today - DEFAULT_TIME_PERIOD_LAG.months).end_of_month
+    ends_on = most_recent_data
     starts_on = (ends_on - months.months + 1.day)
 
     new(starts_on, ends_on)
+  end
+
+  def self.most_recent_data
+    (Date.today - DEFAULT_TIME_PERIOD_LAG.months).end_of_month
   end
 
   # Convert the object into a string that contains all of the

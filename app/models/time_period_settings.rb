@@ -47,6 +47,12 @@ class TimePeriodSettings
       return
     end
 
+    # We can't choose a time period before we have any data
+    first_data_date = MonthlyServiceMetrics.order("month asc").first.month
+    if start_date < first_data_date.starts_on
+      errors.add(:start_date_month, "start date cannot be before #{first_data_date}")
+    end
+
     if end_date > DateTime.now
       errors.add(:end_date_year, "end date can't be in the future")
     end

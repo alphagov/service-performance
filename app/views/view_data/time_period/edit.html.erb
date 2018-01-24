@@ -27,9 +27,10 @@
           </legend>
           <p>
             You are currently viewing the <%= @time_period.months_covered %> months from
-            <%= time_tag @time_period.starts_on, @time_period.starts_on.to_formatted_s(:abbreviated_day_month_year) %>
+            <%= time_tag @time_period.starts_on, @time_period.starts_on.to_formatted_s(:month_and_year) %>
             to
-            <%= time_tag @time_period.ends_on, @time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>
+            <%= time_tag @time_period.ends_on, @time_period.ends_on.to_formatted_s(:month_and_year) %>.
+            The most recent data available is for <%= time_tag TimePeriod.most_recent_data, TimePeriod.most_recent_data.to_formatted_s(:month_and_year) %>.
           </p>
 
           <div class="form-group <%= 'form-group-error' if field_error?(@settings, [:range])%>">
@@ -67,7 +68,7 @@
           <div class="form-group <%= 'form-group-error' if field_error?(@settings, [:start_date_month, :start_date_year]) %>">
             <legend>
               <span>Start date</span>
-              <span class="form-hint">For example, 3 2016</span>
+              <span class="form-hint">For example, 3 2017</span>
             </legend>
             <%= render partial: 'field_message', locals: {settings: @settings, field: :start_date_month } %>
             <%= label :start_date_month, 'Month', class: 'form-label' %>
@@ -81,16 +82,16 @@
             <legend>
               <span>End date</span>
               <span class="form-hint
-              ">For example, 3 2016</span>
+              ">For example, 3 2017</span>
             </legend>
             <%= render partial: 'field_message', locals: {settings: @settings, field: :end_date_month } %>
             <%= label :end_date_month, 'Month', class: 'form-label' %>
             <%= text_field_tag :end_date_month, @settings.end_date_month, class: field_error?(@settings, [:end_date_month]) ? 'form-control-error' : 'form-control', type: 'number'%>
-            <%= render partial: 'field_message', locals: {settings: @settings, field: :end_date_year } %>
             <%= label :end_date_year, 'Year', class: 'form-label' %>
+            <%= render partial: 'field_message', locals: {settings: @settings, field: :end_date_year } %>
             <%= text_field_tag :end_date_year, @settings.end_date_year, class: field_error?(@settings, [:end_date_year]) ? 'form-control-error' : 'form-control', type: 'number'%>
 
-            <p class="form-block">
+            <p class="form-block"><br/>
               Data will be compared with the previous corresponding time period.
               For example, if you choose to view January to December 2016, it
               will be compared with January to December 2015.
