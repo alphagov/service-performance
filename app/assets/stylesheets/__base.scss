@@ -15,6 +15,7 @@ fieldset > h2 {
   margin-bottom: 10px;
 }
 
+@import "govuk";
 @import "breadcrumbs";
 @import "homepage";
 @import "metadata";
@@ -25,4 +26,3 @@ fieldset > h2 {
 @import "preview";
 @import "service";
 @import "tabs";
-@import "govuk";
