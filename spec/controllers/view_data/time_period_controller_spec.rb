@@ -13,11 +13,11 @@ RSpec.describe ViewData::TimePeriodController, type: :controller do
       Timecop.freeze(current_time)
       post :update, params: { range: '12', start_date_month: "", start_date_year: "", end_date_month: "", end_date_year: "", next: "" }
 
-      expect(session[:time_period_range]).to eq "2017-01-01 2018-01-31"
+      expect(session[:time_period_range]).to eq "2016-12-01 2017-11-30"
 
       post :update, params: { range: '24', start_date_month: "", start_date_year: "", end_date_month: "", end_date_year: "", next: "" }
 
-      expect(session[:time_period_range]).to eq "2016-01-01 2018-01-31"
+      expect(session[:time_period_range]).to eq "2015-12-01 2017-11-30"
       Timecop.return
     end
 

@@ -9,10 +9,9 @@ module ViewData
     def update
       attrs = params.permit(:next, :range, :start_date_month, :start_date_year, :end_date_month, :end_date_year)
 
-      @time_period = TimePeriod.default
+      @time_period = time_period
       @referer = previous_url
       @settings = TimePeriodSettings.new(attrs)
-
       if @settings.valid?
         persist_time_period_data(@settings)
         redirect_to @referer
@@ -30,7 +29,7 @@ module ViewData
         end_date = Date.new(settings.end_date_year.to_i, settings.end_date_month.to_i).end_of_month
         tp = TimePeriod.new(start_date, end_date)
       elsif [12, 24, 36].include?(range.to_i)
-        tp = TimePeriod.pre_defined_range(range.to_i)
+        tp = TimePeriod.from_number_previous_months(range.to_i)
       else
         tp = TimePeriod.default
       end
