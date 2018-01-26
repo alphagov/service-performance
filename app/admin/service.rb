@@ -10,7 +10,7 @@ ActiveAdmin.register Service do
     column :name
     column :delivery_organisation
     column :department
-    column "Missing context" do |s|
+    column "Context?" do |s|
       status_tag("Missing", class: "error") if [s.purpose, s.how_it_works, s.typical_users, s.start_page_url].any?(&:blank?)
     end
     actions
@@ -33,6 +33,7 @@ ActiveAdmin.register Service do
       row "Label for other calls field" do |service|
         service.calls_other_name || ""
       end
+      row("Are calls sampled?", &:sampled_calls)
     end
 
     attributes_table title: "Contextual information" do
@@ -134,6 +135,8 @@ ActiveAdmin.register Service do
       f.input :calls_received_challenge_decision_applicable
       f.input :calls_received_other_applicable
       f.input :calls_received_perform_transaction_applicable
+      br
+      f.input :sampled_calls
     end
     actions
   end
@@ -166,7 +169,7 @@ ActiveAdmin.register Service do
                 :calls_received_applicable, :calls_received_get_information_applicable,
                 :calls_received_chase_progress_applicable, :calls_received_challenge_decision_applicable,
                 :calls_received_other_applicable, :calls_received_perform_transaction_applicable,
-                :other_name, :calls_other_name
+                :other_name, :calls_other_name, :sampled_calls
 
   remove_filter :online_transactions_applicable, :phone_transactions_applicable,
                 :paper_transactions_applicable,  :face_to_face_transactions_applicable,
