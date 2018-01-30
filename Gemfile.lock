@@ -130,9 +130,15 @@ GEM
     govuk-lint (3.2.0)
       rubocop (~> 0.49.0)
       scss_lint
+    govuk_elements_rails (3.1.2)
+      govuk_frontend_toolkit (>= 6.0.2)
+      rails (>= 4.1.0)
+      sass (>= 3.2.0)
     govuk_frontend_toolkit (7.2.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
+    govuk_template (0.23.0)
+      rails (>= 3.1)
     has_scope (0.7.1)
       actionpack (>= 4.1, < 5.2)
       activesupport (>= 4.1, < 5.2)
@@ -352,7 +358,9 @@ DEPENDENCIES
   faraday
   faraday_middleware
   govuk-lint
+  govuk_elements_rails
   govuk_frontend_toolkit (~> 7.2)
+  govuk_template
   jbuilder (~> 2.5)
   jquery-rails
   launchy
