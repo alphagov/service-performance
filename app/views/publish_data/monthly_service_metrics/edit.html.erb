@@ -53,7 +53,7 @@
         <% end %>
 
         <%= f.fieldset 'Number of phone calls received, split by reasons for calling' do %>
-          <%= f.metric :calls_received_perform_transaction, applicable: @monthly_service_metrics.service.calls_received_perform_transaction_applicable %>
+          <%= f.metric :calls_received_perform_transaction, applicable: @monthly_service_metrics.service.calls_received_perform_transaction_applicable, extra: "This value should be the same as the number of transactions received by phone" %>
           <%= f.metric :calls_received_get_information, applicable: @monthly_service_metrics.service.calls_received_get_information_applicable %>
           <%= f.metric :calls_received_chase_progress, applicable: @monthly_service_metrics.service.calls_received_chase_progress_applicable %>
           <%= f.metric :calls_received_challenge_decision, applicable: @monthly_service_metrics.service.calls_received_challenge_decision_applicable %>

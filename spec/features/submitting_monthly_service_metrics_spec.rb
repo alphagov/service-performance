@@ -31,10 +31,10 @@ RSpec.feature 'submitting monthly service metrics' do
     end
 
     within_fieldset('Number of phone calls received, split by reasons for calling') do
-      fill_in 'to perform a transaction', with: '6,000'
-      fill_in 'to get information', with: '10,000'
-      fill_in 'to chase progress', with: '9,000'
-      fill_in 'to challenge a decision', with: '8,000'
+      fill_in 'To perform a transaction', with: '6,000'
+      fill_in 'To get information', with: '10,000'
+      fill_in 'To chase progress', with: '9,000'
+      fill_in 'To challenge a decision', with: '8,000'
       fill_in 'Number of telephone calls for this reason', with: '7,000'
     end
 
