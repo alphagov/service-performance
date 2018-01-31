@@ -24,8 +24,6 @@ module FormHelper
         content += field_content
         content
       end
-
-
     end
   end
 end
