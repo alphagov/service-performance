@@ -178,7 +178,7 @@ RSpec.feature 'viewing metrics', type: :feature do
 
     def calls_received_unspecified
       begin
-        element.find('li[data-metric-item-identifier="calls-received-unspecified"] .metric-value-count data')[:value]
+        element.find('li[data-metric-item-identifier="calls-received"] .metric-value data')[:value]
       rescue
         nil
       end
