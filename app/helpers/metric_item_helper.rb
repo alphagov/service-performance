@@ -4,20 +4,11 @@ module MetricItemHelper
     item = MetricItemContent.new(self, metric_value)
     content = capture { yield(item) } || ''
 
-    guidance = translate(:description_html, default: :description, scope: ['metric_guidance', metric_item.identifier]) if item.display_guidance?
-
     html[:data] ||= {}
-    html[:data].merge!('metric-item-identifier' => metric_item.identifier, 'metric-item-description' => item.description.try(:strip), 'metric-item-guidance' => guidance)
+    html[:data].merge!('metric-item-identifier' => metric_item.identifier, 'metric-item-description' => item.description.try(:strip))
 
     html[:class] = Array.wrap(html[:class])
     html[:class] << 'sampled' if sampled
-
-    #if item.display_guidance?
-    #  content += content_tag(:span, class: 'm-metric-guidance-toggle') do
-    #    id_text = "guidance-#{metric_item.identifier}"
-    #    content_tag(:a, '+', id: id_text, href: '#', class: 'a-metric-guidance-expand', data: { behaviour: 'a-metric-guidance-toggle' })
-    #   end
-    # end
 
     row = content_tag(:div, content, class: 'row')
     content_tag(:li, row, html)

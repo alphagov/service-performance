@@ -22,18 +22,3 @@ en:
         paper_form_url: Paper form URL
       user:
         id: ID
-  metric_guidance:
-    'transactions-received':
-      name: transactions received
-      description: These numbers tell you how much the service was used, and which channels were used the most.
-
-    'transactions-ending-in-outcome':
-      name: transactions processed
-      description: These numbers tell you how many transactions the service processed, and how well these transactions met users' needs.
-
-    'calls-received':
-      name: calls received
-      description_html:
-        <p>These numbers tell you how much the call centre was used, and why.</p>
-        <p>If the total number of calls is higher than the number of transactions, that’s an indication that effort is high compared to output.</p>
-        <p>If the proportion of users calling to chase progress is high, this might mean that the service isn’t processing transactions as quickly as it should. A high proportion of calls to get more information could indicate that the information available online is incomplete or unclear.</p>
