@@ -14,15 +14,13 @@ RSpec.feature 'viewing services', type: :feature do
     visit view_data_government_metrics_path(group_by: Metrics::GroupBy::Department)
 
     click_on 'Department for Transport'
-    expect(page).to have_content('Service data for Department for Transport')
+    expect(page).to have_content('Department for Transport')
 
     click_on 'Highways England'
-    expect(page).to have_content('Service data for Highways England')
+    expect(page).to have_content('Highways England')
 
     click_on 'Pay the Dartford Crossing charge (Dartcharge)'
-    expect(page).to have_content('Information about Pay the Dartford Crossing charge (Dartcharge)')
-    expect(page).to have_content('Service data')
-    expect(page).to have_content('5.75m')
+    expect(page).to have_content('Performance data about Pay the Dartford Crossing charge (Dartcharge)')
     expect(page).to have_content('5.75m')
   end
 
@@ -36,10 +34,10 @@ RSpec.feature 'viewing services', type: :feature do
     visit view_data_government_metrics_path(group_by: Metrics::GroupBy::Department)
 
     click_on 'Department for Communities and Local Government'
-    expect(page).to have_content('Service data for Department for Communities and Local Government')
+    expect(page).to have_content('Department for Communities and Local Government')
 
     click_on 'Planning Inspectorate'
-    expect(page).to have_content('Service data for Planning Inspectorate')
+    expect(page).to have_content('Planning Inspectorate')
 
     click_on 'National Infrastructure applications'
     expect(page).to have_content('Not applicable')

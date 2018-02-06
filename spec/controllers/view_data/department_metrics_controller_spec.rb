@@ -16,10 +16,11 @@ RSpec.describe ViewData::DepartmentMetricsController, type: :controller do
     end
 
     it 'assigns a DepartmentMetrics presenter to @metrics' do
+      default_time_period = TimePeriod.default
       presenter = instance_double(MetricsPresenter)
-      expect(MetricsPresenter).to receive(:new).with(department, group_by: Metrics::GroupBy::DeliveryOrganisation, order: 'asc', order_by: 'name') { presenter }
+      expect(MetricsPresenter).to receive(:new).with(department, group_by: Metrics::GroupBy::DeliveryOrganisation, order: 'asc', order_by: 'name', time_period: default_time_period) { presenter }
 
-      get :index, params: { department_id: 'D001', group_by: Metrics::GroupBy::DeliveryOrganisation, filter: { order: 'asc', order_by: 'name' } }
+      get :index, params: { department_id: 'D001', group_by: Metrics::GroupBy::DeliveryOrganisation, filter: { order: 'asc', order_by: 'name', time_period: default_time_period } }
       expect(assigns[:metrics]).to eq(presenter)
     end
 

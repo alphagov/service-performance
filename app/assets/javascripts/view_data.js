@@ -15,5 +15,13 @@
       global.SearchResultsContainer.filter,
       global.SearchResultsContainer.getResultsLength()
     )
+
+    $('input[type=radio]').click(function () {
+      if ($('#range_custom').is(':checked')) {
+        $('#range').toggle()
+      } else {
+        $('#range').hide()
+      }
+    })
   })
 })(window)

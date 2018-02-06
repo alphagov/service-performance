@@ -2,8 +2,7 @@ module ViewData
   class GovernmentMetricsController < MetricsController
     def index
       government = Government.new
-      @metrics = MetricsPresenter.new(government, group_by: group_by, order_by: order_by, order: order)
-
+      @metrics = MetricsPresenter.new(government, group_by: group_by, order_by: order_by, order: order, time_period: time_period)
       page.breadcrumbs << Page::Crumb.new('UK Government')
 
       respond_to do |format|

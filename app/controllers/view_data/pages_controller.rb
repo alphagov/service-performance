@@ -11,5 +11,11 @@ module ViewData
     def transactions_received_help; end
 
     def calls_received_help; end
+
+    def cookies; end
+
+    def privacy; end
+
+    def terms; end
   end
 end

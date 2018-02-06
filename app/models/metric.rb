@@ -65,6 +65,14 @@ class Metric
       instance_variable_set("@#{item.name}_completeness", completeness)
     end
 
+    sampled_val = false
+    if items.include?(:sampled)
+      sampled_val = items[:sampled]
+      self.class.send(:define_method, "sampled") do
+        sampled_val
+      end
+    end
+
     if self.class.definition.denominator_method?
       self.class.definition.items.each do |item|
         self.class.send(:define_method, "#{item.name}_percentage") do
@@ -89,7 +97,7 @@ class Metric
   # using the `applicable` proc defined on the item. If the item isn't
   # applicable then the value is set to `NOT_APPLICABLE`, otherwise it's set as
   # `NOT_PROVIDED`
-  def self.from_metrics(metrics)
+  def self.from_metrics(metrics, with_samples: false)
     items = definition.items.each.with_object({}) do |item, memo|
       value = item.from.(metrics)
 
@@ -114,6 +122,10 @@ class Metric
           Completeness.new(actual: 1, expected: 1)
         end
       memo[:"#{item.name}_completeness"] = completeness
+    end
+
+    if with_samples
+      items[:sampled] = metrics.service.sampled_calls
     end
 
     new(items)

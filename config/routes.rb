@@ -24,6 +24,10 @@ Rails.application.routes.draw do
     get "/help/transactions-processed", to: "view_data/pages#transactions_processed_help"
     get "/help/calls-received", to: "view_data/pages#calls_received_help"
 
+    get "/help/cookies", to: "view_data/pages#cookies"
+    get "/help/terms-conditions", to: "view_data/pages#terms"
+    get "/help/privacy-policy", to: "view_data/pages#privacy"
+
     scope 'performance-data' do
       scope :government do
         get 'metrics/:group_by', to: 'view_data/government_metrics#index',
@@ -42,6 +46,9 @@ Rails.application.routes.draw do
       resources :delivery_organisations, only: [] do
         get 'metrics/:group_by', to: 'view_data/delivery_organisation_metrics#index', group_by: Metrics::GroupBy::Service, as: :metrics
       end
+
+      get 'time-period', to: 'view_data/time_period#edit'
+      post 'time-period', to: 'view_data/time_period#update'
 
       resources :services, only: [:show], controller: 'view_data/services'
       resources :departments, only: [:show], controller: 'view_data/departments'

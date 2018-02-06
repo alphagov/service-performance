@@ -10,10 +10,6 @@ class CallsReceivedMetric < Metric
     percentage_of :total
   end
 
-  def sampled
-    false
-  end
-
   def sampled_total
     total
   end

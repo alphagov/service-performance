@@ -9,6 +9,9 @@ end
 gem 'rails', '~> 5.1.4'
 gem 'pg'
 gem 'puma', '~> 3.7'
+gem 'govuk_frontend_toolkit', '~> 7.2'
+gem 'govuk_template'
+gem 'govuk_elements_rails'
 
 # Assets
 gem 'jbuilder', '~> 2.5'
