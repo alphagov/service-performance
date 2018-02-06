@@ -1,7 +1,7 @@
 module SparklineHelper
   def draw_sparkline(monthly_data)
-    spark = Sparkline::Spark.new(monthly_data, height: 20, width: 70)
-    spark.svg(color: "#005EA5", stroke: 2).html_safe
+    spark = Sparkline::Spark.new(monthly_data, height: 16, width: 40)
+    spark.svg(color: "#005EA5", stroke: 1).html_safe
   end
 
   module Sparkline
