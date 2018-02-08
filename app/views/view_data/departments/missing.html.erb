@@ -1,0 +1,26 @@
+<main id="content" role="main">
+
+  <a class="link-back" href="<%= @referer %>">Back</a>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-large">
+        Data missing for
+        <%= @department.name %>
+      </h1>
+
+      <p>
+        Showing missing data for time period from
+        <%= time_tag @time_period.starts_on, @time_period.starts_on.to_formatted_s(:month_and_year) %>
+        to
+        <%= time_tag @time_period.ends_on, @time_period.ends_on.to_formatted_s(:month_and_year) %>
+      </p>
+    </div>
+  </div>
+
+  <div class="grid-row">
+    <% @missing_data.each do |missing|  %>
+      <%= render partial: 'view_data/missing_data', locals: {missing: missing} %>
+    <% end %>
+  </div>
+</main>

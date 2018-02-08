@@ -41,10 +41,12 @@ Rails.application.routes.draw do
           group_by: Regexp.union(Metrics::GroupBy::DeliveryOrganisation, Metrics::GroupBy::Service),
           defaults: { group_by: Metrics::GroupBy::DeliveryOrganisation },
           as: :metrics
+        get 'missing', to: 'view_data/departments#missing'
       end
 
       resources :delivery_organisations, only: [] do
         get 'metrics/:group_by', to: 'view_data/delivery_organisation_metrics#index', group_by: Metrics::GroupBy::Service, as: :metrics
+        get 'missing', to: 'view_data/delivery_organisations#missing'
       end
 
       get 'time-period', to: 'view_data/time_period#edit'

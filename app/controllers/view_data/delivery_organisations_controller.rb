@@ -16,5 +16,21 @@ module ViewData
         format.csv { render csv: MetricsCSVExporter.new(@metrics.published_monthly_service_metrics) }
       end
     end
+
+    def missing
+      @delivery_organisation = DeliveryOrganisation.where(natural_key: params[:delivery_organisation_id]).first!
+      @referer = previous_url
+      @time_period = time_period
+
+      # This is just an example of usage
+      @missing_data = []
+      prng = Random.new
+      4.times do |i|
+        d = MissingData.new("Service #{i + 1}", prng.rand(99))
+        d.add_metrics("Online transactions received", prng.rand(99), "")
+        d.add_metrics("Phone transactions received", prng.rand(99), "")
+        @missing_data << d
+      end
+    end
   end
 end
