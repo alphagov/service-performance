@@ -21,6 +21,9 @@ module ViewData
       @referer = previous_url
       @time_period = time_period
 
+      calc = MissingDataCalculator.new(@department, @time_period)
+      # @missing_data = calc.missing_data
+
       # This is just an example of usage
       @missing_data = []
       prng = Random.new
