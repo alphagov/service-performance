@@ -1,5 +1,22 @@
 en:
   helpers:
+    missing:
+      TransactionsReceivedMetric:
+        online: Online transactions received
+        phone: Telephone transactions received
+        paper: Paper transactions received
+        face_to_face: Face to face transactions received
+        other: Other transactions received
+      TransactionsProcessedMetric:
+        total: Total transactions processed
+        with_intended_outcome: Transactions ending in the user's intended outcome
+      CallsReceivedMetric:
+        total: Total calls received
+        get_information: Calls received to get information
+        perform_transaction: Calls received to perform a transaction
+        chase_progress: Calls received to chase progress
+        challenge_a_decision: Calls received to challenge a decision
+        other: Other calls received
     label:
       monthly_service_metrics:
         online_transactions: Online

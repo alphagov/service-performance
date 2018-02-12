@@ -34,4 +34,21 @@ class CallsReceivedMetric < Metric
 
     (unspecified.to_f / send(self.class.definition.denominator_method)) * 100
   end
+
+  def name_to_db_name(name)
+    case name
+    when :total
+      :calls_received
+    when :get_information
+      :calls_received_get_information
+    when :chase_progress
+      :calls_received_chase_progress
+    when :challenge_a_decision
+      :calls_received_challenge_decision
+    when :perform_transaction
+      :calls_received_perform_transaction
+    when :other
+      :calls_received_other
+    end
+  end
 end

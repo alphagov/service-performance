@@ -23,17 +23,7 @@ module ViewData
       @time_period = time_period
 
       calc = MissingDataCalculator.new(@delivery_organisation, @time_period)
-      # @missing_data = calc.missing_data
-
-      # This is just an example of usage
-      @missing_data = []
-      prng = Random.new
-      4.times do |i|
-        d = MissingData.new("Service #{i + 1}", prng.rand(99))
-        d.add_metrics("Online transactions received", prng.rand(99), "")
-        d.add_metrics("Phone transactions received", prng.rand(99), "")
-        @missing_data << d
-      end
+      @missing_data = calc.missing_data
     end
   end
 end

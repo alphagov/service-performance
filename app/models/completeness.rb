@@ -12,6 +12,12 @@ class Completeness
     self.class.new(actual: actual, expected: expected)
   end
 
+  def as_percentage
+    pct = (@actual.to_f / @expected.to_f) * 100
+    pct = 0 if pct.nan?
+    pct.round(2)
+  end
+
   def complete?
     actual == expected
   end
