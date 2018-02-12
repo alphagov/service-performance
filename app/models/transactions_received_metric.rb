@@ -27,5 +27,4 @@ class TransactionsReceivedMetric < Metric
       :other_transactions
     end
   end
-
 end
