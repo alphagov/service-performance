@@ -77,8 +77,29 @@ private
 
     # date_list is a list of dates where we do have data, and we want to know what dates
     # we don't have data
-    dummy(start_date, end_date, date_list)
+    months_missing(start_date, end_date, date_list)
   end
 
-  def dummy(_start, _end, _list); end
+  def datetime_sequence(start, stop, step)
+    dates = [start]
+    while dates.last < (stop - step)
+      dates << (dates.last + step)
+    end
+    return dates
+  end
+
+  def months_missing(start_date, end_date, date_list)
+    date_range = datetime_sequence(start_date, end_date, 1.month)
+
+    missing_months = date_range.each_with_object([]) do |date, list|
+      list << date if !date_list.include?(date)
+    end
+    format_months(missing_months)
+  end
+
+  def format_months(missing_months)
+    missing_months.map do |month|
+      month.strftime("%B %Y")
+    end.join(", ")
+  end
 end
