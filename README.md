@@ -57,9 +57,9 @@ You then need to configure the database you will be using.
 bin/rails db:create db:migrate db:seed
 ```
 
-To start the server, use the conventional `rails -s` command.
+To start the server, use the conventional `rails s` command.
 
-If you are already running another app on port 3000, then pass in a new port number with `rails -s --port <NEW NUMBER>`
+If you are already running another app on port 3000, then pass in a new port number with `rails s --port <NEW NUMBER>`
 
 You can test the server is running by visiting [http://127.0.0.1:3000/](http://127.0.0.1:3000/) in a web browser.
 
