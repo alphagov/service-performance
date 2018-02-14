@@ -34,6 +34,7 @@ Rails.application.routes.draw do
           group_by: Regexp.union(Metrics::GroupBy::Department, Metrics::GroupBy::DeliveryOrganisation, Metrics::GroupBy::Service),
           defaults: { group_by: Metrics::GroupBy::Department },
           as: :government_metrics
+        get 'missing', to: 'view_data/government#missing'
       end
 
       resources :departments, only: [] do

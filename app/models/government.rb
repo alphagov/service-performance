@@ -30,4 +30,8 @@ class Government
   def services_count
     Service.with_published_metrics.count
   end
+
+  def missing_data_link
+    Rails.application.routes.url_helpers.view_data_missing_url(self, only_path: true)
+  end
 end

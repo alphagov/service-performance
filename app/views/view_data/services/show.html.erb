@@ -63,7 +63,7 @@
 
           <% if @service.paper_form_url.present? %>
             <li><%= link_to 'Paper form', @service.paper_form_url %></li>
-            <!-- <li>This service is delivered by <%= link_to %></li> --> 
+            <!-- <li>This service is delivered by <%= link_to %></li> -->
           <% end %>
         </ul>
     </div>
@@ -81,7 +81,7 @@
       <div class='m-metric-group'>
         <div>
           <div class='completeness service-context-completeness'>
-            <%= @metrics.metric_groups.last.completeness %> of data points complete
+            <%= @metrics.metric_groups.last.completeness %> of data provided
           </div>
 
           <div class="m-metrics">

@@ -25,4 +25,8 @@ class Department < ApplicationRecord
   def services_count
     services.with_published_metrics.count
   end
+
+  def missing_data_link
+    Rails.application.routes.url_helpers.view_data_department_missing_url(self, only_path: true)
+  end
 end

@@ -7,7 +7,7 @@ class MissingDataCalculator
 
     # For each service we need to use the metricspresenter to work out if it is complete
     # or not. If it is complete we will skip it.
-    entity.services.with_published_metrics.each { |s| process_service(s) }
+    entity.services.with_published_metrics.order("name").each { |s| process_service(s) }
   end
 
 private
