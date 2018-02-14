@@ -32,6 +32,6 @@ class Government
   end
 
   def missing_data_link
-    Rails.application.routes.url_helpers.view_data_missing_url(self, only_path: true)
+    Rails.application.routes.url_helpers.view_data_missing_url(only_path: true)
   end
 end
