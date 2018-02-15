@@ -42,7 +42,10 @@
       <div class='m-metric-group'>
         <div>
           <div class='completeness service-context-completeness'>
-            <%= @metrics.metric_groups.last.completeness %> of data points complete
+            <a href="<%= @metrics.metric_groups.last.entity.missing_data_link %>">
+              <%= @metrics.metric_groups.last.completeness %> of data provided
+            </a>
+
           </div>
 
           <div class="m-metrics">

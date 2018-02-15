@@ -1,0 +1,27 @@
+
+<div class="column-full">
+    <h1 class="heading-medium"><%= missing.service_name %></h1>
+    <p>Data provided: <%= missing.data_provided %>%</p>
+
+    <table class="table-font-small">
+      <thead>
+        <tr>
+          <th scope="col" width="30%">Metric</th>
+          <th scope="col" class="numeric" width="15%">Percentage of data provided</th>
+          <th scope="col" class="numeric" width="15%">Percentage of data not provided</th>
+          <th scope="col" width="40%">Months where data was not provided</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% missing.metrics.each do |missing| %>
+          <tr>
+            <td><%= missing[:name] %></td>
+            <td class="numeric"><%= missing[:percentage] %>%</td>
+            <td class="numeric"><%= 100 - missing[:percentage] %>%</td>
+            <td><%= missing[:months_missing] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+

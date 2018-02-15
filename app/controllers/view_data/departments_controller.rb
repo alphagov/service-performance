@@ -15,5 +15,14 @@ module ViewData
         format.csv { render csv: MetricsCSVExporter.new(@metrics.published_monthly_service_metrics) }
       end
     end
+
+    def missing
+      @department = Department.where(natural_key: params[:department_id]).first!
+      @referer = previous_url
+      @time_period = time_period
+
+      calc = MissingDataCalculator.new(@department, @time_period)
+      @missing_data = calc.missing_data
+    end
   end
 end

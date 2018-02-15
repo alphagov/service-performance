@@ -5,4 +5,13 @@ class TransactionsProcessedMetric < Metric
 
     percentage_of :total
   end
+
+  def name_to_db_name(name)
+    case name
+    when :total
+      :transactions_processed
+    when :with_intended_outcome
+      :transactions_processed_with_intended_outcome
+    end
+  end
 end

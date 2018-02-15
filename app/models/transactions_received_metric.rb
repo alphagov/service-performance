@@ -12,4 +12,19 @@ class TransactionsReceivedMetric < Metric
   def total
     values.reduce(&method(:sum))
   end
+
+  def name_to_db_name(name)
+    case name
+    when :online
+      :online_transactions
+    when :phone
+      :phone_transactions
+    when :paper
+      :paper_transactions
+    when :face_to_face
+      :face_to_face_transactions
+    when :other
+      :other_transactions
+    end
+  end
 end
