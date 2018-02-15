@@ -81,13 +81,52 @@ class Metrics
     def initialize(entity, metrics_by_month)
       @entity = entity
       @metrics_by_month = metrics_by_month
+      @sorted_metrics_by_month = sort_monthly_metrics
       @service = nil
       if entity.class == Service
         @service = entity
       end
     end
 
-    attr_reader :entity, :metrics_by_month, :service
+    attr_reader :entity, :metrics_by_month, :sorted_metrics_by_month, :service
+
+    def sort_monthly_metrics
+      keys = @metrics_by_month.keys.sort
+
+      sorted = %i[
+        online_transactions
+        phone_transactions
+        paper_transactions
+        face_to_face_transactions
+        other_transactions
+        transactions_processed
+        transactions_processed_with_intended_outcome
+        calls_received
+        calls_received_get_information
+        calls_received_chase_progress
+        calls_received_challenge_decision
+        calls_received_other
+        calls_received_perform_transaction
+      ].inject({}) { |hash, metric|
+        hash[metric] = keys.map { |k|
+          @metrics_by_month[k].flatten.inject(0) { |acc, mm|
+            val = mm.send(metric) || 0
+            acc + val
+          }
+        }
+        hash
+      }
+
+      sorted[:total_transactions] = [
+        sorted[:online_transactions],
+        sorted[:phone_transactions],
+        sorted[:paper_transactions],
+        sorted[:face_to_face_transactions],
+        sorted[:other_transactions],
+      ].transpose.map { |x| x.reduce(:+) }
+
+      sorted
+    end
 
     def transactions_received_metric
       metrics.map(&:transactions_received_metric).reduce(:+)

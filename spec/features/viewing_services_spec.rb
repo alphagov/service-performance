@@ -21,8 +21,7 @@ RSpec.feature 'viewing services', type: :feature do
 
     click_on 'Pay the Dartford Crossing charge (Dartcharge)'
     expect(page).to have_content('Performance data about Pay the Dartford Crossing charge (Dartcharge)')
-    expect(page).to have_content('5.75m transactions received')
-    expect(page).to have_content('5.75m transactions processed')
+    expect(page).to have_content('5.75m')
   end
 
   specify 'viewing a service with not-provided data' do

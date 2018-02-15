@@ -3,6 +3,44 @@
     {
       "warning_type": "Dynamic Render Path",
       "warning_code": 15,
+      "fingerprint": "107721b81c71490f3296d19fab72d9a7661bcda7278fabd7a60d9efbbd88b555",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/view_data/services/show.html.erb",
+      "line": 93,
+      "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => MetricsPresenter.new(\"service\".where(:natural_key => params[:id]).first!, :group_by => \"service\", :time_period => time_period).metric_groups.last.metrics[1], { :metric_group => MetricsPresenter.new(\"service\".where(:natural_key => params[:id]).first!, :group_by => \"service\", :time_period => time_period).metric_groups.last })",
+      "render_path": [{"type":"controller","class":"ViewData::ServicesController","method":"show","line":20,"file":"app/controllers/view_data/services_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "view_data/services/show"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "2499ed26bb31742f08848bbc392a66ab93f1421f20a674efde3bd39a1ada3c7e",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/view_data/services/show.html.erb",
+      "line": 89,
+      "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => MetricsPresenter.new(\"service\".where(:natural_key => params[:id]).first!, :group_by => \"service\", :time_period => time_period).metric_groups.last.metrics[0], { :metric_group => MetricsPresenter.new(\"service\".where(:natural_key => params[:id]).first!, :group_by => \"service\", :time_period => time_period).metric_groups.last })",
+      "render_path": [{"type":"controller","class":"ViewData::ServicesController","method":"show","line":20,"file":"app/controllers/view_data/services_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "view_data/services/show"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
       "fingerprint": "2badd208d687dd6555c997acc699b73ea3ca9944e4a7783d3f9bd1fd6cfa333e",
       "check_name": "Render",
       "message": "Render path contains parameter value",
@@ -22,13 +60,13 @@
     {
       "warning_type": "Dynamic Render Path",
       "warning_code": 15,
-      "fingerprint": "703734658957394a93636417352c5b6f0309e89b8deb5d4de77dbd7166f12691",
+      "fingerprint": "98e7a1c257d5761f6ff0b1b34199a45125195856cd5b3b67ff474fb74247ca93",
       "check_name": "Render",
       "message": "Render path contains parameter value",
       "file": "app/views/view_data/services/show.html.erb",
-      "line": 76,
+      "line": 90,
       "link": "http://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => MetricsPresenter.new(\"service\".where(:natural_key => params[:id]).first!, :group_by => \"service\", :time_period => time_period).metric_groups.last.metrics, { :metric_group => MetricsPresenter.new(\"service\".where(:natural_key => params[:id]).first!, :group_by => \"service\", :time_period => time_period).metric_groups.last })",
+      "code": "render(action => MetricsPresenter.new(\"service\".where(:natural_key => params[:id]).first!, :group_by => \"service\", :time_period => time_period).metric_groups.last.metrics[2], { :metric_group => MetricsPresenter.new(\"service\".where(:natural_key => params[:id]).first!, :group_by => \"service\", :time_period => time_period).metric_groups.last })",
       "render_path": [{"type":"controller","class":"ViewData::ServicesController","method":"show","line":20,"file":"app/controllers/view_data/services_controller.rb"}],
       "location": {
         "type": "template",
@@ -58,6 +96,6 @@
       "note": ""
     }
   ],
-  "updated": "2018-01-16 09:18:40 +0000",
+  "updated": "2018-02-06 14:37:41 +0000",
   "brakeman_version": "4.0.1"
 }

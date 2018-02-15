@@ -1,16 +1,28 @@
 
-<div class="m-metric <% if calls_received_metric.sampled %>m-metric__sampled<% end %>">
+<div class="m-metric m-metric-right <% if calls_received_metric.sampled %>m-metric__sampled<% end %>">
   <ul class="list">
     <%= metric_item(Metrics::Items::CallsReceived, calls_received_metric.total, html: { class: 'm-metric-headline' }) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(calls_received_metric.total) %></strong> calls received
       <% end %>
 
-      <% item.display_guidance = !@metrics.preview? %>
-
       <span class="total">
-        <span class="bold-large"><%= metric_to_human(calls_received_metric.total) %></span>
-        <span class="data-item bold">calls received</span>
+
+        <% item.display_guidance = !@metrics.preview? %>
+        <span class="metric-name bold">
+          Calls received
+        </span>
+
+        <span class="metric-sparkline">
+          <%=
+            draw_sparkline(metric_group.sorted_metrics_by_month[:calls_received])
+          %>
+        </span>
+
+        <span class="metric-value bold-small">
+          <%= metric_to_human(calls_received_metric.total) %>
+        </span>
+
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
           <%= item.incomplete calls_received_metric.completeness %>
         <% end %>
@@ -28,6 +40,11 @@
       <% end %>
 
       <span class="metric-name">To perform a transaction</span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:calls_received_perform_transaction])
+        %>
+      </span>
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage calls_received_metric.perform_transaction_percentage %>
@@ -43,6 +60,11 @@
       <% end %>
 
       <span class="metric-name">To get information</span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:calls_received_get_information])
+        %>
+      </span>
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage calls_received_metric.get_information_percentage %>
@@ -58,6 +80,11 @@
       <% end %>
 
       <span class="metric-name">To chase progress</span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:calls_received_chase_progress])
+        %>
+      </span>
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage calls_received_metric.chase_progress_percentage %>
@@ -73,6 +100,11 @@
       <% end %>
 
       <span class="metric-name">To challenge a decision</span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:calls_received_challenge_decision])
+        %>
+      </span>
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage calls_received_metric.challenge_a_decision_percentage %>
@@ -94,24 +126,17 @@
           "Other"
         end %>
       </span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:calls_received_other])
+        %>
+      </span>
       <span class="metric-value">
         <%= item.value %>
         <%= item.percentage calls_received_metric.other_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
           <%= item.completeness calls_received_metric.completeness[:other] %>
         <% end %>
-      </span>
-    <% end %>
-
-    <%= metric_item(Metrics::Items::CallsReceivedUnspecified, calls_received_metric.unspecified, sampled: calls_received_metric.sampled) do |item| %>
-      <% item.description do %>
-        <strong><%= metric_to_human(calls_received_metric.unspecified) %></strong> unspecified calls received (<%= metric_to_percentage(calls_received_metric.unspecified_percentage) %>)
-      <% end %>
-
-      <span class="metric-name">Unspecified</span>
-      <span class="metric-value">
-        <%= item.value %>
-        <%= item.percentage calls_received_metric.unspecified_percentage %>
       </span>
     <% end %>
   </ul>

@@ -58,20 +58,32 @@
       <!--end of filter-->
 
       <div class="o-metric-groups" data-behaviour="o-metric-groups" id="o-metric-groups">
-        <ul>
+        <ul class="grid-row">
           <% @metrics.metric_groups.each do |metric_group|  %>
-            <li class="m-metric-group<% if metric_group.totals? %> m-metric-group__totals<% end %><% if metric_group.collapsed? %> m-metric-group__collapsed<% else %> m-metric-group__expanded<% end %>" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsible<% end %>">
+            <li class="column-full m-metric-group<% if metric_group.totals? %> m-metric-group__totals<% end %><% if metric_group.collapsed? %> m-metric-group__collapsed<% else %> m-metric-group__expanded<% end %>" data-behaviour="m-metric-group<% if metric_group.collapsed? %> m-metric-group__collapsible<% end %>">
               <div data-metric-group-expanded>
-                <%= render "view_data/metrics/completeness", metric_group: metric_group %>
+
+                <div class='completeness'>
+                  <a href="<%= metric_group.entity.missing_data_link %>">
+                    <%= metric_group.completeness %> of data provided
+                  </a>
+                </div>
+
+
                 <%= render metric_group.entity, metric_group: metric_group  %>
 
                 <div class="m-metrics">
-                  <%= render metric_group.metrics, metric_group: metric_group %>
+                  <div class="column-one-half" style="padding:0;">
+                    <%= render metric_group.metrics[0], metric_group: metric_group %>
+                    <%= render metric_group.metrics[2], metric_group: metric_group %>
+                  </div>
+                  <div class="column-one-half" style="padding:0;">
+                    <%= render metric_group.metrics[1], metric_group: metric_group %>
+                  </div>
                 </div>
               </div>
             </li>
           <% end %>
-
         </ul>
       </div>
 

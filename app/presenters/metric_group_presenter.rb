@@ -57,7 +57,7 @@ class MetricGroupPresenter
   attr_reader :sort_value, :service
 
   def metrics
-    @metrics ||= [transactions_received_metric, transactions_processed_metric, calls_received_metric].each { |metric| metric.extend(MetricToPartialPath) }
+    @metrics ||= [transactions_received_metric, calls_received_metric, transactions_processed_metric].each { |metric| metric.extend(MetricToPartialPath) }
   end
 
   def completeness
@@ -95,7 +95,7 @@ class MetricGroupPresenter
 
 private
 
-  delegate :transactions_received_metric, :transactions_processed_metric, :calls_received_metric, to: :@metric_group
+  delegate :sorted_metrics_by_month, :transactions_received_metric, :transactions_processed_metric, :calls_received_metric, to: :@metric_group
 
   def helper
     h = @helper ||= Class.new do
