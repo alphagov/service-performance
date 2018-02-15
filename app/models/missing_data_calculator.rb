@@ -75,10 +75,56 @@ private
       end
     }.compact.sort
 
-    # date_list is a list of dates where we do have data, and we want to know what dates
-    # we don't have data
-    dummy(start_date, end_date, date_list)
+    months_missing(start_date, end_date, date_list)
   end
 
-  def dummy(_start, _end, _list); end
+  def datetime_set(start, stop, step)
+    dates = [start]
+    while dates.last < (stop - step)
+      dates << (dates.last + step)
+    end
+    dates
+  end
+
+  def months_missing(start_date, end_date, date_list)
+    date_range = datetime_set(start_date, end_date, 1.month)
+    missing_months = date_range - date_list
+
+    format_months(missing_months)
+  end
+
+  def is_next_month(x, y)
+    ((x.year - y.year) * 12 + (x.month - y.month)).abs == 1
+  end
+
+  def group_consecutive_months(missing_months)
+    Set[*missing_months].divide { |x, y| is_next_month(x, y) }
+  end
+
+  def date_format_months(consecutive_months)
+    consecutive_months.each.map do |item|
+      formatted_date = item.to_a.first.strftime("%B %Y")
+      formatted_end_date = item.to_a.last.strftime("%B %Y")
+      #consecutive months
+      if item.to_a.size > 1
+        #January to July 2016 rather than January 2016 to July 2016
+        if formatted_date.last(4) == formatted_end_date.last(4)
+          "#{formatted_date.split.first} to #{formatted_end_date}"
+        else
+          "#{formatted_date} to #{formatted_end_date}"
+        end
+        #non consecutive months
+      else
+        formatted_date.to_s
+      end
+    end
+  end
+
+  def format_months(missing_months)
+    date_format_months = date_format_months(group_consecutive_months(missing_months))
+    date_format_months.map do |month|
+      month
+    end
+    date_format_months.join(", ")
+  end
 end
