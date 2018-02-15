@@ -13,10 +13,12 @@ gem 'govuk_frontend_toolkit', '~> 7.2'
 gem 'govuk_template'
 gem 'govuk_elements_rails'
 
+
 # Assets
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'sass-rails', '~> 5.0'
+gem 'c3-rails'
 
 # API
 gem 'active_model_serializers'

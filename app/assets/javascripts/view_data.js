@@ -2,6 +2,7 @@
 // = require metrics_filter_panel
 // = require collapsed_metric_group
 // = require search
+// = require c3
 
 ;(function (global) {
   /* Both of these are in the `search.js` file */
