@@ -45,7 +45,8 @@
         <% end %>
 
         <%= f.fieldset 'Number of transactions ending in the user’s intended outcome' do %>
-          <%= f.metric :transactions_processed_with_intended_outcome, applicable: @monthly_service_metrics.service.transactions_processed_with_intended_outcome_applicable %>
+          <%= render partial: 'field_errors', locals: {metrics: @monthly_service_metrics, field: :transactions_processed_with_intended_outcome } %>
+          <%= f.metric :transactions_processed_with_intended_outcome, applicable: @monthly_service_metrics.service.transactions_processed_with_intended_outcome_applicable, error: field_has_errors(@monthly_service_metrics, :transactions_processed_with_intended_outcome) ? true : nil  %>
         <% end %>
 
         <%= f.fieldset 'Total number of phone calls received' do %>
