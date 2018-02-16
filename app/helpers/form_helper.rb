@@ -9,14 +9,14 @@ module FormHelper
       end
     end
 
-    def metric(name, applicable: true, label: nil, extra: nil)
+    def metric(name, applicable: true, label: nil, extra: nil, error: nil)
       return '' unless applicable
 
       label = label || I18n.translate(name, scope: %w(helpers label monthly_service_metrics))
 
-      @template.content_tag(:div, class: 'form-group') do
+      @template.content_tag(:div, class: error.nil? ? 'form-group' : 'form-group-error' ) do
         content = label(name, label.capitalize, class: 'form-label')
-        field_content = number_field(name, class: 'form-control form-control-1-4')
+        field_content = number_field(name, class: error.nil? ? 'form-control form-control-1-4' : 'form-control-error')
 
         if extra
           content += @template.content_tag(:span, extra, class: "form-hint")
