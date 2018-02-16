@@ -10,7 +10,11 @@
       </h1>
 
       <p>
-        Showing missing data for time period from
+        <% if @missing_data.blank? %>
+        There is no
+        <% else %>
+        Showing
+        <% end %> missing data for time period from
         <%= time_tag @time_period.starts_on, @time_period.starts_on.to_formatted_s(:month_and_year) %>
         to
         <%= time_tag @time_period.ends_on, @time_period.ends_on.to_formatted_s(:month_and_year) %>
