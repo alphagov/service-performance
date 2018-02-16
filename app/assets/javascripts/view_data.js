@@ -2,6 +2,7 @@
 // = require metrics_filter_panel
 // = require collapsed_metric_group
 // = require search
+// = require d3
 // = require c3
 
 ;(function (global) {
@@ -22,6 +23,61 @@
       } else {
         $('#range').hide()
       }
+    })
+  })
+
+  $(document).ready(function () {
+    var $ = global.jQuery
+
+    if ($('.chart').size() === 0) return
+
+    var cSize = { height: 250 }
+    var cColour = { pattern: ['#005EA5', '#005EA5'] }
+    var cTransition = { duration: null }
+    var cPadding = { top: 10, bottom: 20 }
+    var cPoint = { show: false }
+    var cRegions = {}
+
+    $('.chart').each(function (idx, obj) {
+      var currentLabel = $(obj).data('current-range-label')
+      var previousLabel = $(obj).data('previous-range-label')
+      cRegions[previousLabel] = [ { 'style': 'dashed' } ]
+
+      var currentData = $(obj).data('current-data')
+      var previousData = $(obj).data('previous-data')
+      var maxValue = $(obj).data('max-value')
+
+      var months = $(obj).data('months')
+
+      var setAxisTransactions = {
+        x: {
+          type: 'category',
+          categories: months
+        },
+        y: {
+          min: 0,
+          max: maxValue,
+          padding: { top: 0, bottom: 0 }
+        }
+      }
+
+      // Insert the label at the start of the data list.
+      currentData.unshift(currentLabel)
+      previousData.unshift(previousLabel)
+
+      /* eslint-disable */
+      c3.generate({
+        bindto: '#' + $(obj).attr('id'),
+        data: {
+          columns: [
+            currentData,
+            previousData
+          ],
+          regions: cRegions
+        },
+        axis: setAxisTransactions, size: cSize, color: cColour, transition: cTransition, padding: cPadding, point: cPoint
+      });
+      /* eslint-enable */
     })
   })
 })(window)
