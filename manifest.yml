@@ -7,3 +7,5 @@ applications:
       - cgsd-pg-service
       - logit-ssl-drain-sp
       - service-performance-staging-credentials
+    env:
+      PROMETHEUS_METRICS_PATH: /metrics

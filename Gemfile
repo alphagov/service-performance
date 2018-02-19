@@ -37,6 +37,7 @@ gem 'paper_trail'
 # Logging
 gem 'lograge'
 gem 'logstash-event'
+gem 'gds_metrics'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
