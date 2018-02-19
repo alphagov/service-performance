@@ -1,8 +1,8 @@
 <main id="content" role="main" class="container">
   <div class="grid-row">
+    <%= render partial: 'error_summary', locals: {metrics: @monthly_service_metrics } %>
 
     <div class="column-two-thirds">
-
       <h1 class="heading-large">
         Provide data for <%= @service.name %> &ndash; <%= @monthly_service_metrics.month.to_formatted_s %>
       </h1>

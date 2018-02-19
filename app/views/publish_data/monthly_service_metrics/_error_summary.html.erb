@@ -1,0 +1,14 @@
+<% if metrics.invalid? %>
+  <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+    <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
+       Please fix the following errors:
+    </h2>
+    <ul class="error-summary-list">
+      <% if metric_errors(metrics).any? %>
+        <% metric_errors(metrics).each do |field, errors| %>
+            <li><a href=<%= "#" + "metrics_" + field.to_s %>><%= field.to_s.humanize %>: <%= [*errors].join('') %></a></li>
+          <% end %>
+        <% end %>
+    </ul>
+  </div>
+<% end %>
