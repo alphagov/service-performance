@@ -50,7 +50,8 @@
         <% end %>
 
         <%= f.fieldset 'Total number of phone calls received' do %>
-          <%= f.metric :calls_received, applicable: @monthly_service_metrics.service.calls_received_applicable %>
+          <%= render partial: 'field_errors', locals: {metrics: @monthly_service_metrics, field: :calls_received } %>
+          <%= f.metric :calls_received, applicable: @monthly_service_metrics.service.calls_received_applicable, error: field_has_errors(@monthly_service_metrics, :calls_received) ? true : nil %>
         <% end %>
 
         <%= f.fieldset 'Number of phone calls received, split by reasons for calling' do %>
