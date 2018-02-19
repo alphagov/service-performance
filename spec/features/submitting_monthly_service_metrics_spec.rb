@@ -31,7 +31,7 @@ RSpec.feature 'submitting monthly service metrics' do
     end
 
     within_fieldset('Number of phone calls received, split by reasons for calling') do
-      fill_in 'To perform a transaction', with: '6,000'
+      fill_in 'To perform a transaction', with: '17,000'
       fill_in 'To get information', with: '10,000'
       fill_in 'To chase progress', with: '9,000'
       fill_in 'To challenge a decision', with: '8,000'
@@ -51,7 +51,7 @@ RSpec.feature 'submitting monthly service metrics' do
     expect(metrics.transactions_processed).to eq(13000)
     expect(metrics.transactions_processed_with_intended_outcome).to eq(12000)
     expect(metrics.calls_received).to eq(11000)
-    expect(metrics.calls_received_perform_transaction).to eq(6000)
+    expect(metrics.calls_received_perform_transaction).to eq(17000)
     expect(metrics.calls_received_get_information).to eq(10000)
     expect(metrics.calls_received_chase_progress).to eq(9000)
     expect(metrics.calls_received_challenge_decision).to eq(8000)
@@ -74,6 +74,25 @@ RSpec.feature 'submitting monthly service metrics' do
     click_button 'Submit'
 
     expect(page).to have_content("Transactions processed with intended outcome: must be less than or equal to transactions processed")
+  end
+
+  specify "submitting invalid 'Number of calls received... to perform a transaction' metrics" do
+    service = FactoryGirl.create(:service, name: 'The Submitting Data Service')
+    publish_token = MonthlyServiceMetricsPublishToken.generate(service: service, month: YearMonth.new(2017, 9))
+
+    visit publish_service_metrics_path(service_id: service, year: '2017', month: '09', publish_token: publish_token)
+
+    within_fieldset('Number of transactions received, split by channel') do
+      fill_in 'Phone', with: '2'
+    end
+
+    within_fieldset('Number of phone calls received, split by reasons for calling') do
+      fill_in 'To perform a transaction', with: '30'
+    end
+
+    click_button 'Submit'
+
+    expect(page).to have_content("Calls received perform transaction: should be the same as the number of transactions received by phone")
   end
 
   private

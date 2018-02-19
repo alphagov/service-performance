@@ -1,12 +1,18 @@
 class MonthlyServiceMetrics < ApplicationRecord
   has_paper_trail
-  validate :number_of_transactions
+  validate :number_of_transactions, :number_of_calls_received
 
   def number_of_transactions
     if !transactions_processed_with_intended_outcome.nil?
       if transactions_processed_with_intended_outcome > transactions_processed
         errors.add(:transactions_processed_with_intended_outcome, "must be less than or equal to transactions processed")
       end
+    end
+  end
+
+  def number_of_calls_received
+    if calls_received_perform_transaction != phone_transactions
+      errors.add(:calls_received_perform_transaction, "should be the same as the number of transactions received by phone")
     end
   end
 
