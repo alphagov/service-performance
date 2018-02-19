@@ -62,6 +62,20 @@ RSpec.feature 'submitting monthly service metrics' do
     expect(page).to have_text('You will next be asked to provide data on 1 November.')
   end
 
+  specify "submitting invalid 'Transactions processed with the user's intended outcome' metrics" do
+    service = FactoryGirl.create(:service, name: 'The Submitting Data Service')
+    publish_token = MonthlyServiceMetricsPublishToken.generate(service: service, month: YearMonth.new(2017, 9))
+
+    visit publish_service_metrics_path(service_id: service, year: '2017', month: '09', publish_token: publish_token)
+
+    fill_in "Transactions processed", with: "100"
+    fill_in "Transactions processed with the user's intended outcome", with: "120"
+
+    click_button 'Submit'
+
+    expect(page).to have_content("Transactions processed with intended outcome: must be less than or equal to transactions processed")
+  end
+
   private
 
   def within_fieldset(text, &block)
