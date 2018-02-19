@@ -4,6 +4,7 @@ module ViewData
       @department = Department.where(natural_key: params[:id]).first!
 
       @metrics = MetricsPresenter.new(@department, group_by: Metrics::GroupBy::Department, time_period: time_period)
+      @previous = MetricsPresenter.new(@department, group_by: Metrics::GroupBy::Department, time_period: time_period.previous_period)
 
       page.title = @department.name
 

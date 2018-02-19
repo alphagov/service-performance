@@ -4,6 +4,7 @@ module ViewData
       @service = Service.where(natural_key: params[:id]).first!
 
       @metrics = MetricsPresenter.new(@service, group_by: Metrics::GroupBy::Service, time_period: time_period)
+      @previous = MetricsPresenter.new(@service, group_by: Metrics::GroupBy::Service, time_period: time_period.previous_period)
 
       page.title = @service.name
 
