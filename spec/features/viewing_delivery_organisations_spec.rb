@@ -14,8 +14,8 @@ RSpec.feature 'viewing department detail pages', type: :feature do
 
     visit view_data_delivery_organisation_path(id: delivery_organisation.natural_key)
 
-    expect(page).to have_content('Department for Transport')
-    expect(page).to have_content('Detailed data for Highways England')
+    expect(page).to have_content('Detailed data')
+    expect(page).to have_content('Highways England')
     expect(page).to have_content('2 services')
   end
 end

@@ -7,6 +7,7 @@ en:
         paper: Paper transactions received
         face_to_face: Face to face transactions received
         other: Other transactions received
+        total: Total transactions received
       TransactionsProcessedMetric:
         total: Total transactions processed
         with_intended_outcome: Transactions ending in the user's intended outcome

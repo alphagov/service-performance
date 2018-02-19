@@ -1,5 +1,5 @@
 <main id="content" role="main" class="metrics">
-  <%= breadcrumbs %>
+
 
   <header class="grid-row">
     <div class="column-two-thirds">
@@ -22,7 +22,7 @@
   </header>
 
   <div class="grid-row">
-    <div class="column-full">
+    <div class="column-full" style="margin-top: 20px;">
 
       <%= tabs(current_page: page) do |tabs| %>
         <% tabs.link_to tab_name('Departments', count: @metrics.departments_count), url_for(request.params.merge(group_by: Metrics::GroupBy::Department)) if @metrics.has_departments? %>

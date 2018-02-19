@@ -1,6 +1,6 @@
 <main id="content" role="main">
 
-  <%= breadcrumbs %>
+  <a class="link-back" href="<%= view_data_delivery_organisation_metrics_path(@delivery_organisation) %>">Back to <%= @delivery_organisation.name %> list view</a>
 
   <div class="grid-row">
     <div class="column-two-thirds">
@@ -21,41 +21,62 @@
   </div>
 
   <div class="grid-row">
+    <div class="column-two-thirds detail-context">
+      <ul class="list list-bullet">
+        <li>
+          <%= render 'view_data/metrics/time_period_selector', time_period: @metrics.time_period %>
+        </li>
+        <li>
+          This data is aggregated from <a href="<%= view_data_delivery_organisation_metrics_path delivery_organisation_id: @delivery_organisation.natural_key,group_by: Metrics::GroupBy::Service %>"><%= pluralize(@delivery_organisation.services_count, 'service')%></a>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-    <div class="column-two-thirds department-context">
 
-      <h1 class="heading-medium">Data about this delivery organisation</h1>
-
-      <p class="lede">
-        Showing data for the year from  <%= time_tag @metrics.time_period.starts_on, @metrics.time_period.starts_on.to_formatted_s(:abbreviated_day_month_year) %> to <%= time_tag @metrics.time_period.ends_on, @metrics.time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-large">Transactions received</h1>
+      <p>
+        These numbers tell you how much the organisation was used, and which channels were used the most.
       </p>
-
-      <p class="lede">
-        Data is aggregated from <a href="<%= view_data_delivery_organisation_metrics_path delivery_organisation_id: @delivery_organisation.natural_key,group_by: Metrics::GroupBy::Service %>"><%= pluralize(@delivery_organisation.services_count, 'service')%></a></a>
+      <p>
+        <a href="">See a detailed description of how transactions received is defined.</a>
       </p>
-
     </div>
   </div>
 
   <hr/>
 
   <div class="grid-row">
-    <div class="column-full">
-      <h1 class="heading-medium">Delivery organisation data</h1>
+    <div class="column-two-thirds">
+      <h1 class="heading-large">Transactions processed</h1>
+      <p>
+        These numbers tell you how many transactions were processed by the organisation, and how well these transactions met users' needs.
+      </p>
+      <p>
+        <a href="">See a detailed description of how transactions processed is defined.</a>
+      </p>
+    </div>
+  </div>
 
-      <div class='m-metric-group'>
-        <div>
-          <div class='completeness service-context-completeness'>
-            <a href="<%= @metrics.metric_groups.last.entity.missing_data_link %>">
-                <%= @metrics.metric_groups.last.completeness %> of data provided
-            </a>
-          </div>
+  <hr/>
 
-          <div class="m-metrics">
-            <%= render @metrics.metric_groups.last.metrics, metric_group: @metrics.metric_groups.last%>
-          </div>
-        </div>
-      </div>
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-large">Phone calls received</h1>
+      <p>
+        These numbers tell you how much call centres were used, and why.
+      </p>
+      <p>
+        If the total number of calls is higher than the number of transactions, that’s an indication that effort is high compared to output.
+      </p>
+      <p>
+        If the proportion of users calling to chase progress is high, this might mean that the organisation isn’t processing transactions as quickly as they should. A high proportion of calls to get more information could indicate that information available online is incomplete or unclear.
+      </p>
+      <p>
+        <a href="">See a detailed description of how phone calls received is defined.</a>
+      </p>
     </div>
   </div>
 </main>
