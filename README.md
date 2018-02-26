@@ -16,19 +16,19 @@ git clone --recursive git@github.com:alphagov/service-performance.git
 
 You must install the version of Ruby defined in [`.ruby-version`](https://github.com/alphagov/service-performance/blob/master/.ruby-version).
 
-You can easily switch between Ruby versions with [`rbenv`](http://rbenv.org/), which you can install using [`Homebrew`](https://brew.sh/):
+You can easily switch between Ruby versions with [rbenv](http://rbenv.org/), which you can install using [`Homebrew`](https://brew.sh/):
 
 ```
 brew install rbenv
 ```
 
-For example, if you have installed `rbenv`, you can run:
+For example, if you have installed rbenv, you can run:
 
 ```
 rbenv install 2.4.2
 ```
 
-You will also need [`Bundler`](http://bundler.io/) in order to install all the application's dependencies.
+You will also need [Bundler](http://bundler.io/) in order to install all the application's dependencies.
 
 ```
 gem install bundler
@@ -36,16 +36,16 @@ gem install bundler
 
 You should note that each time you install Bundler, you will have it available for your current version of Ruby. If you ever switch Ruby versions, you will need to reinstall Bundler.
 
-Bundling the gems will fail unless `qt` is installed.
+Bundling the gems will fail unless Qt is installed.
 
-The `capybara-webkit` gem relies on `qt v5.5`. To install `qt`:
+The `capybara-webkit` gem needs Qt version 5.5. To install qt:
 
 ```
 brew install qt@5.5
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
 ```
 
-After installing Bundler and `qt`, you can install the dependencies for the application with:
+After installing Bundler and Qt, you can install the dependencies for the application with:
 
 ```
 bundle install
@@ -84,17 +84,17 @@ bin/rails spec
 
 ### Frontend test setup
 
-Make sure you have [`npm`](https://www.npmjs.com/get-npm) installed, as well as a recent version of [`node`](https://nodejs.org/en/).
+Make sure you have [npm](https://www.npmjs.com/get-npm) installed, as well as a recent version of [Node.js](https://nodejs.org/en/).
 
-You can install and manage different versions of `node` using [`nvm`](https://github.com/creationix/nvm#installation).
+You can install and manage different versions of Node.js using [nvm](https://github.com/creationix/nvm#installation).
 
-To install a version of `node` using `nvm`, you should only need to run (for example):
+To install a version of Node.js using nvm, you should only need to run a single command. For example, for version 6.11.0:
 
 ```
 nvm install 6.11.0
 ```
 
-There is [an `.nvmrc` file](https://github.com/creationix/nvm#nvmrc) in the root directory of this repository that `nvm` will recognise when you call certain commands (such as `nvm use`) without arguments.
+There is [an `.nvmrc` file](https://github.com/creationix/nvm#nvmrc) in the root directory of this repository that nvm will recognise when you call certain commands (such as `nvm use`) without arguments.
 
 To install the frontend dependencies, run:
 
@@ -106,7 +106,7 @@ npm install
 
 #### Linting
 
-[GDS](https://github.com/alphagov/styleguides/blob/master/js.md#linting) uses [`standardjs`](https://standardjs.com/):
+[GDS](https://github.com/alphagov/styleguides/blob/master/js.md#linting) uses [Standard JS](https://standardjs.com/) for linting:
 
 ```
 npm run lint
