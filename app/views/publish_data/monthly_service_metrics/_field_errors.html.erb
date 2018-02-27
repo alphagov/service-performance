@@ -1,0 +1,9 @@
+<% if field_has_errors(metrics, field) %>
+  <ul class="error-message">
+    <% metric_errors(metrics).each do |k, v| %>
+      <% v.each do |value| %>
+        <li><%= "This #{value}" if k == field %><li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

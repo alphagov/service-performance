@@ -1,5 +1,6 @@
 class MonthlyServiceMetrics < ApplicationRecord
   has_paper_trail
+  validate :number_of_transactions, :number_of_calls_received, :total_calls_received
 
   class Null
     def initialize(service, month)
@@ -23,6 +24,33 @@ class MonthlyServiceMetrics < ApplicationRecord
 
     def calls_received_metric
       @calls_received_metric ||= CallsReceivedMetric.from_metrics(self, with_samples: true)
+    end
+  end
+
+  def number_of_transactions
+    if transactions_processed_with_intended_outcome.to_i > transactions_processed.to_i
+      errors.add(:transactions_processed_with_intended_outcome, "must be less than or equal to transactions processed")
+    end
+  end
+
+  def number_of_calls_received
+    if calls_received_perform_transaction != phone_transactions
+      errors.add(:calls_received_perform_transaction, "should be the same as the 'Number of transactions received, split by channel (phone)")
+    end
+  end
+
+  def total_calls_received
+    all_calls_all_reasons = [
+      calls_received_perform_transaction,
+      calls_received_get_information,
+      calls_received_chase_progress,
+      calls_received_challenge_decision,
+      calls_received_other
+    ]
+    total_calls = all_calls_all_reasons.compact.sum
+
+    if total_calls != 0 && calls_received.to_i != total_calls
+      errors.add(:calls_received, "should be the sum of the fields within 'Number of phone calls received, split by reasons for calling'")
     end
   end
 
