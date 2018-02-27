@@ -20,8 +20,8 @@ RSpec.feature 'viewing services', type: :feature do
     expect(page).to have_content('Highways England')
 
     click_on 'Pay the Dartford Crossing charge (Dartcharge)'
-    expect(page).to have_content('Performance data about Pay the Dartford Crossing charge (Dartcharge)')
-    expect(page).to have_content('5.75m')
+    expect(page).to have_content('Pay the Dartford Crossing charge (Dartcharge)')
+    expect(page).to have_content('Change time period')
   end
 
   specify 'viewing a service with not-provided data' do
@@ -40,29 +40,6 @@ RSpec.feature 'viewing services', type: :feature do
     expect(page).to have_content('Planning Inspectorate')
 
     click_on 'National Infrastructure applications'
-    expect(page).to have_content('Not applicable')
     expect(page).to have_content("doesn't receive calls")
-  end
-
-  specify 'viewing a service with completeness info' do
-    department = FactoryGirl.create(:department, name: 'Department for Environment, Food & Rural Affairs')
-    delivery_organisation = FactoryGirl.create(:delivery_organisation, department: department, name: 'Environment Agency')
-    service = FactoryGirl.create(:service, :transactions_received_not_applicable, :calls_received_not_applicable, delivery_organisation: delivery_organisation, name: 'Flood Information Service')
-
-    month = time_period.start_month
-    6.times do
-      FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: month, transactions_processed: 100, transactions_processed_with_intended_outcome: 100)
-      month = month.succ
-    end
-
-    visit view_data_government_metrics_path(group_by: Metrics::GroupBy::Department)
-
-    click_on 'Department for Environment, Food & Rural Affairs'
-    click_on 'Environment Agency'
-    click_on 'Flood Information Service'
-
-    expect(page).to have_content('50% of data provided')
-    expect(page).to have_content('Based on incomplete data')
-    expect(page).to have_content('Data provided for 6 of 12 months')
   end
 end

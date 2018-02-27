@@ -1,6 +1,6 @@
 <main id="content" role="main">
 
-  <%= breadcrumbs %>
+  <a class="link-back" href="<%= view_data_department_metrics_path(@department) %>">Back to <%= @department.name %> list view</a>
 
   <div class="grid-row">
     <div class="column-two-thirds">
@@ -21,38 +21,26 @@
   </div>
 
   <div class="grid-row">
-    <div class="column-two-thirds department-context">
-      <h1 class="heading-medium">Data about this organisation</h1>
-      <p class="lede">
-        Showing data for the year from  <%= time_tag @metrics.time_period.starts_on, @metrics.time_period.starts_on.to_formatted_s(:abbreviated_day_month_year) %> to <%= time_tag @metrics.time_period.ends_on, @metrics.time_period.ends_on.to_formatted_s(:abbreviated_day_month_year) %>
-      </p>
-
-      <p class="lede">
-        Data is aggregated from <a href="<%= view_data_department_metrics_path department_id: @department.natural_key,group_by: Metrics::GroupBy::Service %>"><%= pluralize(@department.services_count, 'service')%></a> in <a href="<%= view_data_department_metrics_path department_id: @department.natural_key,group_by: Metrics::GroupBy::DeliveryOrganisation %>"><%= pluralize(@department.delivery_organisations_count, 'delivery organisation')%></a>
-      </p>
+    <div class="column-two-thirds detail-context">
+      <ul class="list list-bullet">
+        <li>
+          <%= render 'view_data/metrics/time_period_selector', time_period: @metrics.time_period %>
+        </li>
+        <li>
+          This data is aggregated from <a href="<%= view_data_department_metrics_path department_id: @department.natural_key,group_by: Metrics::GroupBy::Service %>"><%= pluralize(@department.services_count, 'service')%></a>
+        </li>
+      </ul>
     </div>
   </div>
+
+  <%= render partial: "view_data/transactions_received_section" %>
 
   <hr/>
 
-  <div class="grid-row">
-    <div class="column-full">
-      <h1 class="heading-medium">Department data</h1>
+  <%= render partial: "view_data/transactions_processed_section" %>
 
-      <div class='m-metric-group'>
-        <div>
-          <div class='completeness service-context-completeness'>
-            <a href="<%= @metrics.metric_groups.last.entity.missing_data_link %>">
-              <%= @metrics.metric_groups.last.completeness %> of data provided
-            </a>
+  <hr/>
 
-          </div>
+  <%= render partial: "view_data/calls_received_section" %>
 
-          <div class="m-metrics">
-            <%= render @metrics.metric_groups.last.metrics, metric_group: @metrics.metric_groups.last%>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </main>
