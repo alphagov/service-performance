@@ -2,7 +2,7 @@
   <ul class="error-message">
     <% metric_errors(metrics).each do |k, v| %>
       <% v.each do |value| %>
-        <li><%= "#{k.to_s.humanize}: #{value}" if k == field %><li>
+        <li><%= "This #{value}" if k == field %><li>
       <% end %>
     <% end %>
   </ul>

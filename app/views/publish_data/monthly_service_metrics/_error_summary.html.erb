@@ -6,7 +6,7 @@
     <ul class="error-summary-list">
       <% if metric_errors(metrics).any? %>
         <% metric_errors(metrics).each do |field, errors| %>
-            <li><a href=<%= "#" + "metrics_" + field.to_s %>><%= field.to_s.humanize %>: <%= [*errors].join('') %></a></li>
+            <li><a href=<%= "#" + "metrics_" + field.to_s %>><%= field.to_s.humanize %> <%= [*errors].join('') %></a></li>
           <% end %>
         <% end %>
     </ul>

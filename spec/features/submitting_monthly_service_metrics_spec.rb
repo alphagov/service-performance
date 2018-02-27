@@ -69,7 +69,7 @@ RSpec.feature 'submitting monthly service metrics' do
 
     click_button 'Submit'
 
-    expect(page).to have_content("Transactions processed with intended outcome: must be less than or equal to transactions processed")
+    expect(page).to have_content("Transactions processed with intended outcome must be less than or equal to transactions processed")
   end
 
   specify "submitting invalid 'Number of calls received... to perform a transaction' metrics" do
@@ -85,7 +85,7 @@ RSpec.feature 'submitting monthly service metrics' do
 
     click_button 'Submit'
 
-    expect(page).to have_content("Calls received perform transaction: should be the same as the 'Number of transactions received, split by channel (phone)")
+    expect(page).to have_content("This should be the same as the 'Number of transactions received, split by channel (phone)")
   end
 
   specify "submitting invalid 'Total number of calls received' metrics" do
@@ -105,7 +105,7 @@ RSpec.feature 'submitting monthly service metrics' do
 
     click_button 'Submit'
 
-    expect(page).to have_content("Calls received: should be the sum of the fields within 'Number of phone calls received, split by reasons for calling'")
+    expect(page).to have_content("Calls received should be the sum of the fields within 'Number of phone calls received, split by reasons for calling'")
   end
 
   specify "submitting 'Total number of calls received' metrics with blank calls received total" do
@@ -125,7 +125,7 @@ RSpec.feature 'submitting monthly service metrics' do
 
     click_button 'Submit'
 
-    expect(page).to have_content("Calls received: should be the sum of the fields within 'Number of phone calls received, split by reasons for calling'")
+    expect(page).to have_content("Calls received should be the sum of the fields within 'Number of phone calls received, split by reasons for calling'")
   end
 
   specify "submitting 'Total number of calls received' metrics with blank reasons" do
@@ -145,7 +145,7 @@ RSpec.feature 'submitting monthly service metrics' do
 
     click_button 'Submit'
 
-    expect(page).not_to have_content("Calls received: should be the sum of the fields within 'Number of phone calls received, split by reasons for calling'")
+    expect(page).not_to have_content("Calls received should be the sum of the fields within 'Number of phone calls received, split by reasons for calling'")
   end
 
   private
