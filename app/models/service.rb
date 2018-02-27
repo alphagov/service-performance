@@ -18,6 +18,10 @@ class Service < ApplicationRecord
     self.joins(:metrics).where(monthly_service_metrics: { published: true }).distinct
   end
 
+  def metric_applicable?(metric_name)
+    self.send("#{metric_name}_applicable".to_sym)
+  end
+
   def required_metrics
     %i[online_transactions_applicable
        phone_transactions_applicable

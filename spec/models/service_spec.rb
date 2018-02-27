@@ -17,6 +17,18 @@ RSpec.describe Service, type: :model do
     end
   end
 
+  it 'can determine if metrics are not applicable' do
+    service = FactoryGirl.build(:service)
+    applicable = service.metric_applicable?(:online_transactions)
+    expect(applicable).to eq(true)
+  end
+
+  it 'can determine if metrics are applicable' do
+    service = FactoryGirl.build(:service, online_transactions_applicable: false)
+    applicable = service.metric_applicable?(:online_transactions)
+    expect(applicable).to eq(false)
+  end
+
   it 'generates a publish token, when created' do
     service = FactoryGirl.build(:service)
     expect {
