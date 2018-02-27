@@ -17,5 +17,6 @@ RSpec.feature 'viewing department detail pages', type: :feature do
     expect(page).to have_content('Detailed data')
     expect(page).to have_content('Department for Transport')
     expect(page).to have_content('2 services')
+    expect(page).to have_content('Change time period')
   end
 end
