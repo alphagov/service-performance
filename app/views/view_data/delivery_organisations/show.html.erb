@@ -33,50 +33,14 @@
     </div>
   </div>
 
-
-  <div class="grid-row">
-    <div class="column-two-thirds">
-      <h1 class="heading-large">Transactions received</h1>
-      <p>
-        These numbers tell you how much the organisation was used, and which channels were used the most.
-      </p>
-      <p>
-        <a href="">See a detailed description of how transactions received is defined.</a>
-      </p>
-    </div>
-  </div>
+  <%= render partial: "view_data/transactions_received_section" %>
 
   <hr/>
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
-      <h1 class="heading-large">Transactions processed</h1>
-      <p>
-        These numbers tell you how many transactions were processed by the organisation, and how well these transactions met users' needs.
-      </p>
-      <p>
-        <a href="">See a detailed description of how transactions processed is defined.</a>
-      </p>
-    </div>
-  </div>
+  <%= render partial: "view_data/transactions_processed_section" %>
 
   <hr/>
 
-  <div class="grid-row">
-    <div class="column-two-thirds">
-      <h1 class="heading-large">Phone calls received</h1>
-      <p>
-        These numbers tell you how much call centres were used, and why.
-      </p>
-      <p>
-        If the total number of calls is higher than the number of transactions, that’s an indication that effort is high compared to output.
-      </p>
-      <p>
-        If the proportion of users calling to chase progress is high, this might mean that the organisation isn’t processing transactions as quickly as they should. A high proportion of calls to get more information could indicate that information available online is incomplete or unclear.
-      </p>
-      <p>
-        <a href="">See a detailed description of how phone calls received is defined.</a>
-      </p>
-    </div>
-  </div>
+  <%= render partial: "view_data/calls_received_section" %>
+
 </main>
