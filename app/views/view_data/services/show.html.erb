@@ -76,7 +76,7 @@
   <hr/>
 
   <div class="grid-row">
-    <div class="column-two-thirds">
+    <div class="column-full">
       <h1 class="heading-large">Transactions received</h1>
       <% if received_not_applicable?(@service) -%>
         <p>This service doesn't receive transactions</p>
@@ -87,6 +87,18 @@
         <p>
           <a href="">See a detailed description of how transactions received is defined.</a>
         </p>
+
+        <% transactions_received_applicable_list(@service).each do |metric_name, short_metric_name| %>
+          <%= render partial: "view_data/charts/metric_chart", locals: {
+                metric: metric_name,
+                time_period: @metrics.time_period,
+                current_metrics: @current_by_metrics[metric_name],
+                previous_metrics: @previous_by_metrics[metric_name],
+                total_label: trxn_rx_metric_label(short_metric_name),
+                organisation: @service.name
+          } %>
+        <% end %>
+
       <% end %>
     </div>
   </div>
@@ -94,7 +106,7 @@
   <hr/>
 
   <div class="grid-row">
-    <div class="column-two-thirds">
+    <div class="column-full">
       <h1 class="heading-large">Transactions processed</h1>
       <% if processed_not_applicable?(@service) -%>
         <p>This service doesn't process transactions</p>
@@ -105,6 +117,18 @@
         <p>
           <a href="">See a detailed description of how transactions processed is defined.</a>
         </p>
+
+        <% transactions_processed_applicable_list(@service).each do |metric_name, short_metric_name| %>
+            <%= render partial: "view_data/charts/metric_chart", locals: {
+                  metric: metric_name,
+                  time_period: @metrics.time_period,
+                  current_metrics: @current_by_metrics[metric_name],
+                  previous_metrics: @previous_by_metrics[metric_name],
+                  total_label: trxn_proc_metric_label(short_metric_name),
+                  organisation: @service.name
+            } %>
+          <% end %>
+
       <% end %>
     </div>
   </div>
@@ -112,7 +136,7 @@
   <hr/>
 
   <div class="grid-row">
-    <div class="column-two-thirds">
+    <div class="column-full">
       <h1 class="heading-large">Phone calls received</h1>
       <% if calls_not_applicable?(@service) -%>
         <p>This service doesn't receive calls</p>
@@ -129,6 +153,18 @@
         <p>
           <a href="">See a detailed description of how phone calls received is defined.</a>
         </p>
+
+        <% calls_received_applicable_list(@service).each do |metric_name, short_metric_name| %>
+        <%= render partial: "view_data/charts/metric_chart", locals: {
+              metric: metric_name,
+              time_period: @metrics.time_period,
+              current_metrics: @current_by_metrics[metric_name],
+              previous_metrics: @previous_by_metrics[metric_name],
+              total_label: calls_metric_label(short_metric_name),
+              organisation: @service.name
+        } %>
+        <% end %>
+
       <% end %>
     </div>
   </div>

@@ -50,6 +50,12 @@ class TimePeriod
     start_month..end_month
   end
 
+  def months_as_short_names
+    months.to_a.map { |m|
+      m.starts_on.to_formatted_s(:month)
+    }
+  end
+
   attr_reader :starts_on, :ends_on
 
   def start_month
@@ -58,6 +64,10 @@ class TimePeriod
 
   def end_month
     YearMonth.new(ends_on.year, ends_on.month)
+  end
+
+  def range_label
+    "#{start_month.to_formatted_s(:month_and_year)} to #{end_month.to_formatted_s(:month_and_year)}"
   end
 
   # Obtain the number of months that this date range covers.

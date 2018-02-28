@@ -35,12 +35,59 @@
 
   <%= render partial: "view_data/transactions_received_section" %>
 
+  <% [[:total_transactions,        :total],
+      [:online_transactions,       :online],
+      [:phone_transactions,        :phone],
+      [:paper_transactions,        :paper],
+      [:face_to_face_transactions, :face_to_face],
+      [:other_transactions,        :other]
+     ].each do |metric_name, short_metric_name| %>
+    <%= render partial: "view_data/charts/metric_chart", locals: {
+          metric: metric_name,
+          time_period: @metrics.time_period,
+          current_metrics: @current_by_metrics[metric_name],
+          previous_metrics: @previous_by_metrics[metric_name],
+          total_label: trxn_rx_metric_label(short_metric_name),
+          organisation: @department.name
+    } %>
+  <% end %>
+
   <hr/>
 
   <%= render partial: "view_data/transactions_processed_section" %>
 
+  <% [[:transactions_processed,     :total],
+      [:transactions_processed_with_intended_outcome, :with_intended_outcome]
+     ].each do |metric_name, short_metric_name| %>
+    <%= render partial: "view_data/charts/metric_chart", locals: {
+          metric: metric_name,
+          time_period: @metrics.time_period,
+          current_metrics: @current_by_metrics[metric_name],
+          previous_metrics: @previous_by_metrics[metric_name],
+          total_label: trxn_proc_metric_label(short_metric_name),
+          organisation: @department.name
+    } %>
+  <% end %>
+
   <hr/>
 
   <%= render partial: "view_data/calls_received_section" %>
+
+  <% [[:calls_received,                     :total],
+      [:calls_received_perform_transaction, :perform_transaction],
+      [:calls_received_get_information,     :get_information],
+      [:calls_received_chase_progress,      :chase_progress],
+      [:calls_received_challenge_decision,  :challenge_a_decision],
+      [:calls_received_other,               :other],
+     ].each do |metric_name, short_metric_name| %>
+    <%= render partial: "view_data/charts/metric_chart", locals: {
+          metric: metric_name,
+          time_period: @metrics.time_period,
+          current_metrics: @current_by_metrics[metric_name],
+          previous_metrics: @previous_by_metrics[metric_name],
+          total_label: calls_metric_label(short_metric_name),
+          organisation: @department.name
+    } %>
+  <% end %>
 
 </main>
