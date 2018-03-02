@@ -4,12 +4,12 @@ module ViewData
       @delivery_organisation = DeliveryOrganisation.where(natural_key: params[:id]).first!
 
       @metrics = MetricsPresenter.new(@delivery_organisation, group_by: Metrics::GroupBy::DeliveryOrganisation, time_period: time_period)
+      @previous = MetricsPresenter.new(@delivery_organisation, group_by: Metrics::GroupBy::DeliveryOrganisation, time_period: time_period.previous_period)
+
+      @current_by_metrics = @metrics.metric_groups.last.sorted_metrics_by_month
+      @previous_by_metrics = @previous.metric_groups.last.sorted_metrics_by_month
 
       page.title = @delivery_organisation.name
-
-      page.breadcrumbs << Page::Crumb.new('UK Government', view_data_government_metrics_path)
-      page.breadcrumbs << Page::Crumb.new(@delivery_organisation.department.name, view_data_department_path(id: @delivery_organisation.department))
-      page.breadcrumbs << Page::Crumb.new(@delivery_organisation.name)
 
       respond_to do |format|
         format.html

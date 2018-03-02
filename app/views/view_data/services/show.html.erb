@@ -12,8 +12,6 @@
       <dl class="metadata">
         <dt>Data provider:</dt>
         <dd><%= @service.department.name %></dd>
-        <dt>Collection method:</dt>
-        <dd>Manual upload via spreadsheet</dd>
         <dt>Last updated:</dt>
         <dd>
           <!-- TODO: This should be the most recent metric date -->
@@ -51,50 +49,88 @@
       <h2 class="heading-medium">Users</h2>
       <%= render_markdown(@service.typical_users) %>
 
-         </div>
-
-    <div class="column-one-third">
       <h2 class="heading-medium">Visit the service</h2>
-      <p>See how it appears to users:</p>
-        <ul class="list">
-          <% if @service.start_page_url.present? %>
-            <li><%= link_to 'Start page', @service.start_page_url %></li>
-          <% end %>
+      <ul class="list" style="list-style: none;">
+        <% if @service.start_page_url.present? %>
+          <li><%= link_to 'Start page', @service.start_page_url %></li>
+        <% end %>
 
-          <% if @service.paper_form_url.present? %>
-            <li><%= link_to 'Paper form', @service.paper_form_url %></li>
-            <!-- <li>This service is delivered by <%= link_to %></li> -->
-          <% end %>
-        </ul>
-    </div>
+        <% if @service.paper_form_url.present? %>
+          <li><%= link_to 'Paper form', @service.paper_form_url %></li>
+        <% end %>
+      </ul>
+
+   </div>
   </div>
 
   <div class="grid-row">
-    <div class="column-full">
-      <h1 class="heading-large">
-        Data about the service
-      </h1>
+    <div class="column-two-thirds">
+      <h1 class="heading-large">Data about the service</h1>
       <ul class="list list-bullet">
         <li><%= render 'view_data/metrics/time_period_selector', time_period: @metrics.time_period %></li>
+        <li>This service is delivered by <a href=""><%= @service.delivery_organisation.name %></a></li>
       </ul>
-
-      <div class='m-metric-group'>
-        <div>
-          <div class='completeness service-context-completeness'>
-            <%= @metrics.metric_groups.last.completeness %> of data provided
-          </div>
-
-          <div class="m-metrics">
-            <div class="column-one-half" style="padding:0;">
-              <%= render @metrics.metric_groups.last.metrics[0], metric_group: @metrics.metric_groups.last %>
-              <%= render @metrics.metric_groups.last.metrics[2], metric_group: @metrics.metric_groups.last %>
-            </div>
-            <div class="column-one-half" style="padding:0;">
-              <%= render @metrics.metric_groups.last.metrics[1], metric_group: @metrics.metric_groups.last %>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
+
+  <hr/>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-large">Transactions received</h1>
+      <% if received_not_applicable?(@service) -%>
+        <p>This service doesn't receive transactions</p>
+      <% else -%>
+        <p>
+          These numbers tell you how much the organisation was used, and which channels were used the most.
+        </p>
+        <p>
+          <a href="">See a detailed description of how transactions received is defined.</a>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-large">Transactions processed</h1>
+      <% if processed_not_applicable?(@service) -%>
+        <p>This service doesn't process transactions</p>
+      <% else -%>
+        <p>
+          These numbers tell you how many transactions were processed by the organisation, and how well these transactions met users' needs.
+        </p>
+        <p>
+          <a href="">See a detailed description of how transactions processed is defined.</a>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h1 class="heading-large">Phone calls received</h1>
+      <% if calls_not_applicable?(@service) -%>
+        <p>This service doesn't receive calls</p>
+      <% else -%>
+        <p>
+          These numbers tell you how much call centres were used, and why.
+        </p>
+        <p>
+          If the total number of calls is higher than the number of transactions, that’s an indication that effort is high compared to output.
+        </p>
+        <p>
+          If the proportion of users calling to chase progress is high, this might mean that the organisation isn’t processing transactions as quickly as they should. A high proportion of calls to get more information could indicate that information available online is incomplete or unclear.
+        </p>
+        <p>
+          <a href="">See a detailed description of how phone calls received is defined.</a>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
 </main>

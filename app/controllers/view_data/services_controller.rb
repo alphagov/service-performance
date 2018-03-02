@@ -4,9 +4,9 @@ module ViewData
       @service = Service.where(natural_key: params[:id]).first!
 
       @metrics = MetricsPresenter.new(@service, group_by: Metrics::GroupBy::Service, time_period: time_period)
+      @previous = MetricsPresenter.new(@service, group_by: Metrics::GroupBy::Service, time_period: time_period.previous_period)
 
       page.title = @service.name
-
       page.breadcrumbs << Page::Crumb.new('UK Government', view_data_government_metrics_path)
       page.breadcrumbs << Page::Crumb.new(@service.department.name, view_data_department_metrics_path(department_id: @service.department))
 

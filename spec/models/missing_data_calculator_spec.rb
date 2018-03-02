@@ -21,6 +21,8 @@ RSpec.describe MissingDataCalculator, type: :model do
           service: service,
           published: true,
           phone_transactions: 100,
+          calls_received_perform_transaction: 100,
+          calls_received: 100,
           month: YearMonth.new(2018, 2))
       metrics.save
 
@@ -56,6 +58,8 @@ RSpec.describe MissingDataCalculator, type: :model do
             service: service,
             published: true,
             phone_transactions: 100,
+            calls_received_perform_transaction: 100,
+            calls_received: 100,
             month: YearMonth.new(2018, 2))
       metrics.save
 
