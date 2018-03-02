@@ -8,7 +8,7 @@ Rails.application.config.assets.precompile = [
   'product-image.png',
   'icon-plus@2x.png',
   'icon-minus@2x.png',
-  'homepage-preview.png',
+  'homepage-preview.svg',
   'sp-homepage-logo-1.png',
   'sp-homepage-logo-2.png',
   'sp-homepage-logo-3.png',
