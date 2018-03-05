@@ -2,15 +2,19 @@ a.hero-button {
   margin-top: $gutter;
 }
 
-.homepage-image {
+.img-responsive-shorter {
+  display: block;
+  max-width: 100%;
   height: 6em;
   margin-right: 16px;
   margin-top: 16px;
+  vertical-align:bottom;
 }
 
-.shorter-homepage-image {
+.img-responsive {
+  display: block;
+  max-width: 100%;
   height: 5.75em;
   margin-right: 16px;
   margin-top: 16px;
-  vertical-align:bottom;
 }
