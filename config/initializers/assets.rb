@@ -13,7 +13,6 @@ Rails.application.config.assets.precompile = [
   'sp-homepage-logo-2.png',
   'sp-homepage-logo-3.png',
   'sp-homepage-logo-4.png',
-  'department-logos.png',
   'govuk_template/source/assets/stylesheets/fonts',
   'govuk_template/source/assets/javascripts/vendor/html5shiv-printshiv.js',
   'govuk_template/source/assets/images/gov.uk_logotype_crown_invert_trans.png',
