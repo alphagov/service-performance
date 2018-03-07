@@ -2,8 +2,8 @@
   <div class="hero hero--breaded">
     <div class="hero__content">
       <div class="hero__body">
-        <h1 class="hero__title">View data from government services</h1>
-        <%= link_to 'View data', view_data_government_metrics_path(group_by: 'department'), class: 'hero-button', role: 'button' %>
+        <h1 class="hero__title">Get performance data from government services</h1>
+        <%= link_to 'Start now', view_data_government_metrics_path(group_by: 'department'), class: 'hero-button', role: 'button' %>
       </div>
       <div class="hero__aside-image">
         <%= image_tag 'product-image.png', alt: 'Service Performance', role: 'presentation' %>
@@ -14,45 +14,40 @@
 
 <main id="content" role="main" class="container">
   <div class="grid-row">
-    <div class="column-two-thirds">
-
-      <h2 class="heading-large" id="1">Civil servants haven’t had access to trusted data about service transactions</h2>
-
-      <p>This makes it difficult to:</p>
-      <ul class="list list-bullet">
-        <li>make sense of data quickly</li>
-        <li>group data to spot patterns</li>
-        <li>see trends over time</li>
-        <li>know where to go for best practice</li>
-        <li>decide where to intervene next</li>
-        <li>show the benefits of service transformation</li>
+    <div class="column-one-half">
+      <h2 class="heading-medium" id="1">Service Performance publishes KPIs from multi-channel services</h2>
+      <p>Use it to understand</p>
+      <ul class="list list-bullet indented-list">
+        <li>demand for services and channels</li>
+        <li>quality of outcomes for users</li>
       </ul>
-
-      <hr class="m_0">
-
-      <h2 class="heading-large" id="2">Service Performance can help</h2>
-
-      <p>Service Performance provides:</p>
-      <ul class="list list-bullet">
-        <li>data from services across government, all in one place</li>
-        <li>access to new KPIs focused on service demand and performance</li>
-        <li>validation and standardisation of data before publication</li>
-      </ul>
-
-      <hr class="m_0">
-
-      <h2 class="heading-large" id="3">The data</h2>
-
-      <p>Service Performance gives you access to monthly data from services, based around the following KPIs:</p>
-      <ul class="list list-bullet">
-        <li>number of transactions received, split by channel</li>
-        <li>number of transactions processed</li>
-        <li>number of transactions ending in the user’s intended outcome</li>
-        <li>number of calls received, split by reasons for calling</li>
-      </ul>
-    </div> <!-- End Two Thirds -->
-
+    </div>
+    <div class="column-one-half">
+      <%= image_tag 'homepage-preview.svg', alt: 'Service Performance', role: 'presentation', width: '100%', height: '100%', class: 'preview-image' %>
+    </div>
   </div> <!-- End row -->
 
+  <hr />
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      <h3 class="heading-medium" id="2">Service Performance is already publishing KPIs<br/>
+        from <%= @service_count %> services, operated by <%= @department_count %> departments</h3>
+    </div>
+  </div>
+  <div class="grid-row">
+    <div class="column-one-quarter">
+      <%= image_tag 'sp-homepage-logo-1.png', alt: 'BEIS', role: 'presentation', class: 'img-responsive' %>
+    </div>
+    <div class="column-one-quarter">
+      <%= image_tag 'sp-homepage-logo-2.png', alt: 'Defra', role: 'presentation', class: 'img-responsive' %>
+    </div>
+    <div class="column-one-quarter">
+      <%= image_tag 'sp-homepage-logo-3.png', alt: 'DfE', role: 'presentation', class: 'img-responsive-shorter' %>
+    </div>
+    <div class="column-one-quarter">
+      <%= image_tag 'sp-homepage-logo-4.png', alt: 'MoJ', role: 'presentation', class: 'img-responsive-shorter' %>
+    </div>
+  </div> <!-- End row -->
 
 </main>
