@@ -37,6 +37,7 @@ Rails.application.routes.draw do
           defaults: { group_by: Metrics::GroupBy::Department },
           as: :government_metrics
         get 'missing', to: 'view_data/government#missing'
+        get '', to: 'view_data/government#show'
       end
 
       resources :departments, only: [] do
