@@ -1,0 +1,20 @@
+<div class="grid-row top-space">
+  <div class="column-one-third">
+    <div class="data">
+      <span class="data-item bold-xxlarge"><%= metric_to_human(current_metrics.sum) %></span>
+      <span class="data-item bold-xsmall"><%= total_label %></span>
+    </div>
+  </div>
+
+  <div class="column-two-thirds">
+    <%= render 'view_data/charts/chart',
+          id: metric.to_s,
+          current_range_label: time_period.range_label,
+          previous_range_label: time_period.previous_period.range_label,
+          months: time_period.months_as_short_names,
+          current_data: current_metrics,
+          previous_data: previous_metrics,
+          max_value: (current_metrics + previous_metrics).max,
+          label: "#{total_label} by #{organisation}, #{time_period.range_label}" %>
+  </div>
+</div>

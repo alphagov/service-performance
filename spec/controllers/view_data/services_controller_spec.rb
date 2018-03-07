@@ -2,20 +2,30 @@ require 'rails_helper'
 
 RSpec.describe ViewData::ServicesController, type: :controller do
   describe 'GET show' do
-    let(:department) { instance_double(Department, natural_key: '001', name: 'Department of Services', to_param: '001') }
-    let(:delivery_organisation) { instance_double(DeliveryOrganisation, natural_key: '003', name: 'Delivery Organisation of Services', to_param: '003') }
-    let(:service) { instance_double(Service, name: 'The Greatest Service in the World', department: department, delivery_organisation: delivery_organisation, to_param: '2') }
-
+    let(:time_period) {
+      instance_double(TimePeriodSettings, range: '12', start_date_month: "", start_date_year: "", end_date_month: "", end_date_year: "", next: "")
+    }
+    let(:department) { FactoryGirl.create(:department, name: 'Department for Environment, Food & Rural Affairs', natural_key: '001') }
+    let(:delivery_organisation) { FactoryGirl.create(:delivery_organisation, department: department, name: 'Environment Agency', natural_key: '003') }
+    let(:service) { FactoryGirl.create(:service, :transactions_received_not_applicable, :calls_received_not_applicable, delivery_organisation: delivery_organisation, name: 'Flood Information Service', natural_key: '2') }
+    let(:create_metrics) {
+      month = YearMonth.new(2016, 1)
+      6.times do
+        FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: month, transactions_processed: 100, transactions_processed_with_intended_outcome: 100)
+        month = month.succ
+      end
+    }
     let(:page) { controller.send(:page) }
 
     before do
-      allow(Service).to receive_message_chain(:where, :first!) { service }
+      allow(time_period).to receive(:valid?)
+      create_metrics
     end
 
     it 'sets the page title to the service page' do
       get :show, params: { id: '2' }
 
-      expect(page.title).to match(/\AThe Greatest Service in the World/)
+      expect(page.title).to match(/\AFlood Information Service/)
     end
 
     it 'sets the breadcrumbs' do
@@ -23,21 +33,9 @@ RSpec.describe ViewData::ServicesController, type: :controller do
 
       expect(page.breadcrumbs.map { |crumb| [crumb.name, crumb.url] }).to eq([
         ['UK Government', view_data_government_metrics_path],
-        ['Department of Services', view_data_department_metrics_path(department_id: '001')],
-        ['Delivery Organisation of Services', view_data_delivery_organisation_metrics_path(delivery_organisation_id: '003')],
-        ['The Greatest Service in the World', nil],
-      ])
-    end
-
-    it 'sets the breadcrumbs without a delivery organisation' do
-      allow(service).to receive(:delivery_organisation) { nil }
-
-      get :show, params: { id: '2' }
-
-      expect(page.breadcrumbs.map { |crumb| [crumb.name, crumb.url] }).to eq([
-        ['UK Government', view_data_government_metrics_path],
-        ['Department of Services', view_data_department_metrics_path(department_id: '001')],
-        ['The Greatest Service in the World', nil],
+        ['Department for Environment, Food & Rural Affairs', view_data_department_metrics_path(department_id: '001')],
+        ['Environment Agency', view_data_delivery_organisation_metrics_path(delivery_organisation_id: '003')],
+        ['Flood Information Service', nil],
       ])
     end
   end

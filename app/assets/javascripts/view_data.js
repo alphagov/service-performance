@@ -5,6 +5,8 @@
 // = require d3
 // = require c3
 
+/*global d3*/
+
 ;(function (global) {
   /* Both of these are in the `search.js` file */
 
@@ -57,7 +59,8 @@
         y: {
           min: 0,
           max: maxValue,
-          padding: { top: 0, bottom: 0 }
+          padding: { top: 0, bottom: 0 },
+          tick: { format: function (x) { return d3.format(',.0f')(x) } }
         }
       }
 
@@ -70,10 +73,17 @@
         bindto: '#' + $(obj).attr('id'),
         data: {
           columns: [
-            currentData,
-            previousData
+            previousData,
+            currentData
           ],
           regions: cRegions
+        },
+        tooltip: {
+          format: {
+              value: function(value) {
+                  return d3.format(',.0f')(value) + '&nbsp;&nbsp;&nbsp;'
+              }
+          }
         },
         axis: setAxisTransactions, size: cSize, color: cColour, transition: cTransition, padding: cPadding, point: cPoint
       });
