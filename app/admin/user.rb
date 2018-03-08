@@ -1,9 +1,10 @@
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation
+  permit_params :first_name, :last_name, :email, :password, :password_confirmation
 
   index do
     selectable_column
     id_column
+    column("Name", &:full_name)
     column :email
     column :current_sign_in_at
     column :sign_in_count
@@ -13,6 +14,7 @@ ActiveAdmin.register User do
 
   show do
     attributes_table do
+      row("Name", &:full_name)
       row :email
       row :current_sign_in_at
       row :sign_in_count
@@ -37,6 +39,8 @@ ActiveAdmin.register User do
     passwd = Devise.friendly_token.first(32)
 
     f.inputs do
+      f.input :first_name
+      f.input :last_name
       f.input :email
       f.input :password, input_html: { value: f.object.password ||= passwd }
       f.input :password_confirmation, input_html: { value: f.object.password_confirmation ||= passwd }
