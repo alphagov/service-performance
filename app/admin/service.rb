@@ -21,9 +21,7 @@ ActiveAdmin.register Service do
     attributes_table do
       row :name
       row :delivery_organisation
-      row "Owner" do |service|
-        service.owner.email if service.owner
-      end
+      row("Owner", &:owner)
       row :natural_key
       row :created_at
       row :updated_at

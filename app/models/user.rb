@@ -11,6 +11,6 @@ class User < ApplicationRecord
   end
 
   def to_s
-    email
+    "#{full_name} <#{email}>"
   end
 end
