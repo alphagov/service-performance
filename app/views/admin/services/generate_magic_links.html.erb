@@ -17,7 +17,7 @@
     <tr>
       <td><%= date.year %></td>
       <td><%= date.strftime("%B") %></td>
-      <td><%= service.owner.email if service.owner %></td>
+      <td><%= "#{service.owner.full_name } <#{service.owner.email}>" if service.owner %></td>
       <td>
         <%= publish_service_metrics_url(
                                   service_id: service.id,

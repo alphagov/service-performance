@@ -6,7 +6,11 @@ class User < ApplicationRecord
 
   has_many :services, foreign_key: :owner_id
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def to_s
-    email
+    "#{full_name} <#{email}>"
   end
 end

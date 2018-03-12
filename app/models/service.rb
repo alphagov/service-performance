@@ -48,4 +48,8 @@ class Service < ApplicationRecord
   def missing_data_link
     Rails.application.routes.url_helpers.view_data_service_url(self, only_path: true)
   end
+
+  def to_s
+    name
+  end
 end
