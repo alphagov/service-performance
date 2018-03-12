@@ -10,7 +10,7 @@
 
         <% item.display_guidance = !@metrics.preview? %>
         <span class="metric-name bold">
-          Calls received
+          <%= link_to "Calls received", current_group(metric_group.entity.class, metric_group, "calls_received") %>
         </span>
 
         <span class="metric-sparkline">
@@ -39,7 +39,7 @@
         <strong><%= metric_to_human(calls_received_metric.perform_transaction) %></strong> calls received to perform a transaction (<%= metric_to_percentage(calls_received_metric.perform_transaction_percentage) %>)
       <% end %>
 
-      <span class="metric-name">To perform a transaction</span>
+      <span class="metric-name"><%= link_to "To perform a transaction", current_group(metric_group.entity.class, metric_group, "calls_received_perform_transaction") %></span>
       <span class="metric-sparkline">
         <%=
           draw_sparkline(metric_group.sorted_metrics_by_month[:calls_received_perform_transaction])
@@ -59,7 +59,7 @@
         <strong><%= metric_to_human(calls_received_metric.get_information) %></strong> calls received to get information (<%= metric_to_percentage(calls_received_metric.get_information_percentage) %>)
       <% end %>
 
-      <span class="metric-name">To get information</span>
+      <span class="metric-name"><%= link_to "To get information", current_group(metric_group.entity.class, metric_group, "calls_received_get_information") %></span>
       <span class="metric-sparkline">
         <%=
           draw_sparkline(metric_group.sorted_metrics_by_month[:calls_received_get_information])
@@ -79,7 +79,7 @@
         <strong><%= metric_to_human(calls_received_metric.chase_progress) %></strong> calls received to chase progress (<%= metric_to_percentage(calls_received_metric.chase_progress_percentage) %>)
       <% end %>
 
-      <span class="metric-name">To chase progress</span>
+      <span class="metric-name"><%= link_to "To chase progress", current_group(metric_group.entity.class, metric_group, "calls_received_chase_progress") %></span>
       <span class="metric-sparkline">
         <%=
           draw_sparkline(metric_group.sorted_metrics_by_month[:calls_received_chase_progress])
@@ -99,7 +99,7 @@
         <strong><%= metric_to_human(calls_received_metric.challenge_a_decision) %></strong> calls received to challenge a decision (<%= metric_to_percentage(calls_received_metric.challenge_a_decision_percentage) %>)
       <% end %>
 
-      <span class="metric-name">To challenge a decision</span>
+      <span class="metric-name"><%= link_to "To challenge a decision", current_group(metric_group.entity.class, metric_group, "calls_received_challenge_decision") %></span>
       <span class="metric-sparkline">
         <%=
           draw_sparkline(metric_group.sorted_metrics_by_month[:calls_received_challenge_decision])
@@ -121,9 +121,9 @@
 
       <span class="metric-name"><%=
         if metric_group.service && !metric_group.service.calls_other_name.blank?
-          metric_group.service.calls_other_name.capitalize
+          link_to metric_group.service.calls_other_name.capitalize, current_group(metric_group.entity.class, metric_group, "calls_received_other")
         else
-          "Other"
+          link_to "Other", current_group(metric_group.entity.class, metric_group, "calls_received_other")
         end %>
       </span>
       <span class="metric-sparkline">

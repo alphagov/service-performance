@@ -8,7 +8,7 @@
       <span class="total">
         <% item.display_guidance = !@metrics.preview? %>
         <span class="metric-name bold">
-          Transactions received
+          <%= link_to "Transactions received", current_group(metric_group.entity.class, metric_group, "transactions_received") %>
         </span>
 
         <span class="metric-sparkline">
@@ -31,7 +31,7 @@
       <% item.description do %>
         <strong><%= metric_to_human(transactions_received_metric.online) %></strong> online transactions (<%= metric_to_percentage(transactions_received_metric.online_percentage) %>)
       <% end %>
-      <span class="metric-name">Online</span>
+      <span class="metric-name"><%= link_to "Online", current_group(metric_group.entity.class, metric_group, "online_transactions") %></span>
       <span class="metric-sparkline">
         <%=
           draw_sparkline(metric_group.sorted_metrics_by_month[:online_transactions])
@@ -52,7 +52,8 @@
         <strong><%= metric_to_human(transactions_received_metric.phone) %></strong> phone transactions (<%= metric_to_percentage(transactions_received_metric.phone_percentage) %>)
       <% end %>
 
-      <span class="metric-name">Phone</span>
+      <span class="metric-name"><%= link_to "Phone", current_group(metric_group.entity.class, metric_group, "calls_received") %>
+</span>
       <span class="metric-sparkline">
         <%=
           draw_sparkline(metric_group.sorted_metrics_by_month[:phone_transactions])
@@ -73,7 +74,8 @@
         <strong><%= metric_to_human(transactions_received_metric.paper) %></strong> paper transactions (<%= metric_to_percentage(transactions_received_metric.paper_percentage) %>)
       <% end %>
 
-      <span class="metric-name">Paper</span>
+      <span class="metric-name"><%= link_to "Paper", current_group(metric_group.entity.class, metric_group, "paper_transactions") %>
+</span>
       <span class="metric-sparkline">
         <%=
           draw_sparkline(metric_group.sorted_metrics_by_month[:paper_transactions])
@@ -93,7 +95,8 @@
         <strong><%= metric_to_human(transactions_received_metric.face_to_face) %></strong> face to face transactions (<%= metric_to_percentage(transactions_received_metric.face_to_face_percentage) %>)
       <% end %>
 
-      <span class="metric-name">Face to Face</span>
+      <span class="metric-name"><%= link_to "Face to Face", current_group(metric_group.entity.class, metric_group, "face_to_face_transactions") %>
+</span>
       <span class="metric-sparkline">
         <%=
           draw_sparkline(metric_group.sorted_metrics_by_month[:face_to_face_transactions])
@@ -113,12 +116,13 @@
         <strong><%= metric_to_human(transactions_received_metric.other) %></strong> other transactions (<%= metric_to_percentage(transactions_received_metric.other_percentage) %>)
       <% end %>
 
-      <span class="metric-name"><%=
-        if metric_group.service && !metric_group.service.other_name.blank?
-          metric_group.service.other_name.capitalize
-        else
-          "Other"
-        end
+      <span class="metric-name">
+        <%=
+          if metric_group.service && !metric_group.service.other_name.blank?
+            link_to metric_group.service.other_name.capitalize, current_group(metric_group.entity.class, metric_group, "other_transactions")
+          else
+            link_to "Other", current_group(metric_group.entity.class, metric_group, "other_transactions")
+          end
         %>
       </span>
       <span class="metric-sparkline">
