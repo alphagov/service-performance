@@ -20,10 +20,4 @@ cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
 cf install-plugin -f blue-green-deploy -r CF-Community
 
 cf blue-green-deploy service-performance-$PAAS_SPACE
-
-# Map the old routes for now....
-cf map-route service-performance-staging  cloudapps.digital  --hostname gsd-api
-cf map-route service-performance-staging  cloudapps.digital  --hostname gsd-view-data
-cf map-route service-performance-staging  cloudapps.digital  --hostname gsd-publish-data
-
 cf delete -f service-performance-$PAAS_SPACE-old
