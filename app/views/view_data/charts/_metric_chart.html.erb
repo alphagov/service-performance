@@ -3,6 +3,10 @@
     <div class="data">
       <span class="data-item bold-xxlarge"><%= metric_to_human(current_metrics.sum) %></span>
       <span class="data-item bold-xsmall"><%= total_label %></span>
+      <br>
+      <ul class="changes-summary">
+        <li class="increase"> <%= calculate_transaction_difference(current_metrics, previous_metrics, total_label)%></li>
+      </ul>
     </div>
   </div>
 
