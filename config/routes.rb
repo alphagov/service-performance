@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   ActiveAdmin.routes(self)
-
   get "/demo", to: "demo#index"
 
   namespace :publish, path: 'publish', module: nil do

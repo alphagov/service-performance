@@ -10,6 +10,7 @@
       <th>Year</th>
       <th>Owner</th>
       <th>Link</th>
+      <th>Email</th>
     </tr>
   </thead>
   <tbody>
@@ -24,6 +25,24 @@
                                   year: date.year,
                                   month: date.month.to_s.rjust(2, '0'),
                                   publish_token: token)%>
+      </td>
+      <td>
+        <% if service.owner %>
+          <%
+            url = publish_service_metrics_url(
+                                  service_id: service.id,
+                                  year: date.year,
+                                  month: date.month.to_s.rjust(2, '0'),
+                                  publish_token: token)
+            email = url_encode(service.owner.email)
+            subject = url_encode("Service Performance data submission")
+            content = url_encode(render(partial: 'admin/services/publish_email', locals: {service: service, date: date, url: url}))
+            link = "mailto:#{email}?subject=#{subject}&body=#{content}"
+          %>
+          <%= link_to("Send email", link) %>
+        <% else %>
+          No owner
+        <% end %>
       </td>
     </tr>
     <% end %>

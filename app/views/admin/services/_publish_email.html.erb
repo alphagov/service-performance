@@ -1,0 +1,20 @@
+<% next_month = date.advance(months: 1) %>
+<% publish_by = find_middle_day(next_month.change(day: 14), day: "Friday") %>
+<% published_on = next_month.end_of_month + 1.day %>
+
+<% if service.owner %>
+Dear <%= service.owner.first_name %>
+<% end %>
+
+This is a reminder to provide performance data about <%= service.name %> for the period 1 to <%= date.end_of_month.day%> <%= date.to_formatted_s(:month_and_year) %>.
+
+​You can enter your data here: <%= url %>
+
+Please provide your data by <%= publish_by.to_formatted_s(:long_day_month_year) %>. It will be published on your service page on <%= published_on.to_formatted_s(:long_day_month_year) %>.
+
+If the data isn’t provided by then, your service page will be published with missing data.
+
+If you have any queries about this request ​please raise a Zendesk ticket ​by emailing publish-data@digital.cabinet-office.gov.uk
+
+​Regards,
+Service Performance team
