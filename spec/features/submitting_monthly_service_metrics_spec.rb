@@ -148,6 +148,46 @@ RSpec.feature 'submitting monthly service metrics' do
     expect(page).not_to have_content("Calls received should be the sum of the fields within 'Number of phone calls received, split by reasons for calling'")
   end
 
+  specify "Titles are not shown for non-applicable calls" do
+    svc = FactoryGirl.create(:service, name: 'No calls service', calls_received_applicable: false)
+    token = MonthlyServiceMetricsPublishToken.generate(service: svc, month: YearMonth.new(2017, 9))
+
+    visit publish_service_metrics_path(service_id: svc, year: '2017', month: '09', publish_token: token)
+    expect(page).not_to have_content('Total number of phone calls received')
+    expect(page).to have_content('Number of phone calls received, split by reasons for calling')
+  end
+
+  specify "Titles are not shown for other when no-call-other" do
+    svc = FactoryGirl.create(:service,
+      name: 'No calls service',
+      calls_received_perform_transaction_applicable: false,
+      calls_received_get_information_applicable: false,
+      calls_received_chase_progress_applicable: false,
+      calls_received_challenge_decision_applicable: false,
+      calls_received_other_applicable: false)
+    token = MonthlyServiceMetricsPublishToken.generate(service: svc, month: YearMonth.new(2017, 9))
+
+    visit publish_service_metrics_path(service_id: svc, year: '2017', month: '09', publish_token: token)
+    expect(page).to have_content('Total number of phone calls received')
+    expect(page).not_to have_content('Number of phone calls received, split by reasons for calling')
+  end
+
+  specify "No call labels when no calls are applicable" do
+    svc = FactoryGirl.create(:service,
+      name: 'No calls service',
+      calls_received_applicable: false,
+      calls_received_perform_transaction_applicable: false,
+      calls_received_get_information_applicable: false,
+      calls_received_chase_progress_applicable: false,
+      calls_received_challenge_decision_applicable: false,
+      calls_received_other_applicable: false)
+    token = MonthlyServiceMetricsPublishToken.generate(service: svc, month: YearMonth.new(2017, 9))
+
+    visit publish_service_metrics_path(service_id: svc, year: '2017', month: '09', publish_token: token)
+    expect(page).not_to have_content('Total number of phone calls received')
+    expect(page).not_to have_content('Number of phone calls received, split by reasons for calling')
+  end
+
   private
 
   def visit_metrics_path

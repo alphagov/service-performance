@@ -8,7 +8,7 @@
       <span class="total">
         <% item.display_guidance = !@metrics.preview? %>
         <span class="metric-name bold">
-          Transactions processed
+          <%= link_to "Transactions processed", current_group(metric_group.entity.class, metric_group, "transactions_processed") %>
         </span>
 
         <span class="metric-sparkline">
@@ -31,8 +31,8 @@
       <% item.description do %>
         <strong><%= metric_to_human(transactions_processed_metric.with_intended_outcome) %></strong> transactions with intended outcome (<%= metric_to_percentage(transactions_processed_metric.with_intended_outcome_percentage) %>)
       <% end %>
-
-      <span class="metric-name">Ending in the user&apos;s intended outcome</span>
+      <span class="metric-name"><%= link_to "Ending in the user's intended outcome", current_group(metric_group.entity.class, metric_group, "transactions_processed_with_intended_outcome") %>
+</span>
       <span class="metric-sparkline">
         <%=
           draw_sparkline(metric_group.sorted_metrics_by_month[:transactions_processed_with_intended_outcome])
