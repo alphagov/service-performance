@@ -1,5 +1,13 @@
 module FormHelper
   class MonthlyServiceMetricsFormBuilder < ActionView::Helpers::FormBuilder
+    def any_call_fields(service)
+      [service.calls_received_perform_transaction_applicable,
+       service.calls_received_get_information_applicable,
+       service.calls_received_chase_progress_applicable,
+       service.calls_received_challenge_decision_applicable,
+       service.calls_received_other_applicable].any?
+    end
+
     def fieldset(heading, &block)
       heading = @template.content_tag(:h2, heading, class: 'bold-medium')
       fields = @template.capture(&block)
