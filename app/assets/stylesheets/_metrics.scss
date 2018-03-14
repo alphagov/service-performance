@@ -73,6 +73,8 @@ main {
 
   .metric-name {
     display: inline-block;
+
+    a:visited { color: #005ea5; }
   }
 
   .metric-name, .metric-value {
