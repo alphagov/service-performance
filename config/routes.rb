@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  get "/demo", to: "demo#index"
-
   namespace :publish, path: 'publish', module: nil do
     get "/service-manual", to: "publish_data/pages#service_manual"
 
