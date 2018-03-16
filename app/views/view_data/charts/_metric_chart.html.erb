@@ -5,7 +5,7 @@
       <span class="data-item bold-xsmall"><%= total_label %></span>
       <br>
       <ul class="changes-summary">
-        <li class="increase"> <%= calculate_transaction_difference(current_metrics, previous_metrics, total_label)%></li>
+        <li class="<%= set_li_arrow_direction(current_metrics, previous_metrics)%>">  <%= calculate_transaction_difference(current_metrics, previous_metrics, total_label)%></li>
       </ul>
     </div>
   </div>
