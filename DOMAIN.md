@@ -121,13 +121,13 @@ The granularity of the time periods we are interested in is a calendar month.  T
 
 ```fsharp
 type ShortDate = {
-  month: uint,
-  year: uint,
+  Month: uint,
+  Year: uint,
 }
 
 type TimePeriod = {
-  starts_on: ShortDate,
-  ends_on: ShortDate
+  StartsOn: ShortDate,
+  EndsOn: ShortDate
 }
 ```
 
