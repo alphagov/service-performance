@@ -7,7 +7,7 @@ module MetricChartHelper
     elsif same_difference
       "Same number of #{total_label.gsub("Total transactions", "transactions").downcase} as previous #{@previous_metrics.count} months".html_safe
     else
-      "#{@previous_metrics.sum - @current_metrics.sum} (#{ difference_decrease_percentage })less #{total_label.gsub("Total transactions", "transactions").downcase} than previous #{@previous_metrics.count} months".html_safe
+      "#{@previous_metrics.sum - @current_metrics.sum} (#{ difference_decrease_percentage } %) less #{total_label.gsub("Total transactions", "transactions").downcase} than previous #{@previous_metrics.count} months".html_safe
     end
   end
 
