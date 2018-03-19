@@ -44,4 +44,14 @@ module ServicesHelper
       service.metric_applicable?(long)
     end
   end
+
+  # Given a date, iterates until it find's the next Friday.
+  # Is assumed that it will be provided a date in the middle of the
+  # month.
+  def find_middle_day(dt, day: "Friday")
+    (dt..dt.end_of_month).each do |d|
+      return d if d.strftime("%A") == day
+    end
+    dt
+  end
 end

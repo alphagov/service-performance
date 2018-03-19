@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   ActiveAdmin.routes(self)
-
+  
   namespace :publish, path: 'publish', module: nil do
     get "/service-manual", to: "publish_data/pages#service_manual"
 
