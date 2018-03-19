@@ -54,8 +54,9 @@ type TransactionsReceived = {
 
 (*
   Unlike the other group types, we never expect Transaction received
-  metrics to be non-applicable because it is the core metric we collect
-  and the other don't make any sense without it.
+  metric group to be non-applicable because it is the core metric we collect
+  and the other don't make any sense without it. Note that individual metrics
+  within TransactionsReceived can still be NotApplicable.
 *)
 type TransactionsReceivedGroup = TransactionsReceived
 ```
