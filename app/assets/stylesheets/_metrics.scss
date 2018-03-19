@@ -143,5 +143,24 @@ main {
   }
 }
 
+.changes-summary {
+  list-style: none;
+}
 
+.changes-summary li {
+  margin-bottom: 1em;
+  display: inline-flex;
+}
 
+.changes-summary li::before {
+  padding-right: 5px;
+  color: #6f777b;
+}
+
+.changes-summary .increase::before {
+  content: '\25B2';
+}
+
+.changes-summary .decrease::before {
+  content: '\25BC';
+}
