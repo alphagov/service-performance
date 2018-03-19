@@ -7,7 +7,7 @@ RSpec.describe MetricChartHelper, type: :helper do
       previous_metrics = [0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 3, 1]
       output = calculate_transaction_difference(current_metrics, previous_metrics, "transactions received")
 
-      expect(output).to eq("10 (50.0 %) more transactions received than previous 12 months")
+      expect(output).to eq("10 (50.0%) more transactions received than previous 12 months")
     end
 
     it 'outputs transaction difference for a decreased number of transactions' do
@@ -15,7 +15,7 @@ RSpec.describe MetricChartHelper, type: :helper do
       previous_metrics = [0, 2, 3, 5, 0, 4, 0, 2, 0, 4, 0, 0]
       output = calculate_transaction_difference(current_metrics, previous_metrics, "transactions received")
 
-      expect(output).to eq("10 (50.0 %) less transactions received than previous 12 months")
+      expect(output).to eq("10 (50.0%) less transactions received than previous 12 months")
     end
 
     it 'outputs transaction difference when no change in number of transactions' do
@@ -30,7 +30,7 @@ RSpec.describe MetricChartHelper, type: :helper do
       current_metrics = [0, 1, 0, 0, 0, 3, 0, 2, 0, 0, 4, 0]
       previous_metrics = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       output = calculate_transaction_difference(current_metrics, previous_metrics, "transactions received")
-      expect(output).to eq("10 (100.0 %) more transactions received than previous 12 months")
+      expect(output).to eq("10 (100.0%) more transactions received than previous 12 months")
     end
   end
 
