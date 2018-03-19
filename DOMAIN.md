@@ -1,12 +1,13 @@
 ## Introduction
 
-This document describes the domain model for service performance using
+This document describes the domain model for Service Performance using
 an ML like language (actually F#) to describe the types that are found
 within the application, and their relationship to each other. Where
 necessary the validation of the types is documented.
 
 The terminology is mostly consistent with the app's models, but those
 models should be refactored to more closely follow this domain model.
+
 
 ## Service Performance
 
@@ -37,6 +38,7 @@ type MetricValue =
 
 ## Metrics
 
+
 ### Transactions Received
 
 These metrics record the total number of transactions received by a service in a given month, and then a breakdown of the channels on which the transactions were received.  Not all services will receive transactions on all channels, and the other channel allows the capture of channels not currently supported.  There have been discussions about supporting multiple 'other' channels and this would likely require quite a deep restructure of the data model.
@@ -58,6 +60,7 @@ type TransactionsReceived = {
 type TransactionsReceivedGroup = TransactionsReceived
 ```
 
+
 ### Transactions Processed
 
 All services should report the total number of transactions that they have processed during a given month. As well as providing the total, they should also record the number of transactions that resulted in a positive outcome for the user - that is, it met their needs.  There is still some confusion in this area specifically around the semantics of "what does processed mean?" and "what is the users' intended outcome?".
@@ -72,6 +75,7 @@ type TransactionsProcessedGroup =
   | TransactionsProcessed
   | NotApplicable
 ```
+
 
 ### Calls Received
 
@@ -90,6 +94,7 @@ type CallsReceivedGroup =
   | CallsReceived
   | NotApplicable
 ```
+
 
 ### MetricGroups
 
@@ -112,7 +117,6 @@ type MetricGroup = {
   calls: CallsReceivedGroup
 }
 ```
-
 
 
 ## Time Periods
