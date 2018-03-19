@@ -5,7 +5,7 @@ module MetricChartHelper
     if increased?
       "#{humanize_metric(@current_metrics - @previous_metrics)} (#{difference_increase_percentage} %) more #{total_label.gsub('Total transactions', 'transactions').downcase} than previous #{previous_metrics.count} months".html_safe
     elsif same_difference
-      "Same number of #{total_label.gsub("Total transactions", "transactions").downcase} as previous #{previous_metrics.count} months".html_safe
+      "Same number of #{total_label.gsub('Total transactions', 'transactions').downcase} as previous #{previous_metrics.count} months".html_safe
     else
       "#{humanize_metric(@previous_metrics - @current_metrics)} (#{difference_decrease_percentage} %) less #{total_label.gsub('Total transactions', 'transactions').downcase} than previous #{previous_metrics.count} months".html_safe
     end
@@ -22,7 +22,7 @@ module MetricChartHelper
     end
   end
 
-  private
+private
 
   def humanize_metric(value)
     number_to_human(value, precision: 3, significant: true, units: { thousand: 'k', million: 'm', billion: 'b' }, format: '%n%u')
