@@ -3,11 +3,11 @@ module MetricChartHelper
     @current_metrics = current_metrics
     @previous_metrics = previous_metrics
     if increased?
-      "#{@current_metrics.sum - @previous_metrics.sum} (#{ difference_increase_percentage } %) more #{total_label.gsub("Total transactions", "transactions").downcase} than previous #{@previous_metrics.count} months".html_safe
+      "#{@current_metrics.sum - @previous_metrics.sum} (#{difference_increase_percentage} %) more #{total_label.gsub('Total transactions', 'transactions').downcase} than previous #{@previous_metrics.count} months".html_safe
     elsif same_difference
-      "Same number of #{total_label.gsub("Total transactions", "transactions").downcase} as previous #{@previous_metrics.count} months".html_safe
+      "Same number of #{total_label.gsub('Total transactions', 'transactions').downcase} as previous #{@previous_metrics.count} months".html_safe
     else
-      "#{@previous_metrics.sum - @current_metrics.sum} (#{ difference_decrease_percentage } %) less #{total_label.gsub("Total transactions", "transactions").downcase} than previous #{@previous_metrics.count} months".html_safe
+      "#{@previous_metrics.sum - @current_metrics.sum} (#{difference_decrease_percentage} %) less #{total_label.gsub('Total transactions', 'transactions').downcase} than previous #{@previous_metrics.count} months".html_safe
     end
   end
 
@@ -22,7 +22,7 @@ module MetricChartHelper
     end
   end
 
-  private
+private
 
   def same_difference
     true if @current_metrics.sum == @previous_metrics.sum
