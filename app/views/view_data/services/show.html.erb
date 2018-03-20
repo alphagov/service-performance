@@ -84,9 +84,6 @@
         <p>
           These numbers tell you how much the organisation was used, and which channels were used the most.
         </p>
-        <p>
-          <a href="">See a detailed description of how transactions received is defined.</a>
-        </p>
 
         <% transactions_received_applicable_list(@service).each do |metric_name, short_metric_name| %>
           <%= render partial: "view_data/charts/metric_chart", locals: {
@@ -113,9 +110,6 @@
       <% else -%>
         <p>
           These numbers tell you how many transactions were processed by the organisation, and how well these transactions met users' needs.
-        </p>
-        <p>
-          <a href="">See a detailed description of how transactions processed is defined.</a>
         </p>
 
         <% transactions_processed_applicable_list(@service).each do |metric_name, short_metric_name| %>
@@ -149,9 +143,6 @@
         </p>
         <p>
           If the proportion of users calling to chase progress is high, this might mean that the organisation isn’t processing transactions as quickly as they should. A high proportion of calls to get more information could indicate that information available online is incomplete or unclear.
-        </p>
-        <p>
-          <a href="">See a detailed description of how phone calls received is defined.</a>
         </p>
 
         <% calls_received_applicable_list(@service).each do |metric_name, short_metric_name| %>
