@@ -81,6 +81,18 @@ To run tests, you should run
 bin/rails spec
 ```
 
+To run an individual test:
+
+```
+bundle exec rspec spec/path/to/file
+```
+
+## Linter
+
+```
+bundle exec govuk-lint-ruby app lib spec
+```
+
 ### Frontend test setup
 
 Make sure you have [npm](https://www.npmjs.com/get-npm) installed, as well as a recent version of [Node.js](https://nodejs.org/en/).
