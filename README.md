@@ -53,9 +53,8 @@ bundle install
 
 You then need to configure the database you will be using.
 
-```
-bin/rails db:create db:migrate db:seed
-```
+The database setup instructions can be found [here](https://docs.google.com/document/d/11eHHI9FzHS9dxWc7LToxYUUvB4QYO5ASRVebaBkDd6U/edit?usp=sharing).
+
 
 To start the server, use the conventional `rails s` command.
 
