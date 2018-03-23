@@ -11,7 +11,7 @@ RSpec.describe ViewData::ServicesController, type: :controller do
     let(:create_metrics) {
       month = YearMonth.new(2016, 1)
       6.times do
-        FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: month, transactions_processed: 100, transactions_processed_with_intended_outcome: 100)
+        FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: month, transactions_processed: 200, transactions_processed_accepted: 100, transactions_processed_rejected: 100)
         month = month.succ
       end
     }

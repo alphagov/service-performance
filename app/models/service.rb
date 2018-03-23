@@ -30,7 +30,8 @@ class Service < ApplicationRecord
        face_to_face_transactions_applicable
        other_transactions_applicable
        transactions_processed_applicable
-       transactions_processed_with_intended_outcome_applicable
+       transactions_processed_accepted_applicable
+       transactions_processed_rejected_applicable
        calls_received_applicable
        calls_received_get_information_applicable
        calls_received_chase_progress_applicable

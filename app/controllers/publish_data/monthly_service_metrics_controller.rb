@@ -11,7 +11,7 @@ module PublishData
       @monthly_service_metrics.attributes = params.require(:metrics).permit(:online_transactions,
         :phone_transactions, :paper_transactions, :face_to_face_transactions,
         :email_transactions, :other_transactions, :transactions_processed,
-        :transactions_processed_with_intended_outcome,
+        :transactions_processed_accepted, :transactions_processed_rejected,
         :calls_received, :calls_received_perform_transaction, :calls_received_get_information,
         :calls_received_chase_progress, :calls_received_challenge_decision,
         :calls_received_other).each { |_key, value| value.gsub!(/\D/, '') }

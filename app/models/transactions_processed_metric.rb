@@ -1,7 +1,8 @@
 class TransactionsProcessedMetric < Metric
   define do
     item :total, from: ->(metrics) { metrics.transactions_processed }, applicable: ->(metrics) { metrics.service.transactions_processed_applicable? }
-    item :with_intended_outcome, from: ->(metrics) { metrics.transactions_processed_with_intended_outcome }, applicable: ->(metrics) { metrics.service.transactions_processed_with_intended_outcome_applicable? }
+    item :accepted, from: ->(metrics) { metrics.transactions_processed_accepted }, applicable: ->(metrics) { metrics.service.transactions_processed_accepted_applicable? }
+    item :rejected, from: ->(metrics) { metrics.transactions_processed_rejected }, applicable: ->(metrics) { metrics.service.transactions_processed_rejected_applicable? }
 
     percentage_of :total
   end
@@ -10,8 +11,10 @@ class TransactionsProcessedMetric < Metric
     case name
     when :total
       :transactions_processed
-    when :with_intended_outcome
-      :transactions_processed_with_intended_outcome
+    when :accepted
+      :transactions_processed_accepted
+    when :rejected
+      :transactions_processed_rejected
     end
   end
 end

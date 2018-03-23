@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323132041) do
+ActiveRecord::Schema.define(version: 20180323142918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20180323132041) do
     t.bigint "face_to_face_transactions"
     t.bigint "other_transactions"
     t.bigint "transactions_processed"
-    t.bigint "transactions_processed_with_intended_outcome"
+    t.bigint "transactions_processed_accepted"
     t.bigint "calls_received"
     t.bigint "calls_received_get_information"
     t.bigint "calls_received_chase_progress"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20180323132041) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "email_transactions"
+    t.bigint "transactions_processed_rejected"
     t.index "service_id, date_trunc('month'::text, (month)::timestamp without time zone)", name: "unique_monthly_service_metrics", unique: true
     t.index ["service_id"], name: "index_monthly_service_metrics_on_service_id"
   end
@@ -108,7 +109,7 @@ ActiveRecord::Schema.define(version: 20180323132041) do
     t.boolean "face_to_face_transactions_applicable", default: true
     t.boolean "other_transactions_applicable", default: true
     t.boolean "transactions_processed_applicable", default: true
-    t.boolean "transactions_processed_with_intended_outcome_applicable", default: true
+    t.boolean "transactions_processed_accepted_applicable", default: true
     t.boolean "calls_received_applicable", default: true
     t.boolean "calls_received_get_information_applicable", default: true
     t.boolean "calls_received_chase_progress_applicable", default: true
@@ -121,6 +122,7 @@ ActiveRecord::Schema.define(version: 20180323132041) do
     t.text "other_name"
     t.boolean "sampled_calls", default: false, null: false
     t.boolean "email_transactions_applicable", default: false
+    t.boolean "transactions_processed_rejected_applicable", default: true
     t.index ["natural_key"], name: "index_services_on_natural_key", unique: true
     t.index ["publish_token"], name: "index_services_on_publish_token", unique: true
   end

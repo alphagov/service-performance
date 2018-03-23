@@ -53,18 +53,22 @@ class Metrics
     TransactionsReceivedOther = MetricSortAttribute.new('transactions-received-other', name: 'transactions received (other)', keypath: %i[transactions_received_metric other], index: 7)
 
     TransactionsEndingInOutcome = MetricSortAttribute.new('transactions-ending-in-outcome', name: 'transactions processed', keypath: %i[transactions_processed_metric total], index: 8)
-    TransactionsEndingInOutcomeWithIntendedOutcome = MetricSortAttribute.new('transactions-ending-in-outcome-with-intended-outcome',
-      name: "transactions ending in the user's intended outcome",
-      keypath: %i[transactions_processed_metric with_intended_outcome],
+    TransactionsAccepted = MetricSortAttribute.new('transactions-accepted',
+      name: "transactions accepted",
+      keypath: %i[transactions_processed_metric accepted],
       index: 9)
+    TransactionsRejected = MetricSortAttribute.new('transactions-rejected',
+      name: "transactions rejected",
+      keypath: %i[transactions_processed_metric rejected],
+      index: 10)
 
-    CallsReceived = MetricSortAttribute.new('calls-received', name: 'calls received', keypath: %i[calls_received_metric total], index: 10)
-    CallsReceivedPerformTransaction = MetricSortAttribute.new('calls-received-perform-transaction', name: 'calls received (perform transaction)', keypath: %i[calls_received_metric perform_transaction], index: 11)
-    CallsReceivedGetInformation = MetricSortAttribute.new('calls-received-get-information', name: 'calls received (get information)', keypath: %i[calls_received_metric get_information], index: 12)
-    CallsReceivedChaseProgress = MetricSortAttribute.new('calls-received-chase-progress', name: 'calls received (chase progress)', keypath: %i[calls_received_metric chase_progress], index: 13)
-    CallsReceivedChallengeADecision = MetricSortAttribute.new('calls-received-challenge-a-decision', name: 'calls received (challenge a decision)', keypath: %i[calls_received_metric challenge_a_decision], index: 14)
-    CallsReceivedOther = MetricSortAttribute.new('calls-received-other', name: 'calls received (other)', keypath: %i[calls_received_metric other], index: 15)
-    CallsReceivedUnspecified = MetricSortAttribute.new('calls-received-unspecified', name: 'calls received (unspecified)', keypath: %i[calls_received_metric unspecified], index: 16)
+    CallsReceived = MetricSortAttribute.new('calls-received', name: 'calls received', keypath: %i[calls_received_metric total], index: 11)
+    CallsReceivedPerformTransaction = MetricSortAttribute.new('calls-received-perform-transaction', name: 'calls received (perform transaction)', keypath: %i[calls_received_metric perform_transaction], index: 12)
+    CallsReceivedGetInformation = MetricSortAttribute.new('calls-received-get-information', name: 'calls received (get information)', keypath: %i[calls_received_metric get_information], index: 13)
+    CallsReceivedChaseProgress = MetricSortAttribute.new('calls-received-chase-progress', name: 'calls received (chase progress)', keypath: %i[calls_received_metric chase_progress], index: 14)
+    CallsReceivedChallengeADecision = MetricSortAttribute.new('calls-received-challenge-a-decision', name: 'calls received (challenge a decision)', keypath: %i[calls_received_metric challenge_a_decision], index: 15)
+    CallsReceivedOther = MetricSortAttribute.new('calls-received-other', name: 'calls received (other)', keypath: %i[calls_received_metric other], index: 16)
+    CallsReceivedUnspecified = MetricSortAttribute.new('calls-received-unspecified', name: 'calls received (unspecified)', keypath: %i[calls_received_metric unspecified], index: 17)
 
     def get_metric_sort_attribute(identifier)
       MetricSortAttribute.get(identifier) || Name
@@ -102,7 +106,8 @@ class Metrics
         face_to_face_transactions
         other_transactions
         transactions_processed
-        transactions_processed_with_intended_outcome
+        transactions_processed_accepted
+        transactions_processed_rejected
         calls_received
         calls_received_get_information
         calls_received_chase_progress

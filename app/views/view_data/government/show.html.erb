@@ -57,7 +57,8 @@
   <%= render partial: "view_data/transactions_processed_section" %>
 
   <% [[:transactions_processed,     :total],
-      [:transactions_processed_with_intended_outcome, :with_intended_outcome]
+      [:transactions_processed_accepted, :accepted],
+      [:transactions_processed_rejected, :rejected]
      ].each do |metric_name, short_metric_name| %>
     <%= render partial: "view_data/charts/metric_chart", locals: {
           metric: metric_name,

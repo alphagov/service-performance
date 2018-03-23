@@ -22,8 +22,8 @@ RSpec.feature 'submitting monthly service metrics' do
       fill_in 'Transactions processed', with: '13,000'
     end
 
-    within_fieldset('Number of transactions ending in the user’s intended outcome') do
-      fill_in "Transactions processed with the user's intended outcome", with: '12,000'
+    within_fieldset('Number of transactions accepted') do
+      fill_in "Transactions processed and accepted", with: '12,000'
     end
 
     within_fieldset('Total number of phone calls received') do
@@ -50,7 +50,7 @@ RSpec.feature 'submitting monthly service metrics' do
     expect(metrics.face_to_face_transactions).to eq(15000)
     expect(metrics.other_transactions).to eq(14000)
     expect(metrics.transactions_processed).to eq(13000)
-    expect(metrics.transactions_processed_with_intended_outcome).to eq(12000)
+    expect(metrics.transactions_processed_accepted).to eq(12000)
     expect(metrics.calls_received).to eq(20000)
     expect(metrics.calls_received_perform_transaction).to eq(15000)
     expect(metrics.calls_received_get_information).to eq(1000)
@@ -63,15 +63,15 @@ RSpec.feature 'submitting monthly service metrics' do
     expect(page).to have_text('You will next be asked to provide data on 1 November.')
   end
 
-  specify "submitting invalid 'Transactions processed with the user's intended outcome' metrics" do
+  specify "submitting invalid 'Transactions processed and accepted' metrics" do
     visit_metrics_path
 
     fill_in "Transactions processed", with: "100"
-    fill_in "Transactions processed with the user's intended outcome", with: "120"
+    fill_in "Transactions processed and accepted", with: "120"
 
     click_button 'Submit'
 
-    expect(page).to have_content("Transactions processed with intended outcome must be less than or equal to transactions processed")
+    expect(page).to have_content("Transactions processed accepted must be less than or equal to transactions processed")
   end
 
   specify "submitting invalid 'Number of calls received... to perform a transaction' metrics" do

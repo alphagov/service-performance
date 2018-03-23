@@ -61,7 +61,7 @@ class MetricsImporter
       face_to_face_transactions: row.transactions_received_face_to_face,
       other_transactions: row.transactions_received_other,
       transactions_processed: row.transactions_processed,
-      transactions_processed_with_intended_outcome: row.transactions_processed_with_intended_outcome,
+      transactions_processed_accepted: row.transactions_processed_accepted,
       calls_received: row.calls_received,
       calls_received_get_information: row.calls_received_get_information,
       calls_received_perform_transaction: row.calls_received_perform_transaction,
@@ -201,8 +201,12 @@ private
       parse_metric(@row[11])
     end
 
-    def transactions_processed_with_intended_outcome
+    def transactions_processed_accepted
       parse_metric(@row[12])
+    end
+
+    def transactions_processed_rejected
+      transactions_processed - transactions_processed_accepted
     end
 
     def calls_received

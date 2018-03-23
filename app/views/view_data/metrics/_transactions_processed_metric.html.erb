@@ -27,22 +27,42 @@
       </span>
     <% end %>
 
-    <%= metric_item(Metrics::Items::TransactionsEndingInOutcomeWithIntendedOutcome, transactions_processed_metric.with_intended_outcome) do |item| %>
+    <%= metric_item(Metrics::Items::TransactionsAccepted, transactions_processed_metric.accepted) do |item| %>
       <% item.description do %>
-        <strong><%= metric_to_human(transactions_processed_metric.with_intended_outcome) %></strong> transactions with intended outcome (<%= metric_to_percentage(transactions_processed_metric.with_intended_outcome_percentage) %>)
+        <strong><%= metric_to_human(transactions_processed_metric.accepted) %></strong> transactions accepted (<%= metric_to_percentage(transactions_processed_metric.accepted_percentage) %>)
       <% end %>
-      <span class="metric-name"><%= link_to "Ending in the user's intended outcome", current_group(metric_group.entity.class, metric_group, "transactions_processed_with_intended_outcome") %>
-</span>
+      <span class="metric-name"><%= link_to "Accepted", current_group(metric_group.entity.class, metric_group, "transactions_processed_accepted") %>
+      </span>
       <span class="metric-sparkline">
         <%=
-          draw_sparkline(metric_group.sorted_metrics_by_month[:transactions_processed_with_intended_outcome])
+          draw_sparkline(metric_group.sorted_metrics_by_month[:transactions_processed_accepted])
         %>
       </span>
       <span class="metric-value">
         <%= item.value %>
-        <%= item.percentage transactions_processed_metric.with_intended_outcome_percentage %>
+        <%= item.percentage transactions_processed_metric.accepted_percentage %>
         <% if @metrics.show_completeness? && !metric_group.totals?  %>
-          <%= item.completeness transactions_processed_metric.completeness[:with_intended_outcome] %>
+          <%= item.completeness transactions_processed_metric.completeness[:accepted] %>
+        <% end %>
+      </span>
+    <% end %>
+
+    <%= metric_item(Metrics::Items::TransactionsRejected, transactions_processed_metric.rejected) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(transactions_processed_metric.rejected) %></strong> transactions rejected (<%= metric_to_percentage(transactions_processed_metric.rejected_percentage) %>)
+      <% end %>
+      <span class="metric-name"><%= link_to "Rejected", current_group(metric_group.entity.class, metric_group, "transactions_processed_rejected") %>
+      </span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:transactions_processed_rejected])
+        %>
+      </span>
+      <span class="metric-value">
+        <%= item.value %>
+        <%= item.percentage transactions_processed_metric.rejected_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness transactions_processed_metric.completeness[:rejected] %>
         <% end %>
       </span>
     <% end %>

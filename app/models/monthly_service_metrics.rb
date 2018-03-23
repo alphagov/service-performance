@@ -11,7 +11,7 @@ class MonthlyServiceMetrics < ApplicationRecord
     attr_reader :service, :month
 
     attr_reader :online_transactions, :phone_transactions, :email_transactions, :paper_transactions, :face_to_face_transactions, :other_transactions
-    attr_reader :transactions_processed, :transactions_processed_with_intended_outcome
+    attr_reader :transactions_processed, :transactions_processed_accepted, :transactions_processed_rejected
     attr_reader :calls_received, :calls_received_get_information, :calls_received_chase_progress, :calls_received_challenge_decision, :calls_received_other, :calls_received_perform_transaction
 
     def transactions_received_metric
@@ -28,8 +28,8 @@ class MonthlyServiceMetrics < ApplicationRecord
   end
 
   def number_of_transactions
-    if transactions_processed_with_intended_outcome.to_i > transactions_processed.to_i
-      errors.add(:transactions_processed_with_intended_outcome, "must be less than or equal to transactions processed")
+    if transactions_processed_accepted.to_i > transactions_processed.to_i
+      errors.add(:transactions_processed_accepted, "must be less than or equal to transactions processed")
     end
   end
 

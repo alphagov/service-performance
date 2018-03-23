@@ -8,6 +8,5 @@ FactoryGirl.define do
 
     outcome 'any'
     quantity 2830
-    #quantity_with_intended_outcome 8393
   end
 end

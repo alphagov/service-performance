@@ -45,11 +45,19 @@
           <%= f.metric :transactions_processed, applicable: @monthly_service_metrics.service.transactions_processed_applicable %>
         <% end %>
 
-        <%= f.fieldset 'Number of transactions ending in the user’s intended outcome' do %>
-          <div class="form-group <%= 'form-group-error' if field_has_errors(@monthly_service_metrics, :transactions_processed_with_intended_outcome) %>">
-            <%= f.metric_label :transactions_processed_with_intended_outcome, applicable: @monthly_service_metrics.service.transactions_processed_with_intended_outcome_applicable %>
-            <%= render partial: 'field_errors', locals: { metrics: @monthly_service_metrics, field: :transactions_processed_with_intended_outcome } %>
-            <%= f.metric_number_field :transactions_processed_with_intended_outcome, applicable: @monthly_service_metrics.service.transactions_processed_with_intended_outcome_applicable , error: field_has_errors(@monthly_service_metrics, :transactions_processed_with_intended_outcome) ? true : nil %>
+        <%= f.fieldset 'Number of transactions accepted' do %>
+          <div class="form-group <%= 'form-group-error' if field_has_errors(@monthly_service_metrics, :transactions_processed_accepted) %>">
+            <%= f.metric_label :transactions_processed_accepted, applicable: @monthly_service_metrics.service.transactions_processed_accepted_applicable %>
+            <%= render partial: 'field_errors', locals: { metrics: @monthly_service_metrics, field: :transactions_processed_accepted } %>
+            <%= f.metric_number_field :transactions_processed_accepted, applicable: @monthly_service_metrics.service.transactions_processed_accepted_applicable , error: field_has_errors(@monthly_service_metrics, :transactions_processed_accepted) ? true : nil %>
+          </div>
+        <% end %>
+
+        <%= f.fieldset 'Number of transactions rejected' do %>
+          <div class="form-group <%= 'form-group-error' if field_has_errors(@monthly_service_metrics, :transactions_processed_rejected) %>">
+            <%= f.metric_label :transactions_processed_rejected, applicable: @monthly_service_metrics.service.transactions_processed_rejected_applicable %>
+            <%= render partial: 'field_errors', locals: { metrics: @monthly_service_metrics, field: :transactions_processed_rejected } %>
+            <%= f.metric_number_field :transactions_processed_rejected, applicable: @monthly_service_metrics.service.transactions_processed_rejected_applicable , error: field_has_errors(@monthly_service_metrics, :transactions_processed_rejected) ? true : nil %>
           </div>
         <% end %>
 

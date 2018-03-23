@@ -27,7 +27,8 @@ module ServicesHelper
   def transactions_processed_applicable_list(service)
     [
       %i(transactions_processed total),
-      %i(transactions_processed_with_intended_outcome with_intended_outcome)
+      %i(transactions_processed_accepted accepted),
+      %i(transactions_processed_rejected rejected)
     ].select do |long, _short|
       service.metric_applicable?(long)
     end

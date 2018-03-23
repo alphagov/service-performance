@@ -34,7 +34,7 @@ RSpec.describe MissingDataCalculator, type: :model do
       # We expect only 1 service to appear with missing data
       expect(calc.missing_data.length).to eq(1)
       # We expect there to be complains about all the metrics
-      expect(calc.missing_data[0].metrics.length).to eq(14)
+      expect(calc.missing_data[0].metrics.length).to eq(15)
     end
 
     it "can format months_missing string for consecutive months missing data within the same year" do

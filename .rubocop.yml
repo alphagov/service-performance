@@ -2,3 +2,4 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*.rb
     - app/admin/*.rb
+    - app/exporters/*.rb

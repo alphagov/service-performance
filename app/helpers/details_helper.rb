@@ -4,7 +4,7 @@ module DetailsHelper
   end
 
   def trxn_proc_metrics
-    %w(total with_intended_outcome)
+    %w(total accepted rejected)
   end
 
   def calls_rx_metrics
@@ -35,7 +35,7 @@ module DetailsHelper
   end
 
   def processed_not_applicable?(svc)
-    [svc.transactions_processed_applicable, svc.transactions_processed_with_intended_outcome_applicable].none?
+    [svc.transactions_processed_applicable, svc.transactions_processed_accepted_applicable, svc.transactions_processed_rejected_applicable].none?
   end
 
   def calls_not_applicable?(svc)
