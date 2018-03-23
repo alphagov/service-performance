@@ -14,7 +14,7 @@ RSpec.describe MissingDataCalculator, type: :model do
   describe "missing data calculations" do
     subject(:department) { FactoryGirl.build(:department) }
     subject(:delivery_organisation) { FactoryGirl.build(:delivery_organisation, department: department) }
-    subject(:service) { FactoryGirl.build(:service, delivery_organisation: delivery_organisation, natural_key: "a", name: "test") }
+    subject(:service) { FactoryGirl.build(:service, delivery_organisation: delivery_organisation, natural_key: "a", name: "test", email_transactions_applicable: true) }
 
     it "can calculate with published metrics" do
       metrics = FactoryGirl.build(:monthly_service_metrics,
@@ -34,7 +34,7 @@ RSpec.describe MissingDataCalculator, type: :model do
       # We expect only 1 service to appear with missing data
       expect(calc.missing_data.length).to eq(1)
       # We expect there to be complains about all the metrics
-      expect(calc.missing_data[0].metrics.length).to eq(13)
+      expect(calc.missing_data[0].metrics.length).to eq(14)
     end
 
     it "can format months_missing string for consecutive months missing data within the same year" do
@@ -84,7 +84,7 @@ RSpec.describe MissingDataCalculator, type: :model do
         TimePeriod.new(Date.new(2017, 10, 1), Date.new(2018, 3, 1))
       )
 
-      expect(calc.missing_data[0].metrics[2][:months_missing]).to eq("October to December 2017, February 2018")
+      expect(calc.missing_data[0].metrics[3][:months_missing]).to eq("October to December 2017, February 2018")
     end
 
     it "can format months_missing string when only non consecutive month data is missing" do

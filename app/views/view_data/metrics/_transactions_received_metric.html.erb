@@ -47,6 +47,26 @@
       </span>
     <% end %>
 
+    <%= metric_item(Metrics::Items::TransactionsReceivedOnline, transactions_received_metric.email) do |item| %>
+      <% item.description do %>
+        <strong><%= metric_to_human(transactions_received_metric.email) %></strong> online transactions (<%= metric_to_percentage(transactions_received_metric.email_percentage) %>)
+      <% end %>
+      <span class="metric-name"><%= link_to "Email", current_group(metric_group.entity.class, metric_group, "email_transactions") %></span>
+      <span class="metric-sparkline">
+        <%=
+          draw_sparkline(metric_group.sorted_metrics_by_month[:email_transactions])
+        %>
+      </span>
+
+      <span class="metric-value">
+        <%= item.value %>
+        <%= item.percentage transactions_received_metric.email_percentage %>
+        <% if @metrics.show_completeness? && !metric_group.totals?  %>
+          <%= item.completeness transactions_received_metric.completeness[:email] %>
+        <% end %>
+      </span>
+    <% end %>
+
     <%= metric_item(Metrics::Items::TransactionsReceivedPhone, transactions_received_metric.phone) do |item| %>
       <% item.description do %>
         <strong><%= metric_to_human(transactions_received_metric.phone) %></strong> phone transactions (<%= metric_to_percentage(transactions_received_metric.phone_percentage) %>)

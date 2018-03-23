@@ -1,6 +1,6 @@
 module DetailsHelper
   def trxn_rx_metrics
-    %w(total online phone paper face_to_face other)
+    %w(total online phone email paper face_to_face other)
   end
 
   def trxn_proc_metrics
@@ -27,6 +27,7 @@ module DetailsHelper
     [
       svc.online_transactions_applicable,
       svc.phone_transactions_applicable,
+      svc.email_transactions_applicable,
       svc.paper_transactions_applicable,
       svc.face_to_face_transactions_applicable,
       svc.other_transactions_applicable

@@ -25,6 +25,7 @@ class Service < ApplicationRecord
   def required_metrics
     %i[online_transactions_applicable
        phone_transactions_applicable
+       email_transactions_applicable
        paper_transactions_applicable
        face_to_face_transactions_applicable
        other_transactions_applicable

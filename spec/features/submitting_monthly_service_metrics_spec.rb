@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'submitting monthly service metrics' do
-  let(:service) { FactoryGirl.create(:service, name: 'The Submitting Data Service') }
+  let(:service) { FactoryGirl.create(:service, name: 'The Submitting Data Service', email_transactions_applicable: true) }
   let(:publish_token) { MonthlyServiceMetricsPublishToken.generate(service: service, month: YearMonth.new(2017, 9)) }
   specify 'submitting metrics' do
     visit_metrics_path
@@ -12,6 +12,7 @@ RSpec.feature 'submitting monthly service metrics' do
     within_fieldset('Number of transactions received, split by channel') do
       fill_in 'Online', with: '18,000'
       fill_in 'Phone', with: '15,000'
+      fill_in 'Email', with: '1,000'
       fill_in 'Paper', with: '16,000'
       fill_in 'Face-to-face', with: '15,000'
       fill_in 'Transactions received through this channel', with: '14,000'
@@ -44,6 +45,7 @@ RSpec.feature 'submitting monthly service metrics' do
     expect(metrics.month).to eq(YearMonth.new(2017, 9))
     expect(metrics.online_transactions).to eq(18000)
     expect(metrics.phone_transactions).to eq(15000)
+    expect(metrics.email_transactions).to eq(1000)
     expect(metrics.paper_transactions).to eq(16000)
     expect(metrics.face_to_face_transactions).to eq(15000)
     expect(metrics.other_transactions).to eq(14000)

@@ -47,23 +47,24 @@ class Metrics
     TransactionsReceived = MetricSortAttribute.new('transactions-received', name: 'transactions received', keypath: %i[transactions_received_metric total], index: 1)
     TransactionsReceivedOnline = MetricSortAttribute.new('transactions-received-online', name: 'transactions received (online)', keypath: %i[transactions_received_metric online], index: 2)
     TransactionsReceivedPhone = MetricSortAttribute.new('transactions-received-phone', name: 'transactions received (phone)', keypath: %i[transactions_received_metric phone], index: 3)
-    TransactionsReceivedPaper = MetricSortAttribute.new('transactions-received-paper', name: 'transactions received (paper)', keypath: %i[transactions_received_metric paper], index: 4)
-    TransactionsReceivedFaceToFace = MetricSortAttribute.new('transactions-received-face-to-face', name: 'transactions received (face to face)', keypath: %i[transactions_received_metric face_to_face], index: 5)
-    TransactionsReceivedOther = MetricSortAttribute.new('transactions-received-other', name: 'transactions received (other)', keypath: %i[transactions_received_metric other], index: 6)
+    TransactionsReceivedEmail = MetricSortAttribute.new('transactions-received-email', name: 'transactions received (email)', keypath: %i[transactions_received_metric email], index: 4)
+    TransactionsReceivedPaper = MetricSortAttribute.new('transactions-received-paper', name: 'transactions received (paper)', keypath: %i[transactions_received_metric paper], index: 5)
+    TransactionsReceivedFaceToFace = MetricSortAttribute.new('transactions-received-face-to-face', name: 'transactions received (face to face)', keypath: %i[transactions_received_metric face_to_face], index: 6)
+    TransactionsReceivedOther = MetricSortAttribute.new('transactions-received-other', name: 'transactions received (other)', keypath: %i[transactions_received_metric other], index: 7)
 
-    TransactionsEndingInOutcome = MetricSortAttribute.new('transactions-ending-in-outcome', name: 'transactions processed', keypath: %i[transactions_processed_metric total], index: 7)
+    TransactionsEndingInOutcome = MetricSortAttribute.new('transactions-ending-in-outcome', name: 'transactions processed', keypath: %i[transactions_processed_metric total], index: 8)
     TransactionsEndingInOutcomeWithIntendedOutcome = MetricSortAttribute.new('transactions-ending-in-outcome-with-intended-outcome',
       name: "transactions ending in the user's intended outcome",
       keypath: %i[transactions_processed_metric with_intended_outcome],
-      index: 8)
+      index: 9)
 
-    CallsReceived = MetricSortAttribute.new('calls-received', name: 'calls received', keypath: %i[calls_received_metric total], index: 9)
-    CallsReceivedPerformTransaction = MetricSortAttribute.new('calls-received-perform-transaction', name: 'calls received (perform transaction)', keypath: %i[calls_received_metric perform_transaction], index: 10)
-    CallsReceivedGetInformation = MetricSortAttribute.new('calls-received-get-information', name: 'calls received (get information)', keypath: %i[calls_received_metric get_information], index: 11)
-    CallsReceivedChaseProgress = MetricSortAttribute.new('calls-received-chase-progress', name: 'calls received (chase progress)', keypath: %i[calls_received_metric chase_progress], index: 12)
-    CallsReceivedChallengeADecision = MetricSortAttribute.new('calls-received-challenge-a-decision', name: 'calls received (challenge a decision)', keypath: %i[calls_received_metric challenge_a_decision], index: 13)
-    CallsReceivedOther = MetricSortAttribute.new('calls-received-other', name: 'calls received (other)', keypath: %i[calls_received_metric other], index: 14)
-    CallsReceivedUnspecified = MetricSortAttribute.new('calls-received-unspecified', name: 'calls received (unspecified)', keypath: %i[calls_received_metric unspecified], index: 15)
+    CallsReceived = MetricSortAttribute.new('calls-received', name: 'calls received', keypath: %i[calls_received_metric total], index: 10)
+    CallsReceivedPerformTransaction = MetricSortAttribute.new('calls-received-perform-transaction', name: 'calls received (perform transaction)', keypath: %i[calls_received_metric perform_transaction], index: 11)
+    CallsReceivedGetInformation = MetricSortAttribute.new('calls-received-get-information', name: 'calls received (get information)', keypath: %i[calls_received_metric get_information], index: 12)
+    CallsReceivedChaseProgress = MetricSortAttribute.new('calls-received-chase-progress', name: 'calls received (chase progress)', keypath: %i[calls_received_metric chase_progress], index: 13)
+    CallsReceivedChallengeADecision = MetricSortAttribute.new('calls-received-challenge-a-decision', name: 'calls received (challenge a decision)', keypath: %i[calls_received_metric challenge_a_decision], index: 14)
+    CallsReceivedOther = MetricSortAttribute.new('calls-received-other', name: 'calls received (other)', keypath: %i[calls_received_metric other], index: 15)
+    CallsReceivedUnspecified = MetricSortAttribute.new('calls-received-unspecified', name: 'calls received (unspecified)', keypath: %i[calls_received_metric unspecified], index: 16)
 
     def get_metric_sort_attribute(identifier)
       MetricSortAttribute.get(identifier) || Name
@@ -96,6 +97,7 @@ class Metrics
       sorted = %i[
         online_transactions
         phone_transactions
+        email_transactions
         paper_transactions
         face_to_face_transactions
         other_transactions
@@ -119,6 +121,7 @@ class Metrics
 
       sorted[:total_transactions] = [
         sorted[:online_transactions],
+        sorted[:email_transactions],
         sorted[:phone_transactions],
         sorted[:paper_transactions],
         sorted[:face_to_face_transactions],

@@ -4,6 +4,7 @@ en:
       TransactionsReceivedMetric:
         online: Online transactions received
         phone: Telephone transactions received
+        email: Email transactions received
         paper: Paper transactions received
         face_to_face: Face to face transactions received
         other: Other transactions received
@@ -22,6 +23,7 @@ en:
       monthly_service_metrics:
         online_transactions: Online
         phone_transactions: Phone
+        email_transactions: Email
         paper_transactions: Paper
         face_to_face_transactions: Face-to-face
         other_transactions: Other

@@ -54,6 +54,7 @@ ActiveAdmin.register Service do
         attributes_table title: "Transactions received" do
           row :online_transactions_applicable
           row :phone_transactions_applicable
+          row :email_transactions_applicable
           row :paper_transactions_applicable
           row :face_to_face_transactions_applicable
           row :other_transactions_applicable
@@ -122,6 +123,7 @@ ActiveAdmin.register Service do
       f.input :paper_form_url
       f.input :online_transactions_applicable
       f.input :phone_transactions_applicable
+      f.input :email_transactions_applicable
       f.input :paper_transactions_applicable
       f.input :face_to_face_transactions_applicable
       f.input :other_transactions_applicable
@@ -162,6 +164,7 @@ ActiveAdmin.register Service do
                 :start_page_url, :paper_form_url,
                 :online_transactions_applicable, :publish_token,
                 :phone_transactions_applicable, :paper_transactions_applicable,
+                :email_transactions_applicable,
                 :face_to_face_transactions_applicable, :other_transactions_applicable,
                 :transactions_processed_applicable, :transactions_processed_with_intended_outcome_applicable,
                 :calls_received_applicable, :calls_received_get_information_applicable,
@@ -172,6 +175,7 @@ ActiveAdmin.register Service do
   remove_filter :online_transactions_applicable, :phone_transactions_applicable,
                 :paper_transactions_applicable,  :face_to_face_transactions_applicable,
                 :other_transactions_applicable,  :transactions_processed_applicable,
+                :email_transactions_applicable,
                 :transactions_processed_with_intended_outcome_applicable, :calls_received_applicable,
                 :calls_received_get_information_applicable, :calls_received_chase_progress_applicable,
                 :calls_received_challenge_decision_applicable, :calls_received_other_applicable,

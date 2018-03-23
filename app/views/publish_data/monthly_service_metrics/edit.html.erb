@@ -16,6 +16,7 @@
       <%= form_for(@monthly_service_metrics, as: :metrics, url: publish_service_metrics_path(publish_token: params[:publish_token]), method: :patch, builder: FormHelper::MonthlyServiceMetricsFormBuilder) do |f| %>
         <%= f.fieldset 'Number of transactions received, split by channel' do %>
           <%= f.metric :online_transactions, applicable: @monthly_service_metrics.service.online_transactions_applicable %>
+          <%= f.metric :email_transactions, applicable: @monthly_service_metrics.service.email_transactions_applicable %>
           <%= f.metric :phone_transactions, applicable: @monthly_service_metrics.service.phone_transactions_applicable %>
           <%= f.metric :paper_transactions, applicable: @monthly_service_metrics.service.paper_transactions_applicable %>
           <%= f.metric :face_to_face_transactions, applicable: @monthly_service_metrics.service.face_to_face_transactions_applicable %>

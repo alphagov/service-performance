@@ -6,7 +6,7 @@ RSpec.feature 'viewing services', type: :feature do
   specify 'viewing a service' do
     department = FactoryGirl.create(:department, name: 'Department for Transport')
     delivery_organisation = FactoryGirl.create(:delivery_organisation, department: department, name: 'Highways England')
-    service = FactoryGirl.create(:service, delivery_organisation: delivery_organisation, name: 'Pay the Dartford Crossing charge (Dartcharge)')
+    service = FactoryGirl.create(:service, delivery_organisation: delivery_organisation, name: 'Pay the Dartford Crossing charge (Dartcharge)', email_transactions_applicable: true)
 
     FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: time_period.start_month, online_transactions: 4025000, transactions_processed: 1437500)
     FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: time_period.end_month, online_transactions: 1725000, transactions_processed: 4312500)

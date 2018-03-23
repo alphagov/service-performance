@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308150755) do
+ActiveRecord::Schema.define(version: 20180323132041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20180308150755) do
     t.boolean "published", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "email_transactions"
     t.index "service_id, date_trunc('month'::text, (month)::timestamp without time zone)", name: "unique_monthly_service_metrics", unique: true
     t.index ["service_id"], name: "index_monthly_service_metrics_on_service_id"
   end
@@ -119,6 +120,7 @@ ActiveRecord::Schema.define(version: 20180308150755) do
     t.text "calls_other_name"
     t.text "other_name"
     t.boolean "sampled_calls", default: false, null: false
+    t.boolean "email_transactions_applicable", default: false
     t.index ["natural_key"], name: "index_services_on_natural_key", unique: true
     t.index ["publish_token"], name: "index_services_on_publish_token", unique: true
   end

@@ -4,11 +4,11 @@ ActiveAdmin.register MonthlyServiceMetrics do
   permit_params :id, :service_id, :month,
                 :online_transactions, :phone_transactions,
                 :paper_transactions, :face_to_face_transactions,
-                :other_transactions, :transactions_processed,
-                :transactions_processed_with_intended_outcome, :calls_received,
-                :calls_received_perform_transaction, :calls_received_get_information,
-                :calls_received_chase_progress, :calls_received_challenge_decision,
-                :calls_received_other, :published
+                :other_transactions, :email_transactions,
+                :transactions_processed, :transactions_processed_with_intended_outcome,
+                :calls_received, :calls_received_perform_transaction,
+                :calls_received_get_information, :calls_received_chase_progress,
+                :calls_received_challenge_decision, :calls_received_other, :published
 
   index do
     selectable_column
@@ -48,6 +48,9 @@ ActiveAdmin.register MonthlyServiceMetrics do
           end
           row "Phone" do
             applicable_value(svc, :phone_transactions)
+          end
+          row "Email" do
+            applicable_value(svc, :email_transactions)
           end
           row "Paper" do
             applicable_value(svc, :paper_transactions)
@@ -168,6 +171,7 @@ ActiveAdmin.register MonthlyServiceMetrics do
     column :month
     column :online_transactions
     column :phone_transactions
+    column :email_transactions
     column :paper_transactions
     column :face_to_face_transactions
     column :other_transactions

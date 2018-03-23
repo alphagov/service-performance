@@ -10,6 +10,7 @@ module ServicesHelper
     [
       %i(total_transactions total),
       %i(online_transactions online),
+      %i(email_transactions email),
       %i(phone_transactions phone),
       %i(paper_transactions paper),
       %i(face_to_face_transactions face_to_face),
