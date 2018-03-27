@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :publish, path: 'publish', module: nil do
     get "/service-manual", to: "publish_data/pages#service_manual"
     get "/transactions-received", to:"publish_data/pages#transactions_received"
+    get "/transactions-processed", to:"publish_data/pages#transactions_processed"
 
     resources :services, only: [] do
       constraints year: /\d{4}/, month: /\d{2}/ do
