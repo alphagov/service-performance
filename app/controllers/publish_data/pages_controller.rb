@@ -7,5 +7,7 @@ module PublishData
     def transactions_received; end
 
     def transactions_processed; end
+
+    def calls_received; end
   end
 end
