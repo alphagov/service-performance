@@ -1,6 +1,4 @@
-
 <main id="content" class="service-manual" role="main">
-
   <div class="grid-row">
     <div class="column-two-thirds">
       <h1 class="heading-xlarge">
@@ -27,17 +25,15 @@
   </div>
 
   <div class="grid-row">
-
     <div class="column-third js-stick-at-top-while-scrolling">
       <div class="sidebar">
-
         <h1 class="heading-small">Page contents</h1>
         <ul class="page-contents">
           <li>
             <a href="#what-is-service-performance" class="">What is Service Performance?</a>
           </li>
           <li>
-            <a href="#what-to-publish" class="">The KPIs</a>
+            <a href="#kpis" class="">The KPIs</a>
           </li>
           <li>
             <a href="#support" class="">Support</a>
@@ -47,57 +43,48 @@
     </div>
 
     <div class="column-two-thirds">
-
       <!-- Main content -->
       <div class="markdown">
-
         <h1 class="heading-large" id="what-is-service-performance">What is Service Performance?</h1>
-
         <p>
           Service Performance is a new tool from GDS that displays KPIs from government services. It's designed to give civil servants working in service transformation information about how services are performing.
         </p>
-        <h2 class="heading-large" id="what-to-publish">
+        <h2 class="heading-large" id="kpis">
           The KPIs
         </h2>
         <p>
-        The Service Performance KPIs are:
+          The Service Performance KPIs are:
         </p>
         <ul class="list-bullet">
-          <li>transactions received</li>
-          <li>transactions processed</li>
-          <li>calls received</li>
+          <li><%= link_to 'transactions received', publish_transactions_received_path %></li>
+          <li><%= link_to 'transactions processed', publish_transactions_processed_path %></li>
+          <li><%= link_to 'calls received', publish_calls_received_path %></li>
         </ul>
-                <h1 class="heading-large" id="support">Support</h1>
+        <h1 class="heading-large" id="support">Support</h1>
         <p>
           For help publishing data, please contact Uzo Ikegulu, Performance Analyst for Service Performance, at <a href="mailto:uzo.ikegulu@digital.cabinet-office.gov.uk?subject=Service performance publishing help">uzo.ikegulu@digital.cabinet-office.gov.uk</a>
         </p>
-
-
-    </div>
-
-  </div>
-</div>
-<div class="grid-row">
-  <div class="footer-content">
-    <div class="column-third">
-      <p style="visibility:hidden;">a</p>
-    </div>
-
-    <div class="column-two-thirds">
-
-      <div class="metadata-footer">
-        <dl>
-          <dt>Published by:</dt>
-          <dd>
-            <a href="mailto:performance-platform@digital.cabinet-office.gov.uk?subject=Service Manual feedback">
-              Service Performance team
-            </a>
-          </dd>
-        </dl>
       </div>
     </div>
   </div>
-</div>
-</div>
 
+  <div class="grid-row">
+    <div class="footer-content">
+      <div class="column-third">
+        <p style="visibility:hidden;">a</p>
+      </div>
+      <div class="column-two-thirds">
+        <div class="metadata-footer">
+          <dl>
+            <dt>Published by:</dt>
+            <dd>
+              <a href="mailto:performance-platform@digital.cabinet-office.gov.uk?subject=Service Manual feedback">
+                Service Performance team
+              </a>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
