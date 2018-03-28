@@ -25,7 +25,6 @@ script:
   - npm run lint
   - ./script/run-npm-test
   - chmod u+x etc/deploy.sh
-  - ls -al etc/
 deploy:
   - provider: script
     script: "./etc/deploy.sh staging"
