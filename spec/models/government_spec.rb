@@ -5,19 +5,19 @@ RSpec.describe Government, type: :model do
 
   describe '#departments_count' do
     it 'returns the total number of departments where 1 service has published data' do
-      d1 = FactoryGirl.create(:department, name: "test 1")
-      d2 = FactoryGirl.create(:department, name: "test 2")
-      d3 = FactoryGirl.create(:department, name: "test 3")
+      d1 = FactoryBot.create(:department, name: "test 1")
+      d2 = FactoryBot.create(:department, name: "test 2")
+      d3 = FactoryBot.create(:department, name: "test 3")
 
-      do1 = FactoryGirl.create(:delivery_organisation, name: "do test 1", department: d1)
-      do2 = FactoryGirl.create(:delivery_organisation, name: "do test 2", department: d2)
-      do3 = FactoryGirl.create(:delivery_organisation, name: "do test 3", department: d3)
+      do1 = FactoryBot.create(:delivery_organisation, name: "do test 1", department: d1)
+      do2 = FactoryBot.create(:delivery_organisation, name: "do test 2", department: d2)
+      do3 = FactoryBot.create(:delivery_organisation, name: "do test 3", department: d3)
 
-      s = FactoryGirl.create(:service, name: "service test 1", delivery_organisation: do1)
-      FactoryGirl.create(:service, name: "service test 2", delivery_organisation: do2)
-      FactoryGirl.create(:service, name: "service test 3", delivery_organisation: do3)
+      s = FactoryBot.create(:service, name: "service test 1", delivery_organisation: do1)
+      FactoryBot.create(:service, name: "service test 2", delivery_organisation: do2)
+      FactoryBot.create(:service, name: "service test 3", delivery_organisation: do3)
 
-      FactoryGirl.create(:monthly_service_metrics, service: s, month: "2017-01-01", published: true)
+      FactoryBot.create(:monthly_service_metrics, service: s, month: "2017-01-01", published: true)
 
       expect(government.departments_count).to eq(1)
     end
@@ -25,21 +25,21 @@ RSpec.describe Government, type: :model do
 
   describe '#departments_count' do
     it 'returns the total number of departments where all services have published data' do
-      d1 = FactoryGirl.create(:department, name: "test 1")
-      d2 = FactoryGirl.create(:department, name: "test 2")
-      d3 = FactoryGirl.create(:department, name: "test 3")
+      d1 = FactoryBot.create(:department, name: "test 1")
+      d2 = FactoryBot.create(:department, name: "test 2")
+      d3 = FactoryBot.create(:department, name: "test 3")
 
-      do1 = FactoryGirl.create(:delivery_organisation, name: "do test 1", department: d1)
-      do2 = FactoryGirl.create(:delivery_organisation, name: "do test 2", department: d2)
-      do3 = FactoryGirl.create(:delivery_organisation, name: "do test 3", department: d3)
+      do1 = FactoryBot.create(:delivery_organisation, name: "do test 1", department: d1)
+      do2 = FactoryBot.create(:delivery_organisation, name: "do test 2", department: d2)
+      do3 = FactoryBot.create(:delivery_organisation, name: "do test 3", department: d3)
 
-      s1 = FactoryGirl.create(:service, name: "service test 1", delivery_organisation: do1)
-      s2 = FactoryGirl.create(:service, name: "service test 2", delivery_organisation: do2)
-      s3 = FactoryGirl.create(:service, name: "service test 3", delivery_organisation: do3)
+      s1 = FactoryBot.create(:service, name: "service test 1", delivery_organisation: do1)
+      s2 = FactoryBot.create(:service, name: "service test 2", delivery_organisation: do2)
+      s3 = FactoryBot.create(:service, name: "service test 3", delivery_organisation: do3)
 
-      FactoryGirl.create(:monthly_service_metrics, service: s1, month: "2017-01-01", published: true)
-      FactoryGirl.create(:monthly_service_metrics, service: s2, month: "2017-01-01", published: true)
-      FactoryGirl.create(:monthly_service_metrics, service: s3, month: "2017-01-01", published: true)
+      FactoryBot.create(:monthly_service_metrics, service: s1, month: "2017-01-01", published: true)
+      FactoryBot.create(:monthly_service_metrics, service: s2, month: "2017-01-01", published: true)
+      FactoryBot.create(:monthly_service_metrics, service: s3, month: "2017-01-01", published: true)
 
       expect(government.departments_count).to eq(3)
     end
@@ -47,17 +47,17 @@ RSpec.describe Government, type: :model do
 
   describe '#departments_count' do
     it 'returns the total number of departments where no services have published data' do
-      d1 = FactoryGirl.create(:department, name: "test 1")
-      d2 = FactoryGirl.create(:department, name: "test 2")
-      d3 = FactoryGirl.create(:department, name: "test 3")
+      d1 = FactoryBot.create(:department, name: "test 1")
+      d2 = FactoryBot.create(:department, name: "test 2")
+      d3 = FactoryBot.create(:department, name: "test 3")
 
-      do1 = FactoryGirl.create(:delivery_organisation, name: "do test 1", department: d1)
-      do2 = FactoryGirl.create(:delivery_organisation, name: "do test 2", department: d2)
-      do3 = FactoryGirl.create(:delivery_organisation, name: "do test 3", department: d3)
+      do1 = FactoryBot.create(:delivery_organisation, name: "do test 1", department: d1)
+      do2 = FactoryBot.create(:delivery_organisation, name: "do test 2", department: d2)
+      do3 = FactoryBot.create(:delivery_organisation, name: "do test 3", department: d3)
 
-      FactoryGirl.create(:service, name: "service test 1", delivery_organisation: do1)
-      FactoryGirl.create(:service, name: "service test 2", delivery_organisation: do2)
-      FactoryGirl.create(:service, name: "service test 3", delivery_organisation: do3)
+      FactoryBot.create(:service, name: "service test 1", delivery_organisation: do1)
+      FactoryBot.create(:service, name: "service test 2", delivery_organisation: do2)
+      FactoryBot.create(:service, name: "service test 3", delivery_organisation: do3)
 
       expect(government.departments_count).to eq(0)
     end
@@ -65,16 +65,16 @@ RSpec.describe Government, type: :model do
 
   describe '#delivery_organisations_count' do
     it 'returns the total number of departments' do
-      d1 = FactoryGirl.create(:department, name: "test 1")
+      d1 = FactoryBot.create(:department, name: "test 1")
 
-      do1 = FactoryGirl.create(:delivery_organisation, name: "do test 1", department: d1)
-      do2 = FactoryGirl.create(:delivery_organisation, name: "do test 2", department: d1)
+      do1 = FactoryBot.create(:delivery_organisation, name: "do test 1", department: d1)
+      do2 = FactoryBot.create(:delivery_organisation, name: "do test 2", department: d1)
 
-      s1 = FactoryGirl.create(:service, name: "service test 1", delivery_organisation: do1)
-      s2 = FactoryGirl.create(:service, name: "service test 2", delivery_organisation: do2)
+      s1 = FactoryBot.create(:service, name: "service test 1", delivery_organisation: do1)
+      s2 = FactoryBot.create(:service, name: "service test 2", delivery_organisation: do2)
 
-      FactoryGirl.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s1, published: true)
-      FactoryGirl.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s2, published: true)
+      FactoryBot.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s1, published: true)
+      FactoryBot.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s2, published: true)
 
       expect(government.delivery_organisations_count).to eq(2)
     end
@@ -82,19 +82,19 @@ RSpec.describe Government, type: :model do
 
   describe '#services_count' do
     it 'returns the total number of services who have published data correctly' do
-      s = FactoryGirl.create(:service)
-      FactoryGirl.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s, published: true)
+      s = FactoryBot.create(:service)
+      FactoryBot.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s, published: true)
 
       expect(government.services_count).to eq(1)
     end
     it 'returns the total number of services who have data, but not published, correctly' do
-      s = FactoryGirl.create(:service)
-      FactoryGirl.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s)
+      s = FactoryBot.create(:service)
+      FactoryBot.create(:monthly_service_metrics, month: YearMonth.new(2017, 8), service: s)
 
       expect(government.services_count).to eq(0)
     end
     it 'returns the total number of services who have no data correctly' do
-      FactoryGirl.create(:service)
+      FactoryBot.create(:service)
 
       expect(government.services_count).to eq(0)
     end

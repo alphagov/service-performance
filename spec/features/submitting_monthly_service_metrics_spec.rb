@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'submitting monthly service metrics' do
-  let(:service) { FactoryGirl.create(:service, name: 'The Submitting Data Service') }
+  let(:service) { FactoryBot.create(:service, name: 'The Submitting Data Service') }
   let(:publish_token) { MonthlyServiceMetricsPublishToken.generate(service: service, month: YearMonth.new(2017, 9)) }
   specify 'submitting metrics' do
     visit_metrics_path
@@ -149,7 +149,7 @@ RSpec.feature 'submitting monthly service metrics' do
   end
 
   specify "Titles are not shown for non-applicable calls" do
-    svc = FactoryGirl.create(:service, name: 'No calls service', calls_received_applicable: false)
+    svc = FactoryBot.create(:service, name: 'No calls service', calls_received_applicable: false)
     token = MonthlyServiceMetricsPublishToken.generate(service: svc, month: YearMonth.new(2017, 9))
 
     visit publish_service_metrics_path(service_id: svc, year: '2017', month: '09', publish_token: token)
@@ -158,7 +158,7 @@ RSpec.feature 'submitting monthly service metrics' do
   end
 
   specify "Titles are not shown for other when no-call-other" do
-    svc = FactoryGirl.create(:service,
+    svc = FactoryBot.create(:service,
       name: 'No calls service',
       calls_received_perform_transaction_applicable: false,
       calls_received_get_information_applicable: false,
@@ -173,7 +173,7 @@ RSpec.feature 'submitting monthly service metrics' do
   end
 
   specify "No call labels when no calls are applicable" do
-    svc = FactoryGirl.create(:service,
+    svc = FactoryBot.create(:service,
       name: 'No calls service',
       calls_received_applicable: false,
       calls_received_perform_transaction_applicable: false,
@@ -203,9 +203,9 @@ RSpec.feature 'submitting monthly service metrics' do
     when 1
       within(fieldsets.first, &block)
     when 0
-      raise 'No fieldset found, with heading "%s"' % [text]
+      raise "No fieldset found, with heading '#{text}'" % [text]
     else
-      raise 'Ambiguous fieldsets, %d fieldsets found with heading "%s"' % [fieldsets.size, text]
+      raise "Ambiguous fieldsets, #{fieldsets.size} fieldsets found with heading '#{text}'"
     end
   end
 end

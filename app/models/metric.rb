@@ -101,14 +101,11 @@ class Metric
     items = definition.items.each.with_object({}) do |item, memo|
       value = item.from.(metrics)
 
-      unless value
-        value =
-          if item.applicable.(metrics)
-            NOT_PROVIDED
-          else
-            NOT_APPLICABLE
-          end
-      end
+      value ||= if item.applicable.(metrics)
+                  NOT_PROVIDED
+                else
+                  NOT_APPLICABLE
+                end
 
       memo[item.name] = value
 

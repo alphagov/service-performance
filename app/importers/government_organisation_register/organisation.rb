@@ -23,7 +23,7 @@ module GovernmentOrganisationRegister
       return if date.nil?
 
       match = date.match(DATE_PATTERN)
-      raise ArgumentError.new("unexpected date format: '%s'" % date) unless match
+      raise ArgumentError.new("unexpected date format: '#{date}'") unless match
 
       captures = match.named_captures
       components = [captures['year'], captures['month'], captures['day']].compact.map(&:to_i)

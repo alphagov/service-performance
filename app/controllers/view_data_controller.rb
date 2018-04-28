@@ -15,7 +15,7 @@ private
     begin
       _ = Rails.application.routes.recognize_path(path)
       path
-    rescue
+    rescue StandardError => _
       view_data_government_metrics_path
     end
   end

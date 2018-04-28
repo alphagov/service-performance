@@ -36,7 +36,7 @@ class TimePeriod
         Date.parse(starts),
         Date.parse(ends)
       )
-    rescue
+    rescue StandardError => _
       nil
     end
   end
@@ -87,7 +87,7 @@ class TimePeriod
   end
 
   # Defines equality as the start and end dates being the same
-  def ==(o)
-    o.class == self.class && o.starts_on == @starts_on && o.ends_on == @ends_on
+  def ==(other)
+    other.class == self.class && other.starts_on == @starts_on && other.ends_on == @ends_on
   end
 end

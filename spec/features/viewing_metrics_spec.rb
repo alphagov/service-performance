@@ -2,45 +2,45 @@ require 'rails_helper'
 
 RSpec.feature 'viewing metrics', type: :feature do
   before do
-    department1 = FactoryGirl.create(:department, name: "Department for Business, Energy & Industrial Strategy")
-    department2 = FactoryGirl.create(:department, name: "Department for Communities and Local Government")
-    department3 = FactoryGirl.create(:department, name: "Department for Education")
-    department4 = FactoryGirl.create(:department, name: "Department for Environment, Food & Rural Affairs")
-    department5 = FactoryGirl.create(:department, name: "Department for Transport")
-    department6 = FactoryGirl.create(:department, name: "Department for Work and Pensions")
-    department7 = FactoryGirl.create(:department, name: "Ministry of Justice")
+    department1 = FactoryBot.create(:department, name: "Department for Business, Energy & Industrial Strategy")
+    department2 = FactoryBot.create(:department, name: "Department for Communities and Local Government")
+    department3 = FactoryBot.create(:department, name: "Department for Education")
+    department4 = FactoryBot.create(:department, name: "Department for Environment, Food & Rural Affairs")
+    department5 = FactoryBot.create(:department, name: "Department for Transport")
+    department6 = FactoryBot.create(:department, name: "Department for Work and Pensions")
+    department7 = FactoryBot.create(:department, name: "Ministry of Justice")
 
-    delivery_organisation1 = FactoryGirl.create(:delivery_organisation, department: department1, name: "Department for Business, Energy & Industrial Strategy")
-    delivery_organisation2 = FactoryGirl.create(:delivery_organisation, department: department2, name: "Department for Communities and Local Government")
-    delivery_organisation3 = FactoryGirl.create(:delivery_organisation, department: department3, name: "Department for Education")
-    delivery_organisation4 = FactoryGirl.create(:delivery_organisation, department: department4, name: "Department for Environment, Food & Rural Affairs")
-    delivery_organisation5 = FactoryGirl.create(:delivery_organisation, department: department5, name: "Department for Transport")
-    delivery_organisation6 = FactoryGirl.create(:delivery_organisation, department: department6, name: "Department for Work and Pensions")
-    delivery_organisation7 = FactoryGirl.create(:delivery_organisation, department: department7, name: "Ministry of Justice")
+    delivery_organisation1 = FactoryBot.create(:delivery_organisation, department: department1, name: "Department for Business, Energy & Industrial Strategy")
+    delivery_organisation2 = FactoryBot.create(:delivery_organisation, department: department2, name: "Department for Communities and Local Government")
+    delivery_organisation3 = FactoryBot.create(:delivery_organisation, department: department3, name: "Department for Education")
+    delivery_organisation4 = FactoryBot.create(:delivery_organisation, department: department4, name: "Department for Environment, Food & Rural Affairs")
+    delivery_organisation5 = FactoryBot.create(:delivery_organisation, department: department5, name: "Department for Transport")
+    delivery_organisation6 = FactoryBot.create(:delivery_organisation, department: department6, name: "Department for Work and Pensions")
+    delivery_organisation7 = FactoryBot.create(:delivery_organisation, department: department7, name: "Ministry of Justice")
 
-    service1 = FactoryGirl.create(:service, delivery_organisation: delivery_organisation1, name: "File your Accounts")
-    service2 = FactoryGirl.create(:service, delivery_organisation: delivery_organisation2, name: "Planning application appeals")
-    service3 = FactoryGirl.create(:service, delivery_organisation: delivery_organisation3, name: "Get Into Teaching")
-    service4 = FactoryGirl.create(:service, delivery_organisation: delivery_organisation4, name: "Get a wildlife licence")
-    service5 = FactoryGirl.create(:service, delivery_organisation: delivery_organisation5, name: "Pay the Dartford Crossing charge (Dartcharge)")
-    service6 = FactoryGirl.create(:service, delivery_organisation: delivery_organisation6, name: "Check your State Pension")
-    service7 = FactoryGirl.create(:service, delivery_organisation: delivery_organisation7, name: "Appeal to the tax tribunal")
+    service1 = FactoryBot.create(:service, delivery_organisation: delivery_organisation1, name: "File your Accounts")
+    service2 = FactoryBot.create(:service, delivery_organisation: delivery_organisation2, name: "Planning application appeals")
+    service3 = FactoryBot.create(:service, delivery_organisation: delivery_organisation3, name: "Get Into Teaching")
+    service4 = FactoryBot.create(:service, delivery_organisation: delivery_organisation4, name: "Get a wildlife licence")
+    service5 = FactoryBot.create(:service, delivery_organisation: delivery_organisation5, name: "Pay the Dartford Crossing charge (Dartcharge)")
+    service6 = FactoryBot.create(:service, delivery_organisation: delivery_organisation6, name: "Check your State Pension")
+    service7 = FactoryBot.create(:service, delivery_organisation: delivery_organisation7, name: "Appeal to the tax tribunal")
 
     time_period = TimePeriod.default
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service1, month: time_period.start_month, online_transactions: 4436000, calls_received: 171)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service1, month: time_period.end_month, online_transactions: 917)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service2, month: time_period.start_month, online_transactions: 11000)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service2, month: time_period.end_month, online_transactions: 560)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service3, month: time_period.start_month, online_transactions: 91000)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service3, month: time_period.end_month, online_transactions: 223)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service4, month: time_period.start_month, online_transactions: 12537000, calls_received: 213775)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service4, month: time_period.end_month, online_transactions: 482)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service5, month: time_period.start_month, online_transactions: 5747000, calls_received: 313749)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service5, month: time_period.end_month, online_transactions: 785)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service6, month: time_period.start_month, online_transactions: 3709000, calls_received: 467495)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service6, month: time_period.end_month, online_transactions: 191)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service7, month: time_period.start_month, online_transactions: 58000)
-    FactoryGirl.create(:monthly_service_metrics, :published, service: service7, month: time_period.end_month, online_transactions: 140)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service1, month: time_period.start_month, online_transactions: 4436000, calls_received: 171)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service1, month: time_period.end_month, online_transactions: 917)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service2, month: time_period.start_month, online_transactions: 11000)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service2, month: time_period.end_month, online_transactions: 560)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service3, month: time_period.start_month, online_transactions: 91000)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service3, month: time_period.end_month, online_transactions: 223)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service4, month: time_period.start_month, online_transactions: 12537000, calls_received: 213775)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service4, month: time_period.end_month, online_transactions: 482)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service5, month: time_period.start_month, online_transactions: 5747000, calls_received: 313749)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service5, month: time_period.end_month, online_transactions: 785)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service6, month: time_period.start_month, online_transactions: 3709000, calls_received: 467495)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service6, month: time_period.end_month, online_transactions: 191)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service7, month: time_period.start_month, online_transactions: 58000)
+    FactoryBot.create(:monthly_service_metrics, :published, service: service7, month: time_period.end_month, online_transactions: 140)
   end
 
   context 'sorting metrics' do
@@ -171,7 +171,7 @@ RSpec.feature 'viewing metrics', type: :feature do
     def transactions_received_total
       begin
         element.find('.m-metric__transactions-received .m-metric-headline data', visible: false)[:value]
-      rescue
+      rescue StandardError => _
         nil
       end
     end
@@ -179,7 +179,7 @@ RSpec.feature 'viewing metrics', type: :feature do
     def calls_received_unspecified
       begin
         element.find('li[data-metric-item-identifier="calls-received"] .metric-value data')[:value]
-      rescue
+      rescue StandardError => _
         nil
       end
     end

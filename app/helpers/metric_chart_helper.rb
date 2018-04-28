@@ -34,11 +34,7 @@ private
 
   def increased?
     return nil if same_difference
-    if @current_metrics > @previous_metrics
-      true
-    else
-      false
-    end
+    @current_metrics > @previous_metrics
   end
 
   def difference_increase_percentage

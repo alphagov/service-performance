@@ -36,12 +36,12 @@ module SparklineHelper
       # + color:: The CSS color of the lines
       # + stroke:: The thickness of the lines
       def svg(color: "black", stroke: 5)
-        <<-eos
+        <<-CONTENT
     <svg width="#{@width.to_i}" height="#{@height.to_i}">
       <title>#{@titles}</title>
       <polyline points="#{point_string}" stroke="#{color}" stroke-width="#{stroke}" fill="none" stroke-linecap="square"/>
     </svg>
-        eos
+        CONTENT
       end
 
     private

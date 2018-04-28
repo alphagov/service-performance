@@ -12,13 +12,13 @@ RSpec.feature 'submitting time period data' do
   end
 
   let(:time_period) { TimePeriod.default }
-  let(:department) { FactoryGirl.create(:department, name: 'Department for Environment, Food & Rural Affairs') }
-  let(:delivery_organisation) { FactoryGirl.create(:delivery_organisation, department: department, name: 'Environment Agency') }
-  let(:service) { FactoryGirl.create(:service, :transactions_received_not_applicable, :calls_received_not_applicable, delivery_organisation: delivery_organisation, name: 'Flood Information Service') }
+  let(:department) { FactoryBot.create(:department, name: 'Department for Environment, Food & Rural Affairs') }
+  let(:delivery_organisation) { FactoryBot.create(:delivery_organisation, department: department, name: 'Environment Agency') }
+  let(:service) { FactoryBot.create(:service, :transactions_received_not_applicable, :calls_received_not_applicable, delivery_organisation: delivery_organisation, name: 'Flood Information Service') }
   let(:create_metrics) {
     month = YearMonth.new(2017, 1)
     6.times do
-      FactoryGirl.create(:monthly_service_metrics, :published, service: service, month: month, transactions_processed: 100, transactions_processed_with_intended_outcome: 100)
+      FactoryBot.create(:monthly_service_metrics, :published, service: service, month: month, transactions_processed: 100, transactions_processed_with_intended_outcome: 100)
       month = month.succ
     end
   }

@@ -4,12 +4,12 @@ RSpec.describe MetricsCSVExporter, type: :exporter do
   subject(:exporter) { MetricsCSVExporter.new(MonthlyServiceMetrics.all) }
 
   it 'exports the metrics, per month, per service' do
-    service1 = FactoryGirl.create(:service, name: 'Apply for Passport')
-    FactoryGirl.create(:monthly_service_metrics, service: service1, month: YearMonth.new(2017, 7), online_transactions: 10_000)
-    FactoryGirl.create(:monthly_service_metrics, service: service1, month: YearMonth.new(2017, 8), online_transactions: 11_000)
+    service1 = FactoryBot.create(:service, name: 'Apply for Passport')
+    FactoryBot.create(:monthly_service_metrics, service: service1, month: YearMonth.new(2017, 7), online_transactions: 10_000)
+    FactoryBot.create(:monthly_service_metrics, service: service1, month: YearMonth.new(2017, 8), online_transactions: 11_000)
 
-    service2 = FactoryGirl.create(:service, name: 'Renew Passport')
-    FactoryGirl.create(:monthly_service_metrics, service: service2, month: YearMonth.new(2017, 8), online_transactions: 12_000)
+    service2 = FactoryBot.create(:service, name: 'Renew Passport')
+    FactoryBot.create(:monthly_service_metrics, service: service2, month: YearMonth.new(2017, 8), online_transactions: 12_000)
 
     fields = rows.map { |row| [row.service_name, row.month, row.online_transactions, row.phone_transactions] }
     expect(fields).to match_array([
@@ -20,8 +20,8 @@ RSpec.describe MetricsCSVExporter, type: :exporter do
   end
 
   it "export 'N/A' when a metric item has been set as not applicable" do
-    service1 = FactoryGirl.create(:service, name: 'Apply for Passport', online_transactions_applicable: false)
-    FactoryGirl.create(:monthly_service_metrics, service: service1, month: YearMonth.new(2017, 7))
+    service1 = FactoryBot.create(:service, name: 'Apply for Passport', online_transactions_applicable: false)
+    FactoryBot.create(:monthly_service_metrics, service: service1, month: YearMonth.new(2017, 7))
 
     fields = rows.map { |row| [row.service_name, row.online_transactions] }
     expect(fields).to match_array([

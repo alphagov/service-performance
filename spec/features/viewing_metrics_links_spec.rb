@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.feature 'viewing metrics', type: :feature do
   before do
-    @department1 = FactoryGirl.create(:department, name: "Department for Business, Energy & Industrial Strategy")
-    @delivery_organisation1 = FactoryGirl.create(:delivery_organisation, department: @department1, name: "Department for Business, Energy & Industrial Strategy")
-    @service1 = FactoryGirl.create(:service, delivery_organisation: @delivery_organisation1, name: "File your Accounts")
+    @department1 = FactoryBot.create(:department, name: "Department for Business, Energy & Industrial Strategy")
+    @delivery_organisation1 = FactoryBot.create(:delivery_organisation, department: @department1, name: "Department for Business, Energy & Industrial Strategy")
+    @service1 = FactoryBot.create(:service, delivery_organisation: @delivery_organisation1, name: "File your Accounts")
 
     time_period = TimePeriod.default
-    FactoryGirl.create(:monthly_service_metrics, :published, service: @service1, month: time_period.start_month, online_transactions: 4436000, calls_received: 171)
+    FactoryBot.create(:monthly_service_metrics, :published, service: @service1, month: time_period.start_month, online_transactions: 4436000, calls_received: 171)
   end
 
   context 'grouped by department' do

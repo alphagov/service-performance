@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.1.6'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'govuk_frontend_toolkit', '~> 7.2'
@@ -42,8 +42,8 @@ gem 'gds_metrics'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
-  gem 'factory_girl_rails'
-  gem 'govuk-lint'
+  gem 'factory_bot_rails'
+  gem 'govuk-lint', '~> 3.7.0'
   gem 'launchy'
   gem 'rspec-rails'
 end
@@ -59,7 +59,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', '~> 2.18.0'
   gem 'capybara-webkit'
   gem 'rails-controller-testing'
   gem 'timecop'

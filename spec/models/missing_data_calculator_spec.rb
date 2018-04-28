@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe MissingDataCalculator, type: :model do
   describe "no data calculations" do
-    subject(:department_test) { FactoryGirl.build(:department) }
-    subject(:delivery_organistion_test) { FactoryGirl.build(:delivery_organistion, department: department_test) }
+    subject(:department_test) { FactoryBot.build(:department) }
+    subject(:delivery_organistion_test) { FactoryBot.build(:delivery_organistion, department: department_test) }
     it "can calculate when no data available" do
       calc = MissingDataCalculator.new(department_test, TimePeriod.default)
 
@@ -12,12 +12,12 @@ RSpec.describe MissingDataCalculator, type: :model do
   end
 
   describe "missing data calculations" do
-    subject(:department) { FactoryGirl.build(:department) }
-    subject(:delivery_organisation) { FactoryGirl.build(:delivery_organisation, department: department) }
-    subject(:service) { FactoryGirl.build(:service, delivery_organisation: delivery_organisation, natural_key: "a", name: "test") }
+    subject(:department) { FactoryBot.build(:department) }
+    subject(:delivery_organisation) { FactoryBot.build(:delivery_organisation, department: department) }
+    subject(:service) { FactoryBot.build(:service, delivery_organisation: delivery_organisation, natural_key: "a", name: "test") }
 
     it "can calculate with published metrics" do
-      metrics = FactoryGirl.build(:monthly_service_metrics,
+      metrics = FactoryBot.build(:monthly_service_metrics,
           service: service,
           published: true,
           phone_transactions: 100,
@@ -38,7 +38,7 @@ RSpec.describe MissingDataCalculator, type: :model do
     end
 
     it "can format months_missing string for consecutive months missing data within the same year" do
-      metrics = FactoryGirl.build(:monthly_service_metrics,
+      metrics = FactoryBot.build(:monthly_service_metrics,
           service: service,
           published: true,
           online_transactions: 100,
@@ -54,7 +54,7 @@ RSpec.describe MissingDataCalculator, type: :model do
     end
 
     it "can format months_missing string for consecutive months missing data across years" do
-      metrics = FactoryGirl.build(:monthly_service_metrics,
+      metrics = FactoryBot.build(:monthly_service_metrics,
             service: service,
             published: true,
             phone_transactions: 100,
@@ -72,7 +72,7 @@ RSpec.describe MissingDataCalculator, type: :model do
     end
 
     it "can format months_missing string where both consecutive month and individual month data is missing" do
-      metrics = FactoryGirl.build(:monthly_service_metrics,
+      metrics = FactoryBot.build(:monthly_service_metrics,
           service: service,
           published: true,
           paper_transactions: 100,
@@ -88,14 +88,14 @@ RSpec.describe MissingDataCalculator, type: :model do
     end
 
     it "can format months_missing string when only non consecutive month data is missing" do
-      metrics = FactoryGirl.build(:monthly_service_metrics,
+      metrics = FactoryBot.build(:monthly_service_metrics,
           service: service,
           published: true,
           online_transactions: 100,
           month: YearMonth.new(2017, 10),)
       metrics.save
 
-      metrics = FactoryGirl.build(:monthly_service_metrics,
+      metrics = FactoryBot.build(:monthly_service_metrics,
           service: service,
           published: true,
           online_transactions: 100,

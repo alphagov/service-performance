@@ -242,7 +242,7 @@ private
     def parse_metric(value)
       case value&.strip
       when nil
-        raise ArgumentError, 'invalid value: for %s: "%s"' % [value, @row]
+        raise ArgumentError, "invalid value: for #{value}: '#{row}'"
       when 'N/A'
         NOT_APPLICABLE
       when 'N/P'

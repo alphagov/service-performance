@@ -9,8 +9,8 @@ RSpec.describe DepartmentsImporter do
 
     describe 'new department id' do
       it 'copies the delivery organisation to a department' do
-        FactoryGirl.create(:delivery_organisation, natural_key: 'D1', name: 'Org', website: 'http://example.com')
-        FactoryGirl.create(:delivery_organisation, natural_key: 'D1000')
+        FactoryBot.create(:delivery_organisation, natural_key: 'D1', name: 'Org', website: 'http://example.com')
+        FactoryBot.create(:delivery_organisation, natural_key: 'D1000')
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
 
@@ -25,9 +25,9 @@ RSpec.describe DepartmentsImporter do
 
     describe 'existing department id, with updates' do
       it 'updates the fields' do
-        department = FactoryGirl.create(:department, natural_key: 'D1', name: 'Org', website: 'http://example.com')
-        FactoryGirl.create(:delivery_organisation, natural_key: 'D1', name: 'Org 2', website: 'http://example.org')
-        FactoryGirl.create(:delivery_organisation, natural_key: 'D1000')
+        department = FactoryBot.create(:department, natural_key: 'D1', name: 'Org', website: 'http://example.com')
+        FactoryBot.create(:delivery_organisation, natural_key: 'D1', name: 'Org 2', website: 'http://example.org')
+        FactoryBot.create(:delivery_organisation, natural_key: 'D1000')
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
 
@@ -44,9 +44,9 @@ RSpec.describe DepartmentsImporter do
 
     describe 'existing department id, without updates' do
       it 'ignores the department' do
-        FactoryGirl.create(:department, natural_key: 'D1', name: 'Org', website: 'http://example.com')
-        FactoryGirl.create(:delivery_organisation, natural_key: 'D1', name: 'Org', website: 'http://example.com')
-        FactoryGirl.create(:delivery_organisation, natural_key: 'D1000')
+        FactoryBot.create(:department, natural_key: 'D1', name: 'Org', website: 'http://example.com')
+        FactoryBot.create(:delivery_organisation, natural_key: 'D1', name: 'Org', website: 'http://example.com')
+        FactoryBot.create(:delivery_organisation, natural_key: 'D1000')
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
 
@@ -59,9 +59,9 @@ RSpec.describe DepartmentsImporter do
 
     describe 'associating a department' do
       it 'updates the delivery organisations department' do
-        department = FactoryGirl.create(:department, natural_key: 'D1')
-        FactoryGirl.create(:delivery_organisation, natural_key: 'D1', name: 'Org', website: 'http://example.com')
-        delivery_organisation = FactoryGirl.create(:delivery_organisation, natural_key: 'D1000')
+        department = FactoryBot.create(:department, natural_key: 'D1')
+        FactoryBot.create(:delivery_organisation, natural_key: 'D1', name: 'Org', website: 'http://example.com')
+        delivery_organisation = FactoryBot.create(:delivery_organisation, natural_key: 'D1000')
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
 
@@ -75,8 +75,8 @@ RSpec.describe DepartmentsImporter do
       end
 
       it 'reports if no delivery organisation' do
-        FactoryGirl.create(:department, natural_key: 'D1')
-        FactoryGirl.create(:delivery_organisation, natural_key: 'D1', name: 'Org', website: 'http://example.com')
+        FactoryBot.create(:department, natural_key: 'D1')
+        FactoryBot.create(:delivery_organisation, natural_key: 'D1', name: 'Org', website: 'http://example.com')
 
         input = StringIO.new("Organisation ID,Department ID\nD1000,D1\n")
 

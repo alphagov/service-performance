@@ -48,7 +48,7 @@ RSpec.describe DeliveryOrganisationsImporter, type: :importer do
 
     describe 'existing organisation, with changes' do
       it 'updates the organisation' do
-        FactoryGirl.create(:delivery_organisation, natural_key: 'D5678', name: 'Org', website: 'http://example.com')
+        FactoryBot.create(:delivery_organisation, natural_key: 'D5678', name: 'Org', website: 'http://example.com')
         allow(organisation).to receive_messages(key: 'D5678', name: 'New Org', website: 'http://example.org')
 
         expect {
@@ -62,7 +62,7 @@ RSpec.describe DeliveryOrganisationsImporter, type: :importer do
 
     describe 'existing organisation, without changes' do
       it 'ignores the organisation' do
-        FactoryGirl.create(:delivery_organisation, natural_key: 'D5678', name: 'Org', website: 'http://example.com')
+        FactoryBot.create(:delivery_organisation, natural_key: 'D5678', name: 'Org', website: 'http://example.com')
         allow(organisation).to receive_messages(key: 'D5678', name: 'Org', website: 'http://example.com')
 
         expect {

@@ -24,7 +24,7 @@ module GovernmentOrganisationRegister
       super() do |yielder|
         while url do
           response = connection.get(url)
-          response.body.each do |_, record|
+          response.body.each_value do |record|
             organisation = Organisation.new(record)
             yielder.yield organisation
           end

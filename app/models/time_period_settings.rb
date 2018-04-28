@@ -5,7 +5,6 @@ class TimePeriodSettings
   include ActiveModel::Validations
 
   attr_accessor :range, :start_date_month, :start_date_year, :end_date_month, :end_date_year, :next
-  attr_accessor :errors
 
   def errors
     @errors ||= ActiveModel::Errors.new(self)
@@ -41,9 +40,9 @@ class TimePeriodSettings
     end_date_string = end_date_month + "-" + end_date_year
 
     begin
-      start_date = DateTime.strptime(start_date_string, '%m-%Y')
-      end_date = DateTime.strptime(end_date_string, '%m-%Y')
-    rescue
+      start_date = Date.strptime(start_date_string, '%m-%Y')
+      end_date = Date.strptime(end_date_string, '%m-%Y')
+    rescue StandardError => _
       return
     end
 
@@ -53,7 +52,7 @@ class TimePeriodSettings
       errors.add(:start_date_month, "start date cannot be before #{first_data_date.to_formatted_s(:month_and_year)}")
     end
 
-    if end_date > DateTime.now
+    if end_date > Date.today
       errors.add(:end_date_year, "end date can't be in the future")
     end
 
