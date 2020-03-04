@@ -215,7 +215,7 @@ GEM
     powerpack (0.1.1)
     prometheus-client-mmap (0.9.1)
     public_suffix (3.0.0)
-    puma (3.8.2)
+    puma (3.12.4)
     rack (2.0.4)
     rack-test (0.8.3)
       rack (>= 1.0, < 3)
@@ -376,7 +376,7 @@ DEPENDENCIES
   logstash-event
   paper_trail
   pg
-  puma (~> 3.7)
+  puma (~> 3.12)
   rails (~> 5.1.5)
   rails-controller-testing
   redcarpet

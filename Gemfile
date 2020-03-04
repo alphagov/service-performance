@@ -8,7 +8,7 @@ end
 
 gem 'rails', '~> 5.1.5'
 gem 'pg'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 gem 'govuk_frontend_toolkit', '~> 7.2'
 gem 'govuk_template'
 gem 'govuk_elements_rails'
